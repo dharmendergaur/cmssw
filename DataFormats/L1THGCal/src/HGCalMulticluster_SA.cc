@@ -1,5 +1,7 @@
 #include "DataFormats/L1THGCal/interface/HGCalMulticluster_SA.h"
 
+#include <cmath>
+
 #include <iostream>
 using namespace l1t;
 
