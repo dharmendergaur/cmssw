@@ -5,19 +5,26 @@ namespace l1t {
 
   class HGCalCluster_SA {
   public:
-    HGCalCluster_SA(float x, float y, int zside, unsigned int layer, float eta, float phi, float pt, float mipPt, unsigned int index_cmssw) :
-      x_(x),
-      y_(y),
-      zside_(zside),
-      layer_(layer),
-      eta_(eta),
-      phi_(phi),
-      pt_(pt),
-      mipPt_(mipPt),
-      index_cmssw_(index_cmssw)
-      {}
+    HGCalCluster_SA(float x,
+                    float y,
+                    int zside,
+                    unsigned int layer,
+                    float eta,
+                    float phi,
+                    float pt,
+                    float mipPt,
+                    unsigned int index_cmssw)
+        : x_(x),
+          y_(y),
+          zside_(zside),
+          layer_(layer),
+          eta_(eta),
+          phi_(phi),
+          pt_(pt),
+          mipPt_(mipPt),
+          index_cmssw_(index_cmssw) {}
 
-    ~HGCalCluster_SA() {};
+    ~HGCalCluster_SA(){};
 
     float x() const { return x_; }
     float y() const { return y_; }

@@ -25,17 +25,15 @@ public:
   HGCalHistoClusteringWrapper(const edm::ParameterSet& conf);
   ~HGCalHistoClusteringWrapper() {}
 
-
   void convertCMSSWInputs(const std::vector<edm::Ptr<l1t::HGCalCluster>>& clustersPtrs,
                           std::vector<l1t::HGCalCluster_SA>& clusters_SA,
                           const std::vector<std::pair<GlobalPoint, double>>& seeds,
                           std::vector<l1t::HGCalSeed_SA>& seeds_SA) const;
-  void convertAlgorithmOutputs(
-                          const std::vector<l1t::HGCalMulticluster_SA>& multiclusters_out,
-                          const std::vector<l1t::HGCalCluster_SA>& rejected_clusters_out,
-                          const std::vector<edm::Ptr<l1t::HGCalCluster>>& clustersPtrs,
-                          l1t::HGCalMulticlusterBxCollection& multiclusters,
-                          l1t::HGCalClusterBxCollection& rejected_clusters ) const;
+  void convertAlgorithmOutputs(const std::vector<l1t::HGCalMulticluster_SA>& multiclusters_out,
+                               const std::vector<l1t::HGCalCluster_SA>& rejected_clusters_out,
+                               const std::vector<edm::Ptr<l1t::HGCalCluster>>& clustersPtrs,
+                               l1t::HGCalMulticlusterBxCollection& multiclusters,
+                               l1t::HGCalClusterBxCollection& rejected_clusters) const;
 
   void runAlgorithm() const;
 

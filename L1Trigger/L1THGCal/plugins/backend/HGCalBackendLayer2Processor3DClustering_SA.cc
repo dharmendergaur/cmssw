@@ -19,7 +19,6 @@
 class HGCalBackendLayer2Processor3DClusteringSA : public HGCalBackendLayer2ProcessorBase {
 public:
   HGCalBackendLayer2Processor3DClusteringSA(const edm::ParameterSet& conf) : HGCalBackendLayer2ProcessorBase(conf) {
-
     std::cout << "In stand alone Clustering Processor" << std::endl;
 
     std::string typeMulticluster(conf.getParameterSet("C3d_parameters").getParameter<std::string>("type_multicluster"));
@@ -29,15 +28,13 @@ public:
           conf.getParameterSet("C3d_parameters").getParameterSet("histoMax_C3d_seeding_parameters"));
       multiclusteringHistoClustering_ = std::make_unique<HGCalHistoClusteringImpl>(
           conf.getParameterSet("C3d_parameters").getParameterSet("histoMax_C3d_clustering_parameters"));
-    }
-    else if (typeMulticluster == "SAHisto") {
+    } else if (typeMulticluster == "SAHisto") {
       multiclusteringAlgoType_ = SAHistoC3d;
       multiclusteringHistoSeeding_ = std::make_unique<HGCalHistoSeedingImpl>(
           conf.getParameterSet("C3d_parameters").getParameterSet("histoMax_C3d_seeding_parameters"));
       multiclusteringHistoClusteringWrapper_ = std::make_unique<HGCalHistoClusteringWrapper>(
           conf.getParameterSet("C3d_parameters").getParameterSet("histoMax_C3d_clustering_parameters"));
-    }
-    else {
+    } else {
       throw cms::Exception("HGCTriggerParameterError") << "Unknown Multiclustering type '" << typeMulticluster << "'";
     }
 

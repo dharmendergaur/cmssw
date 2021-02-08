@@ -1,19 +1,18 @@
 #include "DataFormats/L1THGCal/interface/HGCalMulticluster_SA.h"
 
-#include<iostream>
+#include <iostream>
 using namespace l1t;
 
 HGCalMulticluster_SA::HGCalMulticluster_SA(const l1t::HGCalCluster_SA& tc, float fraction) {
   HGCalMulticluster_SA();
-  addConstituent( tc, true, fraction );
+  addConstituent(tc, true, fraction);
 }
 
 void HGCalMulticluster_SA::addConstituent(const l1t::HGCalCluster_SA& tc, bool updateCentre, float fraction) {
-
   double cMipt = tc.mipPt() * fraction;
 
   // If no constituents, set seedMiptPt to cluster mipPt
-  if ( constituents_.empty() ) {
+  if (constituents_.empty()) {
     // seedMipPt_ = cMipPt;
     if (!updateCentre) {
       centre_x_ = tc.x();
@@ -22,7 +21,7 @@ void HGCalMulticluster_SA::addConstituent(const l1t::HGCalCluster_SA& tc, bool u
     }
   }
   // UpdateP4AndPosition
-  updateP4AndPosition( tc, updateCentre, fraction );
+  updateP4AndPosition(tc, updateCentre, fraction);
 
   constituents_.emplace_back(tc);
 }
@@ -32,7 +31,6 @@ void HGCalMulticluster_SA::updateP4AndPosition(const l1t::HGCalCluster_SA& tc, b
   double cMipt = tc.mipPt() * fraction;
   double cPt = tc.pt() * fraction;
   if (updateCentre) {
-
     float clusterCentre_x = centre_x_ * mipPt_ + tc.x() * cMipt;
     float clusterCentre_y = centre_y_ * mipPt_ + tc.y() * cMipt;
     float clusterCentre_z = centre_z_ * mipPt_ + tc.zside() * cMipt;  // Check this!
@@ -47,9 +45,9 @@ void HGCalMulticluster_SA::updateP4AndPosition(const l1t::HGCalCluster_SA& tc, b
     centre_z_ = clusterCentre_z;
 
     if (centre_z_ != 0) {
-      centreProj_x_ = centre_x_ / std::abs( centre_z_ );
-      centreProj_y_ = centre_y_ / std::abs( centre_z_ );
-      centreProj_z_ = centre_z_ / std::abs( centre_z_ );
+      centreProj_x_ = centre_x_ / std::abs(centre_z_);
+      centreProj_y_ = centre_y_ / std::abs(centre_z_);
+      centreProj_z_ = centre_z_ / std::abs(centre_z_);
     }
   }
 
