@@ -1,6 +1,8 @@
 #ifndef DataFormats_L1Trigger_HGCalCluster_SA_h
 #define DataFormats_L1Trigger_HGCalCluster_SA_h
 
+#include <vector>
+
 namespace l1t {
 
   class HGCalCluster_SA {
@@ -47,6 +49,9 @@ namespace l1t {
     float mipPt_;
     unsigned int index_cmssw_;
   };
+
+  typedef std::vector<HGCalCluster_SA> HGCalClusterSACollection;
+
 }  // namespace l1t
 
 #endif

@@ -4,33 +4,13 @@
 #include "L1Trigger/L1THGCal/interface/backend/HGCalCluster_SA.h"
 #include "L1Trigger/L1THGCal/interface/backend/HGCalSeed_SA.h"
 #include "L1Trigger/L1THGCal/interface/backend/HGCalMulticluster_SA.h"
+#include "L1Trigger/L1THGCal/interface/backend/HGCalHistoCluteringConfig_SA.h"
 
 #include <string>
 #include <map>
 #include <vector>
 #include <utility>
-
-namespace l1t {
-
-  struct clusterAlgoConfig_SA {
-    clusterAlgoConfig_SA(double kMidRadius,
-                         double dr,
-                         std::vector<double> dr_byLayer_coefficientA,
-                         std::vector<double> dr_byLayer_coefficientB,
-                         float ptC3dThreshold)
-        : kMidRadius_(kMidRadius),
-          dr_(dr),
-          dr_byLayer_coefficientA_(dr_byLayer_coefficientA),
-          dr_byLayer_coefficientB_(dr_byLayer_coefficientB),
-          ptC3dThreshold_(ptC3dThreshold) {}
-    const double kMidRadius_;
-    const double dr_;
-    const std::vector<double> dr_byLayer_coefficientA_;
-    const std::vector<double> dr_byLayer_coefficientB_;
-    const float ptC3dThreshold_;
-  };
-
-}  // namespace l1t
+#include <memory>
 
 class HGCalHistoClusteringImplSA {
 public:
@@ -39,16 +19,16 @@ public:
 
   void runAlgorithm() const;
 
-  std::vector<l1t::HGCalMulticluster_SA> clusterSeedMulticluster_SA(std::vector<l1t::HGCalCluster_SA>& clusters,
-                                                                    std::vector<l1t::HGCalSeed_SA>& seeds,
+  std::vector<l1t::HGCalMulticluster_SA> clusterSeedMulticluster_SA(const std::vector<l1t::HGCalCluster_SA>& clusters,
+                                                                    const std::vector<l1t::HGCalSeed_SA>& seeds,
                                                                     std::vector<l1t::HGCalCluster_SA>& rejected_clusters,
-                                                                    l1t::clusterAlgoConfig_SA& configuration) const;
+                                                                    const std::unique_ptr<l1t::clusterAlgoConfig_SA>& configuration) const;
 
   void finalizeClusters_SA(std::vector<l1t::HGCalMulticluster_SA>&,
                            const std::vector<l1t::HGCalCluster_SA>&,
                            std::vector<l1t::HGCalMulticluster_SA>&,
                            std::vector<l1t::HGCalCluster_SA>&,
-                           l1t::clusterAlgoConfig_SA& configuration) const;
+                           const std::unique_ptr<l1t::clusterAlgoConfig_SA>& configuration) const;
 
 private:
   enum ClusterAssociationStrategy { NearestNeighbour };

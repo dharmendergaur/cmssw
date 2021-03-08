@@ -11,23 +11,23 @@ HGCalHistoClusteringImplSA::HGCalHistoClusteringImplSA() {}
 // }
 
 std::vector<l1t::HGCalMulticluster_SA> HGCalHistoClusteringImplSA::clusterSeedMulticluster_SA(
-    std::vector<l1t::HGCalCluster_SA>& clusters,
-    std::vector<l1t::HGCalSeed_SA>& seeds,
+    const std::vector<l1t::HGCalCluster_SA>& clusters,
+    const std::vector<l1t::HGCalSeed_SA>& seeds,
     std::vector<l1t::HGCalCluster_SA>& rejected_clusters,
-    l1t::clusterAlgoConfig_SA& configuration) const {
+    const std::unique_ptr<l1t::clusterAlgoConfig_SA>& configuration) const {
   std::map<int, l1t::HGCalMulticluster_SA> mapSeedMulticluster;
   std::vector<l1t::HGCalMulticluster_SA> multiclustersOut;
 
   for (const auto& clu : clusters) {
     int z_side = clu.zside();
 
-    double radiusCoefficientA = configuration.dr_byLayer_coefficientA_.empty()
-                                    ? configuration.dr_
-                                    : configuration.dr_byLayer_coefficientA_[clu.layer()];
+    double radiusCoefficientA = configuration->dr_byLayer_coefficientA().empty()
+                                    ? configuration->dr()
+                                    : configuration->dr_byLayer_coefficientA()[clu.layer()];
     double radiusCoefficientB =
-        configuration.dr_byLayer_coefficientB_.empty() ? 0 : configuration.dr_byLayer_coefficientB_[clu.layer()];
+        configuration->dr_byLayer_coefficientB().empty() ? 0 : configuration->dr_byLayer_coefficientB()[clu.layer()];
 
-    double minDist = radiusCoefficientA + radiusCoefficientB * (configuration.kMidRadius_ - std::abs(clu.eta()));
+    double minDist = radiusCoefficientA + radiusCoefficientB * (configuration->kMidRadius() - std::abs(clu.eta()));
 
     std::vector<std::pair<int, double>> targetSeedsEnergy;
 
@@ -93,13 +93,13 @@ void HGCalHistoClusteringImplSA::finalizeClusters_SA(std::vector<l1t::HGCalMulti
                                                      const std::vector<l1t::HGCalCluster_SA>& rejected_clusters_in,
                                                      std::vector<l1t::HGCalMulticluster_SA>& multiclusters_out,
                                                      std::vector<l1t::HGCalCluster_SA>& rejected_clusters_out,
-                                                     l1t::clusterAlgoConfig_SA& configuration) const {
+                                                     const std::unique_ptr<l1t::clusterAlgoConfig_SA>& configuration) const {
   for (const auto& tc : rejected_clusters_in) {
     rejected_clusters_out.push_back(tc);
   }
 
   for (auto& multicluster : multiclusters_in) {
-    if (multicluster.sumPt() > configuration.ptC3dThreshold_) {
+    if (multicluster.sumPt() > configuration->ptC3dThreshold()) {
       multiclusters_out.push_back(multicluster);
     } else {
       for (const auto& tc : multicluster.constituents()) {

@@ -3,6 +3,7 @@
 
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 
+#include "L1Trigger/L1THGCal/interface/backend/HGCalAlgoWrapperBase.h"
 #include "L1Trigger/L1THGCal/interface/backend/HGCalHistoClusteringImpl_SA.h"
 
 #include "DataFormats/L1THGCal/interface/HGCalCluster.h"
@@ -19,23 +20,24 @@
 #include "L1Trigger/L1THGCal/interface/HGCalTriggerTools.h"
 #include "L1Trigger/L1THGCal/interface/backend/HGCalTriggerClusterIdentificationBase.h"
 
-// EJC Could this class inherit from a generic wrapper class?  Would we need "convert" functions to have same number of input collections for each algorithm?
-class HGCalHistoClusteringWrapper {
+class HGCalHistoClusteringWrapper : public HGCalHistoClusteringWrapperBase {
 public:
   HGCalHistoClusteringWrapper(const edm::ParameterSet& conf);
   ~HGCalHistoClusteringWrapper() {}
 
+  void configure(const l1t::clusterAlgoConfig_SA& parameters) override;
+
+  void process(const std::pair< const l1t::HGCalClusterSACollection, const l1t::HGCalSeedSACollection >& inputClustersAndSeeds, std::pair<  l1t::HGCalMulticlusterSACollection, l1t::HGCalClusterSACollection>& outputMulticlustersAndRejectedClusters) const override;
+
   void convertCMSSWInputs(const std::vector<edm::Ptr<l1t::HGCalCluster>>& clustersPtrs,
-                          std::vector<l1t::HGCalCluster_SA>& clusters_SA,
+                          l1t::HGCalClusterSACollection& clusters_SA,
                           const std::vector<std::pair<GlobalPoint, double>>& seeds,
-                          std::vector<l1t::HGCalSeed_SA>& seeds_SA) const;
-  void convertAlgorithmOutputs(const std::vector<l1t::HGCalMulticluster_SA>& multiclusters_out,
-                               const std::vector<l1t::HGCalCluster_SA>& rejected_clusters_out,
+                          l1t::HGCalSeedSACollection& seeds_SA) const;
+  void convertAlgorithmOutputs(const l1t::HGCalMulticlusterSACollection& multiclusters_out,
+                               const l1t::HGCalClusterSACollection& rejected_clusters_out,
                                const std::vector<edm::Ptr<l1t::HGCalCluster>>& clustersPtrs,
                                l1t::HGCalMulticlusterBxCollection& multiclusters,
                                l1t::HGCalClusterBxCollection& rejected_clusters) const;
-
-  void runAlgorithm() const;
 
   void eventSetup(const edm::EventSetup& es) {
     triggerTools_.eventSetup(es);
@@ -71,6 +73,8 @@ private:
   std::unique_ptr<HGCalTriggerClusterIdentificationBase> id_;
 
   HGCalHistoClusteringImplSA theAlgo_;
+
+  std::unique_ptr<l1t::clusterAlgoConfig_SA> theConfiguration_;
 
   static constexpr double kMidRadius_ = 2.3;
 };

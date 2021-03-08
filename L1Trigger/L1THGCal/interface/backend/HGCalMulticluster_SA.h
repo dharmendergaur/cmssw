@@ -54,6 +54,8 @@ namespace l1t {
     void updateP4AndPosition(const l1t::HGCalCluster_SA& tc, bool updateCentre = true, float fraction = 1.);
   };
 
+  typedef std::vector<HGCalMulticluster_SA> HGCalMulticlusterSACollection;
+
 }  // namespace l1t
 
 #endif

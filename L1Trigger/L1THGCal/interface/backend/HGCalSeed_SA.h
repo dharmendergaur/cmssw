@@ -21,6 +21,8 @@ namespace l1t {
     float energy_;
   };
 
+  typedef std::vector<HGCalSeed_SA> HGCalSeedSACollection;
+
 }  // namespace l1t
 
 #endif
