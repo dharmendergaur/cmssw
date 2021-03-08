@@ -8,9 +8,9 @@
 #include "DataFormats/L1THGCal/interface/HGCalCluster.h"
 #include "DataFormats/L1THGCal/interface/HGCalMulticluster.h"
 
-#include "DataFormats/L1THGCal/interface/HGCalCluster_SA.h"
-#include "DataFormats/L1THGCal/interface/HGCalSeed_SA.h"
-#include "DataFormats/L1THGCal/interface/HGCalMulticluster_SA.h"
+#include "L1Trigger/L1THGCal/interface/backend/HGCalCluster_SA.h"
+#include "L1Trigger/L1THGCal/interface/backend/HGCalSeed_SA.h"
+#include "L1Trigger/L1THGCal/interface/backend/HGCalMulticluster_SA.h"
 
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
 

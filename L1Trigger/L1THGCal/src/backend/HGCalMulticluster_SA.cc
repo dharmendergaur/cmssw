@@ -1,4 +1,4 @@
-#include "DataFormats/L1THGCal/interface/HGCalMulticluster_SA.h"
+#include "L1Trigger/L1THGCal/interface/backend/HGCalMulticluster_SA.h"
 
 #include <cmath>
 

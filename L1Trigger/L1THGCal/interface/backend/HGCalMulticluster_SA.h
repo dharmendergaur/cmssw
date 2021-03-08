@@ -1,7 +1,7 @@
 #ifndef DataFormats_L1Trigger_HGCalMulticluster_SA_h
 #define DataFormats_L1Trigger_HGCalMulticluster_SA_h
 
-#include "DataFormats/L1THGCal/interface/HGCalCluster_SA.h"
+#include "L1Trigger/L1THGCal/interface/backend/HGCalCluster_SA.h"
 
 #include <vector>
 
