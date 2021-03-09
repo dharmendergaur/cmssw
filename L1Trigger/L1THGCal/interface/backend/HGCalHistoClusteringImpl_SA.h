@@ -4,7 +4,7 @@
 #include "L1Trigger/L1THGCal/interface/backend/HGCalCluster_SA.h"
 #include "L1Trigger/L1THGCal/interface/backend/HGCalSeed_SA.h"
 #include "L1Trigger/L1THGCal/interface/backend/HGCalMulticluster_SA.h"
-#include "L1Trigger/L1THGCal/interface/backend/HGCalHistoCluteringConfig_SA.h"
+#include "L1Trigger/L1THGCal/interface/backend/HGCalHistoClusteringConfig_SA.h"
 
 #include <string>
 #include <map>
