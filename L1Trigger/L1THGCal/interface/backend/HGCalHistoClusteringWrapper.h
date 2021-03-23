@@ -20,14 +20,17 @@
 #include "L1Trigger/L1THGCal/interface/HGCalTriggerTools.h"
 #include "L1Trigger/L1THGCal/interface/backend/HGCalTriggerClusterIdentificationBase.h"
 
+
 class HGCalHistoClusteringWrapper : public HGCalHistoClusteringWrapperBase {
 public:
   HGCalHistoClusteringWrapper(const edm::ParameterSet& conf);
   ~HGCalHistoClusteringWrapper() {}
 
-  void configure(const l1t::clusterAlgoConfig_SA& parameters) override;
+  void configure( const std::pair<const edm::EventSetup&, const edm::ParameterSet& >& configuration ) override;
 
-  void process(const std::pair< const l1t::HGCalClusterSACollection, const l1t::HGCalSeedSACollection >& inputClustersAndSeeds, std::pair<  l1t::HGCalMulticlusterSACollection, l1t::HGCalClusterSACollection>& outputMulticlustersAndRejectedClusters) const override;
+  void process(const std::pair< const std::vector<edm::Ptr<l1t::HGCalCluster>>, const std::vector<std::pair<GlobalPoint, double>> >& inputClustersAndSeeds, std::pair<  l1t::HGCalMulticlusterBxCollection, l1t::HGCalClusterBxCollection>& outputMulticlustersAndRejectedClusters) const override;
+
+private:
 
   void convertCMSSWInputs(const std::vector<edm::Ptr<l1t::HGCalCluster>>& clustersPtrs,
                           l1t::HGCalClusterSACollection& clusters_SA,
@@ -38,6 +41,11 @@ public:
                                const std::vector<edm::Ptr<l1t::HGCalCluster>>& clustersPtrs,
                                l1t::HGCalMulticlusterBxCollection& multiclusters,
                                l1t::HGCalClusterBxCollection& rejected_clusters) const;
+
+  void clusterizeHisto(const l1t::HGCalClusterSACollection& inputClusters,
+                       const l1t::HGCalSeedSACollection& inputSeeds,
+                       l1t::HGCalMulticlusterSACollection& outputMulticlusters,
+                       l1t::HGCalClusterSACollection& outputRejectedClusters) const;
 
   void eventSetup(const edm::EventSetup& es) {
     triggerTools_.eventSetup(es);
@@ -51,13 +59,6 @@ public:
     }
   }
 
-  void clusterizeHisto(const std::vector<edm::Ptr<l1t::HGCalCluster>>& clustersPtr,
-                       const std::vector<std::pair<GlobalPoint, double>>& seedPositionsEnergy,
-                       const HGCalTriggerGeometryBase& triggerGeometry,
-                       l1t::HGCalMulticlusterBxCollection& multiclusters,
-                       l1t::HGCalClusterBxCollection& rejected_clusters) const;
-
-private:
   enum ClusterAssociationStrategy { NearestNeighbour };
 
   double dr_;

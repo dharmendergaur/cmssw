@@ -18,7 +18,7 @@
 
 class HGCalBackendLayer2Processor3DClusteringSA : public HGCalBackendLayer2ProcessorBase {
 public:
-  HGCalBackendLayer2Processor3DClusteringSA(const edm::ParameterSet& conf) : HGCalBackendLayer2ProcessorBase(conf) {
+  HGCalBackendLayer2Processor3DClusteringSA(const edm::ParameterSet& conf) : HGCalBackendLayer2ProcessorBase(conf), conf_(conf) {
     std::cout << "In stand alone Clustering Processor" << std::endl;
 
     std::string typeMulticluster(conf.getParameterSet("C3d_parameters").getParameter<std::string>("type_multicluster"));
@@ -54,8 +54,6 @@ public:
       multiclusteringHistoSeeding_->eventSetup(es);
     if (multiclusteringHistoClustering_)
       multiclusteringHistoClustering_->eventSetup(es);
-    if (multiclusteringHistoClusteringWrapper_)
-      multiclusteringHistoClusteringWrapper_->eventSetup(es);
 
     auto& collCluster3D = be_output.first;
     auto& rejectedClusters = be_output.second;
@@ -78,11 +76,21 @@ public:
             clustersPtrs, seedPositionsEnergy, *triggerGeometry_, collCluster3D, rejectedClusters);
         break;
       case SAHistoC3d:
-        multiclusteringHistoSeeding_->findHistoSeeds(clustersPtrs, seedPositionsEnergy);
-        multiclusteringHistoClusteringWrapper_->clusterizeHisto(
-            clustersPtrs, seedPositionsEnergy, *triggerGeometry_, collCluster3D, rejectedClusters);
-        break;
+        {
+          multiclusteringHistoSeeding_->findHistoSeeds(clustersPtrs, seedPositionsEnergy);
+          
+          // Inputs
+          std::pair< const std::vector<edm::Ptr<l1t::HGCalCluster>>, const std::vector<std::pair<GlobalPoint, double > > > inputClustersAndSeeds{ clustersPtrs, seedPositionsEnergy };
+          // Outputs
+          std::pair< l1t::HGCalMulticlusterBxCollection, l1t::HGCalClusterBxCollection > outputMulticlustersAndRejectedClusters{ collCluster3D, rejectedClusters };
+          // Configuration
+          const std::pair<const edm::EventSetup&, const edm::ParameterSet& > configuration{ es, conf_ };
 
+          // Configure and process
+          multiclusteringHistoClusteringWrapper_->configure( configuration );
+          multiclusteringHistoClusteringWrapper_->process( inputClustersAndSeeds, outputMulticlustersAndRejectedClusters );
+        }
+        break;
       default:
         // Should not happen, clustering type checked in constructor
         break;
@@ -109,6 +117,8 @@ private:
   MulticlusterType multiclusteringAlgoType_;
 
   std::vector<std::unique_ptr<HGCalTriggerClusterInterpreterBase>> energy_interpreters_;
+
+  const edm::ParameterSet conf_;
 };
 
 DEFINE_EDM_PLUGIN(HGCalBackendLayer2Factory,

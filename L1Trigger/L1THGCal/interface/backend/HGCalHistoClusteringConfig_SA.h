@@ -18,12 +18,25 @@ namespace l1t {
             dr_byLayer_coefficientB_(dr_byLayer_coefficientB),
             ptC3dThreshold_(ptC3dThreshold) {}
 
+        void setParameters( double kMidRadius,
+                            double dr,
+                            std::vector<double> dr_byLayer_coefficientA,
+                            std::vector<double> dr_byLayer_coefficientB,
+                            float ptC3dThreshold ) {
+          kMidRadius_ = kMidRadius;
+          dr_ = dr;
+          dr_byLayer_coefficientA_ = dr_byLayer_coefficientA;
+          dr_byLayer_coefficientB_ = dr_byLayer_coefficientB;
+          ptC3dThreshold_ = ptC3dThreshold;
+        }
+
         void setParameters( const clusterAlgoConfig_SA& newConfig ) {
-          kMidRadius_ = newConfig.kMidRadius();
-        //   dr_(dr),
-        //   dr_byLayer_coefficientA_(dr_byLayer_coefficientA),
-        //   dr_byLayer_coefficientB_(dr_byLayer_coefficientB),
-        //   ptC3dThreshold_(ptC3dThreshold)
+          setParameters( newConfig.kMidRadius(),
+                         newConfig.dr(),
+                         newConfig.dr_byLayer_coefficientA(),
+                         newConfig.dr_byLayer_coefficientB(),
+                         newConfig.ptC3dThreshold()
+                       );
         }
         double kMidRadius() const { return kMidRadius_; }
         double dr() const { return dr_; }

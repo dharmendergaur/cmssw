@@ -3,11 +3,10 @@
 
 #include "L1Trigger/L1THGCal/interface/backend/HGCalAlgoWrapperBaseT.h"
 
-#include "L1Trigger/L1THGCal/interface/backend/HGCalCluster_SA.h"
-#include "L1Trigger/L1THGCal/interface/backend/HGCalSeed_SA.h"
-#include "L1Trigger/L1THGCal/interface/backend/HGCalMulticluster_SA.h"
-#include "L1Trigger/L1THGCal/interface/backend/HGCalHistoCluteringConfig_SA.h"
+#include "DataFormats/L1THGCal/interface/HGCalCluster.h"
+#include "DataFormats/L1THGCal/interface/HGCalMulticluster.h"
+#include "FWCore/Framework/interface/EventSetup.h"
 
-typedef HGCalAlgoWrapperBaseT<std::pair< const l1t::HGCalClusterSACollection, const l1t::HGCalSeedSACollection >, std::pair< l1t::HGCalMulticlusterSACollection, l1t::HGCalClusterSACollection>, l1t::clusterAlgoConfig_SA> HGCalHistoClusteringWrapperBase;
+typedef HGCalAlgoWrapperBaseT<std::pair< const std::vector<edm::Ptr<l1t::HGCalCluster>>, const std::vector<std::pair<GlobalPoint, double>> >, std::pair< l1t::HGCalMulticlusterBxCollection, l1t::HGCalClusterBxCollection>, std::pair<const edm::EventSetup&, const edm::ParameterSet& > > HGCalHistoClusteringWrapperBase;
 
 #endif
