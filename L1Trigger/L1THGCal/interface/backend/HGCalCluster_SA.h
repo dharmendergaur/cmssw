@@ -1,5 +1,5 @@
-#ifndef DataFormats_L1Trigger_HGCalCluster_SA_h
-#define DataFormats_L1Trigger_HGCalCluster_SA_h
+#ifndef L1Trigger_L1THGCal_HGCalCluster_SA_h
+#define L1Trigger_L1THGCal_HGCalCluster_SA_h
 
 #include <vector>
 
