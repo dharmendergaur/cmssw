@@ -518,7 +518,8 @@ namespace trackerDTC {
     const double hybridRangeQoverPt = 2. * invPtToDphi_ / hybridMinPt_;
     const double hybridRangeR =
         2. * max(abs(outerRadius_ - hybridChosenRofPhi_), abs(innerRadius_ - hybridChosenRofPhi_));
-    const double hybridRangePhi = baseRegion_ + hybridRangeR * hybridRangeQoverPt / 2.;
+    // const double hybridRangePhi = baseRegion_ + hybridRangeR * hybridRangeQoverPt / 2.;
+    hybridRangePhi_ = baseRegion_ + (hybridRangeR * hybridRangeQoverPt) / 2.;
     hybridWidthLayer_ = ceil(log2(hybridNumLayers_));
     hybridBasesZ_.reserve(SensorModule::NumTypes);
     for (int type = 0; type < SensorModule::NumTypes; type++)
@@ -529,7 +530,7 @@ namespace trackerDTC {
     hybridBasesR_[SensorModule::Disk2S] = 1.;
     hybridBasesPhi_.reserve(SensorModule::NumTypes);
     for (int type = 0; type < SensorModule::NumTypes; type++)
-      hybridBasesPhi_.emplace_back(hybridRangePhi / pow(2., hybridWidthsPhi_.at(type)));
+      hybridBasesPhi_.emplace_back(hybridRangePhi_ / pow(2., hybridWidthsPhi_.at(type)));
     hybridBasesAlpha_.reserve(SensorModule::NumTypes);
     for (int type = 0; type < SensorModule::NumTypes; type++)
       hybridBasesAlpha_.emplace_back(hybridRangesAlpha_.at(type) / pow(2., hybridWidthsAlpha_.at(type)));

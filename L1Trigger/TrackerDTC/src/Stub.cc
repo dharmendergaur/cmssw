@@ -131,9 +131,9 @@ namespace trackerDTC {
 
     // encode bend
     const vector<double>& encodingBend = setup.encodingBend(sm->windowSize(), sm->psModule());
-    const auto pos = find(encodingBend.begin(), encodingBend.end(), abs(bend_));
+    const auto pos = find(encodingBend.begin(), encodingBend.end(), abs(ttStubRef->bendBE()));
     const int uBend = distance(encodingBend.begin(), pos);
-    bend_ = pow(-1, signbit(bend_)) * (uBend - (int)encodingBend.size() / 2);
+    bend_ = pow(-1, signbit(bend_)) * uBend;
   }
 
   // returns bit accurate representation of Stub
@@ -148,8 +148,8 @@ namespace trackerDTC {
   // returns 64 bit stub in hybrid data format
   TTDTC::BV Stub::formatHybrid(int region) const {
     const SensorModule::Type type = sm_->type();
-    // stub phi w.r.t. processing region centre in rad
-    const double phi = phi_ - (region - .5) * setup_->baseRegion();
+    // stub phi w.r.t. processing region border in rad
+    double phi = phi_ - (region - .5) * setup_->baseRegion() + setup_->hybridRangePhi() / 2.;
     // convert stub variables into bit vectors
     const TTBV hwR(r_, setup_->hybridBaseR(type), setup_->hybridWidthR(type), true);
     const TTBV hwPhi(phi, setup_->hybridBasePhi(type), setup_->hybridWidthPhi(type), true);
