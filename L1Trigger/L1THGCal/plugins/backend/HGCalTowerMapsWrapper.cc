@@ -60,7 +60,8 @@ void HGCalTowerMapsWrapper::convertCMSSWInputs(const std::vector<edm::Ptr<l1t::H
 void HGCalTowerMapsWrapper::convertAlgorithmOutputs(const std::vector<l1thgcfirmware::HGCalTower>& towers_SA,
                                                     l1t::HGCalTowerBxCollection& outputTowerMaps) const {
   for (const auto& towerSA : towers_SA) {
-    outputTowerMaps.push_back(0, l1t::HGCalTower(towerSA.etEm(), towerSA.etHad(), towerSA.eta(), towerSA.phi(), towerSA.id()));
+    outputTowerMaps.push_back(
+        0, l1t::HGCalTower(towerSA.etEm(), towerSA.etHad(), towerSA.eta(), towerSA.phi(), towerSA.id()));
   }
 }
 

@@ -1,14 +1,15 @@
 #ifndef L1Trigger_L1THGCal_HGCalTower_SA_h
 #define L1Trigger_L1THGCal_HGCalTower_SA_h
 
-#include <stdint.h>
+#include <cstdint>
 
 namespace l1thgcfirmware {
 
   class HGCalTower {
   public:
     HGCalTower() {}
-    HGCalTower(double etEm, double etHad, float eta, float phi, uint32_t rawId ) : etEm_(etEm), etHad_(etHad), eta_(eta), phi_(phi), id_(rawId) {}
+    HGCalTower(double etEm, double etHad, float eta, float phi, uint32_t rawId)
+        : etEm_(etEm), etHad_(etHad), eta_(eta), phi_(phi), id_(rawId) {}
 
     ~HGCalTower(){};
 
