@@ -22,14 +22,18 @@
 #include "L1Trigger/Phase2L1ParticleFlow/interface/PFAlgoBase.h"
 #include "L1Trigger/Phase2L1ParticleFlow/interface/PFAlgo3.h"
 #include "L1Trigger/Phase2L1ParticleFlow/interface/PFAlgo2HGC.h"
-#include "L1Trigger/Phase2L1ParticleFlow/interface/BitwisePFAlgo.h"
+#include "L1Trigger/Phase2L1ParticleFlow/interface/PFTkEGAlgo.h"
 #include "L1Trigger/Phase2L1ParticleFlow/interface/PuppiAlgo.h"
 #include "L1Trigger/Phase2L1ParticleFlow/interface/LinearizedPuppiAlgo.h"
-#include "L1Trigger/Phase2L1ParticleFlow/interface/DiscretePFInputsIO.h"
-#include "L1Trigger/Phase2L1ParticleFlow/interface/COEFile.h"
 
 #include "DataFormats/L1TCorrelator/interface/TkMuon.h"
 #include "DataFormats/L1TCorrelator/interface/TkMuonFwd.h"
+
+#include "DataFormats/L1TCorrelator/interface/TkElectron.h"
+#include "DataFormats/L1TCorrelator/interface/TkElectronFwd.h"
+#include "DataFormats/L1Trigger/interface/EGamma.h"
+#include "DataFormats/L1TCorrelator/interface/TkEm.h"
+#include "DataFormats/L1TCorrelator/interface/TkEmFwd.h"
 
 //--------------------------------------------------------------------------------------------------
 class L1TPFProducer : public edm::stream::EDProducer<> {
@@ -46,8 +50,7 @@ private:
 
   bool hasTracks_;
   edm::EDGetTokenT<l1t::PFTrackCollection> tkCands_;
-  float trkPt_, trkMaxChi2_;
-  unsigned trkMinStubs_;
+  float trkPt_;
   l1tpf_impl::PUAlgoBase::VertexAlgo vtxAlgo_;
   edm::EDGetTokenT<std::vector<l1t::TkPrimaryVertex>> extTkVtx_;
 
@@ -59,17 +62,12 @@ private:
 
   float emPtCut_, hadPtCut_;
 
+  bool sortOutputs_;
+
   l1tpf_impl::RegionMapper l1regions_;
   std::unique_ptr<l1tpf_impl::PFAlgoBase> l1pfalgo_;
   std::unique_ptr<l1tpf_impl::PUAlgoBase> l1pualgo_;
-
-  edm::EDGetTokenT<math::XYZPointF> TokGenOrigin_;
-
-  // Region dump/coe
-  const std::string regionDumpName_, regionCOEName_;
-  FILE* fRegionDump_;
-  std::unique_ptr<l1tpf_impl::COEFile> fRegionCOE_;
-  unsigned int neventscoemax_, neventsproduced_;
+  std::unique_ptr<l1tpf_impl::PFTkEGAlgo> l1tkegalgo_;
 
   // region of interest debugging
   float debugEta_, debugPhi_, debugR_;
@@ -91,21 +89,15 @@ L1TPFProducer::L1TPFProducer(const edm::ParameterSet& iConfig)
       tkCands_(hasTracks_ ? consumes<l1t::PFTrackCollection>(iConfig.getParameter<edm::InputTag>("tracks"))
                           : edm::EDGetTokenT<l1t::PFTrackCollection>()),
       trkPt_(iConfig.getParameter<double>("trkPtCut")),
-      trkMaxChi2_(iConfig.getParameter<double>("trkMaxChi2")),
-      trkMinStubs_(iConfig.getParameter<unsigned>("trkMinStubs")),
       muCands_(consumes<l1t::MuonBxCollection>(iConfig.getParameter<edm::InputTag>("muons"))),
       tkMuCands_(consumes<l1t::TkMuonCollection>(iConfig.getParameter<edm::InputTag>("tkMuons"))),
       emPtCut_(iConfig.getParameter<double>("emPtCut")),
       hadPtCut_(iConfig.getParameter<double>("hadPtCut")),
+      sortOutputs_(iConfig.getParameter<bool>("sortOutputs")),
       l1regions_(iConfig),
       l1pfalgo_(nullptr),
       l1pualgo_(nullptr),
-      regionDumpName_(iConfig.getUntrackedParameter<std::string>("dumpFileName", "")),
-      regionCOEName_(iConfig.getUntrackedParameter<std::string>("coeFileName", "")),
-      fRegionDump_(nullptr),
-      fRegionCOE_(nullptr),
-      neventscoemax_(iConfig.getUntrackedParameter<unsigned int>("neventscoemax_", 0)),
-      neventsproduced_(0),
+      l1tkegalgo_(nullptr),
       debugEta_(iConfig.getUntrackedParameter<double>("debugEta", 0)),
       debugPhi_(iConfig.getUntrackedParameter<double>("debugPhi", 0)),
       debugR_(iConfig.getUntrackedParameter<double>("debugR", -1)) {
@@ -131,8 +123,6 @@ L1TPFProducer::L1TPFProducer(const edm::ParameterSet& iConfig)
     l1pfalgo_.reset(new l1tpf_impl::PFAlgo3(iConfig));
   } else if (algo == "PFAlgo2HGC") {
     l1pfalgo_.reset(new l1tpf_impl::PFAlgo2HGC(iConfig));
-  } else if (algo == "BitwisePFAlgo") {
-    l1pfalgo_.reset(new l1tpf_impl::BitwisePFAlgo(iConfig));
   } else
     throw cms::Exception("Configuration", "Unsupported PFAlgo");
 
@@ -143,6 +133,12 @@ L1TPFProducer::L1TPFProducer(const edm::ParameterSet& iConfig)
     l1pualgo_.reset(new l1tpf_impl::LinearizedPuppiAlgo(iConfig));
   } else
     throw cms::Exception("Configuration", "Unsupported PUAlgo");
+
+  l1tkegalgo_.reset(new l1tpf_impl::PFTkEGAlgo(iConfig.getParameter<edm::ParameterSet>("tkEgAlgoConfig")));
+  if (l1tkegalgo_->writeEgSta())
+    produces<BXVector<l1t::EGamma>>("L1Eg");
+  produces<l1t::TkElectronCollection>("L1TkEle");
+  produces<l1t::TkEmCollection>("L1TkEm");
 
   std::string vtxAlgo = iConfig.getParameter<std::string>("vtxAlgo");
   if (vtxAlgo == "TP")
@@ -163,9 +159,6 @@ L1TPFProducer::L1TPFProducer(const edm::ParameterSet& iConfig)
     produces<float>(label);
   }
 
-  if (!regionDumpName_.empty()) {
-    TokGenOrigin_ = consumes<math::XYZPointF>(iConfig.getParameter<edm::InputTag>("genOrigin"));
-  }
   for (int tot = 0; tot <= 1; ++tot) {
     for (int i = 0; i < l1tpf_impl::Region::n_input_types; ++i) {
       produces<unsigned int>(std::string(tot ? "totNL1" : "maxNL1") + l1tpf_impl::Region::inputTypeName(i));
@@ -187,30 +180,9 @@ L1TPFProducer::L1TPFProducer(const edm::ParameterSet& iConfig)
 L1TPFProducer::~L1TPFProducer() {
   // do anything here that needs to be done at desctruction time
   // (e.g. close files, deallocate resources etc.)
-  if (fRegionDump_)
-    fclose(fRegionDump_);
-  if (fRegionCOE_)
-    fRegionCOE_->close();
 }
 
-void L1TPFProducer::beginStream(edm::StreamID id) {
-  if (!regionDumpName_.empty()) {
-    if (id == 0) {
-      fRegionDump_ = fopen(regionDumpName_.c_str(), "wb");
-    } else {
-      edm::LogWarning("L1TPFProducer")
-          << "Job running with multiple streams, but dump file will have only events on stream zero.";
-    }
-  }
-  if (!regionCOEName_.empty()) {
-    if (id == 0) {
-      fRegionCOE_.reset(new l1tpf_impl::COEFile(config_));
-    } else {
-      edm::LogWarning("L1TPFProducer")
-          << "Job running with multiple streams, but COE file will dump only events on stream zero.";
-    }
-  }
-}
+void L1TPFProducer::beginStream(edm::StreamID id) {}
 
 // ------------ method called to produce the data  ------------
 void L1TPFProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) {
@@ -227,7 +199,7 @@ void L1TPFProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) {
       // adding objects to PF
       if (debugR_ > 0 && deltaR(tk.eta(), tk.phi(), debugEta_, debugPhi_) > debugR_)
         continue;
-      if (tk.pt() > trkPt_ && tk.nStubs() >= trkMinStubs_ && tk.normalizedChi2() < trkMaxChi2_) {
+      if (tk.pt() > trkPt_ && tk.quality() > 0) {
         l1regions_.addTrack(tk, l1t::PFTrackRef(htracks, itk));
       }
     }
@@ -292,22 +264,6 @@ void L1TPFProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) {
   iEvent.put(l1regions_.fetchCalo(/*ptmin=*/0.1, /*em=*/true), "EmCalo");
   iEvent.put(l1regions_.fetchCalo(/*ptmin=*/0.1, /*em=*/false), "Calo");
   iEvent.put(l1regions_.fetchTracks(/*ptmin=*/0.0, /*fromPV=*/false), "TK");
-  if (fRegionDump_) {
-    uint32_t run = iEvent.id().run(), lumi = iEvent.id().luminosityBlock();
-    uint64_t event = iEvent.id().event();
-    fwrite(&run, sizeof(uint32_t), 1, fRegionDump_);
-    fwrite(&lumi, sizeof(uint32_t), 1, fRegionDump_);
-    fwrite(&event, sizeof(uint64_t), 1, fRegionDump_);
-    l1tpf_impl::writeManyToFile(l1regions_.regions(), fRegionDump_);
-  }
-
-  // Then save the regions to the COE file
-  // Do it here because there is some sorting going on in a later function
-  if (fRegionCOE_ && fRegionCOE_->is_open() && neventsproduced_ < neventscoemax_) {
-    std::vector<l1tpf_impl::Region> regions = l1regions_.regions();
-    fRegionCOE_->writeTracksToFile(regions, neventsproduced_ == 0);
-  }
-  neventsproduced_++;
 
   // Then do the vertexing, and save it out
   float z0;
@@ -328,14 +284,6 @@ void L1TPFProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) {
   }
   l1pualgo_->doVertexing(l1regions_.regions(), vtxAlgo_, z0);
   iEvent.put(std::make_unique<float>(z0), "z0");
-  if (fRegionDump_) {
-    fwrite(&z0, sizeof(float), 1, fRegionDump_);
-    edm::Handle<math::XYZPointF> hGenOrigin;
-    iEvent.getByToken(TokGenOrigin_, hGenOrigin);
-    const math::XYZPointF& genOrigin = *hGenOrigin;
-    float genZ = genOrigin.Z();
-    fwrite(&genZ, sizeof(float), 1, fRegionDump_);
-  }
 
   // Then also save the tracks with a vertex cut
   iEvent.put(l1regions_.fetchTracks(/*ptmin=*/0.0, /*fromPV=*/true), "TKVtx");
@@ -343,30 +291,36 @@ void L1TPFProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) {
   // Then run PF in each region
   for (auto& l1region : l1regions_.regions()) {
     l1pfalgo_->runPF(l1region);
+    l1tkegalgo_->runTkEG(l1region);
     l1pualgo_->runChargedPV(l1region, z0);
+    // this is a separate step since the z0 from vertex might come at different latency
+    l1tkegalgo_->runTkIso(l1region, z0);
+    l1tkegalgo_->runPFIso(l1region, z0);
   }
-  // save PF into the event
-  iEvent.put(l1regions_.fetch(false), "PF");
-
   // Then get our alphas (globally)
   std::vector<float> puGlobals;
-  l1pualgo_->doPUGlobals(l1regions_.regions(), -1., puGlobals);  // FIXME we don't have yet an external PU estimate
+  l1pualgo_->doPUGlobals(l1regions_.regions(), z0, -1., puGlobals);  // FIXME we don't have yet an external PU estimate
   const std::vector<std::string>& puGlobalNames = l1pualgo_->puGlobalNames();
   if (puGlobals.size() != puGlobalNames.size())
     throw cms::Exception("LogicError", "Mismatch in the number of global pileup inputs");
   for (unsigned int i = 0, n = puGlobalNames.size(); i < n; ++i) {
     iEvent.put(std::make_unique<float>(puGlobals[i]), puGlobalNames[i]);
   }
-  if (fRegionDump_) {
-    l1tpf_impl::writeManyToFile(puGlobals, fRegionDump_);
-  }
 
   // Then run puppi (regionally)
   for (auto& l1region : l1regions_.regions()) {
-    l1pualgo_->runNeutralsPU(l1region, -1., puGlobals);
+    l1pualgo_->runNeutralsPU(l1region, z0, -1., puGlobals);
+    l1region.outputCrop(sortOutputs_);
   }
+
+  // save PF into the event
+  iEvent.put(l1regions_.fetch(false), "PF");
+
   // and save puppi
   iEvent.put(l1regions_.fetch(true), "Puppi");
+
+  // save the EG objects
+  l1regions_.putEgObjects(iEvent, l1tkegalgo_->writeEgSta(), "L1Eg", "L1TkEm", "L1TkEle");
 
   // Then go do the multiplicities
 

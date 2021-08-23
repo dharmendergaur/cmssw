@@ -31,3 +31,13 @@
 #include "DataFormats/L1Trigger/interface/L1DataEmulResult.h"
 #include "DataFormats/L1Trigger/interface/HOTwinMuxDigiCollection.h"
 #include "DataFormats/L1Trigger/interface/HOTPDigiTwinMux.h"
+#include "DataFormats/L1Trigger/interface/Vertex.h"
+#include "DataFormats/L1Trigger/interface/VertexWord.h"
+#include "DataFormats/L1Trigger/interface/TkJetWord.h"
+
+namespace {
+  struct dictionary {
+    l1t::VertexCollection dummy0;
+    edm::Wrapper<l1t::VertexCollection> dummy1;
+  };
+}  // namespace
