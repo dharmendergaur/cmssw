@@ -385,7 +385,7 @@ void HGCalHistoClusteringImplSA::clusterizer( HGCalTriggerCellSAPtrCollection& t
       if ( a->dataValid() ) {
         for ( unsigned int iCol = a->column() - 3; iCol < a->column() + 4; ++iCol ) { // Magic numbers
           clock[iCol] = clock[a->column()];
-          output[iCol] = a;
+          output[iCol] = make_shared<CentroidHelper>(*a);
           output[iCol]->setIndex( iCol );
           output[iCol]->setClock( clock[iCol] );
           prioritizedMaxima.push_back( output[iCol] );
