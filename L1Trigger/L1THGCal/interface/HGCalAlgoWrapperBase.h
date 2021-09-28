@@ -12,7 +12,7 @@
 #include "FWCore/Framework/interface/EventSetup.h"
 
 typedef HGCalAlgoWrapperBaseT<
-    std::pair<const std::vector<edm::Ptr<l1t::HGCalCluster>>, const std::vector<std::pair<GlobalPoint, double>>>,
+    const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>,
     std::pair<l1t::HGCalMulticlusterBxCollection&, l1t::HGCalClusterBxCollection&>,
     std::pair<const edm::EventSetup&, const edm::ParameterSet&>>
     HGCalHistoClusteringWrapperBase;

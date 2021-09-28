@@ -51,8 +51,7 @@ public:
     l1t::HGCalClusterBxCollection& rejectedClusters = be_output.second;
 
     /* create a persistent vector of pointers to the trigger-cells */
-    std::unordered_map<uint32_t, std::vector<edm::Ptr<l1t::HGCalCluster>>> tcs_per_fpga;
-
+    std::unordered_map<uint32_t, std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>> tcs_per_fpga;
     for (unsigned i = 0; i < collHandle->size(); ++i) {
       edm::Ptr<l1t::HGCalCluster> tc_ptr(collHandle, i);
       uint32_t module = geometry_->getModuleFromTriggerCell(tc_ptr->detId());
@@ -64,8 +63,26 @@ public:
       HGCalTriggerGeometryBase::geom_set stage2_fpgas =
           distributor.getStage2FPGAs(stage1_fpga, possible_stage2_fpgas, tc_ptr);
 
+      // Determine the 60 degree sector within the 180 S2 sector
+      HGCalTriggerBackendDetId stage1_fpga_id(stage1_fpga);
+      auto stage1_sector = stage1_fpga_id.sector();
+      bool isDuplicatedRegion = stage2_fpgas.size() > 1;
       for (auto& fpga : stage2_fpgas) {
-        tcs_per_fpga[fpga].push_back(tc_ptr);
+        HGCalTriggerBackendDetId stage2_fpga_id(fpga);
+        auto stage2_sector = stage2_fpga_id.sector();
+        unsigned sector60 = 999;
+        if ( !isDuplicatedRegion ) sector60 = 1;
+        else if ( stage2_fpga_id.zside() == 1 ) {
+          sector60 = ( stage2_sector == stage1_sector ) ? 2 : 0;
+        }
+        else {
+          sector60 = ( stage2_sector == stage1_sector ) ? 0 : 2;
+        }
+
+        if ( tcs_per_fpga[fpga].size() == 0 ) {
+          tcs_per_fpga[fpga].resize(3);
+        }
+        tcs_per_fpga[fpga][sector60].push_back(tc_ptr);
       }
     }
 
@@ -75,15 +92,10 @@ public:
     multiclusteringSortingTruncationWrapper_->configure(configuration);
 
     for (auto& fpga_tcs : tcs_per_fpga) {
-      /* create a vector of seed positions and their energy*/
-      std::vector<std::pair<GlobalPoint, double>> seedPositionsEnergy;
-
       /* call to multiclustering and compute shower shape*/
-      multiclusteringHistoSeeding_->findHistoSeeds(fpga_tcs.second, seedPositionsEnergy);
 
       // Inputs
-      std::pair<const std::vector<edm::Ptr<l1t::HGCalCluster>>&, const std::vector<std::pair<GlobalPoint, double>>&>
-          inputClustersAndSeeds{fpga_tcs.second, seedPositionsEnergy};
+      const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClusters_perFPGA{fpga_tcs.second};
       // Outputs
       l1t::HGCalMulticlusterBxCollection collCluster3D_perFPGA;
       l1t::HGCalMulticlusterBxCollection collCluster3D_perFPGA_sorted;
@@ -93,7 +105,7 @@ public:
           outputMulticlustersAndRejectedClusters_perFPGA{collCluster3D_perFPGA, rejectedClusters_perFPGA};
 
       // Process
-      multiclusteringHistoClusteringWrapper_->process(inputClustersAndSeeds,
+      multiclusteringHistoClusteringWrapper_->process(inputClusters_perFPGA,
                                                       outputMulticlustersAndRejectedClusters_perFPGA);
 
       multiclusteringSortingTruncationWrapper_->process(collCluster3D_perFPGA, collCluster3D_perFPGA_sorted);
