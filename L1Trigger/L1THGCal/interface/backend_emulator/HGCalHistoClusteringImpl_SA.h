@@ -16,7 +16,8 @@ public:
   HGCalHistoClusteringImplSA(l1thgcfirmware::ClusterAlgoConfig& config);
   ~HGCalHistoClusteringImplSA() {}
 
-  void runAlgorithm(HGCalTriggerCellSAPtrCollections& inputs, HGCalTriggerCellSAPtrCollection& clusteredTCs, HGCalTriggerCellSAPtrCollection& unclusteredTCs, CentroidHelperPtrCollection& prioritizedMaxima, CentroidHelperPtrCollection& readoutFlags ) const;
+  void runAlgorithm(HGCalTriggerCellSAPtrCollections& inputs, HGCalTriggerCellSAPtrCollection& clusteredTCs, HGCalTriggerCellSAPtrCollection& unclusteredTCs, CentroidHelperPtrCollection& prioritizedMaxima, CentroidHelperPtrCollection& readoutFlags,
+  HGCalClusterSAPtrCollection& clusterSums ) const;
 
 private:
   // TC input step

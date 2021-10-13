@@ -12,7 +12,7 @@ using namespace std;
 using namespace l1thgcfirmware;
 HGCalHistoClusteringImplSA::HGCalHistoClusteringImplSA( ClusterAlgoConfig& config ) : config_(config) {}
 
-void HGCalHistoClusteringImplSA::runAlgorithm(HGCalTriggerCellSAPtrCollections& inputs, HGCalTriggerCellSAPtrCollection& clusteredTCs, HGCalTriggerCellSAPtrCollection& unclusteredTCs, CentroidHelperPtrCollection& prioritizedMaxima, CentroidHelperPtrCollection& readoutFlags ) const {
+void HGCalHistoClusteringImplSA::runAlgorithm(HGCalTriggerCellSAPtrCollections& inputs, HGCalTriggerCellSAPtrCollection& clusteredTCs, HGCalTriggerCellSAPtrCollection& unclusteredTCs, CentroidHelperPtrCollection& prioritizedMaxima, CentroidHelperPtrCollection& readoutFlags, HGCalClusterSAPtrCollection& clusterSums ) const {
   cout << "Running the algorithm" << endl;
 
   HGCalTriggerCellSAPtrCollection triggerCellsIn = triggerCellInput( inputs );
@@ -43,8 +43,7 @@ void HGCalHistoClusteringImplSA::runAlgorithm(HGCalTriggerCellSAPtrCollections& 
 
   // Cluster properties
   HGCalClusterSAPtrCollection protoClusters = triggerCellToCluster( clusteredTCs );
-  l1thgcfirmware::HGCalClusterSAPtrCollection clusterAccumulation;
-  l1thgcfirmware::HGCalClusterSAPtrCollection clusterSums;
+  HGCalClusterSAPtrCollection clusterAccumulation;
   clusterSum( protoClusters, readoutFlags, clusterAccumulation, clusterSums );
 
 }
@@ -528,8 +527,8 @@ HGCalClusterSAPtrCollection HGCalHistoClusteringImplSA::triggerCellToCluster( HG
       continue;
     }
 
-    unsigned int s_TC_W = ( int( tc->energy() / 4 ) == 0 ) ? 1 : tc->energy() / 4;
-    unsigned int s_TC_Z = config_.depth( tc->layer() );
+    unsigned long int s_TC_W = ( int( tc->energy() / 4 ) == 0 ) ? 1 : tc->energy() / 4;
+    unsigned long int s_TC_Z = config_.depth( tc->layer() );
 
     unsigned int triggerLayer = config_.triggerLayer( tc->layer() );
     unsigned int s_E_EM = ( (  ( (unsigned long int) tc->energy() * config_.layerWeight_E_EM( triggerLayer ) ) + config_.correction() ) >> 18 );
@@ -563,7 +562,7 @@ HGCalClusterSAPtrCollection HGCalHistoClusteringImplSA::triggerCellToCluster( HG
     cluster->set_wphi2( s_TC_W * tc->phi() * tc->phi() );
     cluster->set_wroz2( s_TC_W * tc->rOverZ() * tc->rOverZ() );
 
-    cluster->set_layerbits( cluster->layerbits() | ( 1 << ( 36 - triggerLayer ) ) ); // Magic numbers
+    cluster->set_layerbits( cluster->layerbits() | ( ( (unsigned long int) 1) << ( 36 - triggerLayer ) ) ); // Magic numbers
     cluster->set_sat_tc( cluster->e() == config_.saturation() || cluster->e_em() == config_.saturation() );
     cluster->set_shapeq(1);
 
@@ -574,7 +573,7 @@ HGCalClusterSAPtrCollection HGCalHistoClusteringImplSA::triggerCellToCluster( HG
   // std::cout << "Protoclusters : " << protoClusters.size() << std::endl;
   // for ( const auto& pclus : protoClusters ) {
 
-  //     std::cout << pclus->clock() << " " << pclus->index() << " " << pclus->n_tc() << " " << pclus->e() << " " << pclus->e_em() << " " << pclus->e_em_core() << " " << pclus->e_h_early() << " " << pclus->w() << " " << pclus->n_tc_w() << " " << pclus->w2() << std::endl;
+  //     std::cout << pclus->clock() << " " << pclus->index() << " " << pclus->n_tc() << " " << pclus->e() << " " << pclus->e_em() << " " << pclus->e_em_core() << " " << pclus->e_h_early() << " " << pclus->w() << " " << pclus->n_tc_w() << " " << pclus->weta2() << " " << pclus->wphi2() << std::endl;
   // }
   return protoClusters;
 }
