@@ -40,8 +40,13 @@ void HGCalHistoClusteringImplSA::runAlgorithm(HGCalTriggerCellSAPtrCollections& 
 
   // Clustering
   clusterizer( triggerCellsIn, histogram, clusteredTCs, unclusteredTCs, prioritizedMaxima, readoutFlags );
-  
-  // HGCalClusterSAPtrCollection clusters = triggerCellToCluster( clusteredTriggerCells );
+
+  // Cluster properties
+  HGCalClusterSAPtrCollection protoClusters = triggerCellToCluster( clusteredTCs );
+  l1thgcfirmware::HGCalClusterSAPtrCollection clusterAccumulation;
+  l1thgcfirmware::HGCalClusterSAPtrCollection clusterSums;
+  clusterSum( protoClusters, readoutFlags, clusterAccumulation, clusterSums );
+
 }
 
 HGCalTriggerCellSAPtrCollection HGCalHistoClusteringImplSA::triggerCellInput( HGCalTriggerCellSAPtrCollections& inputs ) const {
@@ -491,13 +496,13 @@ void HGCalHistoClusteringImplSA::clusterizer( HGCalTriggerCellSAPtrCollection& t
     }
   }
 
-  std::cout << "Output from Clusterizer" << std::endl;
-  std::cout << "Number of clustered TCs : " << clusteredTriggerCellsOut.size() << std::endl;
+  // std::cout << "Output from Clusterizer" << std::endl;
+  // std::cout << "Number of clustered TCs : " << clusteredTriggerCellsOut.size() << std::endl;
   // for ( const auto& tc : clusteredTriggerCellsOut ) {
   //   std::cout << tc->clock() << " " << tc->index() << " " << tc->rOverZ() << " " << tc->layer() << " " << tc->energy() << " " << tc->phi() << " " << tc->sortKey() << " " << tc->deltaR2() << " " << tc->dX() << " " << tc->Y() << " " << tc->dataValid() << std::endl;
   // }
-  std::cout << "Number of unclustered TCs : " << unclusteredTriggerCellsOut.size() << std::endl;
-  std::cout << "Number of readoutFlags : " << readoutFlagsOut.size() << std::endl;
+  // std::cout << "Number of unclustered TCs : " << unclusteredTriggerCellsOut.size() << std::endl;
+  // std::cout << "Number of readoutFlags : " << readoutFlagsOut.size() << std::endl;
   // for ( const auto& f : readoutFlagsOut ) {
   //   std::cout << f->clock() << " " << f->index() << " " << f->column() << " " << f->row() << " " << f->energy() << " " << f->X() << " " << f->Y() << " " << f->dataValid() << std::endl;
   // }
@@ -527,11 +532,12 @@ HGCalClusterSAPtrCollection HGCalHistoClusteringImplSA::triggerCellToCluster( HG
     unsigned int s_TC_Z = config_.depth( tc->layer() );
 
     unsigned int triggerLayer = config_.triggerLayer( tc->layer() );
-
-    unsigned int s_E_EM = ( ( tc->energy() * config_.layerWeight_E_EM( triggerLayer ) + config_.correction() ) >> 18 );
+    unsigned int s_E_EM = ( (  ( (unsigned long int) tc->energy() * config_.layerWeight_E_EM( triggerLayer ) ) + config_.correction() ) >> 18 );
     if ( s_E_EM > config_.saturation() ) s_E_EM = config_.saturation();
 
-    unsigned int s_E_EM_core = ( ( tc->energy() * config_.layerWeight_E_EM_core( triggerLayer ) + config_.correction() ) >> 18 );
+
+
+    unsigned int s_E_EM_core = ( ( (unsigned long int) tc->energy() * config_.layerWeight_E_EM_core( triggerLayer ) + config_.correction() ) >> 18 );
     if ( s_E_EM_core > config_.saturation() ) s_E_EM_core = config_.saturation();
 
     // Alternative constructor perhaps?
@@ -567,9 +573,69 @@ HGCalClusterSAPtrCollection HGCalHistoClusteringImplSA::triggerCellToCluster( HG
   // std::cout << "Output from triggerCellToCluster" << std::endl;
   // std::cout << "Protoclusters : " << protoClusters.size() << std::endl;
   // for ( const auto& pclus : protoClusters ) {
-  //     std::cout << pclus->clock() << " " << pclus->index() << " " << pclus->n_tc() << " " << pclus->e() << " " << pclus->e_h_early() << " " << pclus->e_em() << " " << pclus->e_em_core() << " " << pclus->wz2() << std::endl;
+
+  //     std::cout << pclus->clock() << " " << pclus->index() << " " << pclus->n_tc() << " " << pclus->e() << " " << pclus->e_em() << " " << pclus->e_em_core() << " " << pclus->e_h_early() << " " << pclus->w() << " " << pclus->n_tc_w() << " " << pclus->w2() << std::endl;
   // }
   return protoClusters;
+}
+
+void HGCalHistoClusteringImplSA::clusterSum( HGCalClusterSAPtrCollection& protoClusters, CentroidHelperPtrCollection& readoutFlags, HGCalClusterSAPtrCollection& clusterAccumulation, HGCalClusterSAPtrCollection& clusterSums ) const {
+
+  HGCalClusterSAPtrCollections protoClustersPerColumn( config_.cColumns(), HGCalClusterSAPtrCollection() );
+  vector<unsigned int> clock( config_.cColumns(), 0 );
+  for ( const auto& protoCluster : protoClusters ) {
+    protoClustersPerColumn.at( protoCluster->index() ).push_back( protoCluster );
+  }
+
+  map<unsigned int, HGCalClusterSAPtr> sums;
+
+  for ( const auto& flag : readoutFlags ) {
+    auto accumulator = make_shared<HGCalCluster>( 0,
+                                                  0,
+                                                  true, true
+                                                );
+    flag->setClock( flag->clock() + 23 ); // Magic numbers
+
+    for ( const auto& protoCluster : protoClustersPerColumn.at( flag->index() ) ) {
+      if ( protoCluster->clock() <= clock.at( flag->index() ) ) continue;
+      if ( protoCluster->clock() > flag->clock() ) continue;
+      *accumulator += *protoCluster;
+    }
+
+    clock.at( flag->index() ) = flag->clock();
+    accumulator->setClock( flag->clock() );
+    accumulator->setIndex( flag->index() );
+    accumulator->setDataValid( true );
+    clusterAccumulation.push_back( accumulator );
+
+    if ( sums.find( flag->clock() ) == sums.end() ) {
+      auto sum = make_shared<HGCalCluster>( flag->clock() + 7, // Magic numbers
+                                            0,
+                                            true, true
+                                          );
+      sums[flag->clock()] = sum;
+    }
+
+    *(sums.at( flag->clock() )) += *accumulator;
+  }
+
+  for (const auto& sum: sums) {
+    clusterSums.push_back( sum.second );
+  }
+
+  // std::cout << "Output from ClusterSum" << std::endl;
+  // unsigned int nTCs = 0;
+  // for ( const auto& c : clusterAccumulation ) {
+  //   nTCs += c->n_tc();
+  // }
+  // std::cout << nTCs << std::endl;
+  // nTCs = 0;
+  // std::cout << "Cluster sums" << std::endl;
+  // for ( const auto& c : clusterSums ) {
+  //   std::cout << c->clock() << " " << c->index() << " " << c->n_tc() << " " << c->e() << " " << c->e_em() << " " << c->e_em_core() << " " << c->e_h_early() << std::endl;
+  //   nTCs += c->n_tc();
+  // }
+  // std::cout << nTCs << std::endl;
 }
 
 

@@ -40,8 +40,10 @@ namespace l1thgcfirmware {
 
     ~HGCalCluster(){}
 
+    // Setters
     void setClock( const unsigned int clock ) { clock_ = clock; }
     void setIndex( const unsigned int index ) { index_ = index; }
+    void setDataValid( const bool dataValid ) { dataValid_ = dataValid; }
 
     void set_n_tc( unsigned int n_tc ) { n_tc_ = n_tc; }
     void set_e( unsigned int e ) { e_ = e; }
@@ -63,6 +65,7 @@ namespace l1thgcfirmware {
     void set_sat_tc( bool sat_tc ) { sat_tc_ = sat_tc; }
     void set_shapeq( unsigned int shapeq ) { shapeq_ = shapeq; }
 
+    // Getters
     unsigned int clock() const { return clock_; }
     unsigned int index() const { return index_; }
     bool frameValid() const { return frameValid_; }
@@ -87,6 +90,9 @@ namespace l1thgcfirmware {
     unsigned int layerbits() const { return layerbits_; }
     bool sat_tc() const { return sat_tc_; }
     unsigned int shapeq() const { return shapeq_; }
+
+    // Operators
+    const HGCalCluster& operator+=(const HGCalCluster& hc);
 
   private:
     unsigned int clock_;
@@ -118,7 +124,10 @@ namespace l1thgcfirmware {
   };
 
   typedef std::vector<HGCalCluster> HGCalClusterSACollection;
-  typedef std::vector<std::shared_ptr<HGCalCluster> > HGCalClusterSAPtrCollection;
+  typedef std::shared_ptr<HGCalCluster> HGCalClusterSAPtr;
+  typedef std::vector<HGCalClusterSAPtr > HGCalClusterSAPtrCollection;
+  typedef std::vector< HGCalClusterSAPtrCollection > HGCalClusterSAPtrCollections;
+
 }  // namespace l1thgcfirmware
 
 #endif
