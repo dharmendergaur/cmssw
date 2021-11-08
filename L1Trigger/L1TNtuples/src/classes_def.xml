@@ -34,6 +34,6 @@
 <class name="L1Analysis::L1AnalysisPhaseIIDataFormat"/>
 <class name="L1Analysis::L1AnalysisPhaseIIStep1DataFormat"/>
 
-//<class name="L1Analysis::L1AnalysisPhaseIPFJetDataFormat"/>
+<class name="L1Analysis::L1AnalysisPhaseIPFJetDataFormat"/>
 
 </lcgdict>

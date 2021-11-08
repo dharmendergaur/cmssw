@@ -6,16 +6,17 @@ process = cms.Process("TEST")
 process.load("FWCore.MessageService.MessageLogger_cfi")
 process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(15000) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10) )
 
 fileList = FileUtils.loadListFromFile('ttbar.list')
 readFiles = cms.untracked.vstring(*fileList)
 
 process.source = process.source = cms.Source("PoolSource",
-  fileNames = readFiles,
-  #fileNames = cms.untracked.vstring(
-  #  "file:pf500.root",
-  #)
+  # fileNames = readFiles,
+  fileNames = cms.untracked.vstring(
+   "file:debugInputs.root",
+  ),
+# skipEvents = cms.untracked.uint32(1)
 )
 
 # Loads 7x7 sequence
@@ -29,6 +30,8 @@ process.load('L1Trigger.L1CaloTrigger.Phase1L1TJets_9x9trimmed_cff')
 
 # AK4 PF jets
 process.load('L1Trigger.Phase2L1ParticleFlow.l1pfJetMet_cff')
+process.ak4PFL1Puppi.src = cms.InputTag("l1ctLayer1","Puppi")
+process.ak4PFL1PuppiCorrected.correctorFile = cms.string('L1Trigger/Phase2L1ParticleFlow/data/jecs/jecs.PU200_110X.root')
 process.l1PFJets = cms.Sequence( process.ak4PFL1Puppi + process.ak4PFL1PuppiCorrected )
 
 
