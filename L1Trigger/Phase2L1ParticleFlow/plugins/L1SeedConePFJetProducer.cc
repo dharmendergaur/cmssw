@@ -34,12 +34,15 @@ private:
   bool HW;
   bool debug;
   bool doCorrections;
+  bool useExternalSeeds;
+  bool allowDoubleCounting;
   L1SCJetEmu emulator;
   edm::EDGetTokenT<std::vector<l1t::PFCandidate>> l1PFToken;
+  edm::EDGetTokenT<std::vector<l1t::PFCandidate>> seedsToken;
   l1tpf::corrector corrector;
 
-  std::vector<l1t::PFJet> processEvent_SW(std::vector<edm::Ptr<l1t::PFCandidate>>& parts) const;
-  std::vector<l1t::PFJet> processEvent_HW(std::vector<edm::Ptr<l1t::PFCandidate>>& parts) const;
+  std::vector<l1t::PFJet> processEvent_SW(std::vector<edm::Ptr<l1t::PFCandidate>>& parts, std::vector<edm::Ptr<l1t::PFCandidate>>& seeds) const;
+  std::vector<l1t::PFJet> processEvent_HW(std::vector<edm::Ptr<l1t::PFCandidate>>& parts, std::vector<edm::Ptr<l1t::PFCandidate>>& seeds) const;
 
   l1t::PFJet makeJet_SW(const std::vector<edm::Ptr<l1t::PFCandidate>>& parts) const;
 
@@ -57,8 +60,12 @@ L1SeedConePFJetProducer::L1SeedConePFJetProducer(const edm::ParameterSet& cfg)
       HW(cfg.getParameter<bool>("HW")),
       debug(cfg.getParameter<bool>("debug")),
       doCorrections(cfg.getParameter<bool>("doCorrections")),
+      useExternalSeeds(cfg.getParameter<bool>("useExternalSeeds")),
+      allowDoubleCounting(cfg.getParameter<bool>("allowDoubleCounting")),
       emulator(L1SCJetEmu(debug, coneSize, nJets)),
-      l1PFToken(consumes<std::vector<l1t::PFCandidate>>(cfg.getParameter<edm::InputTag>("L1PFObjects"))) {
+      l1PFToken(consumes<std::vector<l1t::PFCandidate>>(cfg.getParameter<edm::InputTag>("L1PFObjects"))),
+      seedsToken(consumes<l1t::PFCandidateCollection>(cfg.getParameter<edm::InputTag>("JetSeeds")))
+       {
   produces<l1t::PFJetCollection>();
   if (doCorrections) {
     corrector = l1tpf::corrector(
@@ -79,14 +86,31 @@ void L1SeedConePFJetProducer::produce(edm::StreamID /*unused*/,
     particles.push_back(edm::Ptr<l1t::PFCandidate>(l1PFCandidates, i));
   }
 
+  edm::Handle<l1t::PFCandidateCollection> seedsHandle;
+  std::vector<edm::Ptr<l1t::PFCandidate>> seeds;
+  if ( useExternalSeeds ) {
+    iEvent.getByToken(seedsToken, seedsHandle);
+    for (unsigned i = 0; i < (*seedsHandle).size(); i++) {
+      seeds.push_back(edm::Ptr<l1t::PFCandidate>(seedsHandle, i));
+    }
+  }
+
   std::vector<l1t::PFJet> jets;
   if (HW) {
-    jets = processEvent_HW(particles);
+    jets = processEvent_HW(particles, seeds);
   } else {
-    jets = processEvent_SW(particles);
+    jets = processEvent_SW(particles, seeds);
   }
 
   std::sort(jets.begin(), jets.end(), [](l1t::PFJet i, l1t::PFJet j) { return (i.pt() > j.pt()); });
+
+  // Added for temp debugging
+  // if ( !useExternalSeeds ) {
+  //   jets.erase(std::remove_if(jets.begin(), jets.end(), [](const l1t::PFJet& j) {
+  //         return abs(j.eta()) > 3;
+  //     }), jets.end());
+  // }
+
   newPFJetCollection->swap(jets);
   iEvent.put(std::move(newPFJetCollection));
 }
@@ -133,7 +157,7 @@ l1t::PFJet L1SeedConePFJetProducer::makeJet_SW(const std::vector<edm::Ptr<l1t::P
   return jet;
 }
 
-std::vector<l1t::PFJet> L1SeedConePFJetProducer::processEvent_SW(std::vector<edm::Ptr<l1t::PFCandidate>>& work) const {
+std::vector<l1t::PFJet> L1SeedConePFJetProducer::processEvent_SW(std::vector<edm::Ptr<l1t::PFCandidate>>& work, std::vector<edm::Ptr<l1t::PFCandidate>>& seeds) const {
   // The floating point algorithm simulation
   std::stable_sort(work.begin(), work.end(), [](edm::Ptr<l1t::PFCandidate> i, edm::Ptr<l1t::PFCandidate> j) {
     return (i->pt() > j->pt());
@@ -161,12 +185,15 @@ std::vector<l1t::PFJet> L1SeedConePFJetProducer::processEvent_SW(std::vector<edm
   return jets;
 }
 
-std::vector<l1t::PFJet> L1SeedConePFJetProducer::processEvent_HW(std::vector<edm::Ptr<l1t::PFCandidate>>& work) const {
+std::vector<l1t::PFJet> L1SeedConePFJetProducer::processEvent_HW(std::vector<edm::Ptr<l1t::PFCandidate>>& work, std::vector<edm::Ptr<l1t::PFCandidate>>& seeds) const {
   // The fixed point emulator
   // Convert the EDM format to the hardware format, and call the standalone emulator
   std::pair<std::vector<L1SCJetEmu::Particle>, std::unordered_map<const l1t::PFCandidate*, edm::Ptr<l1t::PFCandidate>>>
       particles = convertEDMToHW(work);
-  std::vector<L1SCJetEmu::Jet> jets = emulator.emulateEvent(particles.first);
+  std::pair<std::vector<L1SCJetEmu::Particle>, std::unordered_map<const l1t::PFCandidate*, edm::Ptr<l1t::PFCandidate>>>
+      hwSeeds = convertEDMToHW(seeds);
+
+  std::vector<L1SCJetEmu::Jet> jets = emulator.emulateEvent(particles.first, hwSeeds.first, useExternalSeeds, allowDoubleCounting);
   return convertHWToEDM(jets, particles.second);
 }
 

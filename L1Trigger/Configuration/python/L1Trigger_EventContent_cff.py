@@ -188,6 +188,8 @@ def _appendPhase2Digis(obj):
         'keep *_l1tTrackerEmuEtMiss_*_*',
         'keep *_l1tTrackerEmuHTMiss_*_*',
         'keep *_l1tTrackerEmuHTMissExtended_*_*',
+        'keep l1tTkJetWords_*_*_*',
+        'keep *_*_*_HLT',
         'keep *_l1tTowerCalibration_*_*',
         'keep *_l1tCaloJet_*_*',
         'keep *_l1tCaloJetHTT_*_*',
@@ -201,6 +203,8 @@ def _appendPhase2Digis(obj):
         'keep *_l1tSCPFL1PuppiCorrectedEmulatorMHT_*_*',
         'keep *_l1tSCPFL1PuppiExtendedCorrectedEmulator_*_*',
         'keep *_l1tSCPFL1PuppiExtendedCorrectedEmulatorMHT_*_*',
+        'keep *_*SCPF*_*_*', # Check these, only save specific collections if possible
+        'keep *_l1tPhase1JetSeedProducer9x9trimmed_*_*', # Check these, only save specific collections if possible
         'keep *_l1tPhase1JetProducer9x9_*_*', 
         'keep *_l1tPhase1JetCalibrator9x9_*_*',
         'keep *_l1tPhase1JetSumsProducer9x9_*_*',

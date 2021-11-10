@@ -132,6 +132,7 @@ namespace L1Analysis {
                                  unsigned maxL1Extra);
 
     void SetPFJet(const edm::Handle<l1t::PFJetCollection> PFJet, unsigned maxL1Extra);
+    void SetHistoSeededPFJet(const edm::Handle<l1t::PFJetCollection> PFJet, unsigned maxL1Extra);
     void SetL1seededConeMHT(const edm::Handle<std::vector<l1t::EtSum>> l1SeededConeMHT);
 
     // Add nntaus

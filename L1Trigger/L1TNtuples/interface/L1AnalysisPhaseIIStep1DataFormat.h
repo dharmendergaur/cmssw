@@ -245,6 +245,15 @@ namespace L1Analysis {
       seededConePuppiJetzVtx.clear();
       seededConePuppiJetEtUnCorr.clear();
 
+      nHistoSeededConePuppiJets = 0;
+      histoSeededConePuppiJetPt.clear();
+      histoSeededConePuppiJetEt.clear();
+      histoSeededConePuppiJetEta.clear();
+      histoSeededConePuppiJetPhi.clear();
+      histoSeededConePuppiJetBx.clear();
+      histoSeededConePuppiJetzVtx.clear();
+      histoSeededConePuppiJetEtUnCorr.clear();
+
       seededConePuppiHT = 0;
       seededConePuppiMHTEt = 0;
       seededConePuppiMHTPhi = 0;
@@ -547,6 +556,15 @@ namespace L1Analysis {
     std::vector<int> seededConePuppiJetBx;
     std::vector<double> seededConePuppiJetzVtx;
     std::vector<double> seededConePuppiJetEtUnCorr;
+
+    unsigned int nHistoSeededConePuppiJets;
+    std::vector<double> histoSeededConePuppiJetPt;
+    std::vector<double> histoSeededConePuppiJetEt;
+    std::vector<double> histoSeededConePuppiJetEta;
+    std::vector<double> histoSeededConePuppiJetPhi;
+    std::vector<int> histoSeededConePuppiJetBx;
+    std::vector<double> histoSeededConePuppiJetzVtx;
+    std::vector<double> histoSeededConePuppiJetEtUnCorr;
 
     double seededConePuppiHT;
     double seededConePuppiMHTEt;

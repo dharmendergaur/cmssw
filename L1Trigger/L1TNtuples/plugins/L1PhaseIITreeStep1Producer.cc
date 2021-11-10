@@ -158,6 +158,7 @@ private:
   edm::EDGetTokenT<std::vector<l1t::EtSum>> l1pfPhase1L1TJetSums_;
 
   edm::EDGetTokenT<std::vector<l1t::PFJet>> scPFL1Puppi_;
+  edm::EDGetTokenT<std::vector<l1t::PFJet>> histoSeededSCPFL1Puppi_;
   edm::EDGetTokenT<std::vector<l1t::EtSum>> scPFL1PuppiMHT_;
 
   //edm::EDGetTokenT<float> z0PuppiToken_;
@@ -209,6 +210,7 @@ L1PhaseIITreeStep1Producer::L1PhaseIITreeStep1Producer(const edm::ParameterSet& 
   l1PFMet_ = consumes<std::vector<l1t::EtSum>>(iConfig.getParameter<edm::InputTag>("l1PFMet"));
 
   scPFL1Puppi_ = consumes<std::vector<l1t::PFJet>>(iConfig.getParameter<edm::InputTag>("scPFL1Puppi"));
+  histoSeededSCPFL1Puppi_ = consumes<std::vector<l1t::PFJet>>(iConfig.getParameter<edm::InputTag>("histoSeededSCPFL1Puppi"));
   scPFL1PuppiMHT_ = consumes<std::vector<l1t::EtSum>>(iConfig.getParameter<edm::InputTag>("scPFL1PuppiMHT"));
 
   l1pfPhase1L1TJetToken_ =
@@ -307,9 +309,9 @@ void L1PhaseIITreeStep1Producer::analyze(const edm::Event& iEvent, const edm::Ev
   edm::Handle<l1t::JetBxCollection> caloJet;
   iEvent.getByToken(caloJetToken_, caloJet);
 
-  edm::Handle<float> caloJetHTTs;
-  iEvent.getByToken(caloJetHTTToken_, caloJetHTTs);
-  float caloJetHTT = *caloJetHTTs;
+  // edm::Handle<float> caloJetHTTs;
+  // iEvent.getByToken(caloJetHTTToken_, caloJetHTTs);
+  // float caloJetHTT = *caloJetHTTs;
 
   edm::Handle<std::vector<reco::CaloJet>> l1pfPhase1L1TJet;
   iEvent.getByToken(l1pfPhase1L1TJetToken_, l1pfPhase1L1TJet);
@@ -322,6 +324,9 @@ void L1PhaseIITreeStep1Producer::analyze(const edm::Event& iEvent, const edm::Ev
 
   edm::Handle<std::vector<l1t::PFJet>> scPFL1Puppis;
   iEvent.getByToken(scPFL1Puppi_, scPFL1Puppis);
+
+  edm::Handle<std::vector<l1t::PFJet>> histoSeededSCPFL1Puppi;
+  iEvent.getByToken(histoSeededSCPFL1Puppi_, histoSeededSCPFL1Puppi);
 
   edm::Handle<std::vector<l1t::EtSum>> scPFL1PuppiMHTs;
   iEvent.getByToken(scPFL1PuppiMHT_, scPFL1PuppiMHTs);
@@ -353,91 +358,91 @@ void L1PhaseIITreeStep1Producer::analyze(const edm::Event& iEvent, const edm::Ev
   edm::Handle<std::vector<l1t::EtSum>> tkMhts;
   edm::Handle<std::vector<l1t::EtSum>> tkMhtsDisplaced;
 
-  iEvent.getByToken(tkTrackerJetToken_, tkTrackerJet);
-  iEvent.getByToken(tkTrackerJetDisplacedToken_, tkTrackerJetDisplaced);
+//   iEvent.getByToken(tkTrackerJetToken_, tkTrackerJet);
+//   iEvent.getByToken(tkTrackerJetDisplacedToken_, tkTrackerJetDisplaced);
 
-  iEvent.getByToken(tkMetToken_, tkMets);
+//   iEvent.getByToken(tkMetToken_, tkMets);
 
-  iEvent.getByToken(tkMhtToken_, tkMhts);
-  iEvent.getByToken(tkMhtDisplacedToken_, tkMhtsDisplaced);
+//   iEvent.getByToken(tkMhtToken_, tkMhts);
+//   iEvent.getByToken(tkMhtDisplacedToken_, tkMhtsDisplaced);
 
-  if (tkTrackerJet.isValid()) {
-    l1Extra->SetTkJet(tkTrackerJet, maxL1Extra_);
-  } else {
-    edm::LogWarning("MissingProduct") << "L1PhaseII tkTrackerJets not found. Branch will not be filled" << std::endl;
-  }
+//   if (tkTrackerJet.isValid()) {
+//     l1Extra->SetTkJet(tkTrackerJet, maxL1Extra_);
+//   } else {
+//     edm::LogWarning("MissingProduct") << "L1PhaseII tkTrackerJets not found. Branch will not be filled" << std::endl;
+//   }
 
-  if (tkTrackerJetDisplaced.isValid()) {
-    l1Extra->SetTkJetDisplaced(tkTrackerJetDisplaced, maxL1Extra_);
-  } else {
-    edm::LogWarning("MissingProduct") << "L1PhaseII tkTrackerJetDisplaced not found. Branch will not be filled"
-                                      << std::endl;
-  }
+//   if (tkTrackerJetDisplaced.isValid()) {
+//     l1Extra->SetTkJetDisplaced(tkTrackerJetDisplaced, maxL1Extra_);
+//   } else {
+//     edm::LogWarning("MissingProduct") << "L1PhaseII tkTrackerJetDisplaced not found. Branch will not be filled"
+//                                       << std::endl;
+//   }
 
-  if (tkMets.isValid()) {
-    l1Extra->SetTkMET(tkMets);
-  } else {
-    edm::LogWarning("MissingProduct") << "L1PhaseII TkMET not found. Branch will not be filled" << std::endl;
-  }
+//   if (tkMets.isValid()) {
+//     l1Extra->SetTkMET(tkMets);
+//   } else {
+//     edm::LogWarning("MissingProduct") << "L1PhaseII TkMET not found. Branch will not be filled" << std::endl;
+//   }
 
-  /*for (auto& tkmhttoken : tkMhtToken_) {
-    edm::Handle<l1t::TkHTMissCollection> tkMhts;
-    iEvent.getByToken(tkmhttoken, tkMhts);*/
+//   /*for (auto& tkmhttoken : tkMhtToken_) {
+//     edm::Handle<l1t::TkHTMissCollection> tkMhts;
+//     iEvent.getByToken(tkmhttoken, tkMhts);*/
 
-  if (tkMhts.isValid()) {
-    l1Extra->SetTkMHT(tkMhts);
-  } else {
-    edm::LogWarning("MissingProduct") << "L1PhaseII TkMHT not found. Branch will not be filled" << std::endl;
-  }
+//   if (tkMhts.isValid()) {
+//     l1Extra->SetTkMHT(tkMhts);
+//   } else {
+//     edm::LogWarning("MissingProduct") << "L1PhaseII TkMHT not found. Branch will not be filled" << std::endl;
+//   }
 
-  /*for (auto& tkmhtdisplacedtoken : tkMhtDisplacedToken_) {
-    edm::Handle<l1t::TkHTMissCollection> tkMhtsDisplaced;
-    iEvent.getByToken(tkmhtdisplacedtoken, tkMhtsDisplaced);*/
+//   /*for (auto& tkmhtdisplacedtoken : tkMhtDisplacedToken_) {
+//     edm::Handle<l1t::TkHTMissCollection> tkMhtsDisplaced;
+//     iEvent.getByToken(tkmhtdisplacedtoken, tkMhtsDisplaced);*/
 
-  if (tkMhtsDisplaced.isValid()) {
-    l1Extra->SetTkMHTDisplaced(tkMhtsDisplaced);
-  } else {
-    edm::LogWarning("MissingProduct") << "L1PhaseII TkMHT Displaced not found. Branch will not be filled" << std::endl;
-  }
+//   if (tkMhtsDisplaced.isValid()) {
+//     l1Extra->SetTkMHTDisplaced(tkMhtsDisplaced);
+//   } else {
+//     edm::LogWarning("MissingProduct") << "L1PhaseII TkMHT Displaced not found. Branch will not be filled" << std::endl;
+//   }
 
-  //  float vertexTDRZ0=-999;
-  //  if(l1vertextdr->size()>0) vertexTDRZ0=l1vertextdr->at(0).z0();
-  /*
-       if(l1vertices.isValid() && l1TkPrimaryVertex.isValid() &&  l1vertices->size()>0 && l1TkPrimaryVertex->size()>0){
-             l1Extra->SetVertices(Z0,vertexTDRZ0,l1vertices,l1TkPrimaryVertex);
-       }
-       else {
-                edm::LogWarning("MissingProduct") << "One of the L1TVertex collections is not valid " << std::endl;
-                std::cout<<"Getting the vertices!"<<std::endl;
-                std::cout<<Z0<<"   "<<l1vertextdr->size() <<"  "<< l1vertices->size() <<"   "<<  l1TkPrimaryVertex->size()<<std::endl;
-        }
-*/
+//   //  float vertexTDRZ0=-999;
+//   //  if(l1vertextdr->size()>0) vertexTDRZ0=l1vertextdr->at(0).z0();
+//   /*
+//        if(l1vertices.isValid() && l1TkPrimaryVertex.isValid() &&  l1vertices->size()>0 && l1TkPrimaryVertex->size()>0){
+//              l1Extra->SetVertices(Z0,vertexTDRZ0,l1vertices,l1TkPrimaryVertex);
+//        }
+//        else {
+//                 edm::LogWarning("MissingProduct") << "One of the L1TVertex collections is not valid " << std::endl;
+//                 std::cout<<"Getting the vertices!"<<std::endl;
+//                 std::cout<<Z0<<"   "<<l1vertextdr->size() <<"  "<< l1vertices->size() <<"   "<<  l1TkPrimaryVertex->size()<<std::endl;
+//         }
+// */
 
-  if (l1TkPrimaryVertex.isValid() && !l1TkPrimaryVertex->empty()) {
-    l1Extra->SetVertices(0, l1TkPrimaryVertex);  // We should change this function
-  } else {
-    edm::LogWarning("MissingProduct") << "One of the L1TVertex collections is not valid " << std::endl;
-    std::cout << "Getting the vertices!" << std::endl;
-    std::cout << 0 << " " << l1TkPrimaryVertex->size() << std::endl;
-  }
+//   if (l1TkPrimaryVertex.isValid() && !l1TkPrimaryVertex->empty()) {
+//     l1Extra->SetVertices(0, l1TkPrimaryVertex);  // We should change this function
+//   } else {
+//     edm::LogWarning("MissingProduct") << "One of the L1TVertex collections is not valid " << std::endl;
+//     std::cout << "Getting the vertices!" << std::endl;
+//     std::cout << 0 << " " << l1TkPrimaryVertex->size() << std::endl;
+//   }
 
-  if (caloTau.isValid()) {
-    l1Extra->SetCaloTau(caloTau, maxL1Extra_);
-  } else {
-    edm::LogWarning("MissingProduct") << "L1Upgrade caloTaus not found. Branch will not be filled" << std::endl;
-  }
+//   if (caloTau.isValid()) {
+//     l1Extra->SetCaloTau(caloTau, maxL1Extra_);
+//   } else {
+//     edm::LogWarning("MissingProduct") << "L1Upgrade caloTaus not found. Branch will not be filled" << std::endl;
+//   }
 
-  if (l1HPSPFTau.isValid()) {
-    l1Extra->SetHPSPFTaus(l1HPSPFTau, maxL1Extra_);
-  } else {
-    edm::LogWarning("MissingProduct") << "L1HPSPFTaus missing" << std::endl;
-  }
+//   if (l1HPSPFTau.isValid()) {
+//     l1Extra->SetHPSPFTaus(l1HPSPFTau, maxL1Extra_);
+//   } else {
+//     edm::LogWarning("MissingProduct") << "L1HPSPFTaus missing" << std::endl;
+//   }
 
-  if (caloJet.isValid()) {
-    l1Extra->SetCaloJet(caloJet, maxL1Extra_, caloJetHTT);
-  } else {
-    edm::LogWarning("MissingProduct") << "L1Upgrade caloJets not found. Branch will not be filled" << std::endl;
-  }
+  // if (caloJet.isValid()) {
+  //   l1Extra->SetCaloJet(caloJet, maxL1Extra_, caloJetHTT);
+  // } else {
+  //   edm::LogWarning("MissingProduct") << "L1Upgrade caloJets not found. Branch will not be filled" << std::endl;
+  // }
 
   edm::Handle<l1t::TkElectronCollection> tkEG;
   iEvent.getByToken(tkEGToken_, tkEG);
@@ -498,6 +503,12 @@ void L1PhaseIITreeStep1Producer::analyze(const edm::Event& iEvent, const edm::Ev
     l1Extra->SetPFJet(scPFL1Puppis, maxL1Extra_);
   } else {
     edm::LogWarning("MissingProduct") << "L1PhaseII scJets not found. Branch will not be filled" << std::endl;
+  }
+
+  if (histoSeededSCPFL1Puppi.isValid()) {
+    l1Extra->SetHistoSeededPFJet(histoSeededSCPFL1Puppi, maxL1Extra_);
+  } else {
+    edm::LogWarning("MissingProduct") << "L1PhaseII histo seeded scJets not found. Branch will not be filled" << std::endl;
   }
 
   if (scPFL1PuppiMHTs.isValid()) {

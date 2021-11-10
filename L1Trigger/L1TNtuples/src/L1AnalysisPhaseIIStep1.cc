@@ -489,6 +489,21 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetPFJet(const edm::Handle<l1t::PFJetCo
   }
 }
 
+void L1Analysis::L1AnalysisPhaseIIStep1::SetHistoSeededPFJet(const edm::Handle<l1t::PFJetCollection> PFJet, unsigned maxL1Extra) {
+  for (l1t::PFJetCollection::const_iterator it = PFJet->begin();
+       it != PFJet->end() && l1extra_.nSeededConePuppiJets < maxL1Extra;
+       it++) {
+    l1extra_.histoSeededConePuppiJetPt.push_back(it->pt());
+    l1extra_.histoSeededConePuppiJetEt.push_back(it->et());
+    l1extra_.histoSeededConePuppiJetEtUnCorr.push_back(it->rawPt());  //rename?
+    l1extra_.histoSeededConePuppiJetEta.push_back(it->eta());
+    l1extra_.histoSeededConePuppiJetPhi.push_back(it->phi());
+    //    l1extra_.seededConePuppiJetzVtx.push_back(it->getJetVtx());
+    l1extra_.histoSeededConePuppiJetBx.push_back(0);  //it->bx());
+    l1extra_.nHistoSeededConePuppiJets++;
+  }
+}
+
 void L1Analysis::L1AnalysisPhaseIIStep1::SetL1seededConeMHT(
     const edm::Handle<std::vector<l1t::EtSum> > l1SeededConeMHT) {
   l1t::EtSum HT = l1SeededConeMHT->at(0);

@@ -30,7 +30,7 @@ public:
 
   L1SCJetEmu(bool debug, float coneSize, unsigned nJets);
 
-  std::vector<Jet> emulateEvent(std::vector<Particle>& parts) const;
+  std::vector<Jet> emulateEvent(std::vector<Particle>& parts, std::vector<Particle>& seeds, bool useExternalSeeds, bool allowDoubleCounting ) const;
 
 private:
   // Configuration settings
