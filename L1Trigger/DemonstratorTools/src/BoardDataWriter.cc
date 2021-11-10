@@ -141,6 +141,11 @@ namespace l1t::demo {
         boardData_.at(indices.at(tmuxIndex)).resize(tmuxIndex * boardTMUX_ * framesPerBX_ + spec.offset);
     }
 
+    // for (auto& x : boardData_){
+    //  x.second.push_back(0);
+    //  x.second.back().valid = false;
+    // }
+
     pendingEvents_ = 0;
   }
 
