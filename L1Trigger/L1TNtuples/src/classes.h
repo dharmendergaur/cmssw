@@ -33,7 +33,7 @@
 #include "L1Trigger/L1TNtuples/interface/L1AnalysisPhaseIIDataFormat.h"
 #include "L1Trigger/L1TNtuples/interface/L1AnalysisPhaseIIStep1DataFormat.h"
 
-//#include "L1Trigger/L1TNtuples/interface/L1AnalysisPhaseIPFJetDataFormat.h"
+#include "L1Trigger/L1TNtuples/interface/L1AnalysisPhaseIPFJetDataFormat.h"
 
 namespace {
   namespace {
