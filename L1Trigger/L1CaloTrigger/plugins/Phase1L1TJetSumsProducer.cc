@@ -38,6 +38,7 @@ Description: Computes HT and MHT from phase-1-like jets
 #include "FWCore/ServiceRegistry/interface/Service.h"
 #include "CommonTools/UtilAlgos/interface/TFileService.h"
 
+#include "L1Trigger/Phase2L1ParticleFlow/src/newfirmware/dataformats/datatypes.h"
 #include <cmath>
 
 class Phase1L1TJetSumsProducer : public edm::one::EDProducer<edm::one::SharedResources> {
@@ -139,46 +140,57 @@ l1t::EtSum Phase1L1TJetSumsProducer::computeHT(const edm::Handle<std::vector<rec
   lHTVector.SetPt(lHT);
   lHTVector.SetEta(0);
   lHTVector.SetPhi(0);
+
   l1t::EtSum lHTSum(lHTVector, l1t::EtSum::EtSumType::kTotalHt, 0, 0, 0, 0);
   return lHTSum;
 }
 
 l1t::EtSum Phase1L1TJetSumsProducer::computeMHT(const edm::Handle<std::vector<reco::CaloJet> > inputJets) const {
-  int lTotalJetPx = 0;
-  int lTotalJetPy = 0;
+  l1ct::dpt_t lTotalJetPx = 0;
+  l1ct::dpt_t lTotalJetPy = 0;
 
-  std::vector<unsigned int> jetPtInPhiBins(nBinsPhi_, 0);
+  // std::vector<unsigned int> jetPtInPhiBins(nBinsPhi_, 0);
+  std::vector<l1ct::pt_t> jetPtInPhiBins(nBinsPhi_, 0);
 
   for (const auto& jet : *inputJets) {
     double lJetPhi = jet.phi();
-
+    l1ct::pt_t jetPt = jet.pt();
     if ((lJetPhi < phiLow_) || (lJetPhi >= phiUp_))
       continue;
 
     unsigned int iPhi = (lJetPhi - phiLow_) / phiStep_;
 
-    if (jet.pt() >= mhtPtThreshold_ && std::fabs(jet.eta()) < mhtAbsEtaCut_) {
-      unsigned int digiJetPt = floor(jet.pt() / ptlsb_);
-      jetPtInPhiBins[iPhi] += digiJetPt;
+    if (jetPt >= mhtPtThreshold_ && std::fabs(jet.eta()) < mhtAbsEtaCut_) {
+      // unsigned int digiJetPt = floor(jet.pt() / ptlsb_);
+      jetPtInPhiBins[iPhi] += jetPt;
     }
   }
 
   for (unsigned int iPhi = 0; iPhi < jetPtInPhiBins.size(); ++iPhi) {
-    unsigned int digiJetPtSum = jetPtInPhiBins[iPhi];
+    l1ct::pt_t jetPtSum = jetPtInPhiBins[iPhi];
 
     // retrieving sin cos from LUT emulator
-    double lSinPhi = sinPhi_[iPhi];
-    double lCosPhi = cosPhi_[iPhi];
+    // double lSinPhi = sinPhi_[iPhi];
+    // double lCosPhi = cosPhi_[iPhi];
+    ap_fixed<9, 1, AP_RND> lSinPhi = sinPhi_[iPhi];
+    ap_fixed<9, 1, AP_RND> lCosPhi = cosPhi_[iPhi];
+
+    // std::cout << iPhi << " " << jetPtSum << " " << lCosPhi << " " << lSinPhi << std::endl;
 
     // checking if above threshold
-    lTotalJetPx += trunc(digiJetPtSum * lCosPhi);
-    lTotalJetPy += trunc(digiJetPtSum * lSinPhi);
+    // lTotalJetPx += trunc(jetPtSum * lCosPhi);
+    // lTotalJetPy += trunc(jetPtSum * lSinPhi);
+    lTotalJetPx += jetPtSum * lCosPhi;
+    lTotalJetPy += jetPtSum * lSinPhi;
   }
 
-  double lMHT = floor(sqrt(lTotalJetPx * lTotalJetPx + lTotalJetPy * lTotalJetPy)) * ptlsb_;
-  math::PtEtaPhiMLorentzVector lMHTVector(lMHT, 0, acos(lTotalJetPx / (lMHT / ptlsb_)), 0);
-  l1t::EtSum lMHTSum(lMHTVector, l1t::EtSum::EtSumType::kMissingHt, 0, 0, 0, 0);
+  // double lMHT = floor(sqrt(lTotalJetPx * lTotalJetPx + lTotalJetPy * lTotalJetPy)) * ptlsb_;
+  // math::PtEtaPhiMLorentzVector lMHTVector(lMHT, 0, acos(lTotalJetPx / (lMHT / ptlsb_)), 0);
 
+  double lMHT = l1ct::pt_t( sqrt(double(lTotalJetPx * lTotalJetPx + lTotalJetPy * lTotalJetPy)) );
+  math::PtEtaPhiMLorentzVector lMHTVector(lMHT, 0, acos(double(lTotalJetPx) / (lMHT )), 0);
+  l1t::EtSum lMHTSum(lMHTVector, l1t::EtSum::EtSumType::kMissingHt, 0, 0, 0, 0);
+  // std::cout << "MHT : " << lMHT << " " << lTotalJetPx << " " << lTotalJetPy << std::endl;
   return lMHTSum;
 }
 

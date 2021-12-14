@@ -12,6 +12,7 @@
 #include "DataFormats/JetReco/interface/CaloJet.h"
 #include "DataFormats/L1Trigger/interface/EtSum.h"
 #include "L1Trigger/Phase2L1ParticleFlow/src/newfirmware/dataformats/jets.h"
+#include "L1Trigger/Phase2L1ParticleFlow/src/newfirmware/dataformats/gt_datatypes.h"
 
 #include "L1Trigger/DemonstratorTools/interface/BoardData.h"
 
