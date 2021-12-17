@@ -14,7 +14,7 @@
 typedef HGCalAlgoWrapperBaseT<
     const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>,
     std::pair<l1t::HGCalMulticlusterBxCollection&, l1t::HGCalClusterBxCollection&>,
-    std::pair<const edm::EventSetup&, const edm::ParameterSet&>>
+    std::tuple<const edm::EventSetup&, const edm::ParameterSet&, const unsigned int, const int>>
     HGCalHistoClusteringWrapperBase;
 
 typedef HGCalAlgoWrapperBaseT<std::vector<edm::Ptr<l1t::HGCalTowerMap>>,

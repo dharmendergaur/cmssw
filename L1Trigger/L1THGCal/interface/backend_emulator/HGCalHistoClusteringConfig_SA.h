@@ -33,6 +33,12 @@ namespace l1thgcfirmware {
 
     void setParameters() {}
 
+    void setSector( const unsigned int sector ) { sector_ = sector; }
+    unsigned int sector() const { return sector_; }
+
+    void setZSide( const int zSide ) { zSide_ = zSide; }
+    int zSide() const { return zSide_; }
+
     unsigned int getStepLatency( const Step step ) const { return stepLatency_.at(step); }
     unsigned int getLatencyUpToAndIncluding( const Step step );
     unsigned int clusterizerOffset() const { return clusterizerOffset_; }
@@ -89,6 +95,9 @@ namespace l1thgcfirmware {
     std::vector<unsigned int> layerWeights_E_H_early_;
     unsigned int correction_;
     unsigned int saturation_;
+
+    unsigned int sector_;
+    int zSide_;
 
   };
 

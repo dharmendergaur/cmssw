@@ -73,7 +73,7 @@ public:
         unsigned sector60 = 999;
         if ( !isDuplicatedRegion ) sector60 = 1;
         else if ( stage2_fpga_id.zside() == 1 ) {
-          sector60 = ( stage2_sector == stage1_sector ) ? 2 : 0;
+          sector60 = ( stage2_sector == stage1_sector ) ? 0 : 2;
         }
         else {
           sector60 = ( stage2_sector == stage1_sector ) ? 0 : 2;

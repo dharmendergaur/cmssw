@@ -22,7 +22,7 @@ public:
   HGCalHistoClusteringWrapper(const edm::ParameterSet& conf);
   ~HGCalHistoClusteringWrapper() override {}
 
-  void configure(const std::pair<const edm::EventSetup&, const edm::ParameterSet&>& configuration) override;
+  void configure(const std::tuple<const edm::EventSetup&, const edm::ParameterSet&, const unsigned int, const int>& configuration) override;
 
   void process(const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClusters,
                std::pair<l1t::HGCalMulticlusterBxCollection&, l1t::HGCalClusterBxCollection&>&
@@ -31,9 +31,10 @@ public:
 private:
   void convertCMSSWInputs(const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>& clustersPtrs,
                           l1thgcfirmware::HGCalTriggerCellSAPtrCollections& clusters_SA) const;
-  void convertAlgorithmOutputs() const {}
+  void convertAlgorithmOutputs( l1thgcfirmware::HGCalClusterSAPtrCollection& clusterSums, l1thgcfirmware::HGCalTriggerCellSAPtrCollection& unclusteredTCs, l1t::HGCalMulticlusterBxCollection& multiClusters_out ) const;
 
-  void clusterizeHisto( l1thgcfirmware::HGCalTriggerCellSAPtrCollections& triggerCells_in_SA, l1thgcfirmware::HGCalTriggerCellSAPtrCollection& clusteredTCs, l1thgcfirmware::HGCalTriggerCellSAPtrCollection& unclusteredTCs, l1thgcfirmware::CentroidHelperPtrCollection& prioritizedMaxima, l1thgcfirmware::CentroidHelperPtrCollection& readoutFlags ) const;
+  void clusterizeHisto( l1thgcfirmware::HGCalTriggerCellSAPtrCollections& triggerCells_in_SA, l1thgcfirmware::HGCalTriggerCellSAPtrCollection& clusteredTCs, l1thgcfirmware::HGCalTriggerCellSAPtrCollection& unclusteredTCs, l1thgcfirmware::CentroidHelperPtrCollection& prioritizedMaxima, l1thgcfirmware::CentroidHelperPtrCollection& readoutFlags,
+  l1thgcfirmware::HGCalClusterSAPtrCollection& clusterSums ) const;
 
   void eventSetup(const edm::EventSetup& es) { triggerTools_.eventSetup(es);
                                                es.get<CaloGeometryRecord>().get("", triggerGeometry_);
@@ -58,6 +59,7 @@ void HGCalHistoClusteringWrapper::convertCMSSWInputs(const std::vector<std::vect
   // Convert trigger cells to format required by emulator
   l1thgcfirmware::HGCalTriggerCellSAPtrCollections clusters_SA_perSector60(3, l1thgcfirmware::HGCalTriggerCellSAPtrCollection() );
   unsigned iSector60 = 0;
+
   for (const auto& sector60 : clustersPtrs) {
     for (const auto& cluster : sector60) {
       const GlobalPoint& position = cluster->position();
@@ -65,10 +67,26 @@ void HGCalHistoClusteringWrapper::convertCMSSWInputs(const std::vector<std::vect
       double y = position.y();
       double z = position.z();
       unsigned int digi_rOverZ = ( std::sqrt(x * x + y * y) / std::abs(z) ) * 4096/ 0.7; // Magic numbers
-      double phi = cluster->phi();
-      phi += ( phi < 0 ) ? 2 * M_PI : 0;
+
+      if (z > 0)
+        x = -x;
+      double phi = std::atan2(y, x);
+      // Rotate phi to sector 0
+      auto sector = theConfiguration_.sector();
+      if (sector == 1) {
+        if (phi < M_PI and phi > 0)
+          phi = phi - (2. * M_PI / 3.);
+        else
+          phi = phi + (4. * M_PI / 3.);
+      } else if (sector == 2) {
+        phi = phi + (2. * M_PI / 3.);
+      }
+
+      phi += ( phi < 0 ) ? 2 * M_PI : 0;  // Needed?  Everything should be in sector 0, but perhaps some TCs have phi just below 0, in which case this isn't the correct treatment
+
+
       unsigned int digi_phi = ( phi ) * 1944 / M_PI; // Magic numbers
-      unsigned int digi_energy = ( cluster->energy() ) * 10000; // Magic numbers
+      unsigned int digi_energy = ( cluster->pt() ) * 10000; // Magic numbers
       clusters_SA_perSector60[iSector60].emplace_back( 
                                             std::make_shared<l1thgcfirmware::HGCalTriggerCell>(
                                               true,
@@ -79,7 +97,7 @@ void HGCalHistoClusteringWrapper::convertCMSSWInputs(const std::vector<std::vect
                                               digi_energy
                                           ) );
     }
-      ++iSector60;
+    ++iSector60;
   }
 
   // Distribute trigger cells to links and frames
@@ -104,11 +122,47 @@ void HGCalHistoClusteringWrapper::convertCMSSWInputs(const std::vector<std::vect
       // Leave first two frames empty
       unsigned frame = 2 + iCluster / 24; // Magic numbers
       unsigned link = iCluster % 24 + iSector60 * 24; // Magic numbers
-      if ( frame >= 212 ) break;
+      if ( frame >= 212 ) break; // Magic numbers
       clusters_SA[frame][link] = cluster;
       ++iCluster;
     }
     ++iSector60;
+  }
+}
+
+void HGCalHistoClusteringWrapper::convertAlgorithmOutputs( l1thgcfirmware::HGCalClusterSAPtrCollection& clusterSums, l1thgcfirmware::HGCalTriggerCellSAPtrCollection& unclusteredTCs,
+l1t::HGCalMulticlusterBxCollection& multiClusters_out
+ ) const {
+  for ( const auto& cluster : clusterSums ) {
+
+    // Convert from digitised quantities
+    if ( cluster->w() == 0 || cluster->e() == 0 ) continue;
+    double phi = ( cluster->wphi() / cluster->w() ) * M_PI / 1944;
+    double pt = cluster->e() / 10000.;
+
+    if ( pt < 0.5 ) continue; // Add (or take) cut threshold to config
+
+    double rOverZ = ( cluster->wroz() / cluster->w() ) * 0.7 / 4096;
+    double eta = -1.0 * std::log( tan( atan( rOverZ ) / 2 ) );
+    eta *= theConfiguration_.zSide();
+
+    auto sector = theConfiguration_.sector();
+    if (sector == 1) {
+      phi += (2. * M_PI / 3.);
+    } else if (sector == 2) {
+      phi = phi + (4. * M_PI / 3.);
+    }
+    if ( theConfiguration_.zSide() == 1 ) {
+      phi = M_PI - phi;
+    }
+    phi -= ( phi > M_PI ) ? 2 * M_PI : 0;
+
+    std::cout << "Rotated phi : " << phi << " " << std::tan(phi) << std::endl; 
+    math::PtEtaPhiMLorentzVector clusterP4(pt, eta, phi, 0.);
+
+    l1t::HGCalMulticluster multicluster;
+    multicluster.setP4(clusterP4);
+    multiClusters_out.push_back(0, multicluster);
   }
 }
 
@@ -125,21 +179,24 @@ void HGCalHistoClusteringWrapper::process(
   l1thgcfirmware::HGCalTriggerCellSAPtrCollection unclusteredTCs_out_SA;
   l1thgcfirmware::CentroidHelperPtrCollection prioritizedMaxima_out_SA;
   l1thgcfirmware::CentroidHelperPtrCollection readoutFlags_out_SA;
-  clusterizeHisto(triggerCells_in_SA, clusteredTCs_out_SA, unclusteredTCs_out_SA, prioritizedMaxima_out_SA, readoutFlags_out_SA);
-
-  // convertAlgorithmOutputs();
+  l1thgcfirmware::HGCalClusterSAPtrCollection clusterSums_out_SA;
+  std::cout << "ClusterizeHisto" << std::endl;
+  clusterizeHisto(triggerCells_in_SA, clusteredTCs_out_SA, unclusteredTCs_out_SA, prioritizedMaxima_out_SA, readoutFlags_out_SA, clusterSums_out_SA);
+  std::cout << "Convert Algo Outputs" << std::endl;
+  convertAlgorithmOutputs( clusterSums_out_SA, unclusteredTCs_out_SA, outputMulticlustersAndRejectedClusters.first );
 }
 
-void HGCalHistoClusteringWrapper::clusterizeHisto( l1thgcfirmware::HGCalTriggerCellSAPtrCollections& triggerCells_in_SA, l1thgcfirmware::HGCalTriggerCellSAPtrCollection& clusteredTCs, l1thgcfirmware::HGCalTriggerCellSAPtrCollection& unclusteredTCs, l1thgcfirmware::CentroidHelperPtrCollection& prioritizedMaxima, l1thgcfirmware::CentroidHelperPtrCollection& readoutFlags ) const {
+void HGCalHistoClusteringWrapper::clusterizeHisto( l1thgcfirmware::HGCalTriggerCellSAPtrCollections& triggerCells_in_SA, l1thgcfirmware::HGCalTriggerCellSAPtrCollection& clusteredTCs, l1thgcfirmware::HGCalTriggerCellSAPtrCollection& unclusteredTCs, l1thgcfirmware::CentroidHelperPtrCollection& prioritizedMaxima, l1thgcfirmware::CentroidHelperPtrCollection& readoutFlags, l1thgcfirmware::HGCalClusterSAPtrCollection& clusterSums ) const {
 
-  theAlgo_.runAlgorithm( triggerCells_in_SA, clusteredTCs, unclusteredTCs, prioritizedMaxima, readoutFlags );
+  theAlgo_.runAlgorithm( triggerCells_in_SA, clusteredTCs, unclusteredTCs, prioritizedMaxima, readoutFlags, clusterSums );
 }
 
 void HGCalHistoClusteringWrapper::configure(
-    const std::pair<const edm::EventSetup&, const edm::ParameterSet&>& configuration) {
-  eventSetup(configuration.first);
+    const std::tuple<const edm::EventSetup&, const edm::ParameterSet&, const unsigned int, const int>& configuration) {
+  eventSetup(std::get<0>(configuration));
 
-  // theConfiguration_.setParameters( ... );
+  theConfiguration_.setSector( std::get<2>(configuration) );
+  theConfiguration_.setZSide( std::get<3>(configuration) );
 };
 
 DEFINE_EDM_PLUGIN(HGCalHistoClusteringWrapperBaseFactory, HGCalHistoClusteringWrapper, "HGCalHistoClusteringWrapper");
