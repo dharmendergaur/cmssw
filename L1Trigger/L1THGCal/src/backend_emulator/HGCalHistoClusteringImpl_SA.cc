@@ -378,7 +378,29 @@ void HGCalHistoClusteringImplSA::clusterizer( HGCalTriggerCellSAPtrCollection& t
       bool compareEPlus = (i<17) ? ( lastLatched[i]->energy() >= lastLatched[i+1]->energy() ) : false; // Magic numbers
 
       if ( lastLatched[i]->dataValid() ) {
-        if ( ( !lastLatched[i+1]->dataValid() || compareEPlus || deltaPlus ) && ( !lastLatched[i-1]->dataValid() || compareEMinus || deltaMinus ) ) {
+        // Similar out of bounds issue here
+        // if ( ( !lastLatched[i+1]->dataValid() || compareEPlus || deltaPlus ) && ( !lastLatched[i-1]->dataValid() || compareEMinus || deltaMinus ) ) {
+
+        bool accept = true;
+        if ( lastLatched.size() > i+1 ) {
+          if ( !lastLatched[i+1]->dataValid() || compareEPlus || deltaPlus ) {
+            accept = true;
+          }
+          else {
+            accept = false;
+          }
+        }
+
+        if ( i > 0 ) {
+          if ( !lastLatched[i-1]->dataValid() || compareEMinus || deltaMinus  ) {
+            accept = true;
+          }
+          else {
+            accept = false;
+          }
+        }
+
+        if ( accept ) {
           accepted[i] = latched[i];
           latched[i] = make_shared<CentroidHelper>();
           --seedCounter;
