@@ -731,8 +731,9 @@ std::vector<int> HGCalHistoClusteringImplSA::showerLengthProperties(unsigned lon
 
 void HGCalHistoClusteringImplSA::clusterProperties(  HGCalClusterSAPtrCollection& clusterSums ) const {
    unsigned int nTCs = 0;
-   std::cout << "Cluster Prop" << std::endl;
+  //  std::cout << "Cluster Prop" << std::endl;
    for ( const auto& c : clusterSums ) {
+     if ( c->n_tc_w() == 0 ) continue;
       std::pair< unsigned int, unsigned int > sigmaEnergy = sigma_Energy( c->n_tc_w(), c->w2(), c->w() );
       c->set_Sigma_E_Quotient( sigmaEnergy.first );
       c->set_Sigma_E_Fraction( sigmaEnergy.second );
@@ -776,10 +777,10 @@ void HGCalHistoClusteringImplSA::clusterProperties(  HGCalClusterSAPtrCollection
       c->set_E_H_early_over_E_Fraction( E_H_early_over_E.second );
 
 
-      std::cout << c->clock() << " " << c->index() << " " << c->n_tc() << " " << c->e() << " " << c->e_em() << " " << c->e_em_core() << " " << c->e_h_early() << " N "<< c->Sigma_E_Quotient()<< " " <<c->Sigma_E_Fraction() << " " << c->Mean_z_Quotient() << " " << c->Mean_z_Fraction() << " " << c->Mean_phi_Quotient() << " "<< c->Mean_phi_Fraction() << " " << c->Mean_eta_Quotient() << " " << c->Mean_eta_Fraction() << " " << c->Mean_roz_Quotient() << " " << c->Mean_roz_Fraction() <<  " "<< c->Sigma_z_Quotient() << " "<< c->Sigma_z_Fraction() << " "<< c->Sigma_phi_Quotient() << " " << c-> Sigma_phi_Fraction() << " " << c->Sigma_eta_Quotient() << " " << c->Sigma_eta_Fraction() << " " << c->Sigma_roz_Quotient() << " "<< c->Sigma_roz_Fraction() << " "<< c->FirstLayer() <<" "<< c->LastLayer() << " "<< c->ShowerLen() << " " << c->CoreShowerLen() << " "<< c->E_EM_over_E_Quotient() << " " << c->E_EM_over_E_Fraction() << " " << c->E_EM_core_over_E_EM_Quotient() << " "<< c->E_EM_core_over_E_EM_Fraction() << " " << c->E_H_early_over_E_Quotient() << " " << c->E_H_early_over_E_Fraction() << std::endl;
+      // std::cout << c->clock() << " " << c->index() << " " << c->n_tc() << " " << c->e() << " " << c->e_em() << " " << c->e_em_core() << " " << c->e_h_early() << " N "<< c->Sigma_E_Quotient()<< " " <<c->Sigma_E_Fraction() << " " << c->Mean_z_Quotient() << " " << c->Mean_z_Fraction() << " " << c->Mean_phi_Quotient() << " "<< c->Mean_phi_Fraction() << " " << c->Mean_eta_Quotient() << " " << c->Mean_eta_Fraction() << " " << c->Mean_roz_Quotient() << " " << c->Mean_roz_Fraction() <<  " "<< c->Sigma_z_Quotient() << " "<< c->Sigma_z_Fraction() << " "<< c->Sigma_phi_Quotient() << " " << c-> Sigma_phi_Fraction() << " " << c->Sigma_eta_Quotient() << " " << c->Sigma_eta_Fraction() << " " << c->Sigma_roz_Quotient() << " "<< c->Sigma_roz_Fraction() << " "<< c->FirstLayer() <<" "<< c->LastLayer() << " "<< c->ShowerLen() << " " << c->CoreShowerLen() << " "<< c->E_EM_over_E_Quotient() << " " << c->E_EM_over_E_Fraction() << " " << c->E_EM_core_over_E_EM_Quotient() << " "<< c->E_EM_core_over_E_EM_Fraction() << " " << c->E_H_early_over_E_Quotient() << " " << c->E_H_early_over_E_Fraction() << std::endl;
       nTCs += c->n_tc();
    }
-   std::cout << nTCs << std::endl;
+  //  std::cout << nTCs << std::endl;
 }
 
 void HGCalHistoClusteringImplSA::initializeTriggerCellDistGrid( HGCalTriggerCellSAPtrCollections& grid, unsigned int nX, unsigned int nY ) const {
