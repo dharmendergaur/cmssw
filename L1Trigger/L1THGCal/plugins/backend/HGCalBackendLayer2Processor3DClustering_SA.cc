@@ -52,6 +52,8 @@ public:
 
     /* create a persistent vector of pointers to the trigger-cells */
     std::unordered_map<uint32_t, std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>> tcs_per_fpga;
+    
+    
     for (unsigned i = 0; i < collHandle->size(); ++i) {
       edm::Ptr<l1t::HGCalCluster> tc_ptr(collHandle, i);
       uint32_t module = geometry_->getModuleFromTriggerCell(tc_ptr->detId());
@@ -87,9 +89,8 @@ public:
     }
 
     // Configuration
-    const std::pair<const edm::EventSetup&, const edm::ParameterSet&> configuration{es, conf_};
-    multiclusteringHistoClusteringWrapper_->configure(configuration);
-    multiclusteringSortingTruncationWrapper_->configure(configuration);
+    const std::pair<const edm::EventSetup&, const edm::ParameterSet&> sortTuncateConfig{es, conf_};
+    multiclusteringSortingTruncationWrapper_->configure(sortTuncateConfig);
 
     for (auto& fpga_tcs : tcs_per_fpga) {
       /* call to multiclustering and compute shower shape*/
@@ -104,19 +105,24 @@ public:
       std::pair<l1t::HGCalMulticlusterBxCollection&, l1t::HGCalClusterBxCollection&>
           outputMulticlustersAndRejectedClusters_perFPGA{collCluster3D_perFPGA, rejectedClusters_perFPGA};
 
+      HGCalTriggerBackendDetId stage2_fpga_id(fpga_tcs.first);
+      const auto stage2_sector = stage2_fpga_id.sector();
+      const auto zSide = stage2_fpga_id.zside();
+      const auto clusteringConfig = std::make_tuple(std::ref(es), std::ref(conf_), stage2_sector, zSide);
+      multiclusteringHistoClusteringWrapper_->configure(clusteringConfig);
+
       // Process
       multiclusteringHistoClusteringWrapper_->process(inputClusters_perFPGA,
                                                       outputMulticlustersAndRejectedClusters_perFPGA);
-
       multiclusteringSortingTruncationWrapper_->process(collCluster3D_perFPGA, collCluster3D_perFPGA_sorted);
 
       // Call all the energy interpretation modules on the cluster collection
       for (const auto& interpreter : energy_interpreters_) {
         interpreter->eventSetup(es);
-        interpreter->interpret(collCluster3D_perFPGA_sorted);
+        interpreter->interpret(collCluster3D_perFPGA);//collCluster3D_perFPGA_sorted);
       }
 
-      for (const auto& collcluster : collCluster3D_perFPGA_sorted) {
+      for (const auto& collcluster : collCluster3D_perFPGA) { //collCluster3D_perFPGA_sorted) {
         collCluster3D_sorted.push_back(0, collcluster);
       }
       for (const auto& rejectedcluster : rejectedClusters_perFPGA) {
