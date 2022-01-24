@@ -82,12 +82,31 @@ void HGCalHistoClusteringWrapper::convertCMSSWInputs(const std::vector<std::vect
         phi = phi + (2. * M_PI / 3.);
       }
 
-      phi += ( phi < 0 ) ? 2 * M_PI : 0;  // Needed?  Everything should be in sector 0, but perhaps some TCs have phi just below 0, in which case this isn't the correct treatment
-
+      // Ignore TCs that are outside of the nominal 180 degree S2 sector
+      // Assume these cannot be part of a cluster found within the central 120 degrees of the S2 sector?
+      if ( phi < 0 || phi > M_PI ) {
+        continue;
+      }
 
       unsigned int digi_phi = ( phi ) * 1944 / M_PI; // Magic numbers
       unsigned int digi_energy = ( cluster->pt() ) * 10000; // Magic numbers
-      clusters_SA_perSector60[iSector60].emplace_back( 
+
+      // The existing S2 firmware is assuming the TCs on one S1->S2 link originate from
+      // a 60 degree region of a S1 sector, and the links from one 60 degree region
+      // are grouped together (the first 24 links are for 0-60 degrees etc. )
+      // But some of the TCs in the S1 emulation fall outside of the 60 degree region
+      // For now, assign these TCs to the 60 degree sector that the S2 emulation is expecting them to be in.
+      unsigned tcSector60 = iSector60;
+      unsigned int minSectorPhi = iSector60 * 648;
+      unsigned int maxSectorPhi = (iSector60 + 1) * 648;
+      if ( digi_phi < minSectorPhi ) {
+        tcSector60 -= 1;
+      }
+      else if ( digi_phi > maxSectorPhi ) {
+        tcSector60 += 1;
+      }
+
+      clusters_SA_perSector60[tcSector60].emplace_back( 
                                             std::make_shared<l1thgcfirmware::HGCalTriggerCell>(
                                               true,
                                               true,
@@ -157,7 +176,6 @@ l1t::HGCalMulticlusterBxCollection& multiClusters_out
     }
     phi -= ( phi > M_PI ) ? 2 * M_PI : 0;
 
-    std::cout << "Rotated phi : " << phi << " " << std::tan(phi) << std::endl; 
     math::PtEtaPhiMLorentzVector clusterP4(pt, eta, phi, 0.);
 
     l1t::HGCalMulticluster multicluster;
