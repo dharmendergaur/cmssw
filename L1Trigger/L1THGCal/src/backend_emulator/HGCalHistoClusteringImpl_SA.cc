@@ -14,7 +14,7 @@ using namespace l1thgcfirmware;
 HGCalHistoClusteringImplSA::HGCalHistoClusteringImplSA( ClusterAlgoConfig& config ) : config_(config) {}
 
 void HGCalHistoClusteringImplSA::runAlgorithm(HGCalTriggerCellSAPtrCollections& inputs, HGCalTriggerCellSAPtrCollection& clusteredTCs, HGCalTriggerCellSAPtrCollection& unclusteredTCs, CentroidHelperPtrCollection& prioritizedMaxima, CentroidHelperPtrCollection& readoutFlags, HGCalClusterSAPtrCollection& clusterSums ) const {
-  cout << "Running the algorithm" << endl;
+  config_.printConfiguration();
 
   HGCalTriggerCellSAPtrCollection triggerCellsIn = triggerCellInput( inputs );
 
@@ -180,7 +180,7 @@ HGCalHistogramCellSAPtrCollection HGCalHistoClusteringImplSA::triggerCellToHisto
                                                tc->phi(),
                                                tc->rOverZ(),
                                                1,
-                                               int( ( tc->rOverZ() - 440 )/ 64 ) // Magic numbers 
+                                               int( ( tc->rOverZ() - config_.rOverZHistOffset() )/ config_.rOverZBinSize() ) // Magic numbers 
                                               );
     tc->setClock( hc->clock() );
     tc->setSortKey( hc->sortKey() );
@@ -445,7 +445,7 @@ void HGCalHistoClusteringImplSA::clusterizer( HGCalTriggerCellSAPtrCollection& t
               int dR = r1 - r2;
               int dPhi = tc->phi() - a->X();
               unsigned int dR2 = dR * dR;
-              unsigned int cosTerm = ( abs(dPhi) > 77 ) ? 2047 : config_.cosLUT( abs(dPhi) ); // Magic numbers
+              unsigned int cosTerm = ( abs(dPhi) > config_.nBinsCosLUT() ) ? 2047 : config_.cosLUT( abs(dPhi) ); // Magic numbers
               dR2 += int( r1 * r2 / pow(2,7) ) * cosTerm / pow(2,10); // Magic numbers
 
               tc->setClock( clock[iCol] + 1 );

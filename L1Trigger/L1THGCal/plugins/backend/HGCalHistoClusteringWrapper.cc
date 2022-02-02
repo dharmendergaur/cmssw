@@ -215,6 +215,32 @@ void HGCalHistoClusteringWrapper::configure(
 
   theConfiguration_.setSector( std::get<2>(configuration) );
   theConfiguration_.setZSide( std::get<3>(configuration) );
+
+  const edm::ParameterSet pset = std::get<1>(configuration).getParameterSet("C3d_parameters").getParameterSet("histoMax_C3d_clustering_parameters").getParameterSet("layer2FwClusteringParameters");
+
+  theConfiguration_.setClusterizerOffset( pset.getParameter<unsigned int>("clusterizerOffset"));
+  theConfiguration_.setStepLatencies( pset.getParameter<std::vector<unsigned int>>("stepLatencies"));
+  theConfiguration_.setCClocks( pset.getParameter<unsigned int>("cClocks") );
+  theConfiguration_.setCInputs( pset.getParameter<unsigned int>("cInputs") );
+  theConfiguration_.setCInputs2( pset.getParameter<unsigned int>("cInputs2") );
+  theConfiguration_.setCInt( pset.getParameter<unsigned int>("cInt") );
+  theConfiguration_.setCColumns( pset.getParameter<unsigned int>("cColumns") );
+  theConfiguration_.setCRows( pset.getParameter<unsigned int>("cRows") );
+  theConfiguration_.setROverZHistOffset( pset.getParameter<unsigned int>("rOverZHistOffset") );
+  theConfiguration_.setROverZBinSize( pset.getParameter<unsigned int>("rOverZBinSize") );
+  theConfiguration_.setClusterizerMagicTime( pset.getParameter<unsigned int>("clusterizerMagicTime") );
+  theConfiguration_.setNBinsCosLUT( pset.getParameter<unsigned int>("nBinsCosLUT") );
+  theConfiguration_.setDepths( pset.getParameter<std::vector<unsigned int>>("depths"));
+  theConfiguration_.setTriggerLayers( pset.getParameter<std::vector<unsigned int>>("triggerLayers"));
+  theConfiguration_.setLayerWeights_E( pset.getParameter<std::vector<unsigned int>>("layerWeights_E"));
+  theConfiguration_.setLayerWeights_E_EM( pset.getParameter<std::vector<unsigned int>>("layerWeights_E_EM"));
+  theConfiguration_.setLayerWeights_E_EM_core( pset.getParameter<std::vector<unsigned int>>("layerWeights_E_EM_core"));
+  theConfiguration_.setLayerWeights_E_H_early( pset.getParameter<std::vector<unsigned int>>("layerWeights_E_H_early"));
+  theConfiguration_.setCorrection( pset.getParameter<unsigned int>("correction") );
+  theConfiguration_.setSaturation( pset.getParameter<unsigned int>("saturation") );
+  const edm::ParameterSet thresholdParams = pset.getParameterSet("thresholdMaximaParams");
+  theConfiguration_.setThresholdParams( thresholdParams.getParameter<unsigned int>("a"), thresholdParams.getParameter<unsigned int>("b"), thresholdParams.getParameter<int>("c") );
+  theConfiguration_.initializeLUTs();
 };
 
 DEFINE_EDM_PLUGIN(HGCalHistoClusteringWrapperBaseFactory, HGCalHistoClusteringWrapper, "HGCalHistoClusteringWrapper");
