@@ -62,6 +62,21 @@ process.TFileService = cms.Service(
     fileName = cms.string("ntuple.root")
     )
 
+process.FEVTDEBUGoutput = cms.OutputModule("PoolOutputModule",
+    # splitLevel = cms.untracked.int32(0),
+    # eventAutoFlushCompressedSize = cms.untracked.int32(5242880),
+    outputCommands = cms.untracked.vstring("drop *",
+                                           "keep *_hgcalBackEndLayer2Producer_*_*"),
+    fileName = cms.untracked.string('file:junk.root'),
+    # dataset = cms.untracked.PSet(
+    #     filterName = cms.untracked.string(''),
+    #     dataTier = cms.untracked.string('GEN-SIM-DIGI-RAW')
+    # ),
+    # SelectEvents = cms.untracked.PSet(
+    #     SelectEvents = cms.vstring('generation_step')
+    # )
+)
+
 # Other statements
 from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:phase2_realistic_T15', '')
@@ -74,18 +89,27 @@ from L1Trigger.L1THGCal.customNewProcessors import custom_clustering_standalone,
 process = custom_clustering_standalone(process)
 process = custom_tower_standalone(process)
 
+process.hgcalBackEndLayer2Producer.ProcessorParameters.C3d_parameters.histoMax_C3d_clustering_parameters.layer2FwClusteringParameters.thresholdMaximaParams.a = 5000
+process.hgcalBackEndLayer2Producer.ProcessorParameters.C3d_parameters.histoMax_C3d_clustering_parameters.layer2FwClusteringParameters.thresholdMaximaParams.b = 0
+process.hgcalBackEndLayer2Producer.ProcessorParameters.C3d_parameters.histoMax_C3d_clustering_parameters.layer2FwClusteringParameters.thresholdMaximaParams.c = 0
+
 process.hgcl1tpg_step = cms.Path(process.hgcalTriggerPrimitives)
 
+from L1Trigger.L1THGCal.customTriggerGeometry import custom_geometry_V11_Imp3
+process = custom_geometry_V11_Imp3(process)
 
 # load ntuplizer
 process.load('L1Trigger.L1THGCalUtilities.hgcalTriggerNtuples_cff')
 from L1Trigger.L1THGCalUtilities.customNtuples import custom_ntuples_standalone_clustering, custom_ntuples_standalone_tower
 process = custom_ntuples_standalone_clustering(process)
 process = custom_ntuples_standalone_tower(process)
+# process.hgcalTriggerNtuples.FillLayerInfo = cms.bool(True)
 process.ntuple_step = cms.Path(process.hgcalTriggerNtuples)
+process.out = cms.EndPath(process.FEVTDEBUGoutput)
 
 # Schedule definition
-process.schedule = cms.Schedule(process.hgcl1tpg_step, process.ntuple_step)
+# process.schedule = cms.Schedule(process.hgcl1tpg_step, process.ntuple_step)#, process.out)
+process.schedule = cms.Schedule(process.hgcl1tpg_step, process.out)
 
 # Add early deletion of temporary data products to reduce peak memory need
 from Configuration.StandardSequences.earlyDeleteSettings_cff import customiseEarlyDelete

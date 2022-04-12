@@ -158,7 +158,7 @@ l1t::HGCalMulticlusterBxCollection& multiClusters_out, const std::vector<std::ve
 
     // Convert from digitised quantities
     if ( cluster->w() == 0 || cluster->e() == 0 ) continue;
-    double phi = ( cluster->wphi() / cluster->w() ) * theConfiguration_.phiRange() / theConfiguration_.phiNValues();
+    double phi = ( 1.0 * cluster->wphi() / cluster->w() ) * theConfiguration_.phiRange() / theConfiguration_.phiNValues();
     double pt = cluster->e() / theConfiguration_.ptDigiFactor();
 
     if ( pt < 0.5 ) continue; // Add (or take) cut threshold to config
@@ -182,7 +182,8 @@ l1t::HGCalMulticlusterBxCollection& multiClusters_out, const std::vector<std::ve
 
     l1t::HGCalMulticluster multicluster;
     multicluster.setP4(clusterP4);
-    // std::cout << "Got a cluster : " << cluster->e() << " " << cluster->constituents().size() << " " << multicluster.pt() << " " << multicluster.eta() << " " << multicluster.phi()  << " " << rOverZ << " " << phi << " " << eta << std::endl;
+    std::cout << "Got a cluster : " << cluster->e() << " " << cluster->constituents().size() << " " << multicluster.pt() << " " << multicluster.eta() << " " << multicluster.phi()  << " " << rOverZ << " " << phi << " " << eta << std::endl;
+    std::cout << ( cluster->wphi() / cluster->w() ) * theConfiguration_.phiRange() / theConfiguration_.phiNValues() << " " << ( cluster->wphi() / cluster->w() ) * theConfiguration_.phiRange() / theConfiguration_.phiNValues() + 2. * M_PI / 3 << std::endl;
     for ( const auto& tc : cluster->constituents() ) {
       const auto& tc_cmssw = inputClustersPtrs.at(tc->cmsswIndex().first).at(tc->cmsswIndex().second);
       // Add tc as constituent, but don't update any other properties of the multicluster i.e. leave them unchanged from those calculated by the emulator
@@ -197,6 +198,12 @@ l1t::HGCalMulticlusterBxCollection& multiClusters_out, const std::vector<std::ve
 
     double emHEarlyIntFraction = 1.0 * cluster->e_h_early() / cluster->e();
     multicluster.saveEnergyInterpretation(l1t::HGCalMulticluster::EnergyInterpretation::H_EARLY, emHEarlyIntFraction * multicluster.energy() );
+
+    const auto hwData = cluster->formatClusterWords( theConfiguration_ );
+
+    multicluster.setHwData( hwData );
+    multicluster.setHwSector( sector );
+    multicluster.setHwZSide( theConfiguration_.zSide() );
 
     multiClusters_out.push_back(0, multicluster);
   }

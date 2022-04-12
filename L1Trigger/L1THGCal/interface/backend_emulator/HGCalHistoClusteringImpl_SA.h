@@ -74,6 +74,9 @@ private:
                       bool setOutputGrid ) const;
 
   l1thgcfirmware::ClusterAlgoConfig& config_;
+
+  // Debugging functions
+  void printHistogram( HGCalHistogramCellSAPtrCollection& histogram ) const;
 };
 
 }

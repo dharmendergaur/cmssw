@@ -32,3 +32,9 @@
   <use name="L1Trigger/L1THGCal"/>
   <flags EDM_PLUGIN="1"/>
 </library>
+
+<library name="L1TriggerL1THGCalUtilitiesPlugins_selectors" file="patternFiles/*.cc">
+  <use name="L1Trigger/L1THGCal"/>
+  <use name="L1Trigger/DemonstratorTools"/>
+  <flags EDM_PLUGIN="1"/>
+</library>

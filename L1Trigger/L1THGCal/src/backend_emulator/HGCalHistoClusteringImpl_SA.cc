@@ -313,7 +313,8 @@ void HGCalHistoClusteringImplSA::thresholdMaximaFinder( HGCalHistogramCellSAPtrC
 // Temporary simulation of local maxima finder
 // Not an emulation of any firmware
 void HGCalHistoClusteringImplSA::localMaximaFinder( l1thgcfirmware::HGCalHistogramCellSAPtrCollection& histogram ) const {
-  const std::vector<unsigned> maximaWidths{ 6, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+  // const std::vector<unsigned> maximaWidths{ 6, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+  const std::vector<unsigned> maximaWidths(config_.cRows(),1);
 
 
   for ( auto& hc : histogram ) {

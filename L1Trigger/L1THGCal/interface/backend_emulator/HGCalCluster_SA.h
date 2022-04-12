@@ -2,8 +2,11 @@
 #define L1Trigger_L1THGCal_HGCalCluster_SA_h
 
 #include "HGCalTriggerCell_SA.h"
+#include "L1Trigger/L1THGCal/interface/backend_emulator/HGCalHistoClusteringConfig_SA.h"
 
 #include <vector>
+#include <bitset>
+#include <array>
 #include <memory>
 #include <iostream>
 namespace l1thgcfirmware {
@@ -69,6 +72,12 @@ namespace l1thgcfirmware {
                   {}
 
     ~HGCalCluster(){}
+
+    // Types for firmware representation of cluster data sent to L1T
+    static constexpr int wordLength = 64;
+    static constexpr int nWordsPerCluster = 4;
+    typedef std::bitset<wordLength> ClusterWord;
+    typedef std::array<ClusterWord, nWordsPerCluster> ClusterWords;
 
     std::pair< unsigned int, unsigned int > Sigma_Energy(unsigned int N_TC_W, unsigned long int Sum_W2, unsigned int Sum_W);
     std::pair< unsigned int, unsigned int > Mean_coordinate(unsigned int Sum_Wc, unsigned int Sum_W);
@@ -192,6 +201,14 @@ namespace l1thgcfirmware {
     // Operators
     const HGCalCluster& operator+=(const HGCalCluster& hc);
 
+    // Format data into firmware representation
+    void clearClusterWords();
+    ClusterWords formatClusterWords( const ClusterAlgoConfig& config );
+    ClusterWord formatFirstWord( const ClusterAlgoConfig& config );
+    ClusterWord formatSecondWord( const ClusterAlgoConfig& config );
+    ClusterWord formatThirdWord( const ClusterAlgoConfig& config );
+    ClusterWord formatFourthWord( const ClusterAlgoConfig& config );
+
   private:
     unsigned int clock_;
     unsigned int index_;
@@ -250,6 +267,9 @@ namespace l1thgcfirmware {
     // Extra variables, not available in firmware
     // Perhaps move to separate "extra" class?
     HGCalTriggerCellSAPtrCollection constituents_;
+
+    // Firmware representation of cluster as sent on links to L1T
+    ClusterWords packedData_;
   };
 
   typedef std::vector<HGCalCluster> HGCalClusterSACollection;
