@@ -51,7 +51,8 @@ Description: Produces jets with a phase-1 like sliding window algorithm using a 
 #include "FWCore/ServiceRegistry/interface/Service.h"
 #include "DataFormats/L1Trigger/interface/EtSum.h"
 #include "L1Trigger/Phase2L1ParticleFlow/src/newfirmware/dataformats/datatypes.h"
-#include "L1Trigger/Phase2L1ParticleFlow/src/newfirmware/common/bitonic_sort_ref.h"
+#include "L1Trigger/Phase2L1ParticleFlow/src/newfirmware/dataformats/gt_datatypes.h"
+#include "L1Trigger/Phase2L1ParticleFlow/src/newfirmware/common/bitonic_hybrid_sort_ref.h"
 
 #include "TH2F.h"
 
@@ -98,8 +99,16 @@ private:
 
   // Sort the jets as in firmware
   void sortJets(const std::vector<reco::CaloJet> unsortedJets, std::vector<reco::CaloJet>& sortedJets );
-  void compAndSwap(std::vector<shared_ptr<reco::CaloJet>>& a, unsigned int i, unsigned int j);
-  void swap(shared_ptr<reco::CaloJet>& a, shared_ptr<reco::CaloJet>& b);
+  template <typename T>
+  void hybridBitonicMergeRef(std::vector<T>& a, int N, int low, bool dir);
+  template <typename T>
+  void hybridBitonicSortRef(std::vector<T>& a, int N, int low, bool dir);
+  template <typename T>
+  void hybrid_bitonic_sort_and_crop_ref(unsigned int nIn, unsigned int nOut, std::vector<T> in, std::vector<T>& out);
+  template <typename T>
+  void compAndSwap(std::vector<T>& a, unsigned int i, unsigned int j, bool dir=false);
+  template <typename T>
+  void swap(T& a, T& b);
 
   // <3 handy method to fill the calogrid with whatever type
   template <class Container>
@@ -110,6 +119,9 @@ private:
   // And takes account of bin edge effects i.e. makes sure the
   // candidate ends up in the correct (i.e. same behaviour as the firmware) bin of caloGrid_
   std::pair<float, float> getCandidateDigiEtaPhi(const float eta,
+                                                 const float phi,
+                                                 const unsigned int regionIndex) const;
+  std::pair<unsigned, unsigned> getCandidateBin(const float eta,
                                                  const float phi,
                                                  const unsigned int regionIndex) const;
 
@@ -124,13 +136,14 @@ private:
   std::pair<double, double> regionEtaPhiLowEdges(const unsigned int regionIndex) const;
   // From the single index, calculated by getRegionIndex, provides the upper eta and phi boundaries of the input (PF) region index
   std::pair<double, double> regionEtaPhiUpEdges(const unsigned int regionIndex) const;
+  std::pair<unsigned, unsigned> regionEtaPhiBinOffset(const unsigned int regionIndex) const;
 
   // computes MET
   // Takes grid used by jet finder and projects to 1D histogram of phi, bin contents are total pt in that phi bin
   // the phi bin index is used to retrieve the sin-cos value from the LUT emulator
   // the pt of the input is multiplied by that sin cos value to obtain px and py that is added to the total event px & py
   // after all the inputs have been processed we compute the total pt of the event, and set that as MET
-  l1t::EtSum computeMET(const double etaCut, l1t::EtSum::EtSumType sumType) const;
+  void computeMET(const double etaCut, l1t::EtSum::EtSumType metType, l1t::EtSum& met, l1t::EtSum::EtSumType sumEtType,l1t::EtSum& sumEt ) const;
 
   // Determine if this tower should be trimmed or not
   // Used only when trimmedGrid_ option is set to true
@@ -242,11 +255,12 @@ void Phase1L1TJetProducer::produce(edm::Event& iEvent, const edm::EventSetup& iS
     fillCaloGrid<>(*(caloGrid_), inputsInRegions[iInputRegion], iInputRegion);
   }
 
+
   // int nBinsX = caloGrid_->GetNbinsX();
   // int nBinsY = caloGrid_->GetNbinsY();
   // for (int iPhi = 1; iPhi <= nBinsY; iPhi++)
   // {
-  //   std::cout << "iPhi " << iPhi - 1 << " " << caloGrid_->GetYaxis()->GetBinCenter(iPhi) << ": ";
+  //   std::cout << "iPhi " << iPhi - 1 << " " << caloGrid_->GetYaxis()->GetBinCenter(iPhi) << " " << l1gt::phi_t(caloGrid_->GetYaxis()->GetBinCenter(iPhi) / l1gt::Scales::ETAPHI_LSB ) << ": ";
   //   for (int iEta = 1; iEta <= nBinsX; iEta++)
   //   {
   //     std::cout <<caloGrid_->GetBinContent(iEta, iPhi) << " ";
@@ -274,11 +288,21 @@ void Phase1L1TJetProducer::produce(edm::Event& iEvent, const edm::EventSetup& iS
   iEvent.put(std::move(l1jetVectorPtr_sorted), outputCollectionName_ );
 
   // calculate METs
-  l1t::EtSum lMET = computeMET(metAbsEtaCut_, l1t::EtSum::EtSumType::kMissingEt);
-  l1t::EtSum lMETHF = computeMET(metHFAbsEtaCut_, l1t::EtSum::EtSumType::kMissingEtHF);
+  // l1t::EtSum lMET = computeMET(metAbsEtaCut_, l1t::EtSum::EtSumType::kMissingEt);
+  // l1t::EtSum lMETHF = computeMET(metHFAbsEtaCut_, l1t::EtSum::EtSumType::kMissingEtHF);
+  l1t::EtSum lMET;
+  l1t::EtSum lSumEt;
+  computeMET(metAbsEtaCut_, l1t::EtSum::EtSumType::kMissingEt, lMET, l1t::EtSum::EtSumType::kTotalEt, lSumEt);
+  l1t::EtSum lMETHF;
+  l1t::EtSum lSumEtHF;
+  computeMET(metHFAbsEtaCut_, l1t::EtSum::EtSumType::kMissingEtHF, lMETHF, l1t::EtSum::EtSumType::kTotalEtHF, lSumEtHF);
+  // std::cout << "Met, sum Et : " << lMET.pt() << " " << lSumEt.pt() << std::endl;
+
   std::unique_ptr<std::vector<l1t::EtSum>> lSumVectorPtr(new std::vector<l1t::EtSum>(0));
   lSumVectorPtr->push_back(lMET);
+  lSumVectorPtr->push_back(lSumEt);
   lSumVectorPtr->push_back(lMETHF);
+  lSumVectorPtr->push_back(lSumEtHF);
   iEvent.put(std::move(lSumVectorPtr), this->outputCollectionName_ + "MET");
 
   return;
@@ -428,8 +452,12 @@ reco::CaloJet Phase1L1TJetProducer::buildJetFromSeed(const std::tuple<int, int>&
   // Creating a jet with eta phi centered on the seed and momentum equal to the sum of the pt of the components
   reco::Candidate::PolarLorentzVector ptVector;
   ptVector.SetPt(ptSum);
-  ptVector.SetEta(caloGrid_->GetXaxis()->GetBinCenter(iEta));
-  ptVector.SetPhi(caloGrid_->GetYaxis()->GetBinCenter(iPhi));
+
+  float jetEta = l1gt::Scales::floatEta( l1gt::eta_t(caloGrid_->GetXaxis()->GetBinCenter(iEta) / l1gt::Scales::ETAPHI_LSB ) );
+  float jetPhi = l1gt::Scales::floatPhi( l1gt::phi_t(caloGrid_->GetYaxis()->GetBinCenter(iPhi) / l1gt::Scales::ETAPHI_LSB ) );
+
+  ptVector.SetEta(jetEta);
+  ptVector.SetPhi(jetPhi);
   reco::CaloJet jet;
   jet.setP4(ptVector);
   return jet;
@@ -442,25 +470,29 @@ void Phase1L1TJetProducer::sortJets(const std::vector<reco::CaloJet> unsortedJet
   const unsigned int nOutputJetsPerEtaRegion = 4;
   const unsigned int nOutputJetsToGT = 12;
 
+  unsigned int nUnsortedJets = unsortedJets.size();
+
   // Get jets into the regions and time ordering seen in firmware
-  std::vector< std::vector< std::vector< std::vector<shared_ptr<reco::CaloJet> > > > > jetsPerEtaPhiRegions( 
-    nEtaRegions, std::vector< std::vector< std::vector<shared_ptr<reco::CaloJet> > > > (
-      2, std::vector< std::vector<shared_ptr<reco::CaloJet> > > (
-        nInputsPerSortModule, std::vector<shared_ptr<reco::CaloJet> > ()
-  ) ) );
+  std::vector< std::vector< std::vector< std::vector<reco::CaloJet> > > > jetsPerEtaPhiRegions( 
+    nEtaRegions, std::vector< std::vector< std::vector<reco::CaloJet> > > (
+      2, std::vector< std::vector<reco::CaloJet> > (
+        nInputsPerSortModule, std::vector<reco::CaloJet>() ) ) );
 
   for ( const auto& jet : unsortedJets ) { 
     unsigned int etaRegion = (jet.eta()+3)/1.5;
     unsigned int jetEtaBin = floor( ( jet.eta() + (2 - 1.0*etaRegion) * 1.5 ) / 0.0833 );
     unsigned int jetPhiBin = floor( ( jet.phi() + M_PI ) / 0.0875 );
     unsigned int phiRegion = ( ( jetPhiBin ) % 4 ) / 2;
-    // std::cout << "Eta region : " << etaRegion << " " << jetEtaBin << std::endl;
-    // std::cout << "Phi region : " << jetPhiBin << " " << ( jetPhiBin % 4 ) / 2 << std::endl;
-    // std::cout << "Jet : " << jet.pt() << " " << jet.eta() << " " << jet.phi() << " " << jetPhiBin << " " << etaRegion << " " << phiRegion << " " << jetPhiBin/4 << std::endl;
-
-    jetsPerEtaPhiRegions[etaRegion][phiRegion][jetPhiBin/4].push_back( make_shared<reco::CaloJet>( jet ) );
+    jetsPerEtaPhiRegions[etaRegion][phiRegion][jetPhiBin/4].push_back(jet);
   }
 
+  // Rotate to first phi region found in firmware
+  for ( unsigned iEtaRegion = 0; iEtaRegion < nEtaRegions; ++iEtaRegion ) {
+    for ( unsigned iPhiRegion = 0; iPhiRegion < 2; ++ iPhiRegion ) {
+      std::cout << "N something : " << jetsPerEtaPhiRegions[iEtaRegion][iPhiRegion].size() << std::endl;
+      std::rotate( jetsPerEtaPhiRegions[iEtaRegion][iPhiRegion].begin(), jetsPerEtaPhiRegions[iEtaRegion][iPhiRegion].begin()+8, jetsPerEtaPhiRegions[iEtaRegion][iPhiRegion].end() );
+    }
+  }
   // Push jets in first phi bin to back, as these are found last after receiving all bins (i.e. handling of phi wrap-around)
   for ( unsigned iEtaRegion = 0; iEtaRegion < nEtaRegions; ++iEtaRegion ) {
     for ( unsigned iPhiRegion = 0; iPhiRegion < 2; ++ iPhiRegion ) {
@@ -468,158 +500,430 @@ void Phase1L1TJetProducer::sortJets(const std::vector<reco::CaloJet> unsortedJet
     }
   }
 
-  std::vector< shared_ptr<reco::CaloJet> > sortedJetsAllEta;
+  std::vector< reco::CaloJet > sortedJetsAllEta;
   for ( unsigned iEtaRegion = 0; iEtaRegion < nEtaRegions; ++iEtaRegion ) {
-    std::vector<shared_ptr<reco::CaloJet> > sortedJetsInEtaRegion;
+    std::vector<reco::CaloJet > sortedJetsInEtaRegion;
     for ( unsigned iPhiRegion = 0; iPhiRegion < 2; ++ iPhiRegion ) {
-      std::vector<shared_ptr<reco::CaloJet> > sortedJets( 4, make_shared<reco::CaloJet>() );
+      std::vector<reco::CaloJet > sortedJets( 4, reco::CaloJet() );
       for ( unsigned int iInputClock = 0; iInputClock < nInputsPerSortModule; ++iInputClock ) {
 
         // Sort input jets
-        std::vector<shared_ptr<reco::CaloJet> > inputJets = jetsPerEtaPhiRegions[iEtaRegion][iPhiRegion][iInputClock];
+        std::vector<reco::CaloJet> inputJets = jetsPerEtaPhiRegions[iEtaRegion][iPhiRegion][iInputClock];
         // First by eta
-        std::sort(inputJets.begin(), inputJets.end(), [](shared_ptr<reco::CaloJet> jet1, shared_ptr<reco::CaloJet> jet2) {
-          return jet1->eta() < jet2->eta();
+        std::sort(inputJets.begin(), inputJets.end(), [](reco::CaloJet jet1, reco::CaloJet jet2) {
+          return jet1.eta() < jet2.eta();
         });
-        // Then by pt
-        compAndSwap(inputJets, 0, 1); 
-        compAndSwap(inputJets, 2, 3); 
-        compAndSwap(inputJets, 0, 2); 
-        compAndSwap(inputJets, 1, 3); 
-        compAndSwap(inputJets, 1, 2); 
-
-        // if ( iInputClock == 5 && iPhiRegion == 0 ) {
-
+        inputJets.resize(nOutputJetsPerEtaRegion);
+        hybrid_bitonic_sort_and_crop_ref(4,4,inputJets,inputJets);
+        // std::cout << "4 jets sorted in eta, and pt, in region : " << iEtaRegion << " " << iPhiRegion << std::endl;
+        // for ( const auto& jet : inputJets ) {
+        //   std::cout << jet.pt() << " " << jet.eta() << std::endl;
         // }
 
         // Add to list of top 4 jets so far
+        // Merge with top 4 jets so far, and sort
         sortedJets.insert( sortedJets.end(), inputJets.begin(), inputJets.end() );
-
-        // Get top 4 jets
-        for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion; ++iJet ) {
-          compAndSwap(sortedJets, iJet, nOutputJetsPerEtaRegion*2-1-iJet);
-        }    
-  
-        // std::sort(sortedJets.begin(), sortedJets.end(), [](shared_ptr<reco::CaloJet> jet1, shared_ptr<reco::CaloJet> jet2) {
-        //   return jet1->pt() > jet2->pt();
-        // });
-        // Truncate to four jets
+        // std::cout << "Sorted jets in eta region, before sort : " << iEtaRegion << " " << iPhiRegion << std::endl;
+        std::reverse(sortedJets.begin(),sortedJets.begin()+nOutputJetsPerEtaRegion);
+        // for ( const auto& jet : sortedJets ) {
+        //   std::cout << jet.pt() << " " << jet.eta() << std::endl;
+        // }
+        // hybrid_bitonic_sort_and_crop_ref(8,8,sortedJets,sortedJets);
+        // hybridBitonicMergeRef(sortedJets,nOutputJetsPerEtaRegion*2,0,false);
+        for (int i = 0; i < 4; i++) {
+            compAndSwap(sortedJets, i, i + 4, 0);
+        }
+        // std::cout << "Top 4 jets in eta region : " << iEtaRegion << " " << iPhiRegion << std::endl;
+        // for ( const auto& jet : sortedJets ) {
+        //   std::cout << jet.pt() << " " << jet.eta() << std::endl;
+        // }
         sortedJets.resize(nOutputJetsPerEtaRegion);
-        // Sort top 4 jets
+        std::reverse(sortedJets.begin(),sortedJets.end());
         compAndSwap(sortedJets, 0, 2); 
         compAndSwap(sortedJets, 1, 3); 
+        //---
         compAndSwap(sortedJets, 0, 1); 
-        compAndSwap(sortedJets, 2, 3);
- 
-        // std::cout << iEtaRegion << " " << iPhiRegion << " " << iInputClock << " " << jetsPerEtaPhiRegions[iEtaRegion][iPhiRegion][iInputClock].size() << " " << sortedJets.size() << std::endl;
-        // std::vector<shared_ptr<reco::CaloJet> > inputJets;
+        compAndSwap(sortedJets, 2, 3); 
+        // std::cout << "Sorted jets in eta region, after sort : " << iEtaRegion << " " << iPhiRegion << std::endl;
+        // for ( const auto& jet : sortedJets ) {
+        //   std::cout << jet.pt() << " " << jet.eta() << std::endl;
+        // }
+
       }
-      // for ( const auto& jet : sortedJets ) {
-      //   if ( jet->pt() > 0 ) {
-      //     std::cout << "Jet from initial sort : " << iEtaRegion << " " << iPhiRegion << " " << jet->pt() << std::endl;
-      //   }
-      // }
-      sortedJetsInEtaRegion.insert( sortedJetsInEtaRegion.end(), sortedJets.begin(), sortedJets.end() );
+
+      if ( iPhiRegion % 2 == 0 ) {
+        sortedJetsInEtaRegion.insert( sortedJetsInEtaRegion.end(), sortedJets.rbegin(), sortedJets.rend() );
+      }
+      else {
+        sortedJetsInEtaRegion.insert( sortedJetsInEtaRegion.end(), sortedJets.begin(), sortedJets.end() );
+      }
+    }
+    // Sort 8 jets in each eta region
+    // std::cout << "8 jets in one of the regions, before merge" << std::endl;
+    std::reverse(sortedJetsInEtaRegion.begin(),sortedJetsInEtaRegion.end());
+    // for ( const auto& jet : sortedJetsInEtaRegion ) {
+    //   std::cout << jet.pt() << " " << jet.eta() << std::endl;
+    // }
+    hybridBitonicMergeRef(sortedJetsInEtaRegion,nOutputJetsPerEtaRegion*2,0,false);
+    // hybrid_bitonic_sort_and_crop_ref(8, 8, sortedJetsInEtaRegion, sortedJetsInEtaRegion);
+    // std::cout << "8 jets in one of the regions, after merge" << std::endl;
+    // for ( const auto& jet : sortedJetsInEtaRegion ) {
+    //   std::cout << jet.pt() << " " << jet.eta() << std::endl;
+    // }
+
+    if ( iEtaRegion % 2 == 0 ) {
+      sortedJetsAllEta.insert(sortedJetsAllEta.end(), sortedJetsInEtaRegion.rbegin(), sortedJetsInEtaRegion.rend() );
+    }
+    else {
+      sortedJetsAllEta.insert(sortedJetsAllEta.end(), sortedJetsInEtaRegion.begin(), sortedJetsInEtaRegion.end() );
     }
 
-    // for ( const auto& iJet : sortedJetsInEtaRegion ) {
-    //   // if ( iJet->pt() > 0 ) {
-    //     std::cout << "Jets in eta region : " << iEtaRegion << " " << iJet->pt() << " " << iJet->eta() << " " << iJet->phi() << std::endl;
-    //   // }
-    // }
-
-    for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion; ++iJet ) {
-      compAndSwap(sortedJetsInEtaRegion, iJet, nOutputJetsPerEtaRegion*2-1-iJet);
-    }
-    // for ( const auto& iJet : sortedJetsInEtaRegion ) {
-    //   // if ( iJet->pt() > 0 ) {
-    //     std::cout << "Jets in eta region, before truncation : " << iEtaRegion << " " << iJet->pt() << " " << iJet->eta() << " " << iJet->phi() << std::endl;
-    //   // }
-    // }
-    sortedJetsInEtaRegion.resize(nOutputJetsPerEtaRegion);
-    // for ( const auto& iJet : sortedJetsInEtaRegion ) {
-    //   // if ( iJet->pt() > 0 ) {
-    //     std::cout << "Jets in eta region, top 4 : " << iEtaRegion << " " << iJet->pt() << " " << iJet->eta() << " " << iJet->phi() << std::endl;
-    //   // }
-    // }
-    compAndSwap(sortedJetsInEtaRegion, 0, 2); 
-    compAndSwap(sortedJetsInEtaRegion, 1, 3); 
-    compAndSwap(sortedJetsInEtaRegion, 0, 1); 
-    compAndSwap(sortedJetsInEtaRegion, 2, 3);
-    sortedJetsAllEta.insert(sortedJetsAllEta.end(), sortedJetsInEtaRegion.begin(), sortedJetsInEtaRegion.end() );
+    // sortedJetsAllEta.insert(sortedJetsAllEta.end(), sortedJetsInEtaRegion.begin(), sortedJetsInEtaRegion.end() );
   }
-
-
-  // std::cout << "Number of jets before final sort : " << sortedJetsAllEta.size() << std::endl;
-  // for ( const auto& iJet : sortedJetsAllEta ) {
-  //   if ( iJet->pt() > 0 ) {
-  //     std::cout << "Jet before sort : " << iJet->pt() << " " << iJet->eta() << " " << iJet->phi() << std::endl;
-  //   }
+  // std::cout << "sortedJetsAllEta" << std::endl;
+  // for ( const auto& jet : sortedJetsAllEta ) {
+  //   std::cout << jet.pt() << std::endl;
   // }
 
-  // Get a single bitonic sequence
-  for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion/2; ++iJet ) {
-    std::swap(sortedJetsAllEta[iJet],sortedJetsAllEta[nOutputJetsPerEtaRegion-1-iJet]);
-    std::swap(sortedJetsAllEta[nOutputJetsPerEtaRegion*2+iJet],sortedJetsAllEta[nOutputJetsPerEtaRegion*3-1-iJet]);
-  }
+  hybridBitonicMergeRef(sortedJetsAllEta,nOutputJetsPerEtaRegion*2*2,0,false);
+  hybridBitonicMergeRef(sortedJetsAllEta,nOutputJetsPerEtaRegion*2*2,nOutputJetsPerEtaRegion*2*2,false);
+  // std::cout << "sortedJetsAllEta after sort" << std::endl;
+  // for ( const auto& jet : sortedJetsAllEta ) {
+  //   std::cout << jet.pt() << std::endl;
+  // }
+  std::reverse(sortedJetsAllEta.begin(),sortedJetsAllEta.begin()+nOutputJetsPerEtaRegion*2*2);
 
-  for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion; ++iJet ) {
-    compAndSwap(sortedJetsAllEta, iJet, nOutputJetsPerEtaRegion+iJet);
-    compAndSwap(sortedJetsAllEta, nOutputJetsPerEtaRegion*2+iJet, nOutputJetsPerEtaRegion*3+iJet);
+  for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion*2*2 - nOutputJetsToGT; ++iJet ) {
+    sortedJetsAllEta.erase(sortedJetsAllEta.begin());
+    sortedJetsAllEta.erase(sortedJetsAllEta.end()-1);
   }
-  for ( unsigned int iRegion = 0; iRegion < nOutputJetsPerEtaRegion; ++iRegion ) {
-    for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion/2; ++iJet ) {
-      compAndSwap(sortedJetsAllEta, iRegion*nOutputJetsPerEtaRegion+iJet, iRegion*nOutputJetsPerEtaRegion+iJet+2);
-    }
-  }
-  for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion*4; ++iJet ) {
-    compAndSwap(sortedJetsAllEta, 2*iJet, 2*iJet+1);
-  }
+  // std::cout << "sortedJetsAllEta after reverse" << std::endl;
+  // for ( const auto& jet : sortedJetsAllEta ) {
+  //   std::cout << jet.pt() << " " << jet.eta() << std::endl;
+  // }
 
-  for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion; ++iJet ) {
-    std::swap(sortedJetsAllEta[iJet],sortedJetsAllEta[nOutputJetsPerEtaRegion*2-1-iJet]);
-  }
-
-  // Merge the bitonic sequence
-  for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion*2; ++iJet ) {
-    compAndSwap(sortedJetsAllEta, iJet, nOutputJetsPerEtaRegion*2+iJet);
-  }
-  for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion; ++iJet ) {
-    compAndSwap(sortedJetsAllEta, iJet, nOutputJetsPerEtaRegion+iJet);
-    compAndSwap(sortedJetsAllEta, nOutputJetsPerEtaRegion*2+iJet, nOutputJetsPerEtaRegion*3+iJet);
-  }
-  for ( unsigned int iJet = 0; iJet < 2; ++iJet ) {
-    compAndSwap(sortedJetsAllEta, iJet, iJet+2);
-    compAndSwap(sortedJetsAllEta, nOutputJetsPerEtaRegion+iJet, nOutputJetsPerEtaRegion+iJet+2);
-    compAndSwap(sortedJetsAllEta, nOutputJetsPerEtaRegion*2+iJet, nOutputJetsPerEtaRegion*2+iJet+2);
-    compAndSwap(sortedJetsAllEta, nOutputJetsPerEtaRegion*3+iJet, nOutputJetsPerEtaRegion*3+iJet+2);
-  }
-  for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion*2; ++iJet ) {
-    compAndSwap(sortedJetsAllEta, iJet*2, iJet*2+1);
-  }
-
-  // std::sort(sortedJetsAllEta.begin(), sortedJetsAllEta.end(), [](shared_ptr<reco::CaloJet> jet1, shared_ptr<reco::CaloJet> jet2) {
-  //   return jet1->pt() > jet2->pt();
-  // });
+  hybridBitonicMergeRef(sortedJetsAllEta,nOutputJetsToGT*2,0,false);
+  // std::cout << "sortedJetsAllEta after last sort" << std::endl;
+  // for ( const auto& jet : sortedJetsAllEta ) {
+  //   std::cout << jet.pt() << " " << jet.eta() << std::endl;
+  // }
+  // hybrid_bitonic_sort_and_crop_ref(32, 32, sortedJetsAllEta, sortedJetsAllEta); 
 
   sortedJetsAllEta.resize(nOutputJetsToGT);
   unsigned int nJetsGT0=0;
   for ( const auto& iJet : sortedJetsAllEta ) {
-    if ( iJet->pt() > 0 ) {
-      sortedJets.push_back( *iJet );
+    if ( iJet.pt() > 0 ) {
+      sortedJets.push_back( iJet );
       ++nJetsGT0;
     }
   }
-
+  // if ( nJetsGT0 != nUnsortedJets ) {
+    // std::cout << "Different number of sorted jets : " << nUnsortedJets << " " << nJetsGT0 << std::endl;
+    // std::cout << "All input jets" << std::endl;  
+    // for ( const auto& jet : unsortedJets ) {
+    //   std::cout << jet.pt() << std::endl;    
+    // }
+    // std::cout << "Sorted jets" << std::endl;  
+    // for ( const auto& jet : sortedJets ) {
+    //   std::cout << jet.pt() << " " << jet.eta() << " " << jet.phi() << std::endl;    
+    // }
+  // }
 }
 
-void Phase1L1TJetProducer::compAndSwap(std::vector<shared_ptr<reco::CaloJet>>& a, unsigned int i, unsigned int j) {
+// void Phase1L1TJetProducer::sortJets(const std::vector<reco::CaloJet> unsortedJets, std::vector<reco::CaloJet>& sortedJets ) {
+
+//   const unsigned int nEtaRegions = 4;
+//   const unsigned int nInputsPerSortModule = 18;
+//   const unsigned int nOutputJetsPerEtaRegion = 4;
+//   const unsigned int nOutputJetsToGT = 12;
+
+//   unsigned int nUnsortedJets = unsortedJets.size();
+
+//   // Get jets into the regions and time ordering seen in firmware
+//   std::vector< std::vector< std::vector< std::vector<reco::CaloJet> > > > jetsPerEtaPhiRegions( 
+//     nEtaRegions, std::vector< std::vector< std::vector<reco::CaloJet> > > (
+//       2, std::vector< std::vector<reco::CaloJet> > (
+//         nInputsPerSortModule, std::vector<reco::CaloJet>() ) ) );
+
+//   for ( const auto& jet : unsortedJets ) { 
+//     unsigned int etaRegion = (jet.eta()+3)/1.5;
+//     unsigned int jetEtaBin = floor( ( jet.eta() + (2 - 1.0*etaRegion) * 1.5 ) / 0.0833 );
+//     unsigned int jetPhiBin = floor( ( jet.phi() + M_PI ) / 0.0875 );
+//     unsigned int phiRegion = ( ( jetPhiBin ) % 4 ) / 2;
+//     // std::cout << "Eta region : " << etaRegion << " " << jetEtaBin << std::endl;
+//     // std::cout << "Phi region : " << jetPhiBin << " " << ( jetPhiBin % 4 ) / 2 << std::endl;
+//     // std::cout << "Jet : " << jet.pt() << " " << jet.eta() << " " << jet.phi() << " " << jetPhiBin << " " << etaRegion << " " << phiRegion << " " << jetPhiBin/4 << std::endl;
+
+//     jetsPerEtaPhiRegions[etaRegion][phiRegion][jetPhiBin/4].push_back(jet);
+//   }
+
+//   // Push jets in first phi bin to back, as these are found last after receiving all bins (i.e. handling of phi wrap-around)
+//   for ( unsigned iEtaRegion = 0; iEtaRegion < nEtaRegions; ++iEtaRegion ) {
+//     for ( unsigned iPhiRegion = 0; iPhiRegion < 2; ++ iPhiRegion ) {
+//       std::rotate( jetsPerEtaPhiRegions[iEtaRegion][iPhiRegion].begin(), jetsPerEtaPhiRegions[iEtaRegion][iPhiRegion].begin()+1, jetsPerEtaPhiRegions[iEtaRegion][iPhiRegion].end() );
+//     }
+//   }
+//   bool debug = false;
+//   std::vector< reco::CaloJet > sortedJetsAllEta;
+
+//   for ( unsigned iEtaRegion = 0; iEtaRegion < nEtaRegions; ++iEtaRegion ) {
+//     std::vector<reco::CaloJet > sortedJetsInEtaRegion;
+//     for ( unsigned iPhiRegion = 0; iPhiRegion < 2; ++ iPhiRegion ) {
+//       std::vector<reco::CaloJet > sortedJets( 4, reco::CaloJet() );
+//       for ( unsigned int iInputClock = 0; iInputClock < nInputsPerSortModule; ++iInputClock ) {
+
+//         // Sort input jets
+//         std::vector<reco::CaloJet> inputJets = jetsPerEtaPhiRegions[iEtaRegion][iPhiRegion][iInputClock];
+//         // First by eta
+//         std::sort(inputJets.begin(), inputJets.end(), [](reco::CaloJet jet1, reco::CaloJet jet2) {
+//           return jet1.eta() < jet2.eta();
+//         });
+//         // Then by pt
+//         // compAndSwap(inputJets.data(), 0, 1); 
+//         // compAndSwap(inputJets.data(), 2, 3); 
+//         // compAndSwap(inputJets.data(), 0, 2); 
+//         // compAndSwap(inputJets.data(), 1, 3); 
+//         // compAndSwap(inputJets.data(), 1, 2);
+
+//         inputJets.resize(nOutputJetsPerEtaRegion);
+
+//         hybrid_bitonic_sort_and_crop_ref(4,4,inputJets,inputJets);
+
+//         // Add to list of top 4 jets so far
+//         // Merge with top 4 jets so far, and sort
+//         sortedJets.insert( sortedJets.end(), inputJets.begin(), inputJets.end() );
+//         std::vector<reco::CaloJet > afterSortedJets(8);
+//         hybrid_bitonic_sort_and_crop_ref(8,8,sortedJets,sortedJets);
+//         // std::cout << "After sort" << std::endl;
+//         // for ( const auto& jet : afterSortedJets ) {
+//         //   std::cout << "Pt : " << jet.pt() << std::endl;
+//         // }
+//         sortedJets.resize(nOutputJetsPerEtaRegion);
+// /*
+//         for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion; ++iJet ) {
+//           compAndSwap(sortedJets, iJet, nOutputJetsPerEtaRegion*2-1-iJet);
+//         }  
+//         // std::sort(sortedJets.begin(), sortedJets.end(), [](shared_ptr<reco::CaloJet> jet1, shared_ptr<reco::CaloJet> jet2) {
+//         //   return jet1->pt() > jet2->pt();
+//         // });
+//         // Truncate to four jets
+//         sortedJets.resize(nOutputJetsPerEtaRegion);
+//         // Sort top 4 jets
+//         compAndSwap(sortedJets, 0, 2); 
+//         compAndSwap(sortedJets, 1, 3); 
+//         compAndSwap(sortedJets, 0, 1); 
+//         compAndSwap(sortedJets, 2, 3);
+// */ 
+//         // std::cout << iEtaRegion << " " << iPhiRegion << " " << iInputClock << " " << jetsPerEtaPhiRegions[iEtaRegion][iPhiRegion][iInputClock].size() << " " << sortedJets.size() << std::endl;
+//         // std::vector<shared_ptr<reco::CaloJet> > inputJets;
+//       }
+//       // for ( const auto& jet : sortedJets ) {
+//       //   if ( jet->pt() > 0 ) {
+//       //     std::cout << "Jet from initial sort : " << iEtaRegion << " " << iPhiRegion << " " << jet->pt() << std::endl;
+//       //   }
+//       // }
+//       sortedJetsInEtaRegion.insert( sortedJetsInEtaRegion.end(), sortedJets.begin(), sortedJets.end() );
+//     }
+// /*
+//     // for ( const auto& iJet : sortedJetsInEtaRegion ) {
+//     //   // if ( iJet->pt() > 0 ) {
+//     //     std::cout << "Jets in eta region : " << iEtaRegion << " " << iJet->pt() << " " << iJet->eta() << " " << iJet->phi() << std::endl;
+//     //   // }
+//     // }
+
+//     for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion; ++iJet ) {
+//       compAndSwap(sortedJetsInEtaRegion, iJet, nOutputJetsPerEtaRegion*2-1-iJet);
+//     }
+
+//     // for ( const auto& iJet : sortedJetsInEtaRegion ) {
+//     //   // if ( iJet->pt() > 0 ) {
+//     //     std::cout << "Jets in eta region, before truncation : " << iEtaRegion << " " << iJet->pt() << " " << iJet->eta() << " " << iJet->phi() << std::endl;
+//     //   // }
+//     // }
+
+//     sortedJetsInEtaRegion.resize(nOutputJetsPerEtaRegion);
+
+//     // for ( const auto& iJet : sortedJetsInEtaRegion ) {
+//     //   // if ( iJet->pt() > 0 ) {
+//     //     std::cout << "Jets in eta region, top 4 : " << iEtaRegion << " " << iJet->pt() << " " << iJet->eta() << " " << iJet->phi() << std::endl;
+//     //   // }
+//     // }
+//     compAndSwap(sortedJetsInEtaRegion, 0, 2); 
+//     compAndSwap(sortedJetsInEtaRegion, 1, 3); 
+//     compAndSwap(sortedJetsInEtaRegion, 0, 1); 
+//     compAndSwap(sortedJetsInEtaRegion, 2, 3);
+// */
+//     // Sort 8 jets in each eta region
+//     hybrid_bitonic_sort_and_crop_ref(8, 8, sortedJetsInEtaRegion, sortedJetsInEtaRegion);
+//     sortedJetsAllEta.insert(sortedJetsAllEta.end(), sortedJetsInEtaRegion.begin(), sortedJetsInEtaRegion.end() );
+
+//    /*
+//     std::sort(sortedJetsInEtaRegion.begin(), sortedJetsInEtaRegion.end(), [](shared_ptr<reco::CaloJet> jet1, shared_ptr<reco::CaloJet> jet2) {
+//       return jet1->pt() > jet2->pt();
+//     });
+//     sortedJetsInEtaRegion.resize(nOutputJetsPerEtaRegion*2);
+//     sortedJetsAllEta.insert(sortedJetsAllEta.end(), sortedJetsInEtaRegion.begin(), sortedJetsInEtaRegion.end() );
+// */
+
+//   }
+//   hybrid_bitonic_sort_and_crop_ref(32, 32, sortedJetsAllEta, sortedJetsAllEta); 
+
+//   // std::cout << "Number of jets before final sort : " << sortedJetsAllEta.size() << std::endl;
+//   // for ( const auto& iJet : sortedJetsAllEta ) {
+//   //   if ( iJet->pt() > 0 ) {
+//   //     std::cout << "Jet before sort : " << iJet->pt() << " " << iJet->eta() << " " << iJet->phi() << std::endl;
+//   //   }
+//   // }
+
+// /*
+//   // Get a single bitonic sequence
+//   for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion/2; ++iJet ) {
+//     std::swap(sortedJetsAllEta[iJet],sortedJetsAllEta[nOutputJetsPerEtaRegion-1-iJet]);
+//     std::swap(sortedJetsAllEta[nOutputJetsPerEtaRegion*2+iJet],sortedJetsAllEta[nOutputJetsPerEtaRegion*3-1-iJet]);
+//   }
+
+//   for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion; ++iJet ) {
+//     compAndSwap(sortedJetsAllEta, iJet, nOutputJetsPerEtaRegion+iJet);
+//     compAndSwap(sortedJetsAllEta, nOutputJetsPerEtaRegion*2+iJet, nOutputJetsPerEtaRegion*3+iJet);
+//   }
+//   for ( unsigned int iRegion = 0; iRegion < nOutputJetsPerEtaRegion; ++iRegion ) {
+//     for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion/2; ++iJet ) {
+//       compAndSwap(sortedJetsAllEta, iRegion*nOutputJetsPerEtaRegion+iJet, iRegion*nOutputJetsPerEtaRegion+iJet+2);
+//     }
+//   }
+//   for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion*4; ++iJet ) {
+//     compAndSwap(sortedJetsAllEta, 2*iJet, 2*iJet+1);
+//   }
+
+//   for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion; ++iJet ) {
+//     std::swap(sortedJetsAllEta[iJet],sortedJetsAllEta[nOutputJetsPerEtaRegion*2-1-iJet]);
+//   }
+
+//   // Merge the bitonic sequence
+//   for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion*2; ++iJet ) {
+//     compAndSwap(sortedJetsAllEta, iJet, nOutputJetsPerEtaRegion*2+iJet);
+//   }
+//   for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion; ++iJet ) {
+//     compAndSwap(sortedJetsAllEta, iJet, nOutputJetsPerEtaRegion+iJet);
+//     compAndSwap(sortedJetsAllEta, nOutputJetsPerEtaRegion*2+iJet, nOutputJetsPerEtaRegion*3+iJet);
+//   }
+//   for ( unsigned int iJet = 0; iJet < 2; ++iJet ) {
+//     compAndSwap(sortedJetsAllEta, iJet, iJet+2);
+//     compAndSwap(sortedJetsAllEta, nOutputJetsPerEtaRegion+iJet, nOutputJetsPerEtaRegion+iJet+2);
+//     compAndSwap(sortedJetsAllEta, nOutputJetsPerEtaRegion*2+iJet, nOutputJetsPerEtaRegion*2+iJet+2);
+//     compAndSwap(sortedJetsAllEta, nOutputJetsPerEtaRegion*3+iJet, nOutputJetsPerEtaRegion*3+iJet+2);
+//   }
+//   for ( unsigned int iJet = 0; iJet < nOutputJetsPerEtaRegion*2; ++iJet ) {
+//     compAndSwap(sortedJetsAllEta, iJet*2, iJet*2+1);
+//   }
+
+//   // std::sort(sortedJetsAllEta.begin(), sortedJetsAllEta.end(), [](shared_ptr<reco::CaloJet> jet1, shared_ptr<reco::CaloJet> jet2) {
+//   //   return jet1->pt() > jet2->pt();
+//   // });
+// */
+//   sortedJetsAllEta.resize(nOutputJetsToGT);
+//   unsigned int nJetsGT0=0;
+//   for ( const auto& iJet : sortedJetsAllEta ) {
+//     if ( iJet.pt() > 0 ) {
+//       sortedJets.push_back( iJet );
+//       ++nJetsGT0;
+//     }
+//   }
+//   if ( nJetsGT0 != nUnsortedJets ) {
+//     std::cout << "Different number of sorted jets : " << nUnsortedJets << " " << nJetsGT0 << std::endl;
+//     std::cout << "All input jets" << std::endl;  
+//     for ( const auto& jet : unsortedJets ) {
+//       std::cout << jet.pt() << std::endl;    
+//     }
+//     std::cout << "Sorted jets" << std::endl;  
+//     for ( const auto& jet : sortedJets ) {
+//       std::cout << jet.pt() << std::endl;    
+//     }
+//   }
+ 
+
+//   /*
+//   std::sort(sortedJetsAllEta.begin(), sortedJetsAllEta.end(), [](shared_ptr<reco::CaloJet> jet1, shared_ptr<reco::CaloJet> jet2) {
+//     return jet1->pt() > jet2->pt();
+//   });
+//   sortedJetsAllEta.resize(nOutputJetsToGT);
+//   for ( const auto& iJet : sortedJetsAllEta ) {
+//     if ( iJet->pt() > 0 ) {
+//       sortedJets.push_back( *iJet );
+//     }
+//   }
+//   */
+// }
+
+template <typename T>
+void Phase1L1TJetProducer::hybridBitonicMergeRef(std::vector<T>& a, int N, int low, bool dir) {
+  int k = hybridBitonicSortUtils::PowerOf2LessThan(N);
+  int k2 = N - k;
+  if (N > 1) {
+    for (int i = low; i < low + k; i++) {
+      if (i + k < low + N)
+        compAndSwap(a, i, i + k, dir);
+    }
+    if (N > 2) {
+      hybridBitonicMergeRef(a, k, low, dir);
+      hybridBitonicMergeRef(a, k2, low + k, dir);
+    }
+  }
+}
+
+template <typename T>
+void Phase1L1TJetProducer::hybridBitonicSortRef(std::vector<T>& a, int N, int low, bool dir) {
+  // general case
+  if (N > 1) {
+    int lowerSize = N / 2;
+    int upperSize = N - N / 2;
+    bool notDir = not dir;
+    hybridBitonicSortRef(a, lowerSize, low, notDir);
+    hybridBitonicSortRef(a, upperSize, low + lowerSize, dir);
+    hybridBitonicMergeRef(a, N, low, dir);
+  }
+}
+
+template <typename T>
+void Phase1L1TJetProducer::hybrid_bitonic_sort_and_crop_ref(
+    unsigned int nIn, unsigned int nOut, std::vector<T> in, std::vector<T>& out) {  // just an interface
+  std::vector<T> work(nIn, T());
+  for (unsigned int i = 0; i < nIn; ++i) {
+    work[i] = in[i];
+  }
+  hybridBitonicSortRef(work, nIn, 0, false);
+  for (unsigned int i = 0; i < nOut; ++i) {
+    out[i] = work[i];
+  }
+}
+
+template <typename T>
+void Phase1L1TJetProducer::compAndSwap(std::vector<T>& a, unsigned int i, unsigned int j, bool dir) {
   if ( i >= a.size() || j >= a.size() || i == j ) return;
-  if (a[i]->pt()<a[j]->pt()) swap(a[i],a[j]);
+
+    // if (dir) {
+    //   if (a[j].pt() < a[i].pt())
+    //     std::swap(a[i], a[j]);
+    // } else {
+    //   if (a[i].pt() < a[j].pt())
+    //     std::swap(a[i], a[j]);
+    // }
+
+  if (dir) {
+    if (a[j].pt()<a[i].pt()) {
+      std::swap(a[i],a[j]);
+    }
+  }
+  else {
+    if (a[i].pt()<a[j].pt()) {
+      std::swap(a[i],a[j]);
+    }
+  }
 }
 
-void Phase1L1TJetProducer::swap(shared_ptr<reco::CaloJet>& a, shared_ptr<reco::CaloJet>& b) {
-  shared_ptr<reco::CaloJet> c = a;
+template <typename T>
+void Phase1L1TJetProducer::swap(T& a, T& b) {
+  T c = a;
   a=b;
   b=c;
   return;
@@ -648,6 +952,7 @@ std::vector<reco::CaloJet> Phase1L1TJetProducer::buildJetsFromSeeds(
   std::vector<reco::CaloJet> jets;
   for (const auto& seed : seeds) {
     reco::CaloJet jet = buildJetFromSeed(seed);
+    // std::cout << "Got a jet : " << jet.pt() << " " << jet.eta() << " " << jet.phi() << std::endl;
     jets.push_back(jet);
   }
   return jets;
@@ -661,70 +966,111 @@ void Phase1L1TJetProducer::fillCaloGrid(TH2F& caloGrid,
   for (const auto& primitiveIterator : triggerPrimitives) {
 
     // Get digitised (floating point with reduced precision) eta and phi
-    std::pair<float, float> digi_EtaPhi =
-        getCandidateDigiEtaPhi(primitiveIterator->eta(), primitiveIterator->phi(), regionIndex);
+    // std::pair<float, float> digi_EtaPhi =
+    //     getCandidateDigiEtaPhi(primitiveIterator->eta(), primitiveIterator->phi(), regionIndex);
+    // caloGrid.Fill(static_cast<float>(digi_EtaPhi.first),
+    //               static_cast<float>(digi_EtaPhi.second),
+    //               static_cast<float>(primitiveIterator->pt()));
     // if ( abs(primitiveIterator->eta()) < 1.5 ) {
     // }
     // else continue;
 
-    caloGrid.Fill(static_cast<float>(digi_EtaPhi.first),
-                  static_cast<float>(digi_EtaPhi.second),
-                  static_cast<float>(primitiveIterator->pt()));
+    // std::cout << "Got an input : " << primitiveIterator->pt() << std::endl;
+    std::pair<unsigned, unsigned> bin_EtaPhi =
+        getCandidateBin(primitiveIterator->eta(), primitiveIterator->phi(), regionIndex);
+    unsigned int globalBin = caloGrid.GetBin( bin_EtaPhi.second, bin_EtaPhi.first );
+    caloGrid.AddBinContent(globalBin,
+                 float( l1ct::pt_t(primitiveIterator->pt()) ) );
+
+
   }
+}
+
+std::pair<unsigned, unsigned> Phase1L1TJetProducer::getCandidateBin(const float eta,
+                                                                     const float phi,
+                                                                     const unsigned int regionIndex) const {
+
+  l1ct::glbeta_t glbEta = l1ct::Scales::makeGlbEta( eta );
+  l1ct::glbeta_t glbPhi = l1ct::Scales::makeGlbPhi( phi );
+
+  std::pair<double, double> regionLowEdges = regionEtaPhiLowEdges(regionIndex);
+  l1ct::glbeta_t etaOffset = l1ct::Scales::makeGlbEta( regionLowEdges.second );
+  l1ct::glbeta_t phiOffset = l1ct::Scales::makeGlbPhi( regionLowEdges.first );
+
+  int etaBin = ( glbEta - etaOffset ) / 19 + 1;
+  int phiBin = ( glbPhi - phiOffset ) / 20 + 1;
+
+  // if ( ( etaBin - 1 ) % 6 == 0  && etaBin > 0 ) {
+  //   etaBin -= 1;
+  //   std::cout << "Fixing eta bin" << std::endl;
+  // }
+  // if ( ( phiBin - 1 ) % 8 == 0 && phiBin > 0 ) phiBin -= 1;
+
+  if ( regionLowEdges.second == -2.5 || regionLowEdges.second == 1.5 ) {
+    if ( etaBin >= 12 ) etaBin = 12;
+  }
+  else if ( etaBin >= 6 ) etaBin = 6;
+  if ( phiBin >= 8 ) phiBin = 8;
+
+  std::pair<unsigned, unsigned> binOffsets = regionEtaPhiBinOffset(regionIndex);
+
+  return std::pair<unsigned, unsigned>{phiBin + binOffsets.first, etaBin + binOffsets.second };
 }
 
 std::pair<float, float> Phase1L1TJetProducer::getCandidateDigiEtaPhi(const float eta,
                                                                      const float phi,
                                                                      const unsigned int regionIndex) const {
-  std::pair<double, double> regionLowEdges = regionEtaPhiLowEdges(regionIndex);
+  // std::pair<double, double> regionLowEdges = regionEtaPhiLowEdges(regionIndex);
 
-  int digitisedEta = floor((eta - regionLowEdges.second) / etalsb_);
-  int digitisedPhi = floor((phi - regionLowEdges.first) / philsb_);
+  // l1ct::glbeta_t digiEta = l1ct::Scales::makeGlbEta( c.eta() );
+  // l1ct::glbeta_t digiPhi = l1ct::Scales::makeGlbPhi( c.phi() );
 
-  // If eta or phi is on a bin edge
-  // Put in bin above, to match behaviour of HLS
-  // Unless it's on the last bin of this pf region
-  // Then it is placed in the last bin, not the overflow
-  TAxis* etaAxis = caloGrid_->GetXaxis();
-  std::pair<double, double> regionUpEdges = regionEtaPhiUpEdges(regionIndex);
-  int digiEtaEdgeLastBinUp = floor((regionUpEdges.second - regionLowEdges.second) / etalsb_);
-  // If the digi eta is outside the last bin of this pf region
-  // Set the digitised quantity so it would be in the last bin
-  // These cases could be avoided by sorting input candidates based on digitised eta/phi
-  if (digitisedEta >= digiEtaEdgeLastBinUp) {
-    digitisedEta = digiEtaEdgeLastBinUp - 1;
-  } else {
-    for (int i = 0; i < etaAxis->GetNbins(); ++i) {
-      if (etaAxis->GetBinUpEdge(i) < regionLowEdges.second)
-        continue;
-      int digiEdgeBinUp = floor((etaAxis->GetBinUpEdge(i) - regionLowEdges.second) / etalsb_);
-      if (digiEdgeBinUp == digitisedEta) {
-        digitisedEta += 1;
-      }
-    }
-  }
+  // // If eta or phi is on a bin edge
+  // // Put in bin above, to match behaviour of HLS
+  // // Unless it's on the last bin of this pf region
+  // // Then it is placed in the last bin, not the overflow
+  // TAxis* etaAxis = caloGrid_->GetXaxis();
+  // std::pair<double, double> regionUpEdges = regionEtaPhiUpEdges(regionIndex);
+  // int digiEtaEdgeLastBinUp = l1ct::Scales::makeGlbEta( regionUpEdges.second - regionLowEdges.second );
+  // // If the digi eta is outside the last bin of this pf region
+  // // Set the digitised quantity so it would be in the last bin
+  // // These cases could be avoided by sorting input candidates based on digitised eta/phi
+  // if (digitisedEta >= digiEtaEdgeLastBinUp) {
+  //   digitisedEta = digiEtaEdgeLastBinUp - 1;
+  // } else {
+  //   for (int i = 0; i < etaAxis->GetNbins(); ++i) {
+  //     if (etaAxis->GetBinUpEdge(i) < regionLowEdges.second)
+  //       continue;
+  //     int digiEdgeBinUp = l1ct::Scales::makeGlbEta( etaAxis->GetBinUpEdge(i) - regionLowEdges.second );
+  //     if (digiEdgeBinUp == digitisedEta) {
+  //       digitisedEta += 1;
+  //     }
+  //   }
+  // }
 
-  // Similar for phi
-  TAxis* phiAxis = caloGrid_->GetYaxis();
-  int digiPhiEdgeLastBinUp = floor((regionUpEdges.first - regionLowEdges.first) / philsb_);
-  if (digitisedPhi >= digiPhiEdgeLastBinUp) {
-    digitisedPhi = digiPhiEdgeLastBinUp - 1;
-  } else {
-    for (int i = 0; i < phiAxis->GetNbins(); ++i) {
-      if (phiAxis->GetBinUpEdge(i) < regionLowEdges.first)
-        continue;
-      int digiEdgeBinUp = floor((phiAxis->GetBinUpEdge(i) - regionLowEdges.first) / philsb_);
-      if (digiEdgeBinUp == digitisedPhi) {
-        digitisedPhi += 1;
-      }
-    }
-  }
+  // // Similar for phi
+  // TAxis* phiAxis = caloGrid_->GetYaxis();
+  // int digiPhiEdgeLastBinUp = l1ct::Scales::makeGlbPhi( regionUpEdges.first - regionLowEdges.first );
+  // if (digitisedPhi >= digiPhiEdgeLastBinUp) {
+  //   digitisedPhi = digiPhiEdgeLastBinUp - 1;
+  // } else {
+  //   for (int i = 0; i < phiAxis->GetNbins(); ++i) {
+  //     if (phiAxis->GetBinUpEdge(i) < regionLowEdges.first)
+  //       continue;
+  //     int digiEdgeBinUp = l1ct::Scales::makeGlbPhi(  phiAxis->GetBinUpEdge(i) - regionLowEdges.first );
+  //     if (digiEdgeBinUp == digitisedPhi) {
+  //       digitisedPhi += 1;
+  //     }
+  //   }
+  // }
 
-  // Convert digitised eta and phi back to floating point quantities with reduced precision
-  float floatDigitisedEta = (digitisedEta + 0.5) * etalsb_ + regionLowEdges.second;
-  float floatDigitisedPhi = (digitisedPhi + 0.5) * philsb_ + regionLowEdges.first;
+  // // Convert digitised eta and phi back to floating point quantities with reduced precision
+  // // float floatDigitisedEta = (digitisedEta + 0.5) * etalsb_ + regionLowEdges.second;
+  // // float floatDigitisedPhi = (digitisedPhi + 0.5) * philsb_ + regionLowEdges.first;
+  // float floatDigitisedEta = l1ct::Scales::floatPhi( lInputs[x].hwPhi ) (digitisedEta + 0.5) * etalsb_ + regionLowEdges.second;
+  // float floatDigitisedPhi = l1ct::Scales::floatPhi( lInputs[x].hwPhi ) (digitisedPhi + 0.5) * philsb_ + regionLowEdges.first;
 
-  return std::pair<float, float>{floatDigitisedEta, floatDigitisedPhi};
+  return std::pair<float, float>{0, 0};
 }
 
 void Phase1L1TJetProducer::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
@@ -768,9 +1114,18 @@ std::vector<std::vector<edm::Ptr<reco::Candidate>>> Phase1L1TJetProducer::prepar
     auto it_phi = phiRegionEdges_.begin();
     it_phi = std::upper_bound(phiRegionEdges_.begin(), phiRegionEdges_.end(), tp->phi()) - 1;
 
+    if ( l1ct::Scales::makeGlbPhi( *(it_phi+1) ) == l1ct::Scales::makeGlbPhi( tp->phi() ) ) {
+      it_phi += 1;
+    }
+
     // Which eta region does this tp belong to
     auto it_eta = etaRegionEdges_.begin();
     it_eta = std::upper_bound(etaRegionEdges_.begin(), etaRegionEdges_.end(), tp->eta()) - 1;
+
+    if ( l1ct::Scales::makeGlbEta( *(it_eta+1) ) == l1ct::Scales::makeGlbEta( tp->eta() ) ) {
+      it_eta += 1;
+    }
+
 
     if (it_phi != phiRegionEdges_.end() && it_eta != etaRegionEdges_.end()) {
       auto phiRegion = it_phi - phiRegionEdges_.begin();
@@ -799,6 +1154,16 @@ std::pair<double, double> Phase1L1TJetProducer::regionEtaPhiLowEdges(const unsig
   return std::pair<double, double>{phiRegionEdges_.at(phiRegion), etaRegionEdges_.at(etaRegion)};
 }
 
+
+std::pair<unsigned, unsigned> Phase1L1TJetProducer::regionEtaPhiBinOffset(const unsigned int regionIndex) const {
+  unsigned int phiRegion = regionIndex % (phiRegionEdges_.size() - 1);
+  unsigned int etaRegion = (regionIndex - phiRegion) / (phiRegionEdges_.size() - 1);
+
+  float etaBinOffset = ( 3 + etaRegionEdges_.at(etaRegion) ) / 0.5 * 6;
+  float phiBinOffset = ( 3.15 + phiRegionEdges_.at(phiRegion) ) / 0.7 * 8;
+  return std::pair<unsigned, unsigned>{phiBinOffset, etaBinOffset};
+}
+
 std::pair<double, double> Phase1L1TJetProducer::regionEtaPhiUpEdges(const unsigned int regionIndex) const {
   unsigned int phiRegion = regionIndex % (phiRegionEdges_.size() - 1);
   unsigned int etaRegion = (regionIndex - phiRegion) / (phiRegionEdges_.size() - 1);
@@ -811,7 +1176,8 @@ std::pair<double, double> Phase1L1TJetProducer::regionEtaPhiUpEdges(const unsign
   return std::pair<double, double>{phiRegionEdges_.at(phiRegion + 1), etaRegionEdges_.at(etaRegion + 1)};
 }
 
-l1t::EtSum Phase1L1TJetProducer::computeMET(const double etaCut, l1t::EtSum::EtSumType sumType) const {
+void Phase1L1TJetProducer::computeMET(const double etaCut, l1t::EtSum::EtSumType metType, l1t::EtSum& met, l1t::EtSum::EtSumType sumEtType, l1t::EtSum& sumEt ) const {
+
   const auto lowEtaBin = caloGrid_->GetXaxis()->FindBin(-1.0 * etaCut);
   const auto highEtaBin = caloGrid_->GetXaxis()->FindBin(etaCut) - 1;
   const auto phiProjection = caloGrid_->ProjectionY("temp", lowEtaBin, highEtaBin);
@@ -819,7 +1185,7 @@ l1t::EtSum Phase1L1TJetProducer::computeMET(const double etaCut, l1t::EtSum::EtS
   // Use digitised quantities when summing to improve agreement with firmware
   l1ct::dpt_t totalDigiPx{0};
   l1ct::dpt_t totalDigiPy{0};
-
+  double totalPt{0};
   for (int i = 1; i < phiProjection->GetNbinsX() + 1; ++i) {
     l1ct::pt_t pt = phiProjection->GetBinContent(i);
     // totalDigiPx += trunc(floor(pt / ptlsb_) * cosPhi_[i - 1]);
@@ -829,13 +1195,17 @@ l1t::EtSum Phase1L1TJetProducer::computeMET(const double etaCut, l1t::EtSum::EtS
     ap_fixed<9, 1, AP_RND> lCosPhi = cosPhi_[i-1];
     totalDigiPx += pt * lCosPhi;
     totalDigiPy += pt * lSinPhi;
-
+    totalPt += double(pt);
   }
   double lMET = l1ct::pt_t( sqrt(double(totalDigiPx * totalDigiPx + totalDigiPy * totalDigiPy)));
 
   math::PtEtaPhiMLorentzVector lMETVector(lMET, 0, acos(double(totalDigiPx) / lMET ), 0);
-  l1t::EtSum lMETSum(lMETVector, sumType, 0, 0, 0, 0);
-  return lMETSum;
+  l1t::EtSum lMETSum(lMETVector, metType, 0, 0, 0, 0);
+  met = lMETSum;
+
+  math::PtEtaPhiMLorentzVector lSumETVector(totalPt, 0, 0, 0);
+  l1t::EtSum lSumEt(lSumETVector, sumEtType, 0, 0, 0, 0);
+  sumEt = lSumEt;
 }
 
 bool Phase1L1TJetProducer::trimTower(const int etaIndex, const int phiIndex) const {
