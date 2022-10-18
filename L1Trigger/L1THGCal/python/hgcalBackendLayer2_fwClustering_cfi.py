@@ -1,6 +1,14 @@
 import FWCore.ParameterSet.Config as cms
 from math import pi
 
+EE_DR_GROUP = 7
+FH_DR_GROUP = 6
+BH_DR_GROUP = 12
+dr_layerbylayer = ([0] + # no layer 0
+        [7569]*EE_DR_GROUP + [13689]*EE_DR_GROUP + [30625]*EE_DR_GROUP + [54756]*EE_DR_GROUP + # EM
+        [54756]*FH_DR_GROUP + [85264]*FH_DR_GROUP + # FH
+        [85264]*BH_DR_GROUP) # BH
+        
 layer2ClusteringFw_Params = cms.PSet(
     # Latencies
     # histogramOffset=cms.uint32(216),
@@ -75,6 +83,7 @@ layer2ClusteringFw_Params = cms.PSet(
     # Threshold maxima parameters
     # Threshold for given histogram row (r/z bin) paramaterized as a+b*bin+c*bin^2
     thresholdMaximaParams = cms.PSet(
+<<<<<<< HEAD
 
         a=cms.uint32(1000),#18000),
         b=cms.uint32(0),#800),
@@ -86,6 +95,11 @@ layer2ClusteringFw_Params = cms.PSet(
         # a=cms.uint32(18000),#18000),
         # b=cms.uint32(800),#800),
         # c=cms.int32(-20)#-20)
+=======
+        a=cms.uint32(18000),#18000
+        b=cms.uint32(0),#800
+        c=cms.int32(0)#-20
+>>>>>>> cb8b0aa2e75 (Explore changes to improve perfromance of emulator.)
     ),
 
     # Clusterizer parameters
@@ -96,9 +110,18 @@ layer2ClusteringFw_Params = cms.PSet(
         nColumnsPerFifo=cms.uint32(4),
         firstSeedBin=cms.uint32(18), # First bin considered as a seed for a cluster
         nColumnsFifoVeto=cms.uint32(6), # Minimum distance between seeds in neighbouring fifos)
-        deltaR2Cut=cms.uint32(20000), # Delta R^2 threshold, in digitised units
+        # deltaR2Cut=cms.uint32(20000), # Delta R^2 threshold, in digitised units
+        deltaR2Thresholds=cms.vuint32( # Delta R^2 threshold per layer, in digitised units
+                                       dr_layerbylayer
+                                        # 0,
+                                        # 7569, 7569, 7569, 7569, 7569, 7569, 7569,
+                                        # 13689, 13689, 13689, 13689, 13689, 13689, 13689, 
+                                        # 30625, 30625, 30625, 30625, 30625, 30625, 30625, 
+                                        # 54756, 54756, 54756, 54756, 54756, 54756, 54756, 54756, 54756, 54756, 54756, 54756, 54756, 
+                                        # 85264, 85264, 85264, 85264, 85264, 85264, 85264, 85264, 85264, 85264, 85264, 85264, 85264, 85264, 85264, 85264, 85264, 85264
+                                    ),
         nColumnsForClustering=cms.uint32(3), # Number of columns either side of column containing seed to stream for clustering
-        nRowsForClustering=cms.uint32(2), # Number of rows either side of row containing seed to consider during clustering
+        nRowsForClustering=cms.uint32(4), # Number of rows either side of row containing seed to consider during clustering
         clusterizerMagicTime=cms.uint32(434),
     ),
     depths = cms.vuint32(0 , # No zero layer
