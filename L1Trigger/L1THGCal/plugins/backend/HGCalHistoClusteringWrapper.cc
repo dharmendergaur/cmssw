@@ -233,6 +233,12 @@ void HGCalHistoClusteringWrapper::convertAlgorithmOutputs(
     multicluster.hw_e_h_early_over_e_quotient(cluster->e_h_early_over_e_quotient());
     multicluster.hw_e_h_early_over_e_fraction(cluster->e_h_early_over_e_fraction());
 
+    const auto hwData = cluster->formatClusterWords( theConfiguration_ );
+
+    multicluster.setHwData( hwData );
+    multicluster.setHwSector( sector );
+    multicluster.setHwZSide( theConfiguration_.zSide() );
+
     multiClusters_out.push_back(0, multicluster);
   }
 }
