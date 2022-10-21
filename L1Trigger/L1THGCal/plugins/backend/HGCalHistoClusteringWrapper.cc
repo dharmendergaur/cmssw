@@ -233,6 +233,15 @@ void HGCalHistoClusteringWrapper::convertAlgorithmOutputs(
     multicluster.hw_e_h_early_over_e_quotient(cluster->e_h_early_over_e_quotient());
     multicluster.hw_e_h_early_over_e_fraction(cluster->e_h_early_over_e_fraction());
 
+    const auto hwData = cluster->formatClusterWords( theConfiguration_ );
+
+    multicluster.setHwData( hwData );
+    multicluster.setHwSector( sector );
+    multicluster.setHwZSide( theConfiguration_.zSide() );
+
+    const auto hwClusterSumData = cluster->formatClusterSumWords( theConfiguration_ );
+    multicluster.setHwClusterSumData( hwClusterSumData );
+
     multiClusters_out.push_back(0, multicluster);
   }
 }
@@ -267,6 +276,11 @@ void HGCalHistoClusteringWrapper::configure(
   theConfiguration_.setNTriggerLayers(std::get<0>(configuration)->lastTriggerLayer());
   theConfiguration_.setTriggerLayers(std::get<0>(configuration)->triggerLayers());
 
+  std::cout << "N trigger layers : " << theConfiguration_.nTriggerLayers() << std::endl;
+  for ( const auto& layer : theConfiguration_.triggerLayers() ) {
+    std::cout << layer << " ";
+  }
+  std::cout << std::endl;
   theConfiguration_.setSector(std::get<2>(configuration));
   theConfiguration_.setZSide(std::get<3>(configuration));
 
@@ -294,7 +308,7 @@ void HGCalHistoClusteringWrapper::configure(
   theConfiguration_.setSaturation(pset.getParameter<unsigned int>("saturation"));
   const edm::ParameterSet& thresholdParams = pset.getParameterSet("thresholdMaximaParams");
   theConfiguration_.setThresholdParams(thresholdParams.getParameter<unsigned int>("a"),
-                                       thresholdParams.getParameter<unsigned int>("b"),
+                                       thresholdParams.getParameter<int>("b"),
                                        thresholdParams.getParameter<int>("c"));
 
   // Digitization parameters
@@ -341,7 +355,7 @@ void HGCalHistoClusteringWrapper::configure(
   theConfiguration_.setClusterizerMagicTime(clusterizerPset.getParameter<unsigned int>("clusterizerMagicTime"));
   theConfiguration_.setFirstSeedBin(clusterizerPset.getParameter<unsigned int>("firstSeedBin"));
   theConfiguration_.setNColumnFifoVeto(clusterizerPset.getParameter<unsigned int>("nColumnsFifoVeto"));
-  theConfiguration_.setDeltaR2Cut(clusterizerPset.getParameter<unsigned int>("deltaR2Cut"));
+  theConfiguration_.setDeltaR2Thresholds(clusterizerPset.getParameter<std::vector<unsigned int>>("deltaR2Thresholds"));
   theConfiguration_.setNColumnsForClustering(clusterizerPset.getParameter<unsigned int>("nColumnsForClustering"));
   theConfiguration_.setNRowsForClustering(clusterizerPset.getParameter<unsigned int>("nRowsForClustering"));
 
