@@ -76,6 +76,12 @@ namespace l1thgcfirmware {
     typedef std::bitset<wordLength> ClusterWord;
     typedef std::array<ClusterWord, nWordsPerCluster> ClusterWords;
 
+    // Firmware representation of cluster sum (input to cluster properties step)
+    static constexpr int clusterSumWordLength = 64;
+    static constexpr int nWordsPerClusterSum = 8;
+    typedef std::bitset<wordLength> ClusterSumWord;
+    typedef std::array<ClusterSumWord, nWordsPerCluster> ClusterSumWords;
+
     std::pair<unsigned int, unsigned int> sigma_energy(unsigned int N_TC_W,
                                                        unsigned long int Sum_W2,
                                                        unsigned int Sum_W);
@@ -210,6 +216,10 @@ namespace l1thgcfirmware {
     ClusterWord formatThirdWord( const ClusterAlgoConfig& config );
     ClusterWord formatFourthWord( const ClusterAlgoConfig& config );
 
+    // Format data into firmware representation
+    void clearClusterSumWords();
+    ClusterSumWords formatClusterSumWords( const ClusterAlgoConfig& config );
+
   private:
     unsigned int clock_;
     unsigned int index_;
@@ -272,6 +282,8 @@ namespace l1thgcfirmware {
     // Firmware representation of cluster as sent on links to L1T
     ClusterWords packedData_;
 
+    // Firmware representation of cluster sum (input to cluster properties)
+    ClusterSumWords packedData_clustersSums_;
   };
 
   typedef std::vector<HGCalCluster> HGCalClusterSACollection;

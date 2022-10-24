@@ -91,11 +91,9 @@ HGCalCluster::ClusterWords HGCalCluster::formatClusterWords( const ClusterAlgoCo
 
 HGCalCluster::ClusterWord HGCalCluster::formatFirstWord( const ClusterAlgoConfig& config ) {
 
-  // const TTBV hw_Et(round(e()/config.ptDigiFactor()), 0.25, 14);
   int pt = round(e()/config.ptDigiFactor()/0.25);
   const TTBV hw_Et(pt, 14, false);
-  std::cout << "Converting pt : " << e() << " " << e()/config.ptDigiFactor() << " " << round(e()/config.ptDigiFactor())/0.25 << " " << hw_Et.str() << std::endl;
-  // const TTBV hw_EtEgamma(e_em()/config.ptDigiFactor(), 0.25, 14);
+  // std::cout << "Converting pt : " << e() << " " << e()/config.ptDigiFactor() << " " << round(e()/config.ptDigiFactor())/0.25 << " " << hw_Et.str() << std::endl;
   const TTBV hw_EtEgamma(0, 14);
   const TTBV hw_GCTSelectBits(0, 4);
 
@@ -108,7 +106,6 @@ HGCalCluster::ClusterWord HGCalCluster::formatFirstWord( const ClusterAlgoConfig
   const TTBV hw_firstLayerZ(0, 6);
   const TTBV hw_spare(0, 2);
 
-  // ClusterWord clusterWord = TTBV(hw_Et + hw_EtEgamma + hw_GCTSelectBits + hw_fracCEE + hw_fracCEECore + w_fracCEHFront + hw_firstLayerZ + hw_spare).bs();
   ClusterWord clusterWord = TTBV(
     hw_spare +
     hw_firstLayerZ + 
@@ -130,18 +127,18 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
   double eta = -1.0 * std::log( tan( atan( rOverZ ) / 2 ) );
   // eta *= theConfiguration_.zSide();
 
-  // Interface document definition
-  // eta -= 1.5; 
-  // int l1Eta = eta / ETAPHI_LSB;
-  // const TTBV hw_Eta(l1Eta, 9, false);
-  // double etaTemp = eta - 1.5;
-  // const TTBV hw_Eta_interface(int(etaTemp / ETAPHI_LSB), 9, false);
+  // Interface document definition (old?)
+  eta -= 1.5; 
+  int l1Eta = eta / ETAPHI_LSB;
+  const TTBV hw_Eta(l1Eta, 9, false);
+  double etaTemp = eta - 1.5;
+  const TTBV hw_Eta_interface(int(etaTemp / ETAPHI_LSB), 9, false);
 
   // Current correlator definition
-  eta -= 2.25;
-  int l1Eta = round( eta / ETAPHI_LSB );
-  const TTBV hw_Eta(l1Eta, 9, true);
-  std::cout << "Global eta, l1 eta : " << -1.0 * std::log( tan( atan( rOverZ ) / 2 ) ) << " " << l1Eta << " " << hw_Eta.str() << std::endl;
+  // eta -= 2.25;
+  // int l1Eta = round( eta / ETAPHI_LSB );
+  // const TTBV hw_Eta(l1Eta, 9, true);
+  // std::cout << "Global eta, l1 eta : " << -1.0 * std::log( tan( atan( rOverZ ) / 2 ) ) << " " << l1Eta << " " << hw_Eta.str() << std::endl;
   // int l1Phi = ( ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues() - M_PI/3 )  / ETAPHI_LSB;
 
   double phi = ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues();
@@ -153,7 +150,7 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
   int l1Phi = round( ( phi - M_PI/2  )  / ETAPHI_LSB );
 
 
-  std::cout << "Global phi, l1 phi : " << ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues() << " " << l1Phi << std::endl;
+  // std::cout << "Global phi, l1 phi : " << ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues() << " " << l1Phi << std::endl;
 
   // std::cout << "Phi : " << 1.0 * wphi() / w() << " " << Mean_phi_Quotient() << " " << Mean_phi_Fraction() << td::endl;
   // std::cout << l1Phi << std::endl;
@@ -187,4 +184,15 @@ HGCalCluster::ClusterWord HGCalCluster::formatThirdWord( const ClusterAlgoConfig
 HGCalCluster::ClusterWord HGCalCluster::formatFourthWord( const ClusterAlgoConfig& config ) {
   ClusterWord clusterWord = 0;
   return clusterWord;
+}
+
+void HGCalCluster::clearClusterSumWords() {
+  for ( auto& clusterSumWord : packedData_clustersSums_ ) {
+    clusterSumWord = 0;
+  }
+}
+
+HGCalCluster::ClusterWords HGCalCluster::formatClusterSumWords( const ClusterAlgoConfig& config ) {
+  clearClusterSumWords();
+  return packedData_clustersSums_;
 }
