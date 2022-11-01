@@ -106,8 +106,18 @@ namespace l1t {
     unsigned int getHwSector() const { return hwSector_; }
     void setHwZSide( int zside ) { hwZSide_ = zside; }
     int getHwZSide() const { return hwZSide_; }
+
+    // Types for firmware representation of cluster sum data, input to cluster properties step
+    static constexpr int clusterSumWordLength = 64;
+    static constexpr int nWordsPerClusterSum = 8;
+    typedef std::bitset<wordLength> ClusterSumWord;
+    typedef std::array<ClusterSumWord, nWordsPerClusterSum> ClusterSumWords;
+    void setHwClusterSumData( ClusterSumWords clusterSumWords ) { hwClusterSumData_ = clusterSumWords; }
+    ClusterSumWords getHwClusterSumData() const { return hwClusterSumData_; }
+
   private:
     ClusterWords hwData_;
+    ClusterSumWords hwClusterSumData_;
     // Store sector number for pattern files
     // TODO check if detID of emulated cluster always gives same sector
     // Emulated cluster takes detID of first TC added to it, which is not necessarily a TC in the seed histo bin

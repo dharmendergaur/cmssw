@@ -29,16 +29,10 @@
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 #include "FWCore/Utilities/interface/InputTag.h"
 
-// #include "DataFormats/L1TrackTrigger/interface/TTTrack_TrackWord.h"
-// #include "DataFormats/L1TrackTrigger/interface/TTTrack.h"
-// #include "DataFormats/L1TrackTrigger/interface/TTTypes.h"
-// #include "DataFormats/L1Trigger/interface/VertexWord.h"
 #include "DataFormats/L1THGCal/interface/HGCalMulticluster.h"
 #include "DataFormats/Common/interface/View.h"
 
 #include "L1Trigger/DemonstratorTools/interface/BoardDataWriter.h"
-// #include "L1Trigger/DemonstratorTools/interface/codecs/tracks.h"
-// #include "L1Trigger/DemonstratorTools/interface/codecs/vertices.h"
 #include "L1Trigger/DemonstratorTools/interface/utilities.h"
 
 #include "ap_int.h"
@@ -58,7 +52,7 @@ private:
   static constexpr size_t kFramesPerTMUXPeriod = 9;
   static constexpr size_t kGapLengthOutput = 0;
   static constexpr size_t kS2BoardTMUX = 18;
-  static constexpr size_t kMaxLinesPerFile = 800;
+  static constexpr size_t kMaxLinesPerFile = 1024;
 
   const std::map<l1t::demo::LinkId, std::pair<l1t::demo::ChannelSpec, std::vector<size_t>>>
       kChannelSpecsOutputToL1T = {
@@ -69,6 +63,19 @@ private:
           {{"towersAndClusters", 3}, {{kS2BoardTMUX, kGapLengthOutput}, {59}}}
         };
 
+  const std::map<l1t::demo::LinkId, std::pair<l1t::demo::ChannelSpec, std::vector<size_t>>>
+      kChannelSpecsClusterSumsInput = {
+          /* logical channel within time slice -> {{link TMUX, inter-packet gap}, vector of channel indices} */
+          {{"clusterSumRecord", 0}, {{kS2BoardTMUX, kGapLengthOutput}, {0}}},
+          {{"clusterSumRecord", 1}, {{kS2BoardTMUX, kGapLengthOutput}, {1}}},
+          {{"clusterSumRecord", 2}, {{kS2BoardTMUX, kGapLengthOutput}, {2}}},
+          {{"clusterSumRecord", 3}, {{kS2BoardTMUX, kGapLengthOutput}, {3}}},
+          {{"clusterSumRecord", 4}, {{kS2BoardTMUX, kGapLengthOutput}, {4}}},
+          {{"clusterSumRecord", 5}, {{kS2BoardTMUX, kGapLengthOutput}, {5}}},
+          {{"clusterSumRecord", 6}, {{kS2BoardTMUX, kGapLengthOutput}, {6}}},
+          {{"clusterSumRecord", 7}, {{kS2BoardTMUX, kGapLengthOutput}, {7}}},
+        };
+
   // typedef TTTrack<Ref_Phase2TrackerDigi_> Track_t;
 
   // ----------member functions ----------------------
@@ -76,11 +83,14 @@ private:
   void endJob() override;
 
   std::array<std::vector<ap_uint<64>>, 4> encodeTowersAndClusters(const l1t::HGCalMulticlusterBxCollection&, const unsigned int iSector );
-  
+
+  std::array<std::vector<ap_uint<64>>, 8> encodeClusterSumRecord(const l1t::HGCalMulticlusterBxCollection&, const unsigned int iSector );
+
   // ----------member data ---------------------------
   edm::EDGetTokenT<l1t::HGCalMulticlusterBxCollection> clustersToken_;
 
   std::vector<l1t::demo::BoardDataWriter> fileWritersOutputToL1T_;
+  std::vector<l1t::demo::BoardDataWriter> fileWritersClusterSumsInput_;
 };
 
 //
@@ -91,11 +101,17 @@ Stage2FileWriter::Stage2FileWriter(const edm::ParameterSet& iConfig)
     : clustersToken_(consumes<l1t::HGCalMulticlusterBxCollection>(iConfig.getUntrackedParameter<edm::InputTag>("clusters"))) {
       for ( unsigned int iFileWriter=0; iFileWriter < 6; ++iFileWriter ) {
         fileWritersOutputToL1T_.emplace_back(l1t::demo::parseFileFormat(iConfig.getUntrackedParameter<std::string>("format")),
-                                    iConfig.getUntrackedParameter<std::string>("outputFilename")+"_Sector"+std::to_string(iFileWriter),
+                                    iConfig.getUntrackedParameter<std::string>("outputFilename_clustersToL1T")+"_Sector"+std::to_string(iFileWriter),
                                     kFramesPerTMUXPeriod,
                                     kS2BoardTMUX,
                                     kMaxLinesPerFile,
                                     kChannelSpecsOutputToL1T);
+        fileWritersClusterSumsInput_.emplace_back(l1t::demo::parseFileFormat(iConfig.getUntrackedParameter<std::string>("format")),
+                                            iConfig.getUntrackedParameter<std::string>("outputFilename_clusterSums")+"_Sector"+std::to_string(iFileWriter),
+                                            kFramesPerTMUXPeriod,
+                                            kS2BoardTMUX,
+                                            kMaxLinesPerFile,
+                                            kChannelSpecsClusterSumsInput);
       }
     }
 
@@ -107,6 +123,9 @@ void Stage2FileWriter::analyze(const edm::Event& iEvent, const edm::EventSetup& 
   for ( unsigned int iSector = 0; iSector < 6; ++iSector ) {
     // 1) Encode tower and cluster information onto vectors containing link data
     const auto outputData(encodeTowersAndClusters(iEvent.get(clustersToken_), iSector) );
+    const auto clusterSumInputData(encodeClusterSumRecord(iEvent.get(clustersToken_), iSector) );
+    std::cout << outputData.size() << " " << outputData[0].size() << std::endl;
+    std::cout << clusterSumInputData.size() << " " << clusterSumInputData[0].size() << std::endl;
 
     // 2) Pack track information into 'event data' object, and pass that to file writer
     l1t::demo::EventData eventDataTowersAndClusters;
@@ -114,6 +133,15 @@ void Stage2FileWriter::analyze(const edm::Event& iEvent, const edm::EventSetup& 
       eventDataTowersAndClusters.add({"towersAndClusters", i}, outputData.at(i));
     }
     fileWritersOutputToL1T_.at(iSector).addEvent(eventDataTowersAndClusters);
+
+    l1t::demo::EventData eventDataClusterSums;
+    for (size_t i = 0; i < 8; i++) {
+      std::cout << "Adding to event data : " << i << std::endl;
+      eventDataClusterSums.add({"clusterSumRecord", i}, clusterSumInputData.at(i));
+    }
+    std::cout << "Adding to file writer" << std::endl;
+    fileWritersClusterSumsInput_.at(iSector).addEvent(eventDataClusterSums);
+    std::cout << "Done" << std::endl;
   }
 
 }
@@ -123,6 +151,7 @@ void Stage2FileWriter::endJob() {
   // Writing pending events to file before exiting
   for ( unsigned int iSector = 0; iSector < 6; ++iSector ) {
     fileWritersOutputToL1T_.at(iSector).flush();
+    fileWritersClusterSumsInput_.at(iSector).flush();
   }
 }
 
@@ -131,7 +160,8 @@ void Stage2FileWriter::fillDescriptions(edm::ConfigurationDescriptions& descript
   // Stage2FileWriter
   edm::ParameterSetDescription desc;
   desc.addUntracked<edm::InputTag>("clusters", edm::InputTag("hgcalBackEndLayer2Producer", "HGCalBackendLayer2Processor3DClusteringSA"));
-  desc.addUntracked<std::string>("outputFilename", "HGCS2OutputToL1TFile");
+  desc.addUntracked<std::string>("outputFilename_clustersToL1T", "HGCS2OutputToL1TFile");
+  desc.addUntracked<std::string>("outputFilename_clusterSums", "HGCS2ClusterSumsInput");
   desc.addUntracked<std::string>("format", "EMP");
   descriptions.add("Stage2FileWriter", desc);
 }
@@ -146,7 +176,7 @@ std::array<std::vector<ap_uint<64>>, 4> Stage2FileWriter::encodeTowersAndCluster
     if ( sector == 1 ) sector = 2;
     else if ( sector == 2 ) sector = 1;
   }
-  std::cout << "Sectors : " << iSector << " " << zside << " " << sector << std::endl;
+  // std::cout << "Sectors : " << iSector << " " << zside << " " << sector << std::endl;
 
   // First frame empty for alignment
   ap_uint<64> packetHeader = 0;
@@ -174,7 +204,7 @@ std::array<std::vector<ap_uint<64>>, 4> Stage2FileWriter::encodeTowersAndCluster
 
     ++iCluster;
     if ( iCluster > 160 ) break;
-    std::cout << "Adding cluster, sector : " << sector << " " << cl3d_itr->pt() << " " << cl3d_itr->eta() << " " << cl3d_itr->phi() << std::endl;
+    // std::cout << "Adding cluster, sector : " << sector << " " << cl3d_itr->pt() << " " << cl3d_itr->eta() << " " << cl3d_itr->phi() << std::endl;
     //  << " " << cl3d_itr->getHwData()[0].to_string() << std::endl;
     // std::cout << "Phi, eta : " << cl3d_itr->phi() << " " << cl3d_itr->eta() << " " << cl3d_itr->getHwData()[1].to_string() << std::endl;
     const auto& clusterWords = cl3d_itr->getHwData();
@@ -184,6 +214,45 @@ std::array<std::vector<ap_uint<64>>, 4> Stage2FileWriter::encodeTowersAndCluster
     output[3].push_back( clusterWords[3].to_ulong() );
   }
 
+  return output;
+}
+
+std::array<std::vector<ap_uint<64>>, 8> Stage2FileWriter::encodeClusterSumRecord(const l1t::HGCalMulticlusterBxCollection& clusters, const unsigned int iSector ) {
+
+  std::array<std::vector<ap_uint<64>>, 8> output;
+
+  // Decode which zside and sector we are extracting data for
+  int zside = (iSector > 2) ? 1 : -1;
+  unsigned int sector = iSector % 3;
+  if ( zside == 1 ) {
+    if ( sector == 1 ) sector = 2;
+    else if ( sector == 2 ) sector = 1;
+  }
+  std::cout << "Sectors : " << iSector << " " << zside << " " << sector << std::endl;
+
+  for (auto cl3d_itr = clusters.begin(0); cl3d_itr != clusters.end(0); cl3d_itr++) {
+    if ( cl3d_itr->getHwZSide() != zside ) continue;
+    if ( cl3d_itr->getHwSector() != sector ) continue;
+
+    // ++iCluster;
+    // if ( iCluster > 160 ) break;
+    std::cout << "Adding cluster, sector : " << sector << " " << cl3d_itr->pt() << " " << cl3d_itr->eta() << " " << cl3d_itr->phi() << std::endl;
+    //  << " " << cl3d_itr->getHwData()[0].to_string() << std::endl;
+    // std::cout << "Phi, eta : " << cl3d_itr->phi() << " " << cl3d_itr->eta() << " " << cl3d_itr->getHwData()[1].to_string() << std::endl;
+    const auto& clusterSumWords = cl3d_itr->getHwClusterSumData();
+    for ( unsigned iWord = 0; iWord < 8; ++iWord ) {
+      std::cout << "Cluster sum word : " << iWord << " " << clusterSumWords[iWord] << std::endl;
+      output[iWord].push_back( clusterSumWords[iWord].to_ulong() );
+    }
+  }
+  std::cout << "Added all clusters" << std::endl;
+
+  // Add dummy entry if there weren't any cluster sums in this sector in this event
+  if ( output[0].size() == 0 ) {
+    for ( unsigned iWord = 0; iWord < 8; ++iWord ) {
+      output[iWord].push_back( 0 );
+    }
+  }
   return output;
 }
 

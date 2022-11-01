@@ -239,6 +239,9 @@ void HGCalHistoClusteringWrapper::convertAlgorithmOutputs(
     multicluster.setHwSector( sector );
     multicluster.setHwZSide( theConfiguration_.zSide() );
 
+    const auto hwClusterSumData = cluster->formatClusterSumWords( theConfiguration_ );
+    multicluster.setHwClusterSumData( hwClusterSumData );
+
     multiClusters_out.push_back(0, multicluster);
   }
 }

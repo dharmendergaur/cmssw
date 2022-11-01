@@ -10,6 +10,8 @@
 #include <bitset>
 #include <array>
 
+#include "ap_int.h"
+
 namespace l1thgcfirmware {
 
   class HGCalCluster {
@@ -79,8 +81,9 @@ namespace l1thgcfirmware {
     // Firmware representation of cluster sum (input to cluster properties step)
     static constexpr int clusterSumWordLength = 64;
     static constexpr int nWordsPerClusterSum = 8;
-    typedef std::bitset<wordLength> ClusterSumWord;
-    typedef std::array<ClusterSumWord, nWordsPerCluster> ClusterSumWords;
+    static constexpr int allClusterSumWordsLength = clusterSumWordLength * nWordsPerClusterSum;
+    typedef std::bitset<clusterSumWordLength> ClusterSumWord;
+    typedef std::array<ClusterSumWord, nWordsPerClusterSum> ClusterSumWords;
 
     std::pair<unsigned int, unsigned int> sigma_energy(unsigned int N_TC_W,
                                                        unsigned long int Sum_W2,

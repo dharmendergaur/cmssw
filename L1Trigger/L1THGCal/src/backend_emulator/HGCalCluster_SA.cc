@@ -128,11 +128,11 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
   // eta *= theConfiguration_.zSide();
 
   // Interface document definition (old?)
-  eta -= 1.5; 
-  int l1Eta = eta / ETAPHI_LSB;
-  const TTBV hw_Eta(l1Eta, 9, false);
-  double etaTemp = eta - 1.5;
-  const TTBV hw_Eta_interface(int(etaTemp / ETAPHI_LSB), 9, false);
+  // eta -= 1.5; 
+  // int l1Eta = eta / ETAPHI_LSB;
+  // const TTBV hw_Eta(l1Eta, 9, false);
+  // double etaTemp = eta - 1.5;
+  // const TTBV hw_Eta_interface(int(etaTemp / ETAPHI_LSB), 9, false);
 
   // Current correlator definition
   // eta -= 2.25;
@@ -141,25 +141,24 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
   // std::cout << "Global eta, l1 eta : " << -1.0 * std::log( tan( atan( rOverZ ) / 2 ) ) << " " << l1Eta << " " << hw_Eta.str() << std::endl;
   // int l1Phi = ( ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues() - M_PI/3 )  / ETAPHI_LSB;
 
-  double phi = ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues();
-  if ( config.zSide() == 1 ) {
-    phi = M_PI - phi;
-  }
-  // phi -= ( phi > M_PI ) ? 2 * M_PI : 0;
-
-  int l1Phi = round( ( phi - M_PI/2  )  / ETAPHI_LSB );
+  const TTBV hw_Eta(0, 9, true);
 
 
-  // std::cout << "Global phi, l1 phi : " << ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues() << " " << l1Phi << std::endl;
+  // double phi = ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues();
+  // if ( config.zSide() == 1 ) {
+  //   phi = M_PI - phi;
+  // }
+  // // phi -= ( phi > M_PI ) ? 2 * M_PI : 0;
 
-  // std::cout << "Phi : " << 1.0 * wphi() / w() << " " << Mean_phi_Quotient() << " " << Mean_phi_Fraction() << td::endl;
-  // std::cout << l1Phi << std::endl;
-  const TTBV hw_Phi(l1Phi, 9, true);
+  // int l1Phi = round( ( phi - M_PI/2  )  / ETAPHI_LSB );
+  // const TTBV hw_Phi(l1Phi, 9, true);
+
+  const TTBV hw_Phi(0, 9, true);
   const TTBV hw_z(0, 12);
   const TTBV hw_spare1(0, 2);
 
-  // const TTBV hw_nTCs(int(n_tc()), 10);
-  const TTBV hw_nTCs(0, 10);
+  const TTBV hw_nTCs(int(n_tc()), 10);
+  // const TTBV hw_nTCs(0, 10);
   const TTBV hw_qualityFlags(0, 10);
   const TTBV hw_spare2(0, 12);
 
@@ -192,7 +191,86 @@ void HGCalCluster::clearClusterSumWords() {
   }
 }
 
-HGCalCluster::ClusterWords HGCalCluster::formatClusterSumWords( const ClusterAlgoConfig& config ) {
+HGCalCluster::ClusterSumWords HGCalCluster::formatClusterSumWords( const ClusterAlgoConfig& config ) {
   clearClusterSumWords();
+
+  const unsigned nb_nTCs = 10;
+  const unsigned nb_e = 22;
+  const unsigned nb_e_em = 22;
+  const unsigned nb_e_em_core = 22;
+  const unsigned nb_e_h_early = 22;
+
+  const unsigned nb_w = 16;
+  const unsigned nb_n_tc_w = 10;
+  const unsigned nb_w2 = 32;
+  const unsigned nb_wz = 29;
+  const unsigned nb_weta = 26;
+  const unsigned nb_wphi = 28;
+  const unsigned nb_wroz = 29;
+
+  const unsigned nb_wz2 = 42;
+  const unsigned nb_weta2 = 36;
+  const unsigned nb_wphi2 = 40;
+  const unsigned nb_wroz2 = 42;
+  const unsigned nb_layerbits = 36;
+  const unsigned nb_sat_tc = 1;
+  const unsigned nb_shapeq = 1;
+
+  ap_uint<nb_nTCs> hw_nTCs = n_tc();
+  ap_uint<nb_e> hw_e = e();
+  ap_uint<nb_e_em> hw_e_em = 0;
+  ap_uint<nb_e_em_core> hw_e_em_core = 0;
+  ap_uint<nb_e_h_early> hw_e_h_early = 0;
+
+  ap_uint<nb_w> hw_w = w();
+  ap_uint<nb_n_tc_w> hw_n_tc_w = n_tc_w();
+  ap_uint<nb_w2> hw_w2 = w2();
+  ap_uint<nb_wz> hw_wz = 0;
+  ap_uint<nb_weta> hw_weta = 0;
+  ap_uint<nb_wphi> hw_wphi = 0;
+  ap_uint<nb_wroz> hw_wroz = 0;
+
+  ap_uint<nb_wz2> hw_wz2 = 0;
+  ap_uint<nb_weta2> hw_weta2 = 0;
+  ap_uint<nb_wphi2> hw_wphi2 = 0;
+  ap_uint<nb_wroz2> hw_wroz2 = 0;
+  ap_uint<nb_layerbits> hw_layerbits = 0;
+  ap_uint<nb_sat_tc> hw_sat_tc = 0;
+  ap_uint<nb_shapeq> hw_shapeq = 0;
+
+  const ap_uint<allClusterSumWordsLength> clusterSumRecord = (
+    hw_shapeq,
+    hw_sat_tc,
+    hw_layerbits,
+    hw_wroz2,
+    hw_wphi2,
+    hw_weta2,
+    hw_wz2,
+    hw_wroz,
+    hw_wphi,
+    hw_weta,
+    hw_wz,
+    hw_w2,
+    hw_n_tc_w,
+    hw_w,
+    hw_e_h_early,
+    hw_e_em_core,
+    hw_e_em,
+    hw_e,
+    hw_nTCs
+  );
+
+  for ( unsigned iWord = 0; iWord < nWordsPerClusterSum; ++iWord ) {
+    ClusterSumWord word = clusterSumRecord.range((iWord+1)*(clusterSumWordLength)-1,iWord*clusterSumWordLength).to_ulong();
+    packedData_clustersSums_[iWord] = word;
+  }
+  // std::cout << "=== Cluster info ===" << std::endl;
+  // std::cout << "NTCs : " << n_tc() << " " << hw_nTCs << " " << hw_nTCs.to_string() << std::endl;
+  // std::cout << "E : " << e() << " " << hw_e << " " << hw_e.to_string() << std::endl;
+  // std::cout << "w : " << w() << " " << hw_w << " " << hw_w.to_string() << std::endl;
+  // std::cout << "n_tc_w : " << n_tc_w() << " " << hw_n_tc_w << " " << hw_n_tc_w.to_string() << std::endl;
+  // std::cout << "w2 : " << w2() << " " << hw_w2 << " " << hw_w2.to_string() << std::endl;
+  // std::cout << "Cluster sum record : " << clusterSumRecord << " " << clusterSumRecord.to_string()<< std::endl;
+
   return packedData_clustersSums_;
 }
