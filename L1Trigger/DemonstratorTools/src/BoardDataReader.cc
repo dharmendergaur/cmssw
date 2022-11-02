@@ -75,14 +75,14 @@ namespace l1t::demo {
 
             bool expectValid(((j - framesBeforeFirstPacket) % eventLength) < packetLength);
 
-            if (expectValid) {
-              if (not chanData.at(j).valid)
-                throw std::runtime_error("Frame " + std::to_string(j) + " on channel " +
-                                         std::to_string(indices.at(tmuxIndex)) +
-                                         " is invalid, but expected valid frame");
-            } else if (chanData.at(j).valid)
-              throw std::runtime_error("Frame " + std::to_string(j) + " on channel " +
-                                       std::to_string(indices.at(tmuxIndex)) + " is valid, but expected invalid frame");
+            // if (expectValid) {
+            //   if (not chanData.at(j).valid)
+            //     throw std::runtime_error("Frame " + std::to_string(j) + " on channel " +
+            //                              std::to_string(indices.at(tmuxIndex)) +
+            //                              " is invalid, but expected valid frame");
+            // } else if (chanData.at(j).valid)
+            //   throw std::runtime_error("Frame " + std::to_string(j) + " on channel " +
+            //                            std::to_string(indices.at(tmuxIndex)) + " is valid, but expected invalid frame");
           }
         }
       }
@@ -105,6 +105,10 @@ namespace l1t::demo {
             break;
           }
 
+          if ( !chanData.at(framesBeforeEvent).valid ) {
+            eventIncomplete = true;
+            break;
+          }
           std::vector<ap_uint<64>> chanEventData(packetLength);
           for (size_t j = 0; j < packetLength; j++)
             chanEventData.at(j) = chanData.at(framesBeforeEvent + j).data;
