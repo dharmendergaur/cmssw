@@ -150,9 +150,12 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetEG(const edm::Handle<l1t::EGammaBxCo
       l1extra_.EGHwQual.push_back(it->hwQual());
       l1extra_.EGBx.push_back(0);  //it->bx());
       l1extra_.EGHGC.push_back(1);
-      bool quality = (it->hwQual() == 3);
-      l1extra_.EGPassesLooseTrackID.push_back(quality);
-      l1extra_.EGPassesPhotonID.push_back(quality);
+      bool quality = ((it->hwQual() >> 0) & 1) > 0;
+      l1extra_.EGPassesTightSaID.push_back(quality);
+      quality = ((it->hwQual() >> 1) & 1) > 0;
+      l1extra_.EGPassesTightElID.push_back(quality);
+      quality = ((it->hwQual() >> 2) & 1) > 0;
+      l1extra_.EGPassesTightPhotonID.push_back(quality);
       l1extra_.nEG++;
     }
   }
@@ -210,9 +213,12 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetTkEG(const edm::Handle<l1t::TkElectr
       l1extra_.tkElectronEGRefPhi.push_back(it->EGRef()->phi());
       l1extra_.tkElectronBx.push_back(0);  //it->bx());
       l1extra_.tkElectronHGC.push_back(1);
-      bool quality = (it->EGRef()->hwQual() == 3);
-      l1extra_.tkElectronPassesLooseTrackID.push_back(quality);
-      l1extra_.tkElectronPassesPhotonID.push_back(quality);
+      bool quality = ((it->hwQual() >> 0) & 1) > 0;
+      l1extra_.tkElectronPassesTightSaID.push_back(quality);
+      quality = ((it->hwQual() >> 1) & 1) > 0;
+      l1extra_.tkElectronPassesTightElID.push_back(quality);
+      quality = ((it->hwQual() >> 2) & 1) > 0;
+      l1extra_.tkElectronPassesTightPhotonID.push_back(quality);
       l1extra_.nTkElectrons++;
     }
   }
@@ -268,9 +274,12 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetTkEM(const edm::Handle<l1t::TkEmColl
       l1extra_.tkPhotonEGRefEta.push_back(it->EGRef()->eta());
       l1extra_.tkPhotonEGRefPhi.push_back(it->EGRef()->phi());
       l1extra_.tkPhotonHGC.push_back(1);
-      bool quality = (it->EGRef()->hwQual() == 3);
-      l1extra_.tkPhotonPassesLooseTrackID.push_back(quality);
-      l1extra_.tkPhotonPassesPhotonID.push_back(quality);
+      bool quality = ((it->hwQual() >> 0) & 1) > 0;
+      l1extra_.tkPhotonPassesTightSaID.push_back(quality);
+      quality = ((it->hwQual() >> 1) & 1) > 0;
+      l1extra_.tkPhotonPassesTightElID.push_back(quality);
+      quality = ((it->hwQual() >> 2) & 1) > 0;
+      l1extra_.tkPhotonPassesTightPhotonID.push_back(quality);
       l1extra_.nTkPhotons++;
     }
   }

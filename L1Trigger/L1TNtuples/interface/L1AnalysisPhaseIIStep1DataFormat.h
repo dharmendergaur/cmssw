@@ -96,6 +96,9 @@ namespace L1Analysis {
       EGHGC.clear();
       EGPassesLooseTrackID.clear();
       EGPassesPhotonID.clear();
+      EGPassesTightSaID.clear();
+      EGPassesTightElID.clear();
+      EGPassesTightPhotonID.clear();
 
       nTkElectrons = 0;
       tkElectronPt.clear();
@@ -115,6 +118,10 @@ namespace L1Analysis {
       tkElectronHGC.clear();
       tkElectronPassesLooseTrackID.clear();
       tkElectronPassesPhotonID.clear();
+      tkElectronPassesTightSaID.clear();
+      tkElectronPassesTightElID.clear();
+      tkElectronPassesTightPhotonID.clear();
+
 
       nTkPhotons = 0;
       tkPhotonPt.clear();
@@ -136,6 +143,10 @@ namespace L1Analysis {
       tkPhotonHGC.clear();
       tkPhotonPassesLooseTrackID.clear();
       tkPhotonPassesPhotonID.clear();
+      tkPhotonPassesTightSaID.clear();
+      tkPhotonPassesTightElID.clear();
+      tkPhotonPassesTightPhotonID.clear();
+
 
       /*
       nStandaloneMuons = 0;
@@ -400,6 +411,10 @@ namespace L1Analysis {
     std::vector<unsigned int> EGHGC;
     std::vector<unsigned int> EGPassesLooseTrackID;
     std::vector<unsigned int> EGPassesPhotonID;
+    std::vector<unsigned int>  EGPassesTightSaID;
+    std::vector<unsigned int>  EGPassesTightElID;
+    std::vector<unsigned int>  EGPassesTightPhotonID;
+ 
 
     unsigned int nTkElectrons;
     std::vector<double> tkElectronPt;
@@ -419,6 +434,10 @@ namespace L1Analysis {
     std::vector<unsigned int> tkElectronHGC;
     std::vector<unsigned int> tkElectronPassesLooseTrackID;
     std::vector<unsigned int> tkElectronPassesPhotonID;
+    std::vector<unsigned int> tkElectronPassesTightSaID; 
+    std::vector<unsigned int> tkElectronPassesTightElID;
+    std::vector<unsigned int> tkElectronPassesTightPhotonID;
+
 
     unsigned int nTkPhotons;
     std::vector<double> tkPhotonPt;
@@ -440,6 +459,10 @@ namespace L1Analysis {
     std::vector<unsigned int> tkPhotonHGC;
     std::vector<unsigned int> tkPhotonPassesLooseTrackID;
     std::vector<unsigned int> tkPhotonPassesPhotonID;
+    std::vector<unsigned int> tkPhotonPassesTightSaID; 
+    std::vector<unsigned int> tkPhotonPassesTightElID;
+    std::vector<unsigned int> tkPhotonPassesTightPhotonID;
+
 
     /*
     unsigned short int nStandaloneMuons;
