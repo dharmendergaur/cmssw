@@ -94,11 +94,9 @@ namespace L1Analysis {
       EGzVtx.clear();
       EGHwQual.clear();
       EGHGC.clear();
-      EGPassesLooseTrackID.clear();
-      EGPassesPhotonID.clear();
-      EGPassesTightSaID.clear();
-      EGPassesTightElID.clear();
-      EGPassesTightPhotonID.clear();
+      EGPassesSaID.clear();
+      EGPassesEleID.clear();
+      EGPassesPhoID.clear();
 
       nTkElectrons = 0;
       tkElectronPt.clear();
@@ -116,11 +114,9 @@ namespace L1Analysis {
       tkElectronEGRefEta.clear();
       tkElectronEGRefPhi.clear();
       tkElectronHGC.clear();
-      tkElectronPassesLooseTrackID.clear();
-      tkElectronPassesPhotonID.clear();
-      tkElectronPassesTightSaID.clear();
-      tkElectronPassesTightElID.clear();
-      tkElectronPassesTightPhotonID.clear();
+      tkElectronPassesSaID.clear();
+      tkElectronPassesEleID.clear();
+      tkElectronPassesPhoID.clear();
 
 
       nTkPhotons = 0;
@@ -141,11 +137,9 @@ namespace L1Analysis {
       tkPhotonEGRefEta.clear();
       tkPhotonEGRefPhi.clear();
       tkPhotonHGC.clear();
-      tkPhotonPassesLooseTrackID.clear();
-      tkPhotonPassesPhotonID.clear();
-      tkPhotonPassesTightSaID.clear();
-      tkPhotonPassesTightElID.clear();
-      tkPhotonPassesTightPhotonID.clear();
+      tkPhotonPassesSaID.clear();
+      tkPhotonPassesEleID.clear();
+      tkPhotonPassesPhoID.clear();
 
 
       /*
@@ -409,11 +403,9 @@ namespace L1Analysis {
     std::vector<double> EGzVtx;
     std::vector<int> EGHwQual;
     std::vector<unsigned int> EGHGC;
-    std::vector<unsigned int> EGPassesLooseTrackID;
-    std::vector<unsigned int> EGPassesPhotonID;
-    std::vector<unsigned int>  EGPassesTightSaID;
-    std::vector<unsigned int>  EGPassesTightElID;
-    std::vector<unsigned int>  EGPassesTightPhotonID;
+    std::vector<unsigned int>  EGPassesSaID;
+    std::vector<unsigned int>  EGPassesEleID;
+    std::vector<unsigned int>  EGPassesPhoID;
  
 
     unsigned int nTkElectrons;
@@ -432,11 +424,9 @@ namespace L1Analysis {
     std::vector<double> tkElectronEGRefEta;
     std::vector<double> tkElectronEGRefPhi;
     std::vector<unsigned int> tkElectronHGC;
-    std::vector<unsigned int> tkElectronPassesLooseTrackID;
-    std::vector<unsigned int> tkElectronPassesPhotonID;
-    std::vector<unsigned int> tkElectronPassesTightSaID; 
-    std::vector<unsigned int> tkElectronPassesTightElID;
-    std::vector<unsigned int> tkElectronPassesTightPhotonID;
+    std::vector<unsigned int> tkElectronPassesSaID; 
+    std::vector<unsigned int> tkElectronPassesEleID;
+    std::vector<unsigned int> tkElectronPassesPhoID;
 
 
     unsigned int nTkPhotons;
@@ -457,11 +447,9 @@ namespace L1Analysis {
     std::vector<double> tkPhotonEGRefEta;
     std::vector<double> tkPhotonEGRefPhi;
     std::vector<unsigned int> tkPhotonHGC;
-    std::vector<unsigned int> tkPhotonPassesLooseTrackID;
-    std::vector<unsigned int> tkPhotonPassesPhotonID;
-    std::vector<unsigned int> tkPhotonPassesTightSaID; 
-    std::vector<unsigned int> tkPhotonPassesTightElID;
-    std::vector<unsigned int> tkPhotonPassesTightPhotonID;
+    std::vector<unsigned int> tkPhotonPassesSaID; 
+    std::vector<unsigned int> tkPhotonPassesEleID;
+    std::vector<unsigned int> tkPhotonPassesPhoID;
 
 
     /*
