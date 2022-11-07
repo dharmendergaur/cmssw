@@ -26,6 +26,8 @@
 #include "L1Trigger/L1TNtuples/interface/L1AnalysisBMTFInputsDataFormat.h"
 #include "L1Trigger/L1TNtuples/interface/L1AnalysisL1HODataFormat.h"
 
+#include "L1Trigger/L1TNtuples/interface/L1AnalysisPhaseIIStep1DataFormat.h"
+
 #include "L1Trigger/L1TNtuples/interface/L1AnalysisRecoTauDataFormat.h"
 #include "L1Trigger/L1TNtuples/interface/L1AnalysisRecoMuon2DataFormat.h"
 #include "L1Trigger/L1TNtuples/interface/L1AnalysisRecoElectronDataFormat.h"
