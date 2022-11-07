@@ -27,6 +27,9 @@
 <class name="L1Analysis::L1AnalysisL1HODataFormat"/>
 <class name="L1Analysis::L1AnalysisL1CaloClusterDataFormat"/>
 
+<class name="L1Analysis::L1AnalysisPhaseIIStep1DataFormat"/>
+
+
 <class name="L1Analysis::L1AnalysisRecoTauDataFormat"/>
 <class name="L1Analysis::L1AnalysisRecoMuon2DataFormat"/>
 <class name="L1Analysis::L1AnalysisRecoElectronDataFormat"/>
