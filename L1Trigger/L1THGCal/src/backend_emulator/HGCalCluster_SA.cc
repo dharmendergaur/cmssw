@@ -91,89 +91,166 @@ HGCalCluster::ClusterWords HGCalCluster::formatClusterWords( const ClusterAlgoCo
 
 HGCalCluster::ClusterWord HGCalCluster::formatFirstWord( const ClusterAlgoConfig& config ) {
 
-  int pt = round(e()/config.ptDigiFactor()/0.25);
-  const TTBV hw_Et(pt, 14, false);
-  // std::cout << "Converting pt : " << e() << " " << e()/config.ptDigiFactor() << " " << round(e()/config.ptDigiFactor())/0.25 << " " << hw_Et.str() << std::endl;
-  const TTBV hw_EtEgamma(0, 14);
-  const TTBV hw_GCTSelectBits(0, 4);
+  const unsigned nb_e = 14;
+  const unsigned nb_e_em = 14;
+  const unsigned nb_gctEGSelectBits = 4;
+  const unsigned nb_fractionInCE_E = 8;
+  const unsigned nb_fractionInCoreCE_E = 8;
+  const unsigned nb_fractionInEarlyCE_H = 8;
+  const unsigned nb_firstLayer = 6;
+  const unsigned nb_spare = 2;
 
-  // const TTBV hw_fracCEE(int(E_EM_over_E_Fraction()), 8);
-  // const TTBV hw_fracCEECore(int(E_EM_core_over_E_EM_Fraction()), 8);
-  // const TTBV hw_fracCEHFront(int(E_H_early_over_E_Fraction()), 8);
-  const TTBV hw_fracCEE(0, 8);
-  const TTBV hw_fracCEECore(0, 8);
-  const TTBV hw_fracCEHFront(0, 8);
-  const TTBV hw_firstLayerZ(0, 6);
-  const TTBV hw_spare(0, 2);
+  unsigned et = round(float(e())/256);
+  ap_uint<nb_e> hw_e = et;
+  unsigned et_em = round(float(e_em())/256);
+  ap_uint<nb_e_em> hw_e_em = et_em;
 
-  ClusterWord clusterWord = TTBV(
-    hw_spare +
-    hw_firstLayerZ + 
-    hw_fracCEHFront + 
-    hw_fracCEECore + 
-    hw_fracCEECore + 
-    hw_GCTSelectBits + 
-    hw_EtEgamma + 
-    hw_Et
-    ).bs();
+  ap_uint<nb_fractionInCE_E> hw_fractionInCE_E = round( 128 * float(e_em()) / e() );
+  ap_uint<nb_fractionInCoreCE_E> hw_fractionInCoreCE_E = round( 128 * float(e_em_core()) / e_em() );
+  ap_uint<nb_fractionInEarlyCE_H> hw_fractionInEarlyCE_H = round( 128 * float(e_h_early()) / e() );
 
-  return clusterWord;
+  ap_uint<1> gctBit0 = hw_fractionInCE_E > 64;
+  ap_uint<1> gctBit1 = hw_fractionInCoreCE_E > 64;
+  ap_uint<1> gctBit2 = hw_fractionInEarlyCE_H > 64;
+  ap_uint<1> gctBit3 = et_em > 64;
+  ap_uint<4> gctSelectBits = (gctBit3, gctBit2, gctBit1, gctBit0);
+
+  ap_uint<nb_firstLayer> hw_firstLayer = firstLayer();
+  ap_uint<nb_spare> hw_spare = 0;
+
+
+  const ap_uint<wordLength> clusterWord = (
+    hw_spare,
+    hw_firstLayer,
+    hw_fractionInEarlyCE_H,
+    hw_fractionInCoreCE_E,
+    hw_fractionInCE_E,
+    gctSelectBits,
+    hw_e_em,
+    hw_e
+  );
+
+  return clusterWord.to_ulong();
 }
 HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfig& config ) {
 
-  // Not being careful with round/floor here
-  constexpr float ETAPHI_LSB = M_PI / 720;
-  double rOverZ = ( 1.0 * wroz() / w() ) * config.rOverZRange() / config.rOverZNValues();
-  double eta = -1.0 * std::log( tan( atan( rOverZ ) / 2 ) );
-  // eta *= theConfiguration_.zSide();
+  const unsigned nb_eta = 9;
+  const unsigned nb_phi = 9;
+  const unsigned nb_z = 14;
+  const unsigned nb_nTC = 10;
+  const unsigned nb_satTC = 1;
+  const unsigned nb_qualFracCE_E = 1;
+  const unsigned nb_qualFracCoreCE_E = 1;
+  const unsigned nb_qualFracEarlyCE_H = 1;
+  const unsigned nb_qualSigmasMeans = 1;
+  const unsigned nb_satPhi = 1;
+  const unsigned nb_nominalPhi = 1;
+  const unsigned nb_spare = 15;
 
-  // Interface document definition (old?)
-  // eta -= 1.5; 
-  // int l1Eta = eta / ETAPHI_LSB;
-  // const TTBV hw_Eta(l1Eta, 9, false);
-  // double etaTemp = eta - 1.5;
-  // const TTBV hw_Eta_interface(int(etaTemp / ETAPHI_LSB), 9, false);
+  ap_uint<nb_eta> hw_eta = 317;// round( float(weta()) / w() ) + 317;
+  ap_int<nb_phi> hw_phi = 0;
+  ap_uint<nb_z> hw_z = 0;
+  ap_uint<nb_nTC> hw_nTC = n_tc();
+  ap_uint<nb_satTC> hw_satTC = sat_tc();
+  ap_uint<nb_qualFracCE_E> hw_qualFracCE_E = e() != 0x3FFFFF && e_em() != 0x3FFFFF;
+  ap_uint<nb_qualFracCoreCE_E> hw_qualFracCoreCE_E = e_em_core() != 0x3FFFFF && e_em() != 0x3FFFFF;
+  ap_uint<nb_qualFracEarlyCE_H> hw_qualFracEarlyCE_H = e_h_early() != 0x3FFFFF && e() != 0x3FFFFF;
+  ap_uint<nb_qualSigmasMeans> hw_qualSigmasMeans = shapeq();
+  ap_uint<nb_satPhi> hw_satPhi = 0;
+  ap_uint<nb_nominalPhi> hw_nominalPhi = 0;
+  ap_uint<nb_spare> hw_spare = 0;
 
-  // Current correlator definition
-  // eta -= 2.25;
-  // int l1Eta = round( eta / ETAPHI_LSB );
-  // const TTBV hw_Eta(l1Eta, 9, true);
-  // std::cout << "Global eta, l1 eta : " << -1.0 * std::log( tan( atan( rOverZ ) / 2 ) ) << " " << l1Eta << " " << hw_Eta.str() << std::endl;
-  // int l1Phi = ( ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues() - M_PI/3 )  / ETAPHI_LSB;
+  const int hw_phi10b = int( (float(wphi()) / w()) * (5./24) ) - 360;
+  if( hw_phi10b > 255 ) {
+    hw_phi = 255;
+    hw_satPhi = 1;
+  }
+  else if ( hw_phi10b < -256 ) {
+    hw_phi = -256;
+    hw_satPhi = 1;
+  }
+  else {
+    hw_phi = hw_phi10b;
+    hw_satPhi = 0;
+  }
+  hw_nominalPhi = ( hw_phi10b < 240 ) && ( hw_phi10b > -241 );
+  std::cout << "E, nTC : " << e() << " " << n_tc() << std::endl;
+  std::cout << "Eta : " << hw_eta << " " << hw_eta.to_string() << std::endl;
+  std::cout << "Phi : " << hw_phi << " " << hw_phi.to_string() << std::endl;
+  std::cout << "Sat phi : " << hw_satPhi << std::endl;
+  std::cout << "Nominal phi : " << hw_nominalPhi << std::endl;
 
-  const TTBV hw_Eta(0, 9, true);
+
+  hw_z = round( float(wz()) / w() ) + ( 3221 * 2 );
+
+  const ap_uint<wordLength> clusterWord = (
+    hw_spare,
+    hw_nominalPhi,
+    hw_satPhi,
+    hw_qualSigmasMeans,
+    hw_qualFracEarlyCE_H,
+    hw_qualFracCoreCE_E,
+    hw_qualFracCE_E,
+    hw_satTC,
+    hw_nTC,
+    hw_z,
+    hw_phi,
+    hw_eta
+  );
+  std::cout << "Cluster word : " << clusterWord << " " << clusterWord.to_string() << std::endl;
+  // // Not being careful with round/floor here
+  // constexpr float ETAPHI_LSB = M_PI / 720;
+  // double rOverZ = ( 1.0 * wroz() / w() ) * config.rOverZRange() / config.rOverZNValues();
+  // double eta = -1.0 * std::log( tan( atan( rOverZ ) / 2 ) );
+  // // eta *= theConfiguration_.zSide();
+
+  // // Interface document definition (old?)
+  // // eta -= 1.5; 
+  // // int l1Eta = eta / ETAPHI_LSB;
+  // // const TTBV hw_Eta(l1Eta, 9, false);
+  // // double etaTemp = eta - 1.5;
+  // // const TTBV hw_Eta_interface(int(etaTemp / ETAPHI_LSB), 9, false);
+
+  // // Current correlator definition
+  // // eta -= 2.25;
+  // // int l1Eta = round( eta / ETAPHI_LSB );
+  // // const TTBV hw_Eta(l1Eta, 9, true);
+  // // std::cout << "Global eta, l1 eta : " << -1.0 * std::log( tan( atan( rOverZ ) / 2 ) ) << " " << l1Eta << " " << hw_Eta.str() << std::endl;
+  // // int l1Phi = ( ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues() - M_PI/3 )  / ETAPHI_LSB;
+
+  // const TTBV hw_Eta(0, 9, true);
 
 
-  // double phi = ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues();
-  // if ( config.zSide() == 1 ) {
-  //   phi = M_PI - phi;
-  // }
-  // // phi -= ( phi > M_PI ) ? 2 * M_PI : 0;
+  // // double phi = ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues();
+  // // if ( config.zSide() == 1 ) {
+  // //   phi = M_PI - phi;
+  // // }
+  // // // phi -= ( phi > M_PI ) ? 2 * M_PI : 0;
 
-  // int l1Phi = round( ( phi - M_PI/2  )  / ETAPHI_LSB );
-  // const TTBV hw_Phi(l1Phi, 9, true);
+  // // int l1Phi = round( ( phi - M_PI/2  )  / ETAPHI_LSB );
+  // // const TTBV hw_Phi(l1Phi, 9, true);
 
-  const TTBV hw_Phi(0, 9, true);
-  const TTBV hw_z(0, 12);
-  const TTBV hw_spare1(0, 2);
+  // const TTBV hw_Phi(0, 9, true);
+  // const TTBV hw_z(0, 12);
+  // const TTBV hw_spare1(0, 2);
 
-  const TTBV hw_nTCs(int(n_tc()), 10);
-  // const TTBV hw_nTCs(0, 10);
-  const TTBV hw_qualityFlags(0, 10);
-  const TTBV hw_spare2(0, 12);
+  // const TTBV hw_nTCs(int(n_tc()), 10);
+  // // const TTBV hw_nTCs(0, 10);
+  // const TTBV hw_qualityFlags(0, 10);
+  // const TTBV hw_spare2(0, 12);
 
-  // ClusterWord clusterWord = TTBV(hw_Eta + hw_Phi + hw_z + hw_spare1 + hw_nTCs + hw_qualityFlags + hw_spare2).bs();
-  ClusterWord clusterWord = TTBV(    
-    hw_spare2 +
-    hw_qualityFlags +
-    hw_nTCs + 
-    hw_spare1 + 
-    hw_z + 
-    hw_Phi + 
-    hw_Eta
-    ).bs();
+  // // ClusterWord clusterWord = TTBV(hw_Eta + hw_Phi + hw_z + hw_spare1 + hw_nTCs + hw_qualityFlags + hw_spare2).bs();
+  // ClusterWord clusterWord = TTBV(    
+  //   hw_spare2 +
+  //   hw_qualityFlags +
+  //   hw_nTCs + 
+  //   hw_spare1 + 
+  //   hw_z + 
+  //   hw_Phi + 
+  //   hw_Eta
+  //   ).bs();
 
-  return clusterWord;
+  return clusterWord.to_ulong();
 }
 HGCalCluster::ClusterWord HGCalCluster::formatThirdWord( const ClusterAlgoConfig& config ) {
   ClusterWord clusterWord = 0;
@@ -218,16 +295,16 @@ HGCalCluster::ClusterSumWords HGCalCluster::formatClusterSumWords( const Cluster
 
   ap_uint<nb_nTCs> hw_nTCs = n_tc();
   ap_uint<nb_e> hw_e = e();
-  ap_uint<nb_e_em> hw_e_em = 0;
-  ap_uint<nb_e_em_core> hw_e_em_core = 0;
-  ap_uint<nb_e_h_early> hw_e_h_early = 0;
+  ap_uint<nb_e_em> hw_e_em = e_em();
+  ap_uint<nb_e_em_core> hw_e_em_core = e_em_core();
+  ap_uint<nb_e_h_early> hw_e_h_early = e_h_early();
 
   ap_uint<nb_w> hw_w = w();
   ap_uint<nb_n_tc_w> hw_n_tc_w = n_tc_w();
-  ap_uint<nb_w2> hw_w2 = w2();
+  ap_uint<nb_w2> hw_w2 = 0; //w2();
   ap_uint<nb_wz> hw_wz = 0;
   ap_uint<nb_weta> hw_weta = 0;
-  ap_uint<nb_wphi> hw_wphi = 0;
+  ap_uint<nb_wphi> hw_wphi = wphi();
   ap_uint<nb_wroz> hw_wroz = 0;
 
   ap_uint<nb_wz2> hw_wz2 = 0;
