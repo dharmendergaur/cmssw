@@ -113,7 +113,7 @@ HGCalCluster::ClusterWord HGCalCluster::formatFirstWord( const ClusterAlgoConfig
   ap_uint<1> gctBit1 = hw_fractionInCoreCE_E > 64;
   ap_uint<1> gctBit2 = hw_fractionInEarlyCE_H > 64;
   ap_uint<1> gctBit3 = et_em > 64;
-  ap_uint<4> gctSelectBits = (gctBit3, gctBit2, gctBit1, gctBit0);
+  ap_uint<nb_gctEGSelectBits> gctSelectBits = (gctBit3, gctBit2, gctBit1, gctBit0);
 
   ap_uint<nb_firstLayer> hw_firstLayer = firstLayer();
   ap_uint<nb_spare> hw_spare = 0;
@@ -174,13 +174,6 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
     hw_satPhi = 0;
   }
   hw_nominalPhi = ( hw_phi10b < 240 ) && ( hw_phi10b > -241 );
-  std::cout << "E, nTC : " << e() << " " << n_tc() << std::endl;
-  std::cout << "Eta : " << hw_eta << " " << hw_eta.to_string() << std::endl;
-  std::cout << "Phi : " << hw_phi << " " << hw_phi.to_string() << std::endl;
-  std::cout << "Sat phi : " << hw_satPhi << std::endl;
-  std::cout << "Nominal phi : " << hw_nominalPhi << std::endl;
-
-
   hw_z = round( float(wz()) / w() ) + ( 3221 * 2 );
 
   const ap_uint<wordLength> clusterWord = (
@@ -197,69 +190,61 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
     hw_phi,
     hw_eta
   );
-  std::cout << "Cluster word : " << clusterWord << " " << clusterWord.to_string() << std::endl;
-  // // Not being careful with round/floor here
-  // constexpr float ETAPHI_LSB = M_PI / 720;
-  // double rOverZ = ( 1.0 * wroz() / w() ) * config.rOverZRange() / config.rOverZNValues();
-  // double eta = -1.0 * std::log( tan( atan( rOverZ ) / 2 ) );
-  // // eta *= theConfiguration_.zSide();
-
-  // // Interface document definition (old?)
-  // // eta -= 1.5; 
-  // // int l1Eta = eta / ETAPHI_LSB;
-  // // const TTBV hw_Eta(l1Eta, 9, false);
-  // // double etaTemp = eta - 1.5;
-  // // const TTBV hw_Eta_interface(int(etaTemp / ETAPHI_LSB), 9, false);
-
-  // // Current correlator definition
-  // // eta -= 2.25;
-  // // int l1Eta = round( eta / ETAPHI_LSB );
-  // // const TTBV hw_Eta(l1Eta, 9, true);
-  // // std::cout << "Global eta, l1 eta : " << -1.0 * std::log( tan( atan( rOverZ ) / 2 ) ) << " " << l1Eta << " " << hw_Eta.str() << std::endl;
-  // // int l1Phi = ( ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues() - M_PI/3 )  / ETAPHI_LSB;
-
-  // const TTBV hw_Eta(0, 9, true);
-
-
-  // // double phi = ( 1.0 * wphi() / w() ) * config.phiRange() / config.phiNValues();
-  // // if ( config.zSide() == 1 ) {
-  // //   phi = M_PI - phi;
-  // // }
-  // // // phi -= ( phi > M_PI ) ? 2 * M_PI : 0;
-
-  // // int l1Phi = round( ( phi - M_PI/2  )  / ETAPHI_LSB );
-  // // const TTBV hw_Phi(l1Phi, 9, true);
-
-  // const TTBV hw_Phi(0, 9, true);
-  // const TTBV hw_z(0, 12);
-  // const TTBV hw_spare1(0, 2);
-
-  // const TTBV hw_nTCs(int(n_tc()), 10);
-  // // const TTBV hw_nTCs(0, 10);
-  // const TTBV hw_qualityFlags(0, 10);
-  // const TTBV hw_spare2(0, 12);
-
-  // // ClusterWord clusterWord = TTBV(hw_Eta + hw_Phi + hw_z + hw_spare1 + hw_nTCs + hw_qualityFlags + hw_spare2).bs();
-  // ClusterWord clusterWord = TTBV(    
-  //   hw_spare2 +
-  //   hw_qualityFlags +
-  //   hw_nTCs + 
-  //   hw_spare1 + 
-  //   hw_z + 
-  //   hw_Phi + 
-  //   hw_Eta
-  //   ).bs();
 
   return clusterWord.to_ulong();
 }
 HGCalCluster::ClusterWord HGCalCluster::formatThirdWord( const ClusterAlgoConfig& config ) {
-  ClusterWord clusterWord = 0;
-  return clusterWord;
+  const unsigned nb_sigmaE = 19;
+  const unsigned nb_lastLayer = 6;
+  const unsigned nb_showerLength = 6;
+  const unsigned nb_spare = 1;
+  const unsigned nb_sigmaZZ = 13;
+  const unsigned nb_sigmaPhiPhi = 9;
+  const unsigned nb_coreShowerLength = 6;
+  const unsigned nb_spare4Bits = 4;
+  
+  ap_uint<nb_sigmaE> hw_sigmaE = round( sqrt( ( ( n_tc_w() * w2() ) - ( w() * w() ) )       / ( n_tc_w() * n_tc_w() ) ) );
+  ap_uint<nb_lastLayer> hw_lastLayer = lastLayer();
+  ap_uint<nb_showerLength> hw_showerLength = showerLen();
+  ap_uint<nb_spare> hw_spare = 0;
+  ap_uint<nb_sigmaZZ> hw_sigmaZZ = sigma_z_quotient() + sigma_z_fraction();
+  ap_uint<nb_sigmaPhiPhi> hw_sigmaPhiPhi = sigma_phi_quotient() + sigma_phi_fraction();
+  ap_uint<nb_coreShowerLength> hw_coreShowerLength = coreShowerLen();
+  ap_uint<nb_spare4Bits> hw_spare4Bits = 0;
+  
+  const ap_uint<wordLength> clusterWord = (
+    hw_spare4Bits,
+    hw_coreShowerLength,
+    hw_sigmaPhiPhi,
+    hw_sigmaZZ,
+    hw_spare,
+    hw_showerLength,
+    hw_lastLayer,
+    hw_sigmaE
+  );
+
+  return clusterWord.to_ulong();
 }
 
 HGCalCluster::ClusterWord HGCalCluster::formatFourthWord( const ClusterAlgoConfig& config ) {
-  ClusterWord clusterWord = 0;
-  return clusterWord;
+  const unsigned nb_sigmaEtaEta = 9;
+  const unsigned nb_sigmaRozRoz = 13;
+  const unsigned nb_spare10Bits = 10;
+  const unsigned nb_spare32Bits = 32;
+
+  ap_uint<nb_sigmaEtaEta> hw_sigmaEtaEta = 0;
+  ap_uint<nb_sigmaRozRoz> hw_sigmaRozRoz = sigma_roz_quotient() + sigma_roz_fraction();
+  ap_uint<nb_spare10Bits> hw_spare10Bits = 0;
+  ap_uint<nb_spare32Bits> hw_spare32Bits = 0;
+
+  const ap_uint<wordLength> clusterWord = (
+    hw_spare32Bits,
+    hw_spare10Bits,
+    hw_sigmaRozRoz,
+    hw_sigmaEtaEta
+  );
+
+  return clusterWord.to_ulong();
 }
 
 void HGCalCluster::clearClusterSumWords() {
@@ -301,19 +286,19 @@ HGCalCluster::ClusterSumWords HGCalCluster::formatClusterSumWords( const Cluster
 
   ap_uint<nb_w> hw_w = w();
   ap_uint<nb_n_tc_w> hw_n_tc_w = n_tc_w();
-  ap_uint<nb_w2> hw_w2 = 0; //w2();
-  ap_uint<nb_wz> hw_wz = 0;
+  ap_uint<nb_w2> hw_w2 = w2();
+  ap_uint<nb_wz> hw_wz = wz();
   ap_uint<nb_weta> hw_weta = 0;
   ap_uint<nb_wphi> hw_wphi = wphi();
-  ap_uint<nb_wroz> hw_wroz = 0;
+  ap_uint<nb_wroz> hw_wroz = wroz();
 
-  ap_uint<nb_wz2> hw_wz2 = 0;
+  ap_uint<nb_wz2> hw_wz2 = wz2();
   ap_uint<nb_weta2> hw_weta2 = 0;
-  ap_uint<nb_wphi2> hw_wphi2 = 0;
-  ap_uint<nb_wroz2> hw_wroz2 = 0;
-  ap_uint<nb_layerbits> hw_layerbits = 0;
-  ap_uint<nb_sat_tc> hw_sat_tc = 0;
-  ap_uint<nb_shapeq> hw_shapeq = 0;
+  ap_uint<nb_wphi2> hw_wphi2 = wphi2();
+  ap_uint<nb_wroz2> hw_wroz2 = wroz2();
+  ap_uint<nb_layerbits> hw_layerbits = layerbits();
+  ap_uint<nb_sat_tc> hw_sat_tc = sat_tc();
+  ap_uint<nb_shapeq> hw_shapeq = shapeq();
 
   const ap_uint<allClusterSumWordsLength> clusterSumRecord = (
     hw_shapeq,
