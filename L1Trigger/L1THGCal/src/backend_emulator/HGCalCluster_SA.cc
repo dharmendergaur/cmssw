@@ -39,7 +39,7 @@ const HGCalCluster& HGCalCluster::operator+=(HGCalCluster& c) {
   } else {
     this->set_shapeq(0);
 
-    if (this->w() > c.w()) {
+    if (original.w() > c.w()) {
       this->set_w(original.w());
       this->set_w2(original.w2());
       this->set_wz(original.wz());
