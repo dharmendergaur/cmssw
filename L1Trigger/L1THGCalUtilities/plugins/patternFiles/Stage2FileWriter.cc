@@ -57,10 +57,10 @@ private:
   const std::map<l1t::demo::LinkId, std::pair<l1t::demo::ChannelSpec, std::vector<size_t>>>
       kChannelSpecsOutputToL1T = {
           /* logical channel within time slice -> {{link TMUX, inter-packet gap}, vector of channel indices} */
-          {{"towersAndClusters", 0}, {{kS2BoardTMUX, kGapLengthOutput}, {56}}},
-          {{"towersAndClusters", 1}, {{kS2BoardTMUX, kGapLengthOutput}, {57}}},
-          {{"towersAndClusters", 2}, {{kS2BoardTMUX, kGapLengthOutput}, {58}}},
-          {{"towersAndClusters", 3}, {{kS2BoardTMUX, kGapLengthOutput}, {59}}}
+          {{"towersAndClusters", 0}, {{kS2BoardTMUX, kGapLengthOutput}, {0}}},
+          {{"towersAndClusters", 1}, {{kS2BoardTMUX, kGapLengthOutput}, {1}}},
+          {{"towersAndClusters", 2}, {{kS2BoardTMUX, kGapLengthOutput}, {2}}},
+          {{"towersAndClusters", 3}, {{kS2BoardTMUX, kGapLengthOutput}, {3}}}
         };
 
   const std::map<l1t::demo::LinkId, std::pair<l1t::demo::ChannelSpec, std::vector<size_t>>>
@@ -124,8 +124,6 @@ void Stage2FileWriter::analyze(const edm::Event& iEvent, const edm::EventSetup& 
     // 1) Encode tower and cluster information onto vectors containing link data
     const auto outputData(encodeTowersAndClusters(iEvent.get(clustersToken_), iSector) );
     const auto clusterSumInputData(encodeClusterSumRecord(iEvent.get(clustersToken_), iSector) );
-    std::cout << outputData.size() << " " << outputData[0].size() << std::endl;
-    std::cout << clusterSumInputData.size() << " " << clusterSumInputData[0].size() << std::endl;
 
     // 2) Pack track information into 'event data' object, and pass that to file writer
     l1t::demo::EventData eventDataTowersAndClusters;
@@ -136,12 +134,9 @@ void Stage2FileWriter::analyze(const edm::Event& iEvent, const edm::EventSetup& 
 
     l1t::demo::EventData eventDataClusterSums;
     for (size_t i = 0; i < 8; i++) {
-      std::cout << "Adding to event data : " << i << std::endl;
       eventDataClusterSums.add({"clusterSumRecord", i}, clusterSumInputData.at(i));
     }
-    std::cout << "Adding to file writer" << std::endl;
     fileWritersClusterSumsInput_.at(iSector).addEvent(eventDataClusterSums);
-    std::cout << "Done" << std::endl;
   }
 
 }
@@ -236,7 +231,7 @@ std::array<std::vector<ap_uint<64>>, 8> Stage2FileWriter::encodeClusterSumRecord
 
     // ++iCluster;
     // if ( iCluster > 160 ) break;
-    std::cout << "Adding cluster, sector : " << sector << " " << cl3d_itr->pt() << " " << cl3d_itr->eta() << " " << cl3d_itr->phi() << std::endl;
+    std::cout << "Adding cluster, sector : " << sector << " " << cl3d_itr->pt() << " " << cl3d_itr->eta() << " " << cl3d_itr->phi() << " " << cl3d_itr->size() << std::endl;
     //  << " " << cl3d_itr->getHwData()[0].to_string() << std::endl;
     // std::cout << "Phi, eta : " << cl3d_itr->phi() << " " << cl3d_itr->eta() << " " << cl3d_itr->getHwData()[1].to_string() << std::endl;
     const auto& clusterSumWords = cl3d_itr->getHwClusterSumData();
