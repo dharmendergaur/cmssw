@@ -223,7 +223,7 @@ std::array<std::vector<ap_uint<64>>, 8> Stage2FileWriter::encodeClusterSumRecord
     if ( sector == 1 ) sector = 2;
     else if ( sector == 2 ) sector = 1;
   }
-  std::cout << "Sectors : " << iSector << " " << zside << " " << sector << std::endl;
+  // std::cout << "Sectors : " << iSector << " " << zside << " " << sector << std::endl;
 
   for (auto cl3d_itr = clusters.begin(0); cl3d_itr != clusters.end(0); cl3d_itr++) {
     if ( cl3d_itr->getHwZSide() != zside ) continue;
@@ -231,16 +231,16 @@ std::array<std::vector<ap_uint<64>>, 8> Stage2FileWriter::encodeClusterSumRecord
 
     // ++iCluster;
     // if ( iCluster > 160 ) break;
-    std::cout << "Adding cluster, sector : " << sector << " " << cl3d_itr->pt() << " " << cl3d_itr->eta() << " " << cl3d_itr->phi() << " " << cl3d_itr->size() << std::endl;
+    // std::cout << "Adding cluster, sector : " << sector << " " << cl3d_itr->pt() << " " << cl3d_itr->eta() << " " << cl3d_itr->phi() << " " << cl3d_itr->size() << std::endl;
     //  << " " << cl3d_itr->getHwData()[0].to_string() << std::endl;
     // std::cout << "Phi, eta : " << cl3d_itr->phi() << " " << cl3d_itr->eta() << " " << cl3d_itr->getHwData()[1].to_string() << std::endl;
     const auto& clusterSumWords = cl3d_itr->getHwClusterSumData();
     for ( unsigned iWord = 0; iWord < 8; ++iWord ) {
-      std::cout << "Cluster sum word : " << iWord << " " << clusterSumWords[iWord] << std::endl;
+      // std::cout << "Cluster sum word : " << iWord << " " << clusterSumWords[iWord] << std::endl;
       output[iWord].push_back( clusterSumWords[iWord].to_ulong() );
     }
   }
-  std::cout << "Added all clusters" << std::endl;
+  // std::cout << "Added all clusters" << std::endl;
 
   // Add dummy entry if there weren't any cluster sums in this sector in this event
   if ( output[0].size() == 0 ) {
