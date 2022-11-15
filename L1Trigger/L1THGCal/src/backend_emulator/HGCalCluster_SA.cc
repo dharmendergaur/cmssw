@@ -134,7 +134,7 @@ HGCalCluster::ClusterWord HGCalCluster::formatFirstWord( const ClusterAlgoConfig
 }
 HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfig& config ) {
 
-  const unsigned nb_eta = 9;
+  const unsigned nb_eta = 10;//9;
   const unsigned nb_phi = 9;
   const unsigned nb_z = 14;
   const unsigned nb_nTC = 10;
@@ -147,7 +147,12 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
   const unsigned nb_nominalPhi = 1;
   const unsigned nb_spare = 15;
 
-  ap_uint<nb_eta> hw_eta = 317;// round( float(weta()) / w() ) + 317;
+  double roz = float(wroz()) / w() * config.rOverZRange() / config.rOverZNValues();
+  double eta = asinh( 1. / roz );
+  const double etaLSB = M_PI / 720;
+  ap_uint<nb_eta> hw_eta = round(eta / etaLSB);//317;// round( float(weta()) / w() ) + 317;
+  // std::cout << "R/Z, eta : " << roz << " " << wroz() << " " <<  w() << " " << 1./roz << " " << eta << " " << hw_eta << std::endl;
+
   ap_int<nb_phi> hw_phi = 0;
   ap_uint<nb_z> hw_z = 0;
   ap_uint<nb_nTC> hw_nTC = n_tc();
