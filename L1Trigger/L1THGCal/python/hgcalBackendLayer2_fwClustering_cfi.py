@@ -83,7 +83,6 @@ layer2ClusteringFw_Params = cms.PSet(
     # Threshold maxima parameters
     # Threshold for given histogram row (r/z bin) paramaterized as a+b*bin+c*bin^2
     thresholdMaximaParams = cms.PSet(
-<<<<<<< HEAD
 
         a=cms.uint32(1000),#18000),
         b=cms.uint32(0),#800),
@@ -95,11 +94,6 @@ layer2ClusteringFw_Params = cms.PSet(
         # a=cms.uint32(18000),#18000),
         # b=cms.uint32(800),#800),
         # c=cms.int32(-20)#-20)
-=======
-        a=cms.uint32(18000),#18000
-        b=cms.uint32(0),#800
-        c=cms.int32(0)#-20
->>>>>>> cb8b0aa2e75 (Explore changes to improve perfromance of emulator.)
     ),
 
     # Clusterizer parameters
