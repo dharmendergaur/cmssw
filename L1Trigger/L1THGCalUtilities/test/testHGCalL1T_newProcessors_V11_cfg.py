@@ -24,7 +24,7 @@ process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(20)
+    input = cms.untracked.int32(10)
 )
 
 # Input source
@@ -94,12 +94,19 @@ process.FEVTDEBUGoutput = cms.OutputModule("PoolOutputModule",
     splitLevel = cms.untracked.int32(0),
     eventAutoFlushCompressedSize = cms.untracked.int32(5242880),
     outputCommands = process.FEVTDEBUGHLTEventContent.outputCommands,
-    fileName = cms.untracked.string('file:junk.root'),
+    fileName = cms.untracked.string('output_withEmuHGCalClusters.root'),
     dataset = cms.untracked.PSet(
         filterName = cms.untracked.string(''),
         dataTier = cms.untracked.string('GEN-SIM-DIGI-RAW')
     ),
 )
+process.FEVTDEBUGoutput.outputCommands.append( 'drop TrackingParticles_mix_MergedTrackTruth_*')
+process.FEVTDEBUGoutput.outputCommands.append( 'drop PixelDigiSimLinkedmDetSetVector_simSiPixelDigis_Tracker_*')
+process.FEVTDEBUGoutput.outputCommands.append( 'drop PixelDigiSimLinkedmDetSetVector_simSiPixelDigis_Pixel_*')
+process.FEVTDEBUGoutput.outputCommands.append( 'drop SimClusters_mix_MergedCaloTruth_*')
+process.FEVTDEBUGoutput.outputCommands.append( 'drop TrackingVertexs_mix_MergedTrackTruth_*')
+process.FEVTDEBUGoutput.outputCommands.append( 'drop PixelDigiedmDetSetVector_simSiPixelDigis_Pixel_*')
+process.FEVTDEBUGoutput.outputCommands.append( 'drop PCaloHits_g4SimHits_EcalHitsEB_*')
 process.endjob_step = cms.EndPath(process.FEVTDEBUGoutput)
 
 # Schedule definition
