@@ -187,11 +187,11 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetTkEG(const edm::Handle<l1t::TkElectr
       l1extra_.tkElectronEGRefPhi.push_back(it->EGRef()->phi());
       l1extra_.tkElectronBx.push_back(0);  //it->bx());
       l1extra_.tkElectronHGC.push_back(0);
-      bool quality = ((it->EGRef()->hwQual() >> 0) & 1) > 0;
+      bool quality = ((it->hwQual() >> 0) & 1) > 0;
       l1extra_.tkElectronPassesSaID.push_back(quality);
-      quality = ((it->EGRef()->hwQual() >> 1) & 1) > 0;  // LooseTrackID should be the second bit
+      quality = ((it->hwQual() >> 1) & 1) > 0;  // LooseTrackID should be the second bit
       l1extra_.tkElectronPassesEleID.push_back(quality);
-      quality = ((it->EGRef()->hwQual() >> 2) & 1) > 0;  // LooseTrackID should be the second bit
+      quality = ((it->hwQual() >> 2) & 1) > 0;  // LooseTrackID should be the second bit
       l1extra_.tkElectronPassesPhoID.push_back(quality);
       l1extra_.nTkElectrons++;
     }
@@ -251,11 +251,11 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetTkEM(const edm::Handle<l1t::TkEmColl
       l1extra_.tkPhotonEGRefEta.push_back(it->EGRef()->eta());
       l1extra_.tkPhotonEGRefPhi.push_back(it->EGRef()->phi());
       l1extra_.tkPhotonHGC.push_back(0);
-      bool quality = ((it->EGRef()->hwQual() >> 0) & 1) > 0;
+      bool quality = ((it->hwQual() >> 0) & 1) > 0;
       l1extra_.tkPhotonPassesSaID.push_back(quality);
-      quality = ((it->EGRef()->hwQual() >> 1) & 1) > 0;
+      quality = ((it->hwQual() >> 1) & 1) > 0;
       l1extra_.tkPhotonPassesEleID.push_back(quality);
-      quality = ((it->EGRef()->hwQual() >> 2) & 1) > 0;  // Photon Id should be the third bit
+      quality = ((it->hwQual() >> 2) & 1) > 0;  // Photon Id should be the third bit
       l1extra_.tkPhotonPassesPhoID.push_back(quality);
       l1extra_.nTkPhotons++;
     }
