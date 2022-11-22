@@ -36,7 +36,8 @@ layer2ClusteringFw_Params = cms.PSet(
         rOverZNValues = cms.double(4096), # 12 bits
         phiRange = cms.double(pi),
         phiNValues = cms.double(1944), # 12 bits, but range over 2pi is 3888
-        ptDigiFactor = cms.double(10000),
+        ptDigiFactor = cms.double(1024),
+        # ptDigiFactor = cms.double(10000),
     ),
 
     inputLinkParams = cms.PSet(
@@ -74,9 +75,17 @@ layer2ClusteringFw_Params = cms.PSet(
     # Threshold maxima parameters
     # Threshold for given histogram row (r/z bin) paramaterized as a+b*bin+c*bin^2
     thresholdMaximaParams = cms.PSet(
-        a=cms.uint32(18000),
-        b=cms.uint32(800),
-        c=cms.int32(-20)
+
+        a=cms.uint32(1000),#18000),
+        b=cms.uint32(0),#800),
+        c=cms.int32(0)#-20)
+
+        # a=cms.uint32(1843),#18000),
+        # b=cms.uint32(82),#800),
+        # c=cms.int32(-2)#-20)
+        # a=cms.uint32(18000),#18000),
+        # b=cms.uint32(800),#800),
+        # c=cms.int32(-20)#-20)
     ),
 
     # Clusterizer parameters
