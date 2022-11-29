@@ -84,9 +84,13 @@ layer2ClusteringFw_Params = cms.PSet(
     # Threshold for given histogram row (r/z bin) paramaterized as a+b*bin+c*bin^2
     thresholdMaximaParams = cms.PSet(
 
-        a=cms.uint32(1000),#18000),
-        b=cms.uint32(0),#800),
-        c=cms.int32(0)#-20)
+        a=cms.uint32(1843),#18000),
+        b=cms.int32(-42),#800),
+        c=cms.int32(1)#-20)
+
+        # a=cms.uint32(1843),#18000),
+        # b=cms.int32(0),#800),
+        # c=cms.int32(0)#-20)
 
         # a=cms.uint32(1843),#18000),
         # b=cms.uint32(82),#800),

@@ -67,7 +67,7 @@ void ClusterAlgoConfig::initializeSmearingKernelConstants(unsigned int bins, uns
   }
 }
 
-void ClusterAlgoConfig::initializeThresholdMaximaConstants(unsigned int bins, unsigned int a, unsigned int b, int c) {
+void ClusterAlgoConfig::initializeThresholdMaximaConstants(unsigned int bins, unsigned int a, int b, int c) {
   for (unsigned int iBin = 0; iBin < bins; ++iBin) {
     int threshold = a + b * iBin + c * iBin * iBin;
     thresholdMaximaConstants_.push_back(threshold);
