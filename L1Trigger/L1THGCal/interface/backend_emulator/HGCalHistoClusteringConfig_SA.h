@@ -145,7 +145,7 @@ namespace l1thgcfirmware {
     void setNRowsForClustering(const unsigned nRowsForClustering) { nRowsForClustering_ = nRowsForClustering; }
     unsigned int nRowsForClustering() const { return nRowsForClustering_; }
 
-    void setThresholdParams(const unsigned int a, const unsigned int b, const int c) {
+    void setThresholdParams(const unsigned int a, const int b, const int c) {
       thresholdMaximaParam_a_ = a;
       thresholdMaximaParam_b_ = b;
       thresholdMaximaParam_c_ = c;
@@ -227,7 +227,7 @@ namespace l1thgcfirmware {
 
   private:
     void initializeSmearingKernelConstants(unsigned int bins, unsigned int offset, unsigned int height);
-    void initializeThresholdMaximaConstants(unsigned int bins, unsigned int a, unsigned int b, int c);
+    void initializeThresholdMaximaConstants(unsigned int bins, unsigned int a, int b, int c);
     void initializeCosLUT();
 
     unsigned int histogramOffset_;
@@ -276,7 +276,7 @@ namespace l1thgcfirmware {
 
     // Threshold maxima parameters
     unsigned int thresholdMaximaParam_a_;
-    unsigned int thresholdMaximaParam_b_;
+    int thresholdMaximaParam_b_;
     int thresholdMaximaParam_c_;
     std::vector<int> thresholdMaximaConstants_;
 

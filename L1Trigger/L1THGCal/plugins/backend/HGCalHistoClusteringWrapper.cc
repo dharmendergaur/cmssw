@@ -294,7 +294,7 @@ void HGCalHistoClusteringWrapper::configure(
   theConfiguration_.setSaturation(pset.getParameter<unsigned int>("saturation"));
   const edm::ParameterSet& thresholdParams = pset.getParameterSet("thresholdMaximaParams");
   theConfiguration_.setThresholdParams(thresholdParams.getParameter<unsigned int>("a"),
-                                       thresholdParams.getParameter<unsigned int>("b"),
+                                       thresholdParams.getParameter<int>("b"),
                                        thresholdParams.getParameter<int>("c"));
 
   // Digitization parameters
