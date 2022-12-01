@@ -223,6 +223,7 @@ public:
   double getChi2RZ() const { return chi2RZBins[getChi2RZBits()]; }
   double getBendChi2() const { return bendChi2Bins[getBendChi2Bits()]; }
   unsigned int getHitPattern() const { return getHitPatternBits(); }
+  unsigned int getNStubs() const { return countSetBits(getHitPatternBits()); }
   unsigned int getMVAQuality() const { return getMVAQualityBits(); }
   unsigned int getMVAOther() const { return getMVAOtherBits(); }
 
@@ -275,8 +276,18 @@ protected:
     return reco::deltaPhi(globalPhi, (sector * sectorWidth));
   }
 
-private:
+public:
   // ----------private member functions --------------
+  unsigned int countSetBits(unsigned int n) const {
+    // Adapted from: https://www.geeksforgeeks.org/count-set-bits-in-an-integer/
+    unsigned int count = 0;
+    while (n) {
+      n &= (n - 1);
+      count++;
+    }
+    return count;
+  }
+
   unsigned int digitizeSignedValue(double value, unsigned int nBits, double lsb) const {
     // Digitize the incoming value
     int digitizedValue = std::floor(value / lsb);
@@ -303,7 +314,7 @@ private:
     return (up - bins.begin() - 1);
   }
 
-  double undigitizeSignedValue(unsigned int twosValue, unsigned int nBits, double lsb) const {
+  double undigitizeSignedValue(unsigned int twosValue, unsigned int nBits, double lsb, double offset = 0.5) const {
     // Check that none of the bits above the nBits-1 bit, in a range of [0, nBits-1], are set.
     // This makes sure that it isn't possible for the value represented by `twosValue` to be
     //  any bigger than ((1 << nBits) - 1).
@@ -316,7 +327,7 @@ private:
     }
 
     // Convert to floating point value
-    return (double(digitizedValue) + 0.5) * lsb;
+    return (double(digitizedValue) + offset) * lsb;
   }
 
   // ----------member data ---------------------------
