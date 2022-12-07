@@ -269,7 +269,7 @@ void HPSPFTauProducer::fillDescriptions(edm::ConfigurationDescriptions& descript
   desc.add<double>("maxSeedJetEta", 2.4);
   desc.add<std::string>("signalConeSize", "2.8/max(1., pt)");
   desc.add<edm::InputTag>("srcL1Jets",
-                          edm::InputTag("Phase1L1TJetProducer", "UncalibratedPhase1L1TJetFromPfCandidates"));
+                          edm::InputTag("Phase1L1TJetCalibrator9x9trimmed", "Phase1L1TJetFromPfCandidates"));
   desc.addUntracked<bool>("debug", false);
   desc.add<double>("maxPFTauEta", 2.4);
   desc.add<double>("maxSignalConeSize", 0.1);
