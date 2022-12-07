@@ -28,3 +28,7 @@ l1PFJetsTask = cms.Task(
 )
 
 
+l1PFJetsEmulationTask = cms.Task(
+    l1ctLayer2Deregionizer, scPFL1PuppiEmulator, scPFL1PuppiCorrectedEmulator, scPFL1PuppiCorrectedEmulatorMHT
+)
+
