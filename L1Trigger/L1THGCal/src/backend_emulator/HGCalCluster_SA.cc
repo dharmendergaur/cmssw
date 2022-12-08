@@ -105,9 +105,9 @@ HGCalCluster::ClusterWord HGCalCluster::formatFirstWord( const ClusterAlgoConfig
   unsigned et_em = round(float(e_em())/256);
   ap_uint<nb_e_em> hw_e_em = et_em;
 
-  ap_uint<nb_fractionInCE_E> hw_fractionInCE_E = round( 128 * float(e_em()) / e() );
-  ap_uint<nb_fractionInCoreCE_E> hw_fractionInCoreCE_E = round( 128 * float(e_em_core()) / e_em() );
-  ap_uint<nb_fractionInEarlyCE_H> hw_fractionInEarlyCE_H = round( 128 * float(e_h_early()) / e() );
+  ap_uint<nb_fractionInCE_E> hw_fractionInCE_E = round( 256 * float(e_em()) / e() );
+  ap_uint<nb_fractionInCoreCE_E> hw_fractionInCoreCE_E = round( 256 * float(e_em_core()) / e_em() );
+  ap_uint<nb_fractionInEarlyCE_H> hw_fractionInEarlyCE_H = round( 256 * float(e_h_early()) / e() );
 
   ap_uint<1> gctBit0 = hw_fractionInCE_E > 64;
   ap_uint<1> gctBit1 = hw_fractionInCoreCE_E > 64;
@@ -136,7 +136,8 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
 
   const unsigned nb_eta = 10;//9;
   const unsigned nb_phi = 9;
-  const unsigned nb_z = 14;
+  const unsigned nb_z = 12;
+  const unsigned nb_spare_0 = 1;
   const unsigned nb_nTC = 10;
   const unsigned nb_satTC = 1;
   const unsigned nb_qualFracCE_E = 1;
@@ -145,16 +146,18 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
   const unsigned nb_qualSigmasMeans = 1;
   const unsigned nb_satPhi = 1;
   const unsigned nb_nominalPhi = 1;
-  const unsigned nb_spare = 15;
+  const unsigned nb_spare_1 = 15;
 
   double roz = float(wroz()) / w() * config.rOverZRange() / config.rOverZNValues();
   double eta = asinh( 1. / roz );
   const double etaLSB = M_PI / 720;
   ap_uint<nb_eta> hw_eta = round(eta / etaLSB);//317;// round( float(weta()) / w() ) + 317;
-  // std::cout << "R/Z, eta : " << roz << " " << wroz() << " " <<  w() << " " << 1./roz << " " << eta << " " << hw_eta << std::endl;
+  std::cout << e() << " " << config.sector() << " " << config.zSide() << std::endl;
+  std::cout << "R/Z, eta : " << roz << " " << wroz() << " " <<  w() << " " << 1./roz << " " << eta << " " << hw_eta << std::endl;
 
   ap_int<nb_phi> hw_phi = 0;
   ap_uint<nb_z> hw_z = 0;
+  ap_uint<nb_spare_0> hw_spare_0 = 0;
   ap_uint<nb_nTC> hw_nTC = n_tc();
   ap_uint<nb_satTC> hw_satTC = sat_tc();
   ap_uint<nb_qualFracCE_E> hw_qualFracCE_E = e() != 0x3FFFFF && e_em() != 0x3FFFFF;
@@ -163,9 +166,9 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
   ap_uint<nb_qualSigmasMeans> hw_qualSigmasMeans = shapeq();
   ap_uint<nb_satPhi> hw_satPhi = 0;
   ap_uint<nb_nominalPhi> hw_nominalPhi = 0;
-  ap_uint<nb_spare> hw_spare = 0;
+  ap_uint<nb_spare_1> hw_spare_1 = 0;
 
-  const int hw_phi10b = int( (float(wphi()) / w()) * (5./24) ) - 360;
+  const int hw_phi10b = int( round( (float(wphi()) / w()) * (5./24) ) ) - 360;
   if( hw_phi10b > 255 ) {
     hw_phi = 255;
     hw_satPhi = 1;
@@ -179,10 +182,10 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
     hw_satPhi = 0;
   }
   hw_nominalPhi = ( hw_phi10b < 240 ) && ( hw_phi10b > -241 );
-  hw_z = round( float(wz()) / w() ) + ( 3221 * 2 );
+  hw_z = round( float(wz()) / w() );// + ( 3221 * 2 );
 
   const ap_uint<wordLength> clusterWord = (
-    hw_spare,
+    hw_spare_1,
     hw_nominalPhi,
     hw_satPhi,
     hw_qualSigmasMeans,
@@ -191,6 +194,7 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
     hw_qualFracCE_E,
     hw_satTC,
     hw_nTC,
+    hw_spare_0,
     hw_z,
     hw_phi,
     hw_eta
@@ -199,14 +203,15 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
   return clusterWord.to_ulong();
 }
 HGCalCluster::ClusterWord HGCalCluster::formatThirdWord( const ClusterAlgoConfig& config ) {
-  const unsigned nb_sigmaE = 19;
+  const unsigned nb_sigmaE = 7;
   const unsigned nb_lastLayer = 6;
   const unsigned nb_showerLength = 6;
-  const unsigned nb_spare = 1;
-  const unsigned nb_sigmaZZ = 13;
-  const unsigned nb_sigmaPhiPhi = 9;
+  const unsigned nb_spare = 13;
+  const unsigned nb_sigmaZZ = 7;
+  const unsigned nb_sigmaPhiPhi = 7;
   const unsigned nb_coreShowerLength = 6;
-  const unsigned nb_spare4Bits = 4;
+  const unsigned nb_sigmaEtaEta = 5;
+  const unsigned nb_sigmaRozRoz = 7;
   
   ap_uint<nb_sigmaE> hw_sigmaE = round( sqrt( ( ( n_tc_w() * w2() ) - ( w() * w() ) )       / ( n_tc_w() * n_tc_w() ) ) );
   ap_uint<nb_lastLayer> hw_lastLayer = lastLayer();
@@ -215,10 +220,20 @@ HGCalCluster::ClusterWord HGCalCluster::formatThirdWord( const ClusterAlgoConfig
   ap_uint<nb_sigmaZZ> hw_sigmaZZ = sigma_z_quotient() + sigma_z_fraction();
   ap_uint<nb_sigmaPhiPhi> hw_sigmaPhiPhi = sigma_phi_quotient() + sigma_phi_fraction();
   ap_uint<nb_coreShowerLength> hw_coreShowerLength = coreShowerLen();
-  ap_uint<nb_spare4Bits> hw_spare4Bits = 0;
+  ap_uint<nb_sigmaEtaEta> hw_sigmaEtaEta = 0;
+  ap_uint<nb_sigmaRozRoz> hw_sigmaRozRoz = sigma_roz_quotient() + sigma_roz_fraction();
   
+  // double roz = float(wroz()) / w() * config.rOverZRange() / config.rOverZNValues();
+  // double eta = asinh( 1. / roz );
+  // const double etaLSB = M_PI / 720;
+  // ap_uint<nb_eta> hw_eta = round(eta / etaLSB);//317;// round( float(weta()) / w() ) + 317;
+
+  // double dEtaODRoz = 1./((sqrt(pow(roz,-2)+1))*(roz*roz));
+
+
   const ap_uint<wordLength> clusterWord = (
-    hw_spare4Bits,
+    hw_sigmaRozRoz,
+    hw_sigmaEtaEta,
     hw_coreShowerLength,
     hw_sigmaPhiPhi,
     hw_sigmaZZ,
@@ -232,22 +247,7 @@ HGCalCluster::ClusterWord HGCalCluster::formatThirdWord( const ClusterAlgoConfig
 }
 
 HGCalCluster::ClusterWord HGCalCluster::formatFourthWord( const ClusterAlgoConfig& config ) {
-  const unsigned nb_sigmaEtaEta = 9;
-  const unsigned nb_sigmaRozRoz = 13;
-  const unsigned nb_spare10Bits = 10;
-  const unsigned nb_spare32Bits = 32;
-
-  ap_uint<nb_sigmaEtaEta> hw_sigmaEtaEta = 0;
-  ap_uint<nb_sigmaRozRoz> hw_sigmaRozRoz = sigma_roz_quotient() + sigma_roz_fraction();
-  ap_uint<nb_spare10Bits> hw_spare10Bits = 0;
-  ap_uint<nb_spare32Bits> hw_spare32Bits = 0;
-
-  const ap_uint<wordLength> clusterWord = (
-    hw_spare32Bits,
-    hw_spare10Bits,
-    hw_sigmaRozRoz,
-    hw_sigmaEtaEta
-  );
+  const ap_uint<wordLength> clusterWord = 0;
 
   return clusterWord.to_ulong();
 }
@@ -271,15 +271,15 @@ HGCalCluster::ClusterSumWords HGCalCluster::formatClusterSumWords( const Cluster
   const unsigned nb_n_tc_w = 10;
   const unsigned nb_w2 = 32;
   const unsigned nb_wz = 29;
-  const unsigned nb_weta = 26;
+  // const unsigned nb_weta = 26;
   const unsigned nb_wphi = 28;
   const unsigned nb_wroz = 29;
 
   const unsigned nb_wz2 = 42;
-  const unsigned nb_weta2 = 36;
+  // const unsigned nb_weta2 = 36;
   const unsigned nb_wphi2 = 40;
   const unsigned nb_wroz2 = 42;
-  const unsigned nb_layerbits = 36;
+  const unsigned nb_layerbits = 34;
   const unsigned nb_sat_tc = 1;
   const unsigned nb_shapeq = 1;
 
@@ -293,12 +293,12 @@ HGCalCluster::ClusterSumWords HGCalCluster::formatClusterSumWords( const Cluster
   ap_uint<nb_n_tc_w> hw_n_tc_w = n_tc_w();
   ap_uint<nb_w2> hw_w2 = w2();
   ap_uint<nb_wz> hw_wz = wz();
-  ap_uint<nb_weta> hw_weta = 0;
+  // ap_uint<nb_weta> hw_weta = 0;
   ap_uint<nb_wphi> hw_wphi = wphi();
   ap_uint<nb_wroz> hw_wroz = wroz();
 
   ap_uint<nb_wz2> hw_wz2 = wz2();
-  ap_uint<nb_weta2> hw_weta2 = 0;
+  // ap_uint<nb_weta2> hw_weta2 = 0;
   ap_uint<nb_wphi2> hw_wphi2 = wphi2();
   ap_uint<nb_wroz2> hw_wroz2 = wroz2();
   ap_uint<nb_layerbits> hw_layerbits = layerbits();
@@ -311,11 +311,11 @@ HGCalCluster::ClusterSumWords HGCalCluster::formatClusterSumWords( const Cluster
     hw_layerbits,
     hw_wroz2,
     hw_wphi2,
-    hw_weta2,
+    // hw_weta2,
     hw_wz2,
     hw_wroz,
     hw_wphi,
-    hw_weta,
+    // hw_weta,
     hw_wz,
     hw_w2,
     hw_n_tc_w,
