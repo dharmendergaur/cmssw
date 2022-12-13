@@ -43,8 +43,8 @@ fileList = FileUtils.loadListFromFile('{sample}_jets.txt'.format(sample=options.
 readFiles = cms.untracked.vstring(*fileList)
 
 process.source = process.source = cms.Source("PoolSource",
-  fileNames = readFiles
-  # fileNames = cms.untracked.vstring( 'file:myOutputFile.root' ),
+  # fileNames = readFiles
+  fileNames = cms.untracked.vstring( 'file:myOutputFile_{sample}.root'.format(sample=options.sample) ),
   # duplicateCheckMode = cms.untracked.string('noDuplicateCheck'),
 )
 
@@ -53,8 +53,8 @@ process.source = process.source = cms.Source("PoolSource",
 process.load("L1Trigger.L1TNtuples.l1PhaseIPFJetTreeProducer_cfi")
 
 if options.jet == '9x9':
-  process.l1PhaseIPFJetTree.l1PhaseIPFJets = cms.untracked.InputTag("Phase1L1TJetCalibrator9x9", "Phase1L1TJetFromPfCandidates")
-  process.l1PhaseIPFJetTree.phaseIL1PFJetSums = cms.untracked.InputTag("Phase1L1TJetSumsProducer9x9", "Sums")
+  process.l1PhaseIPFJetTree.l1PhaseIPFJets = cms.untracked.InputTag("Phase1L1TJetCalibratorNewUnsorted", "Phase1L1TJetFromPfCandidates")
+  process.l1PhaseIPFJetTree.phaseIL1PFJetSums = cms.untracked.InputTag("Phase1L1TJetSumsProducerNew", "Sums")
 
 if options.jet == '9x9trimmed':
   process.l1PhaseIPFJetTree.l1PhaseIPFJets = cms.untracked.InputTag("Phase1L1TJetCalibrator9x9trimmed", "Phase1L1TJetFromPfCandidates")
@@ -62,7 +62,7 @@ if options.jet == '9x9trimmed':
 
 
 process.TFileService = cms.Service("TFileService",
-    fileName = cms.string('L1Ntuple_{sample}_{jet}.root'.format(sample = options.sample, jet = options.jet))
+    fileName = cms.string('L1Ntuple_{sample}_{jet}_new.root'.format(sample = options.sample, jet = options.jet))
 )
 
 # process.p = cms.Path(process.l1PhaseIPFJetTree+process.l1PhaseIPFJetTree9x9+process.l1PhaseIPFJetTree9x9trimmed)

@@ -29,13 +29,16 @@ namespace l1t::demo::codecs {
     ap_uint<10> etaBin = etaFloat / etaLSB;
     double etaBinCentre = -3 +1.5*etaRegion+(etaBin+0.5)*(etaLSB);
     l1gt::eta_t gtEta = etaBinCentre / l1gt::Scales::ETAPHI_LSB;
-    std::cout << "Jet : " << j.pt() << " " << j.eta() << " " << etaBin << " " << etaRegion << " " << etaBinCentre << " " << gtEta << std::endl;
+    // std::cout << "Jet : " << j.pt() << " " << j.eta() << " " << etaBin << " " << etaRegion << " " << etaBinCentre << " " << gtEta << " " << gtEta.to_string() << std::endl;
 
     double phiLSB = 2 * M_PI / 72;
     ap_uint<10> phiBin = (j.phi() + 3.14) / phiLSB;
     double phiBinCentre = -3.14 + ( phiBin+0.5 ) * phiLSB;
     l1gt::phi_t gtPhi = phiBinCentre / l1gt::Scales::ETAPHI_LSB;
-    std::cout << "Phi : " << j.phi() << " " << phiBin << " " << phiBinCentre << " " << gtPhi << std::endl;
+    // std::cout << "Phi : " << j.phi() << " " << phiBin << " " << phiBinCentre << " " << gtPhi << " " << gtPhi.to_string() << std::endl;
+
+    std::cout << "Jet : " << pt << " " << etaBinCentre << " " << phiBinCentre << std::endl;
+    std::cout << pt.to_string() << " " << gtEta << " " << gtPhi << std::endl;
     l1gt::Jet jet;
     jet.valid = 1;
     jet.v3.pt = pt;
@@ -57,18 +60,20 @@ namespace l1t::demo::codecs {
 
   ap_uint<64> encodeMet(const edm::View<l1t::EtSum>& met ) {
     ap_uint<64> candWord = 0;
+    l1gt::Sum gtMet;
+    gtMet.valid = 1;
+    gtMet.vector_phi = 0;
     for ( const auto& sum : met ) {
-      if ( sum.getType() != l1t::EtSum::EtSumType::kMissingEt ) continue;
-      l1gt::Sum gtMet;
-      gtMet.valid = 1;
-      gtMet.vector_pt = sum.pt();
-      gtMet.vector_phi = 0;
-      gtMet.scalar_pt = 0;
-      candWord = gtMet.pack();
-      // ap_ufixed<14, 12, AP_TRN, AP_SAT> met = sum.pt();
-      // candWord(14-1, 0) = met(13, 0);
-      // std::cout << "MET : " << met << std::endl;
+      if ( sum.getType() == l1t::EtSum::EtSumType::kMissingEt ) {
+        gtMet.vector_pt = sum.pt();
+      }
+      else if ( sum.getType() == l1t::EtSum::EtSumType::kTotalEt ) {
+        gtMet.scalar_pt = sum.pt();
+      }
     }
+    candWord = gtMet.pack();
+    candWord(63,46) = 0;
+    std::cout << "MET word : " << candWord << std::endl;
     return candWord;
   }
 
@@ -93,6 +98,10 @@ namespace l1t::demo::codecs {
       }
     }
     candWord = gtHt.pack();
+    std::cout << "HT word before : " << candWord << std::endl;
+    candWord(63,46) = 0;
+    std::cout << "HT word after : " << candWord << std::endl;
+
     return candWord;
   }
 

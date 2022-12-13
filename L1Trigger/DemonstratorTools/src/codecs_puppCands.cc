@@ -5,19 +5,30 @@
 namespace l1t::demo::codecs {
 
   ap_uint<64> encodePuppiCand(const reco::Candidate& c, float phiEdge, float etaEdge ) { 
-    ap_ufixed<14, 12, AP_TRN, AP_SAT> pt = c.pt();
-    ap_uint<10> phi = (c.phi() - phiEdge ) / 0.0043633231;
-    ap_uint<10> eta = (c.eta() - etaEdge ) / 0.0043633231;
-    ap_uint<64> candWord = 0;
+    l1ct::pt_t pt = c.pt();
+    l1ct::glbeta_t eta = l1ct::Scales::makeGlbEta( c.eta() );
+    l1ct::glbphi_t phi = l1ct::Scales::makeGlbPhi( c.phi() );
+
+    l1ct::PuppiObj puppiCand;
+    puppiCand.clear();
+    puppiCand.hwPt = pt;
+    puppiCand.hwEta = eta;
+    puppiCand.hwPhi = phi;
+    ap_uint<64> candWord = puppiCand.pack();
+
+    // ap_ufixed<14, 12, AP_TRN, AP_SAT> pt = c.pt();
+    // ap_uint<10> phi = (c.phi() - phiEdge ) / 0.0043633231;
+    // ap_uint<10> eta = (c.eta() - etaEdge ) / 0.0043633231;
+    // ap_uint<64> candWord = 0;
     // if ( abs(c.pt() - 8.75) < 0.1 ) {
       // std::cout << "Encoding puppi cand : " << c.pt() << " " << c.phi() << " " << c.eta() << std::endl;
       // std::cout << phiEdge << " " << etaEdge << std::endl;
       // std::cout << pt << " " << phi << " " << eta << std::endl;
     // }
 
-    candWord(14-1, 0) = pt(13, 0);
-    candWord(14+10-1, 14) = phi(9,0);
-    candWord(14+10+10-1, 14+10) = eta(9,0);
+    // candWord(14-1, 0) = pt(13, 0);
+    // candWord(14+10-1, 14) = phi(9,0);
+    // candWord(14+10+10-1, 14+10) = eta(9,0);
     // std::cout << candWord << std::endl;
     return candWord;
   }
@@ -40,19 +51,39 @@ namespace l1t::demo::codecs {
       if (puppiCand.phi() < phiRegionEdges.front() || puppiCand.phi() >= phiRegionEdges.back() ||
           puppiCand.eta() < etaRegionEdges.front() || puppiCand.eta() >= etaRegionEdges.back())
         continue;
+
+
+      // if ( puppiCand.eta() < -1.5 || puppiCand.eta() > 1.5 ) continue;
+
       // std::cout << "Input puppi cand : " << puppiCand.pt() << " " << puppiCand.eta() << " " << puppiCand.phi() << std::endl;
-      // Which phi region does this cand belong to
+      // Which phi region does this tp belong to
       auto it_phi = phiRegionEdges.begin();
       it_phi = std::upper_bound(phiRegionEdges.begin(), phiRegionEdges.end(), puppiCand.phi()) - 1;
 
-      // Which eta region does this cand belong to
+      if ( l1ct::Scales::makeGlbPhi( *(it_phi+1) ) == l1ct::Scales::makeGlbPhi( puppiCand.phi() ) ) {
+        it_phi += 1;
+      }
+
+      // Which eta region does this tp belong to
       auto it_eta = etaRegionEdges.begin();
       it_eta = std::upper_bound(etaRegionEdges.begin(), etaRegionEdges.end(), puppiCand.eta()) - 1;
 
+      if ( l1ct::Scales::makeGlbEta( *(it_eta+1) ) == l1ct::Scales::makeGlbEta( puppiCand.eta() ) ) {
+        it_eta += 1;
+      }
+
       if (it_phi != phiRegionEdges.end() && it_eta != etaRegionEdges.end()) {
         auto phiRegion = it_phi - phiRegionEdges.begin();
+        if ( phiRegion >= 4 ) phiRegion -= 4;
+        else phiRegion += 5;
         auto etaRegion = it_eta - etaRegionEdges.begin();
         unsigned regionIndex = etaRegion + phiRegion * (etaRegionEdges.size() - 1);
+
+        if ( puppiCand.pt() == 6.25 ) {
+          std::cout << "Puppi cand : " << puppiCand.pt() << " " << puppiCand.phi() << " " << puppiCand.eta() << std::endl;
+          std::cout << *it_phi << " " << *it_eta << std::endl;
+          std::cout << "Region index : " << regionIndex << " " << etaRegion << " " << phiRegion << std::endl;
+        }
         // std::cout << "Packed cand : " << encodePuppiCand(puppiCand, *it_phi, *it_eta) << std::endl;
         // std::cout << *it_phi << " " << *it_eta << std::endl;
         // std::cout << "Region index : " << regionIndex << " " << etaRegion << " " << phiRegion << std::endl;

@@ -10,6 +10,7 @@
 
 #include "DataFormats/Common/interface/View.h"
 #include "DataFormats/L1TParticleFlow/interface/PFCandidate.h"
+#include "L1Trigger/Phase2L1ParticleFlow/src/newfirmware/dataformats/puppi.h"
 
 #include "L1Trigger/DemonstratorTools/interface/BoardData.h"
 

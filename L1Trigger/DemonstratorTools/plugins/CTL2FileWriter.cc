@@ -63,35 +63,73 @@ private:
 
   const std::map<l1t::demo::LinkId, std::vector<size_t>> kChannelIdsInput = {
       /* logical channel within time slice -> vector of channel indices (one entry per time slice) */
-      {{"puppiCands", 0}, {24}},
-      {{"puppiCands", 1}, {25}},
-      {{"puppiCands", 2}, {26}},
-      {{"puppiCands", 3}, {27}},
-      {{"puppiCands", 4}, {28}},
-      {{"puppiCands", 5}, {29}},
-      {{"puppiCands", 6}, {30}},
-      {{"puppiCands", 7}, {31}},
-      {{"puppiCands", 8}, {32}},
-      {{"puppiCands", 9}, {33}},
-      {{"puppiCands", 10}, {34}},
-      {{"puppiCands", 11}, {35}},
-      {{"puppiCands", 12}, {36}},
-      {{"puppiCands", 13}, {37}},
-      {{"puppiCands", 14}, {38}},
-      {{"puppiCands", 15}, {39}},
-      {{"puppiCands", 16}, {80}},
-      {{"puppiCands", 17}, {81}},
+      // // Original configuration
+      // // Barrel, 6*3
+      // {{"puppiCands", 0}, {24}},
+      // {{"puppiCands", 1}, {25}},
+      // {{"puppiCands", 2}, {26}},
+      // {{"puppiCands", 3}, {27}},
+      // {{"puppiCands", 4}, {28}},
+      // {{"puppiCands", 5}, {29}},
+      // {{"puppiCands", 6}, {30}},
+      // {{"puppiCands", 7}, {31}},
+      // {{"puppiCands", 8}, {32}},
+      // {{"puppiCands", 9}, {33}},
+      // {{"puppiCands", 10}, {34}},
+      // {{"puppiCands", 11}, {35}},
+      // {{"puppiCands", 12}, {36}},
+      // {{"puppiCands", 13}, {37}},
+      // {{"puppiCands", 14}, {38}},
+      // {{"puppiCands", 15}, {39}},
+      // {{"puppiCands", 16}, {80}},
+      // {{"puppiCands", 17}, {81}},
 
-      {{"puppiCands", 18}, {82}},
-      {{"puppiCands", 19}, {83}},
-      {{"puppiCands", 20}, {84}},
-      {{"puppiCands", 21}, {85}},
-      {{"puppiCands", 22}, {86}},
-      {{"puppiCands", 23}, {87}},
+      // // Endcap with tracks, 3*2
+      // {{"puppiCands", 18}, {82}},
+      // {{"puppiCands", 19}, {83}},
+      // {{"puppiCands", 20}, {84}},
+      // {{"puppiCands", 21}, {85}},
+      // {{"puppiCands", 22}, {86}},
+      // {{"puppiCands", 23}, {87}},
 
-      {{"puppiCands", 24}, {88}},
-      {{"puppiCands", 25}, {89}},
-      {{"puppiCands", 26}, {90}}
+      // // Endcap no tracks, 3*1
+      // {{"puppiCands", 24}, {88}},
+      // {{"puppiCands", 25}, {89}},
+      // {{"puppiCands", 26}, {90}}
+
+      // CTL1->CTL2 test
+      // Barrel, 6*3
+      {{"puppiCands", 0}, {62}},
+      {{"puppiCands", 1}, {63}},
+      {{"puppiCands", 2}, {64}},
+      {{"puppiCands", 3}, {65}},
+      {{"puppiCands", 4}, {66}},
+      {{"puppiCands", 5}, {67}},
+      {{"puppiCands", 6}, {68}},
+      {{"puppiCands", 7}, {69}},
+      {{"puppiCands", 8}, {70}},
+      {{"puppiCands", 9}, {71}},
+      {{"puppiCands", 10}, {72}},
+      {{"puppiCands", 11}, {73}},
+      {{"puppiCands", 12}, {74}},
+      {{"puppiCands", 13}, {75}},
+      {{"puppiCands", 14}, {76}},
+      {{"puppiCands", 15}, {77}},
+      {{"puppiCands", 16}, {78}},
+      {{"puppiCands", 17}, {79}},
+
+      // Endcap with tracks, 3*2
+      {{"puppiCands", 18}, {43}},
+      {{"puppiCands", 19}, {44}},
+      {{"puppiCands", 20}, {45}},
+      {{"puppiCands", 21}, {56}},
+      {{"puppiCands", 22}, {57}},
+      {{"puppiCands", 23}, {58}},
+
+      // Endcap no tracks, 3*1
+      {{"puppiCands", 24}, {40}},
+      {{"puppiCands", 25}, {41}},
+      {{"puppiCands", 26}, {42}}
 
       
       };
@@ -103,7 +141,7 @@ private:
   const std::map<l1t::demo::LinkId, std::pair<l1t::demo::ChannelSpec, std::vector<size_t>>>
       kChannelSpecsOutputToGT = {
           /* logical channel within time slice -> {{link TMUX, inter-packet gap}, vector of channel indices} */
-          {{"jetMet", 0}, {{kCTL2TMUX, kGapLength}, {0}}}};
+          {{"jetMet", 0}, {{kCTL2TMUX, kGapLength}, {58}}}};
 
   // ----------member functions ----------------------
   void analyze(const edm::Event&, const edm::EventSetup&) override;
