@@ -24,12 +24,15 @@ process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(50)
+    input = cms.untracked.int32(100)
 )
 
 # Input source
 process.source = cms.Source("PoolSource",
-       fileNames = cms.untracked.vstring('/store/relval/CMSSW_13_0_0_pre2/RelValTTbar_14TeV/GEN-SIM-DIGI-RAW/125X_mcRun4_realistic_v5_2026D88noPU-v1/2590000/02fb5828-a118-49d3-8fcb-142debe91c20.root'),
+       fileNames = cms.untracked.vstring(
+        'file:/hdfs/user/ec6821/L1TJets/LocalInputs/TTbar_200PU_Fall22_000c5e5f-78f7-44ee-95fe-7b2f2c2e2312.root'
+    # 'file:/hdfs/user/ec6821/HGC/LocalInputs/TTbar_0PU_V16_D88.root'
+    ),
        inputCommands=cms.untracked.vstring(
            'keep *',
            )
@@ -77,8 +80,30 @@ process = custom_ntuples_standalone_clustering(process)
 process = custom_ntuples_standalone_tower(process)
 process.ntuple_step = cms.Path(process.L1THGCalTriggerNtuples)
 
+process.FEVTDEBUGoutput = cms.OutputModule("PoolOutputModule",
+    splitLevel = cms.untracked.int32(0),
+    eventAutoFlushCompressedSize = cms.untracked.int32(5242880),
+    outputCommands = process.FEVTDEBUGHLTEventContent.outputCommands,
+    fileName = cms.untracked.string('output_withEmuHGCalClusters.root'),
+    dataset = cms.untracked.PSet(
+        filterName = cms.untracked.string(''),
+        dataTier = cms.untracked.string('GEN-SIM-DIGI-RAW')
+    ),
+)
+# process.FEVTDEBUGoutput.outputCommands.append( 'drop *')
+# process.FEVTDEBUGoutput.outputCommands.append( 'keep *_hgcalBackEndLayer2Producer_*_*')
+
+# process.FEVTDEBUGoutput.outputCommands.append( 'drop TrackingParticles_mix_MergedTrackTruth_*')
+# process.FEVTDEBUGoutput.outputCommands.append( 'drop PixelDigiSimLinkedmDetSetVector_simSiPixelDigis_Tracker_*')
+# process.FEVTDEBUGoutput.outputCommands.append( 'drop PixelDigiSimLinkedmDetSetVector_simSiPixelDigis_Pixel_*')
+# process.FEVTDEBUGoutput.outputCommands.append( 'drop SimClusters_mix_MergedCaloTruth_*')
+# process.FEVTDEBUGoutput.outputCommands.append( 'drop TrackingVertexs_mix_MergedTrackTruth_*')
+# process.FEVTDEBUGoutput.outputCommands.append( 'drop PixelDigiedmDetSetVector_simSiPixelDigis_Pixel_*')
+# process.FEVTDEBUGoutput.outputCommands.append( 'drop PCaloHits_g4SimHits_EcalHitsEB_*')
+process.endjob_step = cms.EndPath(process.FEVTDEBUGoutput)
+
 # Schedule definition
-process.schedule = cms.Schedule(process.hgcl1tpg_step, process.ntuple_step)
+process.schedule = cms.Schedule(process.hgcl1tpg_step, process.ntuple_step, process.endjob_step)
 
 # Add early deletion of temporary data products to reduce peak memory need
 from Configuration.StandardSequences.earlyDeleteSettings_cff import customiseEarlyDelete
