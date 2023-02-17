@@ -61,9 +61,9 @@ layer2ClusteringFw_Params = cms.PSet(
 
     # Histogram parameters
     cColumns=cms.uint32(108),
-    cRows=cms.uint32(44),
-    rOverZHistOffset = cms.uint32(440), # offset of first r/z bin in number of LSB
-    rOverZBinSize = cms.uint32(64), # in number of LSB
+    cRows=cms.uint32(42),
+    rOverZHistOffset = cms.uint32(444), # offset of first r/z bin in number of LSB
+    rOverZBinSize = cms.uint32(71), # in number of LSB
 
     # Smearing parameters
     smearingParams = cms.PSet(
