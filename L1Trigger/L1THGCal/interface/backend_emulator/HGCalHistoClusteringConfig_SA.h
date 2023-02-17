@@ -218,6 +218,9 @@ namespace l1thgcfirmware {
     void setSaturation(const unsigned saturation) { saturation_ = saturation; }
     unsigned int saturation() const { return saturation_; }
 
+    unsigned int rozToEtaLUT(unsigned int iBin) const { return rozToEtaLUT_.at(iBin); }
+    unsigned int sigmaRozToSigmaEtaLUT(unsigned int iBin) const { return sigmaRozToSigmaEtaLUT_.at(iBin); }
+
     void setNTriggerLayers(const unsigned n) { nTriggerLayers_ = n; }
     unsigned int nTriggerLayers() const { return nTriggerLayers_; }
 
@@ -229,6 +232,8 @@ namespace l1thgcfirmware {
     void initializeSmearingKernelConstants(unsigned int bins, unsigned int offset, unsigned int height);
     void initializeThresholdMaximaConstants(unsigned int bins, unsigned int a, int b, int c);
     void initializeCosLUT();
+    void initializeRoZToEtaLUT();
+    void initializeSigmaRoZToSigmaEtaLUT();
 
     unsigned int histogramOffset_;
     unsigned int clusterizerOffset_;
@@ -304,6 +309,10 @@ namespace l1thgcfirmware {
     std::vector<unsigned int> layerWeights_E_H_early_;
     unsigned int correction_;
     unsigned int saturation_;
+
+    // Parameters for cluster properties calculator
+    std::vector<unsigned int> rozToEtaLUT_;
+    std::vector<unsigned int> sigmaRozToSigmaEtaLUT_;
 
     // Trigger geometry info
     unsigned int nTriggerLayers_;

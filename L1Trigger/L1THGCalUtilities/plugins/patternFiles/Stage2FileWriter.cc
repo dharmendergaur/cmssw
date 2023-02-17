@@ -171,7 +171,7 @@ std::array<std::vector<ap_uint<64>>, 4> Stage2FileWriter::encodeTowersAndCluster
     if ( sector == 1 ) sector = 2;
     else if ( sector == 2 ) sector = 1;
   }
-  // std::cout << "Sectors : " << iSector << " " << zside << " " << sector << std::endl;
+  std::cout << "Sectors : " << iSector << " " << zside << " " << sector << std::endl;
 
   // First frame empty for alignment
   ap_uint<64> packetHeader = 0;
@@ -199,7 +199,9 @@ std::array<std::vector<ap_uint<64>>, 4> Stage2FileWriter::encodeTowersAndCluster
 
     ++iCluster;
     if ( iCluster > 160 ) break;
-    // std::cout << "Adding cluster, sector : " << sector << " " << cl3d_itr->pt() << " " << cl3d_itr->eta() << " " << cl3d_itr->phi() << std::endl;
+    if ( sector == 0 && zside == -1 ) {
+      std::cout << "Cluster pt, eta, phi, nTC,  : " << sector << " " << cl3d_itr->pt() << " " << cl3d_itr->eta() << " " << cl3d_itr->phi() << " " << cl3d_itr->constituents().size() << " " << cl3d_itr->hw_sigma_e_quotient() << " " << cl3d_itr->hw_sigma_e_fraction() << std::endl;
+    }
     //  << " " << cl3d_itr->getHwData()[0].to_string() << std::endl;
     // std::cout << "Phi, eta : " << cl3d_itr->phi() << " " << cl3d_itr->eta() << " " << cl3d_itr->getHwData()[1].to_string() << std::endl;
     const auto& clusterWords = cl3d_itr->getHwData();

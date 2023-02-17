@@ -38,7 +38,7 @@ namespace l1thgcfirmware {
         unsigned int lsb = 0;
         unsigned int msb = nb_e-1;
         ap_uint<nb_e> hw_e = word.range(msb,lsb);
-        // std::cout << "Cluster E : " << hw_e.to_string() << std::endl;
+        // std::cout << "Cluster E : " << lsb << " " << msb << " " << word.to_string() << " " << hw_e.to_string() << std::endl;
 
         lsb += nb_e;
         msb += nb_e_em;
@@ -65,15 +65,17 @@ namespace l1thgcfirmware {
         ap_uint<nb_firstLayer> hw_firstLayer = word.range(msb,lsb);
 
         if ( word != 0 ) {
-            std::cout << "First cluster word : " << hw_firstLayer.to_string() << " " << hw_fractionInEarlyCE_H.to_string() << " " << hw_e.to_string() << " " << hw_e_em.to_string() << " " << hw_gctEGSelectBits.to_string() << " " << hw_fractionInCE_E.to_string() << " " << hw_fractionInCoreCE_E.to_string() << std::endl;
+            // std::cout << "First cluster word : " << hw_firstLayer.to_string() << " " << hw_fractionInEarlyCE_H.to_string() << " " << hw_fractionInCoreCE_E.to_string() << " " << hw_fractionInCE_E.to_string() << " " << hw_gctEGSelectBits.to_string() << " " << hw_e_em.to_string() << " " << hw_e.to_string() << std::endl;
+            std::cout << "First cluster word : " << hw_fractionInEarlyCE_H.to_string() << " " << hw_fractionInCoreCE_E.to_string() << " " << hw_fractionInCE_E.to_string() << " " << hw_gctEGSelectBits.to_string() << " " << hw_e_em.to_string() << " " << hw_e.to_string() << std::endl;
         }
 
     }
 
     void decodeSecondWord( const ap_uint<64> word) {
-        const unsigned nb_eta = 9;
+        const unsigned nb_eta = 10;
         const unsigned nb_phi = 9;
-        const unsigned nb_z = 14;
+        const unsigned nb_z = 12;
+        const unsigned nb_spare_0 = 1;
         const unsigned nb_nTC = 10;
         const unsigned nb_satTC = 1;
         const unsigned nb_qualFracCE_E = 1;
@@ -82,7 +84,7 @@ namespace l1thgcfirmware {
         const unsigned nb_qualSigmasMeans = 1;
         const unsigned nb_satPhi = 1;
         const unsigned nb_nominalPhi = 1;
-        const unsigned nb_spare = 15;
+        const unsigned nb_spare_1 = 15;
 
         unsigned int lsb = 0;
         unsigned int msb = nb_eta-1;
@@ -97,6 +99,10 @@ namespace l1thgcfirmware {
         ap_uint<nb_z> hw_z = word.range(msb,lsb);
 
         lsb += nb_z;
+        msb += nb_spare_0;
+        ap_uint<nb_spare_0> hw_spare_0 = word.range(msb,lsb);
+
+        lsb += nb_spare_0;
         msb += nb_nTC;
         ap_uint<nb_nTC> hw_nTC = word.range(msb,lsb);
 
@@ -129,23 +135,24 @@ namespace l1thgcfirmware {
         ap_uint<nb_nominalPhi> hw_nominalPhi = word.range(msb,lsb);
 
         lsb += nb_nominalPhi;
-        msb += nb_spare;
-        ap_uint<nb_spare> hw_spare = word.range(msb,lsb);
+        msb += nb_spare_1;
+        ap_uint<nb_spare_1> hw_spare_1 = word.range(msb,lsb);
 
         if ( word != 0 ) {
-            std::cout << "Second cluster word : " << hw_spare.to_string() << " " << hw_nominalPhi.to_string() << " " << hw_satPhi.to_string() << " " << hw_qualSigmasMeans.to_string() << " " << hw_qualFracEarlyCE_H.to_string() << " " << hw_qualFracCoreCE_E.to_string() << " " << hw_qualFracCE_E.to_string() << " " << hw_satTC.to_string() << " " << hw_nTC.to_string() << " " << hw_z.to_string() << " " << hw_phi.to_string() << " " << hw_eta.to_string() << std::endl;
+            std::cout << "Second cluster word : " << hw_spare_1.to_string() << " " << hw_nominalPhi.to_string() << " " << hw_satPhi.to_string() << " " << hw_qualSigmasMeans.to_string() << " " << hw_qualFracEarlyCE_H.to_string() << " " << hw_qualFracCoreCE_E.to_string() << " " << hw_qualFracCE_E.to_string() << " " << hw_satTC.to_string() << " " << hw_nTC.to_string() << " " << hw_spare_0.to_string() << " " << hw_z.to_string() << " " << hw_phi.to_string() << " " << hw_eta.to_string() << std::endl;
         }
     }
 
     void decodeThirdWord( const ap_uint<64> word) {
-        const unsigned nb_sigmaE = 19;
+        const unsigned nb_sigmaE = 7;
         const unsigned nb_lastLayer = 6;
         const unsigned nb_showerLength = 6;
-        const unsigned nb_spare = 1;
-        const unsigned nb_sigmaZZ = 13;
-        const unsigned nb_sigmaPhiPhi = 9;
+        const unsigned nb_spare = 13;
+        const unsigned nb_sigmaZZ = 7;
+        const unsigned nb_sigmaPhiPhi = 7;
         const unsigned nb_coreShowerLength = 6;
-        const unsigned nb_spare4Bits = 4;
+        const unsigned nb_sigmaEtaEta = 5;
+        const unsigned nb_sigmaRozRoz = 7;
 
         unsigned int lsb = 0;
         unsigned int msb = nb_sigmaE-1;
@@ -174,40 +181,34 @@ namespace l1thgcfirmware {
         lsb += nb_sigmaPhiPhi;
         msb += nb_coreShowerLength;
         ap_uint<nb_coreShowerLength> hw_coreShowerLength = word.range(msb,lsb);
-    
+
         lsb += nb_coreShowerLength;
-        msb += nb_spare4Bits;
-        ap_uint<nb_spare4Bits> hw_spare4Bits = word.range(msb,lsb);
-    
-        if ( word != 0 ) {
-            std::cout << "Third cluster word : " << hw_spare4Bits.to_string() << " " << hw_coreShowerLength.to_string() << " " << hw_sigmaPhiPhi.to_string() << " " << hw_sigmaZZ.to_string() << " " << hw_spare.to_string() << " " << hw_showerLength.to_string() << " " << hw_lastLayer.to_string() << " " << hw_sigmaE.to_string() << std::endl;
-        }
-    }
-
-void decodeFourthWord( const ap_uint<64> word) {
-        const unsigned nb_sigmaEtaEta = 9;
-        const unsigned nb_sigmaRozRoz = 13;
-        const unsigned nb_spare10Bits = 10;
-        const unsigned nb_spare32Bits = 32;
-
-        unsigned int lsb = 0;
-        unsigned int msb = nb_sigmaEtaEta-1;
-        ap_uint<nb_sigmaEtaEta> hw_sigmaEtaEta = word.range(msb,lsb);
+        msb += nb_sigmaEtaEta;
+        ap_int<nb_sigmaEtaEta> hw_sigmaEtaEta = word.range(msb,lsb);
 
         lsb += nb_sigmaEtaEta;
         msb += nb_sigmaRozRoz;
         ap_int<nb_sigmaRozRoz> hw_sigmaRozRoz = word.range(msb,lsb);
 
-        lsb += nb_sigmaRozRoz;
-        msb += nb_spare10Bits;
-        ap_uint<nb_spare10Bits> hw_spare10Bits = word.range(msb,lsb);
+        if ( word != 0 ) {
+            // std::cout << "Third cluster word : " << hw_sigmaRozRoz.to_string() << " " << hw_sigmaEtaEta.to_string() << " " << hw_coreShowerLength.to_string() << " " << hw_sigmaPhiPhi.to_string() << " " << hw_sigmaZZ.to_string() << " " << hw_spare.to_string() << " " << hw_showerLength.to_string() << " " << hw_lastLayer.to_string() << " " << hw_sigmaE.to_string() << std::endl;
+            std::cout << "Third cluster word : " << hw_sigmaRozRoz.to_string() << " " << hw_sigmaEtaEta.to_string() << " " << hw_sigmaPhiPhi.to_string() << " " << hw_sigmaZZ.to_string() << " " << hw_sigmaE.to_string() << std::endl;
 
-        lsb += nb_spare10Bits;
-        msb += nb_spare32Bits;
-        ap_uint<nb_spare32Bits> hw_spare32Bits = word.range(msb,lsb);
+        }
+    }
+
+void decodeFourthWord( const ap_uint<64> word) {
+        // const unsigned nb_sigmaEtaEta = 9;
+        // const unsigned nb_sigmaRozRoz = 13;
+        // const unsigned nb_spare10Bits = 10;
+        // const unsigned nb_spare32Bits = 32;
+
+        unsigned int lsb = 0;
+        unsigned int msb = 63;
+        ap_uint<64> hw_spare = word.range(msb,lsb);
 
         if ( word != 0 ) {
-            std::cout << "Fourth cluster word : " << hw_spare32Bits.to_string() << " " << hw_spare10Bits.to_string() << " " << hw_sigmaRozRoz.to_string() << " " << hw_sigmaEtaEta.to_string() << std::endl;
+            std::cout << "Fourth cluster word : " << hw_spare.to_string() << std::endl;
         }
     }
 }

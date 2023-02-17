@@ -276,6 +276,11 @@ void HGCalHistoClusteringWrapper::configure(
   theConfiguration_.setNTriggerLayers(std::get<0>(configuration)->lastTriggerLayer());
   theConfiguration_.setTriggerLayers(std::get<0>(configuration)->triggerLayers());
 
+  std::cout << "N trigger layers : " << theConfiguration_.nTriggerLayers() << std::endl;
+  for ( const auto& layer : theConfiguration_.triggerLayers() ) {
+    std::cout << layer << " ";
+  }
+  std::cout << std::endl;
   theConfiguration_.setSector(std::get<2>(configuration));
   theConfiguration_.setZSide(std::get<3>(configuration));
 

@@ -40,8 +40,8 @@ layer2ClusteringFw_Params = cms.PSet(
 
     # Digitzation parameters
     digiParams = cms.PSet(
-        rOverZRange = cms.double(0.7),
-        rOverZNValues = cms.double(4096), # 12 bits
+        rOverZRange = cms.double(0.7982087279),
+        rOverZNValues = cms.double(8192), # 13 bits
         phiRange = cms.double(pi),
         phiNValues = cms.double(1944), # 12 bits, but range over 2pi is 3888
         ptDigiFactor = cms.double(1024),
@@ -71,8 +71,8 @@ layer2ClusteringFw_Params = cms.PSet(
     # Histogram parameters
     cColumns=cms.uint32(108),
     cRows=cms.uint32(44),
-    rOverZHistOffset = cms.uint32(440), # offset of first r/z bin in number of LSB
-    rOverZBinSize = cms.uint32(64), # in number of LSB
+    rOverZHistOffset = cms.uint32(771), #440 # offset of first r/z bin in number of LSB
+    rOverZBinSize = cms.uint32(112), #64 # in number of LSB
 
     # Smearing parameters
     smearingParams = cms.PSet(

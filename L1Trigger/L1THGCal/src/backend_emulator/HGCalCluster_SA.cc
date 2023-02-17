@@ -148,12 +148,28 @@ HGCalCluster::ClusterWord HGCalCluster::formatSecondWord( const ClusterAlgoConfi
   const unsigned nb_nominalPhi = 1;
   const unsigned nb_spare_1 = 15;
 
-  double roz = float(wroz()) / w() * config.rOverZRange() / config.rOverZNValues();
-  double eta = asinh( 1. / roz );
-  const double etaLSB = M_PI / 720;
-  ap_uint<nb_eta> hw_eta = round(eta / etaLSB);//317;// round( float(weta()) / w() ) + 317;
-  std::cout << e() << " " << config.sector() << " " << config.zSide() << std::endl;
-  std::cout << "R/Z, eta : " << roz << " " << wroz() << " " <<  w() << " " << 1./roz << " " << eta << " " << hw_eta << std::endl;
+  // double roz = float(wroz()) / w() * config.rOverZRange() / config.rOverZNValues();
+  // double eta = asinh( 1. / roz );
+  // const double etaLSB = M_PI / 720;
+  // ap_uint<nb_eta> hw_eta = round(eta / etaLSB);//317;// round( float(weta()) / w() ) + 317;
+  // std::cout << e() << " " << config.sector() << " " << config.zSide() << std::endl;
+  // std::cout << "R/Z, eta : " << roz << " " << wroz() << " " <<  w() << " " << 1./roz << " " << eta << " " << hw_eta << std::endl;
+
+  double roz = wroz()/w();
+  // bool debug = (roz == 1928 );
+  bool debug = false;
+  if ( debug ) std::cout << "R/z : " << wroz() << " " << w() << " " << roz << std::endl;
+  if ( roz < 1026.9376220703125 ) roz = 1026.9376220703125;
+  else if ( roz > 5412.17138671875 ) roz = 5412.17138671875;
+  roz -= 1026.9376220703125;
+  if ( debug ) std::cout << "Local : " << roz << std::endl;
+  roz *= 0.233510936;
+  if ( debug ) std::cout << "Scaled : " << roz << std::endl;
+  roz = int(round(roz));
+  if ( debug ) std::cout << "Rounded : " << roz << std::endl;
+  if ( roz > 1023 ) roz = 1023;
+  if ( debug ) std::cout << "Eta : " << config.rozToEtaLUT(roz-1) << " " << config.rozToEtaLUT(roz) << " " << config.rozToEtaLUT(roz+1) << std::endl;
+  ap_uint<nb_eta> hw_eta = config.rozToEtaLUT(roz);//317;// round( float(weta()) / w() ) + 317;
 
   ap_int<nb_phi> hw_phi = 0;
   ap_uint<nb_z> hw_z = 0;
@@ -213,7 +229,7 @@ HGCalCluster::ClusterWord HGCalCluster::formatThirdWord( const ClusterAlgoConfig
   const unsigned nb_sigmaEtaEta = 5;
   const unsigned nb_sigmaRozRoz = 7;
   
-  ap_uint<nb_sigmaE> hw_sigmaE = round( sqrt( ( ( n_tc_w() * w2() ) - ( w() * w() ) )       / ( n_tc_w() * n_tc_w() ) ) );
+  ap_uint<nb_sigmaE> hw_sigmaE = sigma_e_quotient() + sigma_e_fraction();
   ap_uint<nb_lastLayer> hw_lastLayer = lastLayer();
   ap_uint<nb_showerLength> hw_showerLength = showerLen();
   ap_uint<nb_spare> hw_spare = 0;
@@ -223,6 +239,35 @@ HGCalCluster::ClusterWord HGCalCluster::formatThirdWord( const ClusterAlgoConfig
   ap_uint<nb_sigmaEtaEta> hw_sigmaEtaEta = 0;
   ap_uint<nb_sigmaRozRoz> hw_sigmaRozRoz = sigma_roz_quotient() + sigma_roz_fraction();
   
+  // Sigma eta eta calculation
+  bool debug = false;
+  double roz = wroz()/w();
+  if ( debug ) std::cout << "R/z : " << wroz() << " " << w() << " " << roz << std::endl;
+  const double min_roz = 809.9324340820312;
+  const double max_roz = 4996.79833984375;
+  if ( roz < min_roz ) roz = min_roz;
+  else if ( roz > max_roz ) roz = max_roz;
+  roz -= min_roz;
+  if ( debug ) std::cout << "Local : " << roz << std::endl;
+  const double scale = 0.015286154113709927;
+  roz *= scale;
+  if ( debug ) std::cout << "Scaled : " << roz << std::endl;
+  roz = int(round(roz));
+  if ( debug ) std::cout << "Rounded : " << roz << std::endl;
+  if ( roz > 63 ) roz = 63;
+
+  double sigmaRoz = (sigma_roz_quotient() + sigma_roz_fraction())/0.5073223114013672;
+  if ( debug ) std::cout << "Sigma r/z : " << sigmaRoz << " " << hw_sigmaRozRoz << " " << hw_sigmaRozRoz.to_string() << std::endl;
+  const double scale_sigma = 0.220451220870018;
+  sigmaRoz *= scale_sigma;
+  sigmaRoz = int(round(sigmaRoz));
+  if ( debug ) std::cout << "Scaled and rounded : " << sigmaRoz << std::endl;
+  if ( sigmaRoz > 63 ) roz = 63;
+
+  const unsigned int lutAddress = roz * 64 + sigmaRoz;
+  std::cout << "LUT address : " << lutAddress << " " << config.sigmaRozToSigmaEtaLUT(lutAddress) << std::endl;
+  hw_sigmaEtaEta = config.sigmaRozToSigmaEtaLUT(lutAddress);
+  std::cout << "Sigma eta eta : " << hw_sigmaEtaEta << " " << hw_sigmaEtaEta.to_string() << std::endl;
   // double roz = float(wroz()) / w() * config.rOverZRange() / config.rOverZNValues();
   // double eta = asinh( 1. / roz );
   // const double etaLSB = M_PI / 720;
