@@ -181,7 +181,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetTkEG(const edm::Handle<l1t::TkElectr
       l1extra_.tkElectronTrkIso.push_back(it->trkIsol());
       l1extra_.tkElectronPfIso.push_back(it->pfIsol());
       l1extra_.tkElectronPuppiIso.push_back(it->puppiIsol());
-      l1extra_.tkElectronHwQual.push_back(it->EGRef()->hwQual());
+      l1extra_.tkElectronHwQual.push_back(it->hwQual());
       l1extra_.tkElectronEGRefPt.push_back(it->EGRef()->et());  //Rename  this?
       l1extra_.tkElectronEGRefEta.push_back(it->EGRef()->eta());
       l1extra_.tkElectronEGRefPhi.push_back(it->EGRef()->phi());
@@ -211,7 +211,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetTkEG(const edm::Handle<l1t::TkElectr
       l1extra_.tkElectronTrkIso.push_back(it->trkIsol());
       l1extra_.tkElectronPfIso.push_back(it->pfIsol());
       l1extra_.tkElectronPuppiIso.push_back(it->puppiIsol());
-      l1extra_.tkElectronHwQual.push_back(it->EGRef()->hwQual());
+      l1extra_.tkElectronHwQual.push_back(it->hwQual());
       l1extra_.tkElectronEGRefPt.push_back(it->EGRef()->et());  //Rename this?
       l1extra_.tkElectronEGRefEta.push_back(it->EGRef()->eta());
       l1extra_.tkElectronEGRefPhi.push_back(it->EGRef()->phi());
@@ -246,7 +246,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetTkEM(const edm::Handle<l1t::TkEmColl
       l1extra_.tkPhotonPuppiIso.push_back(it->puppiIsol());
       l1extra_.tkPhotonPuppiIsoPV.push_back(it->puppiIsolPV());
       l1extra_.tkPhotonBx.push_back(0);  //it->bx());
-      l1extra_.tkPhotonHwQual.push_back(it->EGRef()->hwQual());
+      l1extra_.tkPhotonHwQual.push_back(it->hwQual());
       l1extra_.tkPhotonEGRefPt.push_back(it->EGRef()->et());  //REname this?
       l1extra_.tkPhotonEGRefEta.push_back(it->EGRef()->eta());
       l1extra_.tkPhotonEGRefPhi.push_back(it->EGRef()->phi());
@@ -275,7 +275,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetTkEM(const edm::Handle<l1t::TkEmColl
       l1extra_.tkPhotonPuppiIso.push_back(it->puppiIsol());
       l1extra_.tkPhotonPuppiIsoPV.push_back(it->puppiIsolPV());
       l1extra_.tkPhotonBx.push_back(0);  //it->bx());
-      l1extra_.tkPhotonHwQual.push_back(it->EGRef()->hwQual());
+      l1extra_.tkPhotonHwQual.push_back(it->hwQual());
       l1extra_.tkPhotonEGRefPt.push_back(it->EGRef()->et());  //rename this?
       l1extra_.tkPhotonEGRefEta.push_back(it->EGRef()->eta());
       l1extra_.tkPhotonEGRefPhi.push_back(it->EGRef()->phi());
