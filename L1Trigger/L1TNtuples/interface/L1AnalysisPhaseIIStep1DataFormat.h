@@ -401,7 +401,7 @@ namespace L1Analysis {
     std::vector<int> EGBx;
     std::vector<double> EGIso;
     std::vector<double> EGzVtx;
-    std::vector<int> EGHwQual;
+    std::vector<short int> EGHwQual;
     std::vector<unsigned int> EGHGC;
     std::vector<unsigned int>  EGPassesSaID;
     std::vector<unsigned int>  EGPassesEleID;
@@ -419,7 +419,7 @@ namespace L1Analysis {
     std::vector<double> tkElectronPfIso;
     std::vector<double> tkElectronPuppiIso;
     std::vector<double> tkElectronzVtx;
-    std::vector<double> tkElectronHwQual;
+    std::vector<short int> tkElectronHwQual;
     std::vector<double> tkElectronEGRefPt;
     std::vector<double> tkElectronEGRefEta;
     std::vector<double> tkElectronEGRefPhi;
@@ -442,7 +442,7 @@ namespace L1Analysis {
     std::vector<double> tkPhotonPuppiIso;
     std::vector<double> tkPhotonPuppiIsoPV;
     std::vector<double> tkPhotonzVtx;
-    std::vector<double> tkPhotonHwQual;
+    std::vector<short int> tkPhotonHwQual;
     std::vector<double> tkPhotonEGRefPt;
     std::vector<double> tkPhotonEGRefEta;
     std::vector<double> tkPhotonEGRefPhi;
