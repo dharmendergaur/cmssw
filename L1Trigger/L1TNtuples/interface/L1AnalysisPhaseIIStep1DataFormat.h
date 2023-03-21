@@ -94,8 +94,9 @@ namespace L1Analysis {
       EGzVtx.clear();
       EGHwQual.clear();
       EGHGC.clear();
-      EGPassesLooseTrackID.clear();
-      EGPassesPhotonID.clear();
+      EGPassesSaID.clear();
+      EGPassesEleID.clear();
+      EGPassesPhoID.clear();
 
       nTkElectrons = 0;
       tkElectronPt.clear();
@@ -113,8 +114,10 @@ namespace L1Analysis {
       tkElectronEGRefEta.clear();
       tkElectronEGRefPhi.clear();
       tkElectronHGC.clear();
-      tkElectronPassesLooseTrackID.clear();
-      tkElectronPassesPhotonID.clear();
+      tkElectronPassesSaID.clear();
+      tkElectronPassesEleID.clear();
+      tkElectronPassesPhoID.clear();
+
 
       nTkPhotons = 0;
       tkPhotonPt.clear();
@@ -134,10 +137,12 @@ namespace L1Analysis {
       tkPhotonEGRefEta.clear();
       tkPhotonEGRefPhi.clear();
       tkPhotonHGC.clear();
-      tkPhotonPassesLooseTrackID.clear();
-      tkPhotonPassesPhotonID.clear();
+      tkPhotonPassesSaID.clear();
+      tkPhotonPassesEleID.clear();
+      tkPhotonPassesPhoID.clear();
 
-      /*
+
+/*
       nStandaloneMuons = 0;
       standaloneMuonPt.clear();
       standaloneMuonPt2.clear();
@@ -396,10 +401,12 @@ namespace L1Analysis {
     std::vector<int> EGBx;
     std::vector<double> EGIso;
     std::vector<double> EGzVtx;
-    std::vector<int> EGHwQual;
+    std::vector<short int> EGHwQual;
     std::vector<unsigned int> EGHGC;
-    std::vector<unsigned int> EGPassesLooseTrackID;
-    std::vector<unsigned int> EGPassesPhotonID;
+    std::vector<unsigned int>  EGPassesSaID;
+    std::vector<unsigned int>  EGPassesEleID;
+    std::vector<unsigned int>  EGPassesPhoID;
+ 
 
     unsigned int nTkElectrons;
     std::vector<double> tkElectronPt;
@@ -412,13 +419,15 @@ namespace L1Analysis {
     std::vector<double> tkElectronPfIso;
     std::vector<double> tkElectronPuppiIso;
     std::vector<double> tkElectronzVtx;
-    std::vector<double> tkElectronHwQual;
+    std::vector<short int> tkElectronHwQual;
     std::vector<double> tkElectronEGRefPt;
     std::vector<double> tkElectronEGRefEta;
     std::vector<double> tkElectronEGRefPhi;
     std::vector<unsigned int> tkElectronHGC;
-    std::vector<unsigned int> tkElectronPassesLooseTrackID;
-    std::vector<unsigned int> tkElectronPassesPhotonID;
+    std::vector<unsigned int> tkElectronPassesSaID; 
+    std::vector<unsigned int> tkElectronPassesEleID;
+    std::vector<unsigned int> tkElectronPassesPhoID;
+
 
     unsigned int nTkPhotons;
     std::vector<double> tkPhotonPt;
@@ -433,15 +442,17 @@ namespace L1Analysis {
     std::vector<double> tkPhotonPuppiIso;
     std::vector<double> tkPhotonPuppiIsoPV;
     std::vector<double> tkPhotonzVtx;
-    std::vector<double> tkPhotonHwQual;
+    std::vector<short int> tkPhotonHwQual;
     std::vector<double> tkPhotonEGRefPt;
     std::vector<double> tkPhotonEGRefEta;
     std::vector<double> tkPhotonEGRefPhi;
     std::vector<unsigned int> tkPhotonHGC;
-    std::vector<unsigned int> tkPhotonPassesLooseTrackID;
-    std::vector<unsigned int> tkPhotonPassesPhotonID;
+    std::vector<unsigned int> tkPhotonPassesSaID; 
+    std::vector<unsigned int> tkPhotonPassesEleID;
+    std::vector<unsigned int> tkPhotonPassesPhoID;
 
-    /*
+
+/*
     unsigned short int nStandaloneMuons;
     std::vector<double> standaloneMuonPt;
     std::vector<double> standaloneMuonPt2;
@@ -515,7 +526,8 @@ namespace L1Analysis {
     std::vector<double> gmtMuonIPhi;
     std::vector<double> gmtMuonIZ0;
     std::vector<double> gmtMuonID0;
-    std::vector<double> gmtMuonChg;
+    std::vector<int> gmtMuonChg;
+    std::vector<int> gmtMuonHwChg;
     std::vector<double> gmtMuonIso;
     std::vector<double> gmtMuonQual;
     std::vector<double> gmtMuonBeta;
@@ -532,7 +544,8 @@ namespace L1Analysis {
     std::vector<double> gmtTkMuonIPhi;
     std::vector<double> gmtTkMuonIZ0;
     std::vector<double> gmtTkMuonID0;
-    std::vector<double> gmtTkMuonChg;
+    std::vector<int> gmtTkMuonChg;
+    std::vector<int> gmtTkMuonHwChg;
     std::vector<double> gmtTkMuonIso;
     std::vector<double> gmtTkMuonQual;
     std::vector<double> gmtTkMuonBeta;

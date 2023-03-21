@@ -27,12 +27,20 @@
 #include "DataFormats/L1Trigger/interface/L1HFRings.h"
 #include "DataFormats/L1GlobalTrigger/interface/L1GlobalTriggerReadoutRecord.h"
 
+<<<<<<< HEAD
+=======
+//#include "DataFormats/L1TCorrelator/interface/TkPrimaryVertex.h"
+>>>>>>> artlbv/from-CMSSW_12_5_2_patch1
 #include "DataFormats/L1Trigger/interface/Vertex.h"
 #include "DataFormats/L1Trigger/interface/VertexWord.h"
 
 #include "DataFormats/L1TMuonPhase2/interface/SAMuon.h"
 #include "DataFormats/L1TMuonPhase2/interface/MuonStub.h"
 #include "DataFormats/L1TMuonPhase2/interface/TrackerMuon.h"
+<<<<<<< HEAD
+=======
+//#include "L1Trigger/Phase2L1GMT/interface/Constants.h"
+>>>>>>> artlbv/from-CMSSW_12_5_2_patch1
 #include "DataFormats/L1TMuonPhase2/interface/Constants.h"
 
 #include "DataFormats/L1TCorrelator/interface/TkMuon.h"
@@ -107,14 +115,16 @@ namespace L1Analysis {
                  const edm::Handle<l1t::TkEmCollection> tkEMHGC,
                  unsigned maxL1Extra);
 
-    /*
+/*
     void SetMuonKF(const edm::Handle<l1t::RegionalMuonCandBxCollection> muonKF,
                    unsigned maxL1Extra,
                    unsigned int muonDetector);
     void SetMuonEMTF(const edm::Handle<l1t::EMTFTrackCollection> muonKF,
                      unsigned maxL1Extra,
                      unsigned int muonDetector);
+
     void SetTkMuon(const edm::Handle<l1t::TkMuonCollection> TkMuon, unsigned maxL1Extra);
+
     void SetMuon(const edm::Handle<l1t::MuonBxCollection> muon, unsigned maxL1Extra);
     void SetTkGlbMuon(const edm::Handle<l1t::TkGlbMuonCollection> TkGlbMuon, unsigned maxL1Extra);
 */

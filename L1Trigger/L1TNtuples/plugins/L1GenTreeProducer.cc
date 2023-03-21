@@ -54,7 +54,7 @@ Implementation:
 // class declaration
 //
 
-class L1GenTreeProducer : public edm::one::EDAnalyzer<edm::one::SharedResources> {
+class L1GenTreeProducer : public edm::one::EDAnalyzer<> {
 public:
   explicit L1GenTreeProducer(const edm::ParameterSet&);
   ~L1GenTreeProducer() override;
@@ -102,7 +102,6 @@ L1GenTreeProducer::L1GenTreeProducer(const edm::ParameterSet& iConfig) {
 
   l1GenData_ = std::make_unique<L1Analysis::L1AnalysisGeneratorDataFormat>();
 
-  usesResource(TFileService::kSharedResource);
   // set up output
   tree_ = fs_->make<TTree>("L1GenTree", "L1GenTree");
   tree_->Branch("Generator", "L1Analysis::L1AnalysisGeneratorDataFormat", l1GenData_.get(), 32000, 3);
@@ -257,3 +256,4 @@ void L1GenTreeProducer::endJob() {}
 
 //define this as a plug-in
 DEFINE_FWK_MODULE(L1GenTreeProducer);
+
