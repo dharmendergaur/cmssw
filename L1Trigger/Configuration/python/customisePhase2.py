@@ -11,3 +11,11 @@ def addHcalTriggerPrimitives(process):
     process.load('SimCalorimetry.HcalTrigPrimProducers.hcaltpdigi_cff')
 
     return process
+
+def addMenuNtuples(process):
+    process.load("L1Trigger.L1TNtuples.l1PhaseIITreeStep1Producer_cfi")
+    process.TFileService = cms.Service("TFileService",
+        fileName = cms.string('L1NtuplePhaseII_Step1.root')
+    )
+
+    return process
