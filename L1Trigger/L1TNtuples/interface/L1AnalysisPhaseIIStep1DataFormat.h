@@ -515,7 +515,8 @@ namespace L1Analysis {
     std::vector<double> gmtMuonIPhi;
     std::vector<double> gmtMuonIZ0;
     std::vector<double> gmtMuonID0;
-    std::vector<double> gmtMuonChg;
+    std::vector<int> gmtMuonChg;
+    std::vector<int> gmtMuonHwChg;
     std::vector<double> gmtMuonIso;
     std::vector<double> gmtMuonQual;
     std::vector<double> gmtMuonBeta;
@@ -532,7 +533,8 @@ namespace L1Analysis {
     std::vector<double> gmtTkMuonIPhi;
     std::vector<double> gmtTkMuonIZ0;
     std::vector<double> gmtTkMuonID0;
-    std::vector<double> gmtTkMuonChg;
+    std::vector<int> gmtTkMuonChg;
+    std::vector<int> gmtTkMuonHwChg;
     std::vector<double> gmtTkMuonIso;
     std::vector<double> gmtTkMuonQual;
     std::vector<double> gmtTkMuonBeta;
@@ -616,6 +618,7 @@ namespace L1Analysis {
     double trackerHTDisplaced;
     double trackerMHTDisplaced;
     double trackerMHTPhiDisplaced;
+
   };
 }  // namespace L1Analysis
 #endif

@@ -594,8 +594,8 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetTkJetDisplaced(const edm::Handle<l1t
 }
 
 void L1Analysis::L1AnalysisPhaseIIStep1::SetTkMET(const edm::Handle<std::vector<l1t::EtSum> > trackerMET) {
-  l1extra_.trackerMET = trackerMET->begin()->hwPt() * l1tmetemu::kStepMETwordEt;
-  l1extra_.trackerMETPhi = trackerMET->begin()->hwPhi() * l1tmetemu::kStepMETwordPhi;
+  l1extra_.trackerMET = trackerMET->begin()->hwPt() * l1tmetemu::kStepMET;
+  l1extra_.trackerMETPhi = trackerMET->begin()->hwPhi() * l1tmetemu::kStepMETPhi - M_PI;
 }
 
 void L1Analysis::L1AnalysisPhaseIIStep1::SetTkMHT(const edm::Handle<std::vector<l1t::EtSum> > trackerMHT) {
@@ -620,6 +620,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetGmtMuon(const edm::Handle<std::vecto
       l1extra_.gmtMuonPhi.push_back(gmtMuon->at(i).phPhi());
       l1extra_.gmtMuonZ0.push_back(gmtMuon->at(i).phZ0());
       l1extra_.gmtMuonD0.push_back(gmtMuon->at(i).phD0());
+      l1extra_.gmtMuonChg.push_back(gmtMuon->at(i).phCharge());
 
       l1extra_.gmtMuonIPt.push_back(gmtMuon->at(i).hwPt());  //rename?
       l1extra_.gmtMuonIEta.push_back(gmtMuon->at(i).hwEta());
@@ -627,7 +628,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetGmtMuon(const edm::Handle<std::vecto
       l1extra_.gmtMuonIZ0.push_back(gmtMuon->at(i).hwZ0());
       l1extra_.gmtMuonID0.push_back(gmtMuon->at(i).hwD0());
 
-      l1extra_.gmtMuonChg.push_back(gmtMuon->at(i).hwCharge());
+      l1extra_.gmtMuonHwChg.push_back(gmtMuon->at(i).hwCharge());
       l1extra_.gmtMuonIso.push_back(gmtMuon->at(i).hwIso());
       l1extra_.gmtMuonQual.push_back(gmtMuon->at(i).hwQual());
       l1extra_.gmtMuonBeta.push_back(gmtMuon->at(i).hwBeta());
@@ -650,6 +651,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetGmtTkMuon(const edm::Handle<std::vec
       l1extra_.gmtTkMuonPhi.push_back(gmtTkMuon->at(i).phPhi());
       l1extra_.gmtTkMuonZ0.push_back(gmtTkMuon->at(i).phZ0());
       l1extra_.gmtTkMuonD0.push_back(gmtTkMuon->at(i).phD0());
+      l1extra_.gmtTkMuonChg.push_back(gmtTkMuon->at(i).phCharge());
 
       l1extra_.gmtTkMuonIPt.push_back(gmtTkMuon->at(i).hwPt());  //rename?
       l1extra_.gmtTkMuonIEta.push_back(gmtTkMuon->at(i).hwEta());
@@ -657,7 +659,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetGmtTkMuon(const edm::Handle<std::vec
       l1extra_.gmtTkMuonIZ0.push_back(gmtTkMuon->at(i).hwZ0());
       l1extra_.gmtTkMuonID0.push_back(gmtTkMuon->at(i).hwD0());
 
-      l1extra_.gmtTkMuonChg.push_back(gmtTkMuon->at(i).hwCharge());
+      l1extra_.gmtTkMuonHwChg.push_back(gmtTkMuon->at(i).hwCharge());
       l1extra_.gmtTkMuonIso.push_back(gmtTkMuon->at(i).hwIso());
       l1extra_.gmtTkMuonQual.push_back(gmtTkMuon->at(i).hwQual());
       l1extra_.gmtTkMuonBeta.push_back(gmtTkMuon->at(i).hwBeta());
