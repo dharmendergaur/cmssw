@@ -248,6 +248,16 @@ namespace L1Analysis {
       seededConePuppiJetzVtx.clear();
       seededConePuppiJetEtUnCorr.clear();
 
+      nSeededConeExtendedPuppiJets = 0;
+      seededConeExtendedPuppiJetPt.clear();
+      seededConeExtendedPuppiJetEt.clear();
+      seededConeExtendedPuppiJetEta.clear();
+      seededConeExtendedPuppiJetPhi.clear();
+      seededConeExtendedPuppiJetBx.clear();
+      seededConeExtendedPuppiJetzVtx.clear();
+      seededConeExtendedPuppiJetEtUnCorr.clear();
+      seededConeExtendedPuppiJetBJetNN.clear();
+
       seededConePuppiHT = 0;
       seededConePuppiMHTEt = 0;
       seededConePuppiMHTPhi = 0;
@@ -555,6 +565,16 @@ namespace L1Analysis {
     std::vector<int> seededConePuppiJetBx;
     std::vector<double> seededConePuppiJetzVtx;
     std::vector<double> seededConePuppiJetEtUnCorr;
+
+    unsigned int nSeededConeExtendedPuppiJets;
+    std::vector<double> seededConeExtendedPuppiJetPt;
+    std::vector<double> seededConeExtendedPuppiJetEt;
+    std::vector<double> seededConeExtendedPuppiJetEta;
+    std::vector<double> seededConeExtendedPuppiJetPhi;
+    std::vector<int> seededConeExtendedPuppiJetBx;
+    std::vector<double> seededConeExtendedPuppiJetzVtx;
+    std::vector<double> seededConeExtendedPuppiJetEtUnCorr;
+    std::vector<double> seededConeExtendedPuppiJetBJetNN;
 
     double seededConePuppiHT;
     double seededConePuppiMHTEt;

@@ -41,6 +41,10 @@ Implementation:
 #include "DataFormats/METReco/interface/GenMET.h"
 #include "DataFormats/METReco/interface/GenMETFwd.h"
 
+#include "DataFormats/Math/interface/deltaR.h"
+#include "DataFormats/JetMatching/interface/JetFlavourInfo.h"
+#include "DataFormats/JetMatching/interface/JetFlavourInfoMatching.h"
+
 #include "SimDataFormats/PileupSummaryInfo/interface/PileupSummaryInfo.h"
 
 // ROOT output stuff
@@ -78,6 +82,7 @@ private:
 
   // EDM input tags
   edm::EDGetTokenT<reco::GenJetCollection> genJetToken_;
+  edm::EDGetTokenT<reco::JetFlavourInfoMatchingCollection> genJetFlavourInfosToken_;
   edm::EDGetTokenT<reco::GenMETCollection> genMETTrueToken_;
   edm::EDGetTokenT<reco::GenMETCollection> genMETCaloToken_;
   edm::EDGetTokenT<reco::GenParticleCollection> genParticleToken_;
@@ -90,6 +95,7 @@ L1GenTreeProducer::L1GenTreeProducer(const edm::ParameterSet& iConfig) {
   hepMCProductTag_ = consumes<edm::HepMCProduct>(
       iConfig.getUntrackedParameter<edm::InputTag>("hepMCProductTag", edm::InputTag("generatorSmeared")));
   genJetToken_ = consumes<reco::GenJetCollection>(iConfig.getUntrackedParameter<edm::InputTag>("genJetToken"));
+  genJetFlavourInfosToken_ = consumes<reco::JetFlavourInfoMatchingCollection>(iConfig.getUntrackedParameter<edm::InputTag>("jetFlavourInfosToken"));
   genMETTrueToken_ = consumes<reco::GenMETCollection>(
       iConfig.getUntrackedParameter<edm::InputTag>("genMETTrueToken", edm::InputTag("genMetTrue")));
   genMETCaloToken_ = consumes<reco::GenMETCollection>(
@@ -132,6 +138,9 @@ void L1GenTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup&
   edm::Handle<reco::GenJetCollection> genJets;
   iEvent.getByToken(genJetToken_, genJets);
 
+  const auto& jetFlavourInfosProd = iEvent.get(genJetFlavourInfosToken_);
+
+
   if (genJets.isValid()) {
     reco::GenJetCollection::const_iterator jetItr = genJets->begin();
     reco::GenJetCollection::const_iterator jetEnd = genJets->end();
@@ -141,6 +150,18 @@ void L1GenTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup&
       l1GenData_->jetPhi.push_back(jetItr->phi());
       l1GenData_->jetM.push_back(jetItr->mass());
       l1GenData_->nJet++;
+
+      int partonFlavour = -1;
+      int hadronFlavour = -1;
+      for (const reco::JetFlavourInfoMatching& jetFlavourInfoMatching : jetFlavourInfosProd) {
+        if (deltaR(jetItr->p4(), jetFlavourInfoMatching.first->p4()) < 0.1) {
+          partonFlavour = jetFlavourInfoMatching.second.getPartonFlavour();
+          hadronFlavour = jetFlavourInfoMatching.second.getHadronFlavour();
+          break;
+        }
+      }
+      l1GenData_->jetPartonFlavour.push_back(partonFlavour);
+      l1GenData_->jetHadronFlavour.push_back(hadronFlavour);
     }
 
   } else {
