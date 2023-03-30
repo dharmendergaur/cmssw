@@ -27,6 +27,8 @@ l1PhaseIITree = cms.EDAnalyzer("L1PhaseIITreeStep1Producer",
 
    scPFL1Puppi = cms.InputTag("l1tSCPFL1PuppiCorrectedEmulator", ""), #Emulator and corrected JEC; seededcone jets
    scPFL1PuppiMHT = cms.InputTag("l1tSCPFL1PuppiCorrectedEmulatorMHT", ""), #Emulator for seededcone puppiMHT
+   scPFL1PuppiExtended = cms.InputTag("l1tSCPFL1PuppiExtendedCorrectedEmulator", ""), #Emulator and corrected JEC; seededcone jets from extended tracks/puppi
+   scBjetNN = cms.InputTag("l1tBJetProducerPuppiCorrectedEmulator", "L1PFBJets"), #B Jet NN ID for seededcone jets from extended tracks/puppi
 
    l1pfPhase1L1TJetToken  = cms.InputTag("l1tPhase1JetCalibrator9x9" ,   "Phase1L1TJetFromPfCandidates"), #use the 9x9 case
    l1pfPhase1L1TJetMET  = cms.InputTag("l1tPhase1JetProducer9x9" ,   "UncalibratedPhase1L1TJetFromPfCandidatesMET"), #use the 9x9 case
