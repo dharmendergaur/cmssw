@@ -81,6 +81,8 @@
 
 #include "L1Trigger/L1TNtuples/interface/L1AnalysisPhaseIIStep1DataFormat.h"
 
+#include "DataFormats/Common/interface/ValueMap.h"
+
 namespace L1Analysis {
   class L1AnalysisPhaseIIStep1 {
   public:
@@ -132,6 +134,7 @@ namespace L1Analysis {
                                  unsigned maxL1Extra);
 
     void SetPFJet(const edm::Handle<l1t::PFJetCollection> PFJet, unsigned maxL1Extra);
+    void SetPFJetExtended(const edm::Handle<l1t::PFJetCollection> PFJet, const edm::Handle<edm::ValueMap<float>> bJetNN, unsigned maxL1Extra);
     void SetL1seededConeMHT(const edm::Handle<std::vector<l1t::EtSum>> l1SeededConeMHT);
 
     // Add nntaus
