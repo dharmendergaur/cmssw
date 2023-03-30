@@ -27,20 +27,14 @@
 #include "DataFormats/L1Trigger/interface/L1HFRings.h"
 #include "DataFormats/L1GlobalTrigger/interface/L1GlobalTriggerReadoutRecord.h"
 
-<<<<<<< HEAD
-=======
 //#include "DataFormats/L1TCorrelator/interface/TkPrimaryVertex.h"
->>>>>>> artlbv/from-CMSSW_12_5_2_patch1
 #include "DataFormats/L1Trigger/interface/Vertex.h"
 #include "DataFormats/L1Trigger/interface/VertexWord.h"
 
 #include "DataFormats/L1TMuonPhase2/interface/SAMuon.h"
 #include "DataFormats/L1TMuonPhase2/interface/MuonStub.h"
 #include "DataFormats/L1TMuonPhase2/interface/TrackerMuon.h"
-<<<<<<< HEAD
-=======
 //#include "L1Trigger/Phase2L1GMT/interface/Constants.h"
->>>>>>> artlbv/from-CMSSW_12_5_2_patch1
 #include "DataFormats/L1TMuonPhase2/interface/Constants.h"
 
 #include "DataFormats/L1TCorrelator/interface/TkMuon.h"
