@@ -8,7 +8,7 @@ L1Analysis::L1AnalysisPhaseIIStep1::L1AnalysisPhaseIIStep1() {}
 L1Analysis::L1AnalysisPhaseIIStep1::~L1AnalysisPhaseIIStep1() {}
 
 void L1Analysis::L1AnalysisPhaseIIStep1::SetVertices(float z0Puppi,
-                                                     const edm::Handle<std::vector<l1t::VertexWord> > TkPrimaryVertex) {
+                                                     const edm::Handle<std::vector<l1t::VertexWord>> TkPrimaryVertex) {
   //l1extra_.z0Puppi = z0Puppi;
   l1extra_.z0L1TkPV = TkPrimaryVertex->at(0).z0();
   for (unsigned int i = 0; i < TkPrimaryVertex->size(); i++) {
@@ -431,7 +431,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetTkGlbMuon(const edm::Handle<l1t::TkG
 */
 
 void L1Analysis::L1AnalysisPhaseIIStep1::SetL1PfPhase1L1TJet(
-    const edm::Handle<std::vector<reco::CaloJet> > l1L1PFPhase1L1Jet, unsigned maxL1Extra) {
+    const edm::Handle<std::vector<reco::CaloJet>> l1L1PFPhase1L1Jet, unsigned maxL1Extra) {
   double mHT30_px = 0, mHT30_py = 0, HT30 = 0;
   double mHT30_3p5_px = 0, mHT30_3p5_py = 0, HT30_3p5 = 0;
 
@@ -471,7 +471,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetL1PfPhase1L1TJet(
 }
 
 void L1Analysis::L1AnalysisPhaseIIStep1::SetL1PfPhase1L1TJetMET(
-    const edm::Handle<std::vector<l1t::EtSum> > l1L1PFPhase1L1JetMET, unsigned maxL1Extra) {
+    const edm::Handle<std::vector<l1t::EtSum>> l1L1PFPhase1L1JetMET, unsigned maxL1Extra) {
   l1t::EtSum met = l1L1PFPhase1L1JetMET->at(0);
   //cout<<met.et()<< " and " <<met.phi()<<endl;
   l1extra_.phase1PuppiMETEt = met.et();
@@ -479,7 +479,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetL1PfPhase1L1TJetMET(
 }
 
 void L1Analysis::L1AnalysisPhaseIIStep1::SetL1PfPhase1L1TJetSums(
-    const edm::Handle<std::vector<l1t::EtSum> > l1L1PFPhase1L1JetSums, unsigned maxL1Extra) {
+    const edm::Handle<std::vector<l1t::EtSum>> l1L1PFPhase1L1JetSums, unsigned maxL1Extra) {
   //cout<<"testing the size of this sums vector:"<<l1L1PFPhase1L1JetSums<<endl;
   l1t::EtSum HT = l1L1PFPhase1L1JetSums->at(0);
   l1t::EtSum MHT = l1L1PFPhase1L1JetSums->at(1);
@@ -504,7 +504,9 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetPFJet(const edm::Handle<l1t::PFJetCo
   }
 }
 
-void L1Analysis::L1AnalysisPhaseIIStep1::SetPFJetExtended(const edm::Handle<l1t::PFJetCollection> PFJet, const edm::Handle<edm::ValueMap<float>> bJetNN, unsigned maxL1Extra) {
+void L1Analysis::L1AnalysisPhaseIIStep1::SetPFJetExtended(const edm::Handle<l1t::PFJetCollection> PFJet,
+                                                          const edm::Handle<edm::ValueMap<float>> bJetNN,
+                                                          unsigned maxL1Extra) {
   bool validBJetNN = bJetNN.isValid();
   edm::RefProd<l1t::PFJetCollection> refProdPFJet(PFJet);
   for (l1t::PFJetCollection::const_iterator it = PFJet->begin();
@@ -517,18 +519,15 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetPFJetExtended(const edm::Handle<l1t:
     l1extra_.seededConeExtendedPuppiJetPhi.push_back(it->phi());
     l1extra_.seededConeExtendedPuppiJetBx.push_back(0);
     l1extra_.nSeededConeExtendedPuppiJets++;
-    if ( validBJetNN ) {
+    if (validBJetNN) {
       size_t index = std::distance(PFJet->begin(), it);
       edm::Ref<l1t::PFJetCollection> pfJetRef(refProdPFJet, index);
       l1extra_.seededConeExtendedPuppiJetBJetNN.push_back((*bJetNN)[pfJetRef]);
-
     }
   }
-
 }
 
-void L1Analysis::L1AnalysisPhaseIIStep1::SetL1seededConeMHT(
-    const edm::Handle<std::vector<l1t::EtSum> > l1SeededConeMHT) {
+void L1Analysis::L1AnalysisPhaseIIStep1::SetL1seededConeMHT(const edm::Handle<std::vector<l1t::EtSum>> l1SeededConeMHT) {
   l1t::EtSum HT = l1SeededConeMHT->at(0);
   l1t::EtSum MHT = l1SeededConeMHT->at(1);
   l1extra_.seededConePuppiHT = HT.pt();
@@ -536,7 +535,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetL1seededConeMHT(
   l1extra_.seededConePuppiMHTPhi = MHT.phi();
 }
 
-void L1Analysis::L1AnalysisPhaseIIStep1::SetL1METPF(const edm::Handle<std::vector<l1t::EtSum> > l1MetPF) {
+void L1Analysis::L1AnalysisPhaseIIStep1::SetL1METPF(const edm::Handle<std::vector<l1t::EtSum>> l1MetPF) {
   l1t::EtSum met = l1MetPF->at(0);
   l1extra_.puppiMETEt = met.et();
   l1extra_.puppiMETPhi = met.phi();
@@ -548,7 +547,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetL1METPF(const edm::Handle<std::vecto
 //  l1extra_.puppiMETRecoPhi = met.phi();
 //}
 
-void L1Analysis::L1AnalysisPhaseIIStep1::SetNNTaus(const edm::Handle<vector<l1t::PFTau> > l1nnTaus,
+void L1Analysis::L1AnalysisPhaseIIStep1::SetNNTaus(const edm::Handle<vector<l1t::PFTau>> l1nnTaus,
                                                    unsigned maxL1Extra) {
   for (unsigned int i = 0; i < l1nnTaus->size() && l1extra_.nNNTaus < maxL1Extra; i++) {
     if (l1nnTaus->at(i).pt() < 1)
@@ -574,7 +573,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetNNTaus(const edm::Handle<vector<l1t:
   }
 }
 
-void L1Analysis::L1AnalysisPhaseIIStep1::SetNNTau2vtxs(const edm::Handle<vector<l1t::PFTau> > l1nnTau2vtxs,
+void L1Analysis::L1AnalysisPhaseIIStep1::SetNNTau2vtxs(const edm::Handle<vector<l1t::PFTau>> l1nnTau2vtxs,
                                                        unsigned maxL1Extra) {
   for (unsigned int i = 0; i < l1nnTau2vtxs->size() && l1extra_.nNNTau2vtxs < maxL1Extra; i++) {
     if (l1nnTau2vtxs->at(i).pt() < 1)
@@ -631,27 +630,25 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetTkJetDisplaced(const edm::Handle<l1t
   }
 }
 
-void L1Analysis::L1AnalysisPhaseIIStep1::SetTkMET(const edm::Handle<std::vector<l1t::EtSum> > trackerMET) {
-  //l1extra_.trackerMET = trackerMET->begin()->hwPt() * l1tmetemu::kStepMET;
-  //l1extra_.trackerMETPhi = trackerMET->begin()->hwPhi() * l1tmetemu::kStepMETPhi - M_PI;
+void L1Analysis::L1AnalysisPhaseIIStep1::SetTkMET(const edm::Handle<std::vector<l1t::EtSum>> trackerMET) {
   l1extra_.trackerMET = trackerMET->begin()->hwPt() * l1tmetemu::kStepMETwordEt;
   l1extra_.trackerMETPhi = trackerMET->begin()->hwPhi() * l1tmetemu::kStepMETwordPhi;
 }
 
-void L1Analysis::L1AnalysisPhaseIIStep1::SetTkMHT(const edm::Handle<std::vector<l1t::EtSum> > trackerMHT) {
+void L1Analysis::L1AnalysisPhaseIIStep1::SetTkMHT(const edm::Handle<std::vector<l1t::EtSum>> trackerMHT) {
   l1extra_.trackerMHT = trackerMHT->begin()->p4().energy() * l1tmhtemu::kStepMHT;
   l1extra_.trackerHT = trackerMHT->begin()->hwPt() * l1tmhtemu::kStepPt;
   l1extra_.trackerMHTPhi = trackerMHT->begin()->hwPhi() * l1tmhtemu::kStepMHTPhi - M_PI;
 }
 
-void L1Analysis::L1AnalysisPhaseIIStep1::SetTkMHTDisplaced(const edm::Handle<std::vector<l1t::EtSum> > trackerMHT) {
+void L1Analysis::L1AnalysisPhaseIIStep1::SetTkMHTDisplaced(const edm::Handle<std::vector<l1t::EtSum>> trackerMHT) {
   l1extra_.trackerHTDisplaced = trackerMHT->begin()->hwPt() * l1tmhtemu::kStepPt;
   l1extra_.trackerMHTDisplaced = trackerMHT->begin()->p4().energy() * l1tmhtemu::kStepMHT;
   l1extra_.trackerMHTPhiDisplaced = trackerMHT->begin()->hwPhi() * l1tmhtemu::kStepMHTPhi - M_PI;
 }
 
 //gmt muons
-void L1Analysis::L1AnalysisPhaseIIStep1::SetGmtMuon(const edm::Handle<std::vector<l1t::SAMuon> > gmtMuon,
+void L1Analysis::L1AnalysisPhaseIIStep1::SetGmtMuon(const edm::Handle<std::vector<l1t::SAMuon>> gmtMuon,
                                                     unsigned maxL1Extra) {
   for (unsigned int i = 0; i < gmtMuon->size() && l1extra_.nGmtMuons < maxL1Extra; i++) {
     if (lsb_pt * gmtMuon->at(i).hwPt() > 0) {
@@ -681,7 +678,7 @@ void L1Analysis::L1AnalysisPhaseIIStep1::SetGmtMuon(const edm::Handle<std::vecto
 }
 
 //tkmuon gmt
-void L1Analysis::L1AnalysisPhaseIIStep1::SetGmtTkMuon(const edm::Handle<std::vector<l1t::TrackerMuon> > gmtTkMuon,
+void L1Analysis::L1AnalysisPhaseIIStep1::SetGmtTkMuon(const edm::Handle<std::vector<l1t::TrackerMuon>> gmtTkMuon,
 
                                                       unsigned maxL1Extra) {
   for (unsigned int i = 0; i < gmtTkMuon->size() && l1extra_.nGmtTkMuons < maxL1Extra; i++) {

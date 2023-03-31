@@ -512,11 +512,13 @@ void L1PhaseIITreeStep1Producer::analyze(const edm::Event& iEvent, const edm::Ev
 
   if (scPFL1PuppisExtended.isValid()) {
     l1Extra->SetPFJetExtended(scPFL1PuppisExtended, scBJetNN, maxL1Extra_);
-    if ( !scBJetNN.isValid() ) {
-      edm::LogWarning("MissingProduct") << "L1PhaseII BJetNN ID not found. SC Jets will be filled, but B tagging NN score will be empty" << std::endl;
+    if (!scBJetNN.isValid()) {
+      edm::LogWarning("MissingProduct")
+          << "L1PhaseII BJetNN ID not found. SC Jets will be filled, but B tagging NN score will be empty" << std::endl;
     }
   } else {
-    edm::LogWarning("MissingProduct") << "L1PhaseII scJets from Extended Puppi not found. Branch will not be filled" << std::endl;
+    edm::LogWarning("MissingProduct") << "L1PhaseII scJets from Extended Puppi not found. Branch will not be filled"
+                                      << std::endl;
   }
 
   if (scPFL1PuppiMHTs.isValid()) {

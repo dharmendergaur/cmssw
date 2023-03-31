@@ -95,7 +95,8 @@ L1GenTreeProducer::L1GenTreeProducer(const edm::ParameterSet& iConfig) {
   hepMCProductTag_ = consumes<edm::HepMCProduct>(
       iConfig.getUntrackedParameter<edm::InputTag>("hepMCProductTag", edm::InputTag("generatorSmeared")));
   genJetToken_ = consumes<reco::GenJetCollection>(iConfig.getUntrackedParameter<edm::InputTag>("genJetToken"));
-  genJetFlavourInfosToken_ = consumes<reco::JetFlavourInfoMatchingCollection>(iConfig.getUntrackedParameter<edm::InputTag>("jetFlavourInfosToken"));
+  genJetFlavourInfosToken_ = consumes<reco::JetFlavourInfoMatchingCollection>(
+      iConfig.getUntrackedParameter<edm::InputTag>("jetFlavourInfosToken"));
   genMETTrueToken_ = consumes<reco::GenMETCollection>(
       iConfig.getUntrackedParameter<edm::InputTag>("genMETTrueToken", edm::InputTag("genMetTrue")));
   genMETCaloToken_ = consumes<reco::GenMETCollection>(
@@ -139,7 +140,6 @@ void L1GenTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup&
   iEvent.getByToken(genJetToken_, genJets);
 
   const auto& jetFlavourInfosProd = iEvent.get(genJetFlavourInfosToken_);
-
 
   if (genJets.isValid()) {
     reco::GenJetCollection::const_iterator jetItr = genJets->begin();
