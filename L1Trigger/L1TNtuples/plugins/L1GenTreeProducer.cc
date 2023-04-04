@@ -256,4 +256,3 @@ void L1GenTreeProducer::endJob() {}
 
 //define this as a plug-in
 DEFINE_FWK_MODULE(L1GenTreeProducer);
-
