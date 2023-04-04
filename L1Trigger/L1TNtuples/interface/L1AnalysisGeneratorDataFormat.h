@@ -82,4 +82,3 @@ namespace L1Analysis {
   };
 }  // namespace L1Analysis
 #endif
-
