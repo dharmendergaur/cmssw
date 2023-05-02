@@ -1,6 +1,7 @@
 <use name="FWCore/ParameterSet"/>
 <use   name="clhep"/>
-
+<use name="PhysicsTools/TensorFlow"/>
+<use name="tensorflow"/>
 <export> 
   <lib   name="1"/>
 </export>

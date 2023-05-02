@@ -231,8 +231,21 @@ void Phase1L1TJetProducer::produce(edm::Event& iEvent, const edm::EventSetup& iS
     fillCaloGrid<>(*(caloGrid_), inputsInRegions[iInputRegion], iInputRegion);
   }
 
+  // for ( int iPhi = 0; iPhi < caloGrid_->GetNbinsY()+1; ++iPhi ) {
+  //   for ( int iEta = 0; iEta < caloGrid_->GetNbinsX()+1; ++iEta ) {
+  //     std::cout << caloGrid_->GetBinContent( iEta+1, iPhi+1 ) << " ";
+  //   }
+  //   std::cout << std::endl;
+  // }
+
+  int nBinsX = caloGrid_->GetNbinsX();
+  int nBinsY = caloGrid_->GetNbinsY();
+
   // find the seeds
   const auto& seedsVector = findSeeds(seedPtThreshold_);  // seedPtThreshold = 5
+  // for ( const auto& seed : seedsVector ) {
+  //   std::cout << "Seed : " << caloGrid_->GetBinContent( std::get<0>(seed), std::get<1>(seed) ) << std::endl;
+  // }
   // build jets from the seeds
   auto l1jetVector =
       puSubtraction_ ? buildJetsFromSeedsWithPUSubtraction(seedsVector, vetoZeroPt_) : buildJetsFromSeeds(seedsVector);
@@ -242,6 +255,10 @@ void Phase1L1TJetProducer::produce(edm::Event& iEvent, const edm::EventSetup& iS
     return jet1.pt() > jet2.pt();
   });
 
+  // std::cout << "Found jets : " << std::endl;
+  // for ( const auto& jet : l1jetVector ) {
+  //   std::cout << jet.pt() << " " << jet.eta() << std::endl;
+  // }
   auto l1jetVectorPtr = std::make_unique<std::vector<reco::CaloJet>>(l1jetVector);
   iEvent.put(std::move(l1jetVectorPtr), outputCollectionName_);
 

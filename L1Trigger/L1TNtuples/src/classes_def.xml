@@ -32,5 +32,5 @@
 <class name="L1Analysis::L1AnalysisRecoElectronDataFormat"/>
 
 <class name="L1Analysis::L1AnalysisPhaseIIStep1DataFormat"/>
-
+<class name="L1Analysis::L1AnalysisPhaseIPFJetDataFormat"/>
 </lcgdict>
