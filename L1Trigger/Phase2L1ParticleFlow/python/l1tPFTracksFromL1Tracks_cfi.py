@@ -37,4 +37,3 @@ l1tPFTracksFromL1TracksExtended = l1tPFTracksFromL1Tracks.clone(
     ),
     redigitizeTrackWord = cms.bool(True),
 )
-

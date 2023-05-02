@@ -13,6 +13,7 @@
 <use   name="DataFormats/L1THGCal"/>
 <use   name="L1Trigger/L1TCalorimeter"/>
 <use   name="FWCore/ParameterSet"/>
+<use   name="PhysicsTools/UtilAlgos"/>
 <use   name="root"/>
 <use   name="boost"/>
 <flags EDM_PLUGIN="1"/>
