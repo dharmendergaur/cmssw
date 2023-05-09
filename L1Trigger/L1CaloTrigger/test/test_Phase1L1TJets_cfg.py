@@ -76,6 +76,8 @@ process.TFileService = cms.Service("TFileService",
 )
 
 process.makeThings = cms.Path(process.CNNProducerSequence * process.L1TPhase1JetsSequence9x9trimmed) # * process.l1PFJets)
-process.makeNtuples = cms.Path(process.l1GeneratorTree * process.l1PhaseIPFJetTree )# * process.puppiNtuples)
+process.makeNtuples = cms.Path(process.l1PhaseIPFJetTree )# * process.puppiNtuples)
+if 'SNU' not in sample:
+    process.makeNtuples *= process.l1GeneratorTree
 process.schedule = cms.Schedule(process.makeThings, process.makeNtuples)
 
