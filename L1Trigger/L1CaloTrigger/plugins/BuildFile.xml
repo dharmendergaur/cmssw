@@ -20,6 +20,7 @@
 <use   name="L1Trigger/L1CaloTrigger"/>
 <use   name="DataFormats/L1THGCal"/>
 <use   name="L1Trigger/L1TCalorimeter"/>
+<use   name="L1Trigger/Phase2L1ParticleFlow"/>
 <use   name="FWCore/PluginManager"/>
 <use   name="FWCore/ParameterSet"/>
 <use   name="DataFormats/JetReco"/>

@@ -16,20 +16,6 @@ namespace l1t::demo::codecs {
     puppiCand.hwPhi = phi;
     ap_uint<64> candWord = puppiCand.pack();
 
-    // ap_ufixed<14, 12, AP_TRN, AP_SAT> pt = c.pt();
-    // ap_uint<10> phi = (c.phi() - phiEdge ) / 0.0043633231;
-    // ap_uint<10> eta = (c.eta() - etaEdge ) / 0.0043633231;
-    // ap_uint<64> candWord = 0;
-    // if ( abs(c.pt() - 8.75) < 0.1 ) {
-      // std::cout << "Encoding puppi cand : " << c.pt() << " " << c.phi() << " " << c.eta() << std::endl;
-      // std::cout << phiEdge << " " << etaEdge << std::endl;
-      // std::cout << pt << " " << phi << " " << eta << std::endl;
-    // }
-
-    // candWord(14-1, 0) = pt(13, 0);
-    // candWord(14+10-1, 14) = phi(9,0);
-    // candWord(14+10+10-1, 14+10) = eta(9,0);
-    // std::cout << candWord << std::endl;
     return candWord;
   }
 
