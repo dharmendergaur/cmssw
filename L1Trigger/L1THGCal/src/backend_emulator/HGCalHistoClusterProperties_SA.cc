@@ -71,6 +71,7 @@ void HGCalHistoClusterProperties::clusterSum(const HGCalClusterSAPtrCollection& 
 void HGCalHistoClusterProperties::clusterProperties(HGCalClusterSAPtrCollection& clusterSums) const {
   unsigned int nTCs = 0;
   for (auto& c : clusterSums) {
+    std::cout << "Got a cluster : " << c->n_tc_w() << std::endl;
     if (c->n_tc_w() == 0)
       continue;
     std::pair<unsigned int, unsigned int> sigmaEnergy = sigma_energy(c->n_tc_w(), c->w2(), c->w());
@@ -173,7 +174,7 @@ std::pair<unsigned int, unsigned int> HGCalHistoClusterProperties::sigma_coordin
   double sigma_coord = sqrt(N / D);
   sigma_coord *= scale;
   double frac = modf(sigma_coord, &intpart) * shift;
-  std::cout << "Sigma coord : " << sigma_coord << " " << intpart << " " << frac << " " <<  modf(sigma_coord, &intpart) << " " << shift << std::endl;
+  // std::cout << "Sigma coord : " << sigma_coord << " " << intpart << " " << frac << " " <<  modf(sigma_coord, &intpart) << " " << shift << std::endl;
   return {(unsigned int)intpart, (unsigned int)frac};
 }
 

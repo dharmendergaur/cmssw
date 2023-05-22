@@ -30,6 +30,7 @@
 #include "FWCore/Utilities/interface/StreamID.h"
 
 #include "DataFormats/L1THGCal/interface/HGCalMulticluster.h"
+#include "DataFormats/L1THGCal/interface/HGCalCluster_HW.h"
 #include "L1Trigger/DemonstratorTools/interface/BoardDataReader.h"
 #include "L1Trigger/DemonstratorTools/interface/utilities.h"
 #include "L1Trigger/L1THGCalUtilities/interface/patternFiles/codecs_clusters.h"
@@ -62,9 +63,14 @@ private:
 
   // ----------member functions ----------------------
   void produce(edm::Event&, const edm::EventSetup&) override;
+  std::vector<l1thgcfirmware::HGCalCluster_HW> getRefHWClusters( const l1t::HGCalMulticlusterBxCollection& refClusters, const unsigned int iSector );
+  void compareClustersToRef( std::vector<l1thgcfirmware::HGCalCluster_HW> clusters, std::vector<l1thgcfirmware::HGCalCluster_HW> refClusters );
 
   // ----------member data ---------------------------
   l1t::demo::BoardDataReader fileReader_;
+
+  edm::EDGetTokenT<l1t::HGCalMulticlusterBxCollection> refClustersToken_;
+
 };
 
 //
@@ -77,7 +83,9 @@ Stage2FileReader::Stage2FileReader(const edm::ParameterSet& iConfig)
                   kFramesPerTMUXPeriod,
                   kS2BoardTMUX,
                   kEmptyFrames,
-                  kChannelSpecsOutputToL1T) {
+                  kChannelSpecsOutputToL1T),
+    refClustersToken_(consumes<l1t::HGCalMulticlusterBxCollection>(iConfig.getUntrackedParameter<edm::InputTag>("refClustersTag")))
+ {
   produces<l1t::HGCalMulticlusterBxCollection>();
 }
 
@@ -96,7 +104,87 @@ void Stage2FileReader::produce(edm::Event& iEvent, const edm::EventSetup& iSetup
   }
 
 
-  l1thgcfirmware::decodeClusters(clusterWords); 
+  std::vector<l1thgcfirmware::HGCalCluster_HW> hwClusters = l1thgcfirmware::decodeClusters(clusterWords);
+
+  // Ref clusters
+  const l1t::HGCalMulticlusterBxCollection refClusters = iEvent.get(refClustersToken_);
+  std::vector<l1thgcfirmware::HGCalCluster_HW> refHWClusters = getRefHWClusters( refClusters, 0 );
+
+  compareClustersToRef( hwClusters, refHWClusters );
+}
+
+std::vector<l1thgcfirmware::HGCalCluster_HW> Stage2FileReader::getRefHWClusters( const l1t::HGCalMulticlusterBxCollection& refClusters, const unsigned int iSector ) {
+
+  // Decode which zside and sector we are extracting data for
+  int zside = (iSector > 2) ? 1 : -1;
+  unsigned int sector = iSector % 3;
+  if ( zside == 1 ) {
+    if ( sector == 1 ) sector = 2;
+    else if ( sector == 2 ) sector = 1;
+  }
+
+  std::vector<l1thgcfirmware::HGCalCluster_HW> refHWClusters;
+  unsigned int iCluster = 0;
+  for (auto cl3d_itr = refClusters.begin(0); cl3d_itr != refClusters.end(0); cl3d_itr++) {
+    if ( cl3d_itr->getHwZSide() != zside ) continue;
+    if ( cl3d_itr->getHwSector() != sector ) continue;
+
+    ++iCluster;
+    if ( iCluster > 160 ) break;
+
+    const auto& clusterWords = cl3d_itr->getHwData();
+    refHWClusters.emplace_back( l1thgcfirmware::HGCalCluster_HW::unpack(clusterWords) );
+  }
+  return refHWClusters;
+}
+
+void Stage2FileReader::compareClustersToRef( std::vector<l1thgcfirmware::HGCalCluster_HW> clusters, std::vector<l1thgcfirmware::HGCalCluster_HW> refClusters ) {
+  if ( clusters.size() != refClusters.size() ) {
+    std::cout << "---> Different number of clusters : " << refClusters.size() << " " << clusters.size() << std::endl;
+    // return;
+  }
+
+  bool allGood = true;
+  for ( unsigned int iCluster = 0; iCluster < refClusters.size(); ++iCluster ) { // BUG IN FIRMWARE!!!  First event has duplicate cluster, all others missing last cluster...
+    if ( iCluster >= clusters.size() ) {
+      std::cout << "Skipping extra ref cluster : " << iCluster << std::endl;
+      break;
+    }
+    const auto& refCluster = refClusters.at(iCluster);
+    const auto& cluster = clusters.at(iCluster);  // BUG IN FIRMWARE!!!  First event has duplicate cluster, all others missing last cluster...
+    if ( cluster != refCluster ) {
+      std::cout << "Cluster comparison : " << iCluster << std::endl;
+      // Catch common/known issues
+      if ( cluster.sigma_roz == 127 && refCluster.sigma_roz != 127 ) {
+        std::cout << "Saturated sigma r/z r/z in firmware" << std::endl;
+        allGood = false;
+        continue;
+      }
+      if ( abs(refCluster.w_eta - cluster.w_eta) == 1 ) {
+        std::cout << "Etas differ by one bit" << std::endl;
+        allGood = false;
+        continue;
+      }
+      std::cout << "--->  e : " << refCluster.e << " " << cluster.e << std::endl;
+      std::cout << "--->  e EM : " << refCluster.e_em << " " << cluster.e_em << std::endl;
+      std::cout << "--->  eta : " << refCluster.w_eta << " " << cluster.w_eta << std::endl;
+      std::cout << "--->  phi : " << refCluster.w_phi << " " << cluster.w_phi << std::endl;
+      std::cout << "--->  z : " << refCluster.w_z << " " << cluster.w_z << std::endl;
+      std::cout << "--->  sigma r/z : " << refCluster.sigma_roz << " " << cluster.sigma_roz << std::endl;
+      std::cout << "-----------------------------------" << std::endl;
+      allGood = false;
+    }
+  }
+
+  if ( allGood ) std::cout << "---> Good event, all match" << std::endl;
+
+  // for (const auto& refCluster : refClusters ) {
+  //   std::cout << "Ref cluster : " << refCluster.e << " " << refCluster.w_z << std::endl;
+  // }
+  // for (const auto& cluster : clusters ) {
+  //   if (cluster.e == 0 ) continue;
+  //   std::cout << "Cluster : " << cluster.e << " " << cluster.w_z << std::endl;
+  // }
 
 }
 
@@ -109,6 +197,7 @@ void Stage2FileReader::fillDescriptions(edm::ConfigurationDescriptions& descript
                                          "HGCS2OutputToL1TFile_Sector0_0.txt",
                                      });
   desc.addUntracked<std::string>("format", "EMPv2");
+  desc.addUntracked<edm::InputTag>("refClustersTag", edm::InputTag("l1tHGCalBackEndLayer2Producer", "HGCalBackendLayer2Processor3DClusteringSA"));
   descriptions.add("Stage2FileReader", desc);
 }
 

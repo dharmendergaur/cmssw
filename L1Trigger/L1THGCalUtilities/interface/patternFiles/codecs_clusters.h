@@ -8,14 +8,15 @@
 
 #include "DataFormats/Common/interface/View.h"
 #include "L1Trigger/DemonstratorTools/interface/BoardData.h"
+#include "DataFormats/L1THGCal/interface/HGCalCluster_HW.h"
 
 namespace l1thgcfirmware {
-    void decodeClusters(const std::array<std::vector<ap_uint<64>>, 4> &);
+    std::vector<HGCalCluster_HW> decodeClusters(const std::array<std::vector<ap_uint<64>>, 4> &);
 
-    void decodeFirstWord( const ap_uint<64> );
-    void decodeSecondWord( const ap_uint<64> );
-    void decodeThirdWord( const ap_uint<64> );
-    void decodeFourthWord( const ap_uint<64> );
+    // void decodeFirstWord( const ap_uint<64> );
+    // void decodeSecondWord( const ap_uint<64> );
+    // void decodeThirdWord( const ap_uint<64> );
+    // void decodeFourthWord( const ap_uint<64> );
 
 }
 

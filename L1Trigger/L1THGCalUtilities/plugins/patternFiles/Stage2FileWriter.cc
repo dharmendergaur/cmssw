@@ -205,10 +205,13 @@ std::array<std::vector<ap_uint<64>>, 4> Stage2FileWriter::encodeTowersAndCluster
     //  << " " << cl3d_itr->getHwData()[0].to_string() << std::endl;
     // std::cout << "Phi, eta : " << cl3d_itr->phi() << " " << cl3d_itr->eta() << " " << cl3d_itr->getHwData()[1].to_string() << std::endl;
     const auto& clusterWords = cl3d_itr->getHwData();
-    output[0].push_back( clusterWords[0].to_ulong() );
-    output[1].push_back( clusterWords[1].to_ulong() );
-    output[2].push_back( clusterWords[2].to_ulong() );
-    output[3].push_back( clusterWords[3].to_ulong() );
+    std::cout << "Cluster words : " ;
+    for (const auto& word : clusterWords ) std::cout << word << " ";
+    std::cout << std::endl;
+    output[0].push_back( clusterWords[0] );
+    output[1].push_back( clusterWords[1] );
+    output[2].push_back( clusterWords[2] );
+    output[3].push_back( clusterWords[3] );
   }
 
   return output;
@@ -239,7 +242,7 @@ std::array<std::vector<ap_uint<64>>, 8> Stage2FileWriter::encodeClusterSumRecord
     const auto& clusterSumWords = cl3d_itr->getHwClusterSumData();
     for ( unsigned iWord = 0; iWord < 8; ++iWord ) {
       // std::cout << "Cluster sum word : " << iWord << " " << clusterSumWords[iWord] << std::endl;
-      output[iWord].push_back( clusterSumWords[iWord].to_ulong() );
+      output[iWord].push_back( clusterSumWords[iWord] );
     }
   }
   // std::cout << "Added all clusters" << std::endl;

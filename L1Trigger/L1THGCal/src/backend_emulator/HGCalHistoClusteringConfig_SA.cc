@@ -119,7 +119,7 @@ void ClusterAlgoConfig::initializeSigmaRoZToSigmaEtaLUT() {
   unsigned nEntries_dEta_dMu_LUT = 0x1<<roz_nbits;
   vector<double> dEta_dMu_LUT;
   dEta_dMu_LUT.reserve(nEntries_dEta_dMu_LUT);
-  std::cout << "dEta/dMu LUT" << std::endl;
+  // std::cout << "dEta/dMu LUT" << std::endl;
   for ( unsigned i = 0; i<nEntries_dEta_dMu_LUT; ++i ) {
     float roz = i * roz_LSB + roz_min;
     float dEta_dMu = 1. / ( sqrt( pow(roz,-2)+1 ) * roz * roz );
@@ -156,7 +156,7 @@ void ClusterAlgoConfig::initializeSigmaRoZToSigmaEtaLUT() {
       float sigmaEta = dEta_dMu * sigmaRoz / sigma_eta_LSB;
       if ( sigmaEta > ( 0x1<<(sigmaEta_nbits-1) ) ) sigmaEta = 0x1<<(sigmaEta_nbits-1);
       sigmaRozToSigmaEtaLUT_.push_back(sigmaEta);
-      std::cout << mu << " " << sigma << " " << dEta_dMu << " " << sigmaRoz << " " << sigma_eta_LSB << " " << sigmaEta << std::endl;
+      // std::cout << mu << " " << sigma << " " << dEta_dMu << " " << sigmaRoz << " " << sigma_eta_LSB << " " << sigmaEta << std::endl;
     }
   }
 }

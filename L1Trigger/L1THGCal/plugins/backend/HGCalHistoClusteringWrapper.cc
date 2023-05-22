@@ -159,6 +159,7 @@ void HGCalHistoClusteringWrapper::convertAlgorithmOutputs(
     l1t::HGCalMulticlusterBxCollection& multiClusters_out,
     const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClustersPtrs) const {
   for (const auto& cluster : clusterSums) {
+    std::cout << "Got a cluster : " << cluster->w() << " " << cluster->e() << std::endl;
     // Convert from digitised quantities
     if (cluster->w() == 0 || cluster->e() == 0)
       continue;
@@ -234,8 +235,17 @@ void HGCalHistoClusteringWrapper::convertAlgorithmOutputs(
     multicluster.hw_e_h_early_over_e_fraction(cluster->e_h_early_over_e_fraction());
 
     const auto hwData = cluster->formatClusterWords( theConfiguration_ );
-
+    std::cout << "Packed words" << std::endl;
+    std::cout << hwData[0] << std::endl;
+    std::cout << hwData[1] << std::endl;
+    std::cout << hwData[2] << std::endl;
+    std::cout << hwData[3] << std::endl;
     multicluster.setHwData( hwData );
+    std::cout << multicluster.getHwData()[0] << std::endl;
+    std::cout << multicluster.getHwData()[1] << std::endl;
+    std::cout << multicluster.getHwData()[2] << std::endl;
+    std::cout << multicluster.getHwData()[3] << std::endl;
+
     multicluster.setHwSector( sector );
     multicluster.setHwZSide( theConfiguration_.zSide() );
 
@@ -276,11 +286,11 @@ void HGCalHistoClusteringWrapper::configure(
   theConfiguration_.setNTriggerLayers(std::get<0>(configuration)->lastTriggerLayer());
   theConfiguration_.setTriggerLayers(std::get<0>(configuration)->triggerLayers());
 
-  std::cout << "N trigger layers : " << theConfiguration_.nTriggerLayers() << std::endl;
-  for ( const auto& layer : theConfiguration_.triggerLayers() ) {
-    std::cout << layer << " ";
-  }
-  std::cout << std::endl;
+  // std::cout << "N trigger layers : " << theConfiguration_.nTriggerLayers() << std::endl;
+  // for ( const auto& layer : theConfiguration_.triggerLayers() ) {
+  //   std::cout << layer << " ";
+  // }
+  // std::cout << std::endl;
   theConfiguration_.setSector(std::get<2>(configuration));
   theConfiguration_.setZSide(std::get<3>(configuration));
 

@@ -98,7 +98,7 @@ namespace l1t {
     // Can we define in one place?
     static constexpr int wordLength = 64;
     static constexpr int nWordsPerCluster = 4;
-    typedef std::bitset<wordLength> ClusterWord;
+    typedef uint64_t ClusterWord;
     typedef std::array<ClusterWord, nWordsPerCluster> ClusterWords;
     void setHwData( ClusterWords clusterWords ) { hwData_ = clusterWords; }
     ClusterWords getHwData() const { return hwData_; }
@@ -110,7 +110,7 @@ namespace l1t {
     // Types for firmware representation of cluster sum data, input to cluster properties step
     static constexpr int clusterSumWordLength = 64;
     static constexpr int nWordsPerClusterSum = 8;
-    typedef std::bitset<wordLength> ClusterSumWord;
+    typedef uint64_t ClusterSumWord;
     typedef std::array<ClusterSumWord, nWordsPerClusterSum> ClusterSumWords;
     void setHwClusterSumData( ClusterSumWords clusterSumWords ) { hwClusterSumData_ = clusterSumWords; }
     ClusterSumWords getHwClusterSumData() const { return hwClusterSumData_; }
