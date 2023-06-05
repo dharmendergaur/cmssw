@@ -103,6 +103,9 @@ private:
   void printHistogram(std::unique_ptr<TH2F>& histogram) const;
 
   edm::EDGetTokenT<edm::View<reco::Candidate>> inputCollectionTag_;
+  edm::EDGetTokenT<std::vector<l1t::EtSum>> metTag_;
+  edm::EDGetTokenT<std::vector<l1t::EtSum>> jetSumsTag_;
+
   // histogram containing our clustered inputs
   std::unique_ptr<TH2F> caloGrid_;
   std::unique_ptr<TH2F> caloGridWriteToFile_;
@@ -150,6 +153,8 @@ CNNProducer::CNNProducer(const edm::ParameterSet& iConfig)
     :  // getting configuration settings
       inputCollectionTag_{
           consumes<edm::View<reco::Candidate>>(iConfig.getParameter<edm::InputTag>("inputCollectionTag"))},
+      metTag_{consumes<std::vector<l1t::EtSum>>(iConfig.getParameter<edm::InputTag>("metTag"))},
+      jetSumsTag_{consumes<std::vector<l1t::EtSum>>(iConfig.getParameter<edm::InputTag>("jetSumsTag"))},
       phiLow_(iConfig.getParameter<double>("phiLow")),
       phiUp_(iConfig.getParameter<double>("phiUp")),
       etaLow_(iConfig.getParameter<double>("etaLow")),
@@ -203,6 +208,15 @@ CNNProducer::~CNNProducer() {}
 void CNNProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) {
   edm::Handle<edm::View<reco::Candidate>> inputCollectionHandle;
   iEvent.getByToken(inputCollectionTag_, inputCollectionHandle);
+
+  edm::Handle<std::vector<l1t::EtSum>> met;
+  iEvent.getByToken(metTag_, met);
+
+  edm::Handle<std::vector<l1t::EtSum>> jetSums;
+  iEvent.getByToken(jetSumsTag_, jetSums);
+
+  // std::cout << "MET : " << met->at(0).et() << std::endl;
+  // std::cout << "HT : " << jetSums->at(0).et() << std::endl;
 
   // sort inputs into PF regions
   std::vector<std::vector<reco::CandidatePtr>> inputsInRegions_1 = prepareInputsIntoRegions<>(inputCollectionHandle);
@@ -381,6 +395,8 @@ std::pair<float, float> CNNProducer::getCandidateDigiEtaPhi(const float eta,
 void CNNProducer::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
   edm::ParameterSetDescription desc;
   desc.add<edm::InputTag>("inputCollectionTag", edm::InputTag("l1pfCandidates", "Puppi"));
+  desc.add<edm::InputTag>("metTag", edm::InputTag("Phase1L1TJetProducer9x9trimmed" ,   "UncalibratedPhase1L1TJetFromPfCandidatesMET"));
+  desc.add<edm::InputTag>("jetSumsTag", edm::InputTag("Phase1L1TJetSumsProducer9x9trimmed" ,   "Sums"));
   desc.add<double>("phiLow", -M_PI);
   desc.add<double>("phiUp", M_PI);
   desc.add<double>("etaLow", -3);

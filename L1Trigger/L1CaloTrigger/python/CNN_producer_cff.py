@@ -4,6 +4,8 @@ from math import pi
 
 CNNProducer = cms.EDProducer('CNNProducer',
   inputCollectionTag = cms.InputTag("l1ctLayer1", "Puppi"),
+  metTag  = cms.InputTag("Phase1L1TJetProducer9x9" ,   "UncalibratedPhase1L1TJetFromPfCandidatesMET"),
+  jetSumsTag  = cms.InputTag("Phase1L1TJetSumsProducer9x9" ,   "Sums"),
   phiLow = cms.double(-pi),
   phiUp = cms.double(pi),
   etaLow = cms.double(-3),
