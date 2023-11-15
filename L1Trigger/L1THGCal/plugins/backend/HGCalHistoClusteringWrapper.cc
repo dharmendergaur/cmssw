@@ -26,16 +26,21 @@ public:
       const std::tuple<const HGCalTriggerGeometryBase* const, const edm::ParameterSet&, const unsigned int, const int>&
           configuration) override;
 
-  void process(const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClusters,
+  void process(const std::map<unsigned int, std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClusters,
                std::pair<l1t::HGCalMulticlusterBxCollection&, l1t::HGCalClusterBxCollection&>&
                    outputMulticlustersAndRejectedClusters) override;
 
 private:
+<<<<<<< HEAD
   void convertCMSSWInputs(const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>& clustersPtrs,
                           l1thgcfirmware::HGCalLinkTriggerCellSAPtrCollection& linkData_SA) const;
+=======
+  void convertCMSSWInputs(const std::map<unsigned int, std::vector<edm::Ptr<l1t::HGCalCluster>>>& clustersPtrs,
+                          l1thgcfirmware::HGCalTriggerCellSAPtrCollections& clusters_SA) const;
+>>>>>>> 2a520b2a914e (Group TCs per module, sort by phi)
   void convertAlgorithmOutputs(l1thgcfirmware::HGCalClusterSAPtrCollection& clusterSums,
                                l1t::HGCalMulticlusterBxCollection& multiClusters_out,
-                               const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClustersPtrs) const;
+                               const std::map<unsigned int, std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClustersPtrs) const;
 
   void clusterizeHisto( const l1thgcfirmware::HGCalLinkTriggerCellSAPtrCollection& linkData_in_SA,
                        l1thgcfirmware::HGCalClusterSAPtrCollection& clusterSums);
@@ -60,26 +65,94 @@ HGCalHistoClusteringWrapper::HGCalHistoClusteringWrapper(const edm::ParameterSet
 void HGCalHistoClusteringWrapper::convertCMSSWInputs(
     const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>& clustersPtrs,
     l1thgcfirmware::HGCalLinkTriggerCellSAPtrCollection& linkData_in) const {
-  std::cout << "N TCs : " << clustersPtrs.size() << " " << clustersPtrs.at(0).size() << std::endl;
-  for (const auto& sector60 : clustersPtrs) {
-    for (const auto& cluster : sector60) {
-      linkData_in.emplace_back(std::make_unique<l1thgcfirmware::HGCalLinkTriggerCell>());
-      linkData_in.back()->data_.value_ = 99;
-      std::cout << "Added a link data : " << linkData_in.size() << " " << linkData_in.back()->data_.value_ << std::endl;
-      break;
+  // std::cout << "N TCs : " << clustersPtrs.size() << " " << clustersPtrs.at(0).size() << std::endl;
+  // for (const auto& sector60 : clustersPtrs) {
+  //   for (const auto& cluster : sector60) {
+  //     linkData_in.emplace_back(std::make_unique<l1thgcfirmware::HGCalLinkTriggerCell>());
+  //     linkData_in.back()->data_.value_ = 99;
+  //     std::cout << "Added a link data : " << linkData_in.size() << " " << linkData_in.back()->data_.value_ << std::endl;
+  //     break;
+  //   }
+  //   break;
+  // }
+
+  // for (const auto& linkData : linkData_in ) {
+  //   if (linkData->data_.value_ != 0 ) std::cout << "Got input link data : " << linkData->data_ << std::endl;
+  // }
+    // const std::map<unsigned int, std::vector<edm::Ptr<l1t::HGCalCluster>>>& clustersPtrs,
+    // l1thgcfirmware::HGCalTriggerCellSAPtrCollections& clusters_SA) const {
+  // Convert trigger cells to format required by emulator
+
+  const int numLinks = 84;
+  const int numFrames = 162;
+
+  std::vector<std::vector<int64_t>> LinkData(numLinks, std::vector<int64_t>(numFrames, 0));
+
+  l1thgcfirmware::HGCalTriggerCellSAPtrCollections clusters_SA_permodule(clustersPtrs.size());
+  for (const auto& module : clustersPtrs) {
+    unsigned iCluster = 0;
+    std::cout << module.first << std::endl;
+    for (const auto& cluster : module.second) {
+      const GlobalPoint& position = cluster->position();
+      double x = position.x();
+      double y = position.y();
+      double z = position.z();
+      unsigned int digi_rOverZ = (std::sqrt(x * x + y * y) / std::abs(z)) * theConfiguration_.rOverZNValues() /
+                                 theConfiguration_.rOverZRange();
+
+      if (z > 0)
+        x = -x;
+      double phi = std::atan2(y, x);
+      // Rotate phi to sector 0
+      auto sector = theConfiguration_.sector();
+      phi = rotatePhiToSectorZero(phi, sector);
+
+      // Ignore TCs that are outside of the nominal 180 degree S2 sector
+      // Assume these cannot be part of a cluster found within the central 120 degrees of the S2 sector?
+      if (phi < 0 || phi > M_PI) {
+        continue;
+      }
+
+      unsigned int digi_phi = (phi)*theConfiguration_.phiNValues() / theConfiguration_.phiRange();
+      unsigned int digi_energy = (cluster->pt()) * theConfiguration_.ptDigiFactor();
+
+      clusters_SA_permodule[iCluster].emplace_back(std::make_unique<l1thgcfirmware::HGCalTriggerCell>(
+          true, true, digi_rOverZ, digi_phi, triggerTools_.layerWithOffset(cluster->detId()), digi_energy));
+      clusters_SA_permodule[iCluster].back()->setCmsswIndex(std::pair<int, int>{iCluster, module.first});
+      ++iCluster;
     }
-    break;
   }
 
-  for (const auto& linkData : linkData_in ) {
-    if (linkData->data_.value_ != 0 ) std::cout << "Got input link data : " << linkData->data_ << std::endl;
+  // Distribute to links
+  clusters_SA.clear();
+  const unsigned empty_frames = 2;
+  clusters_SA.resize(theConfiguration_.maxClustersPerLink() + empty_frames);
+  for (auto& clusters : clusters_SA) {
+    for (unsigned int iCluster = 0; iCluster < theConfiguration_.nInputLinks(); ++iCluster) {
+      clusters.push_back(std::make_unique<l1thgcfirmware::HGCalTriggerCell>());
+    }
   }
+  // iSector60 = 0;
+  // unsigned int nLinksPerSector60 = theConfiguration_.nInputLinks() / 3;
+  // for (auto& sector60 : clusters_SA_permodule) {
+  //   unsigned iCluster = 0;
+  //   for (auto& cluster : sector60) {
+  //     const unsigned empty_frames = 2;
+  //     unsigned frame = empty_frames + iCluster / nLinksPerSector60;
+  //     unsigned link = iCluster % nLinksPerSector60 + iSector60 * nLinksPerSector60;
+  //     if (frame >= theConfiguration_.maxClustersPerLink() + empty_frames)
+  //       break;
+  //     clusters_SA[frame][link] = std::move(cluster);
+  //     ++iCluster;
+  //   }
+  //   ++iSector60;
+  // }
 }
 
 void HGCalHistoClusteringWrapper::convertAlgorithmOutputs(
     l1thgcfirmware::HGCalClusterSAPtrCollection& clusterSums,
     l1t::HGCalMulticlusterBxCollection& multiClusters_out,
-    const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClustersPtrs) const {
+    const std::map<unsigned int, std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClustersPtrs) const {
   for (const auto& cluster : clusterSums) {
 
     if (cluster->w() == 0 || cluster->e() == 0)
@@ -151,7 +224,7 @@ void HGCalHistoClusteringWrapper::convertAlgorithmOutputs(
   }
 }
 
-void HGCalHistoClusteringWrapper::process(const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClusters,
+void HGCalHistoClusteringWrapper::process(const std::map<unsigned int, std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClusters,
                                           std::pair<l1t::HGCalMulticlusterBxCollection&, l1t::HGCalClusterBxCollection&>&
                                               outputMulticlustersAndRejectedClusters) {
   l1thgcfirmware::HGCalLinkTriggerCellSAPtrCollection linkData_in_SA;

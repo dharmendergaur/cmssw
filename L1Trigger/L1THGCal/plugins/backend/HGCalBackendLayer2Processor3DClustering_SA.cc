@@ -51,7 +51,7 @@ public:
     l1t::HGCalClusterBxCollection& rejectedClusters = be_output.second;
 
     /* create a persistent vector of pointers to the trigger-cells */
-    std::unordered_map<uint32_t, std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>> tcs_per_fpga;
+    std::unordered_map<uint32_t, std::map<uint32_t, std::vector<edm::Ptr<l1t::HGCalCluster>>>> tcs_per_fpga;
 
     for (unsigned i = 0; i < collHandle->size(); ++i) {
       edm::Ptr<l1t::HGCalCluster> tc_ptr(collHandle, i);
@@ -62,26 +62,20 @@ public:
       HGCalTriggerGeometryBase::geom_set stage2_fpgas =
           distributor_.getStage2FPGAs(stage1_fpga, possible_stage2_fpgas, tc_ptr);
 
-      // Determine the 60 degree sector within the 180 S2 sector
-      HGCalTriggerBackendDetId stage1_fpga_id(stage1_fpga);
-      auto stage1_sector = stage1_fpga_id.sector();
-      bool isDuplicatedRegion = stage2_fpgas.size() > 1;
       for (auto& fpga : stage2_fpgas) {
         HGCalTriggerBackendDetId stage2_fpga_id(fpga);
-        auto stage2_sector = stage2_fpga_id.sector();
-        unsigned sector60 = 999;
-        if (!isDuplicatedRegion)
-          sector60 = 1;
-        else if (stage2_fpga_id.zside() == 1) {
-          sector60 = (stage2_sector == stage1_sector) ? 0 : 2;
-        } else {
-          sector60 = (stage2_sector == stage1_sector) ? 0 : 2;
-        }
+        tcs_per_fpga[fpga][module].push_back(tc_ptr);
+      }
+    }
 
-        if (tcs_per_fpga[fpga].empty()) {
-          tcs_per_fpga[fpga].resize(3);
-        }
-        tcs_per_fpga[fpga][sector60].push_back(tc_ptr);
+    // sort TC in each module by phi
+    for (auto& fpga : tcs_per_fpga) {
+      for (auto& clusters : fpga.second){
+        std::sort(clusters.second.begin(),
+                  clusters.second.end(),
+                  [](const edm::Ptr<l1t::HGCalCluster>& a, const edm::Ptr<l1t::HGCalCluster>& b) {
+                    return a->phi() > b->phi();
+                  });
       }
     }
 
@@ -93,7 +87,7 @@ public:
       /* call to multiclustering and compute shower shape*/
 
       // Inputs
-      const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClusters_perFPGA{fpga_tcs.second};
+      const std::map<uint32_t, std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClusters_perFPGA{fpga_tcs.second};
       // Outputs
       l1t::HGCalMulticlusterBxCollection collCluster3D_perFPGA;
       l1t::HGCalMulticlusterBxCollection collCluster3D_perFPGA_sorted;
