@@ -41,7 +41,7 @@ layer2ClusteringFw_Params = cms.PSet(
 
     inputLinkParams = cms.PSet(
         maxClustersPerLink = cms.uint32(210),
-        nInputLinks = cms.uint32(72)
+        nInputLinks = cms.uint32(84)
     ),
 
     # Trigger cell distribution parameters

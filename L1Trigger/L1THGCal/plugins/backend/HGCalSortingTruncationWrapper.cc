@@ -19,7 +19,7 @@ public:
   void configure(
       const std::pair<const HGCalTriggerGeometryBase* const, const edm::ParameterSet&>& configuration) override;
 
-  void process(const l1t::HGCalMulticlusterBxCollection&, l1t::HGCalMulticlusterBxCollection&) const override;
+  void process(const l1t::HGCalMulticlusterBxCollection&, l1t::HGCalMulticlusterBxCollection&) override;
 
 private:
   void convertCMSSWInputs(const l1t::HGCalMulticlusterBxCollection& multiclusters,
@@ -90,7 +90,7 @@ void HGCalSortingTruncationWrapper::convertAlgorithmOutputs(
 }
 
 void HGCalSortingTruncationWrapper::process(const l1t::HGCalMulticlusterBxCollection& inputMulticlusters,
-                                            l1t::HGCalMulticlusterBxCollection& outputMulticlusters) const {
+                                            l1t::HGCalMulticlusterBxCollection& outputMulticlusters) {
   l1thgcfirmware::HGCalMulticlusterSACollection multiclusters_SA;
   convertCMSSWInputs(inputMulticlusters, multiclusters_SA);
 

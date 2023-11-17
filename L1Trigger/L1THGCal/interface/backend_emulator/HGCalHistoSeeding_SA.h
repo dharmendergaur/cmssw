@@ -15,7 +15,6 @@ namespace l1thgcfirmware {
     void runSeeding(const l1thgcfirmware::HGCalTriggerCellSAPtrCollection& triggerCellsIn,
                     l1thgcfirmware::HGCalHistogramCellSAPtrCollection& histogramOut) const;
 
-  private:
     // Histogram steps
     void triggerCellToHistogramCell(const l1thgcfirmware::HGCalTriggerCellSAPtrCollection& triggerCellsIn,
                                     l1thgcfirmware::HGCalHistogramCellSAPtrCollection& histogramOut) const;
@@ -24,14 +23,18 @@ namespace l1thgcfirmware {
 
     // Smearing steps
     void smearHistogram1D(l1thgcfirmware::HGCalHistogramCellSAPtrCollection& histogram) const;
+    void interleaving( l1thgcfirmware::HGCalHistogramCellSAPtrCollection& histogram ) const;
     void normalizeArea(l1thgcfirmware::HGCalHistogramCellSAPtrCollection& histogram) const;
     void smearHistogram2D(l1thgcfirmware::HGCalHistogramCellSAPtrCollection& histogram) const;
+    void deinterleave( l1thgcfirmware::HGCalHistogramCellSAPtrCollection& histogram ) const;
 
     // Maxima finding
-    void thresholdMaximaFinder(l1thgcfirmware::HGCalHistogramCellSAPtrCollection& histogram) const;
-    void localMaximaFinder(l1thgcfirmware::HGCalHistogramCellSAPtrCollection& histogram) const;
+    void maximaFinder1D( l1thgcfirmware::HGCalHistogramCellSAPtrCollection& histogram ) const;
+    void maximaFinder2D( HGCalHistogramCellSAPtrCollection& histogram ) const;
     void calculateAveragePosition(l1thgcfirmware::HGCalHistogramCellSAPtrCollection& histogram) const;
+    void maximaFanout( l1thgcfirmware::HGCalHistogramCellSAPtrCollection& histogram ) const;
 
+  private:
     const l1thgcfirmware::ClusterAlgoConfig& config_;
   };
 }  // namespace l1thgcfirmware

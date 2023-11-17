@@ -16,7 +16,7 @@ public:
       const std::tuple<const HGCalTriggerGeometryBase* const, const unsigned&, const uint32_t&>& configuration) override;
 
   void process(const std::vector<edm::Ptr<l1t::HGCalTriggerCell>>& fpga_tcs,
-               std::vector<edm::Ptr<l1t::HGCalTriggerCell>>& tcs_out) const override;
+               std::vector<edm::Ptr<l1t::HGCalTriggerCell>>& tcs_out) override;
 
 private:
   void convertCMSSWInputs(const std::vector<edm::Ptr<l1t::HGCalTriggerCell>>& fpga_tcs,
@@ -74,7 +74,7 @@ void HGCalStage1TruncationWrapper::convertAlgorithmOutputs(
 }
 
 void HGCalStage1TruncationWrapper::process(const std::vector<edm::Ptr<l1t::HGCalTriggerCell>>& fpga_tcs,
-                                           std::vector<edm::Ptr<l1t::HGCalTriggerCell>>& tcs_out) const {
+                                           std::vector<edm::Ptr<l1t::HGCalTriggerCell>>& tcs_out) {
   l1thgcfirmware::HGCalTriggerCellSACollection fpga_tcs_SA;
   convertCMSSWInputs(fpga_tcs, fpga_tcs_SA);
 

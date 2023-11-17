@@ -24,7 +24,7 @@ public:
   void configure(const std::pair<const HGCalTriggerGeometryBase* const, const edm::ParameterSet&>& parameters) override;
 
   void process(const std::vector<edm::Ptr<l1t::HGCalTowerMap>>& inputs,
-               l1t::HGCalTowerBxCollection& outputs) const override;
+               l1t::HGCalTowerBxCollection& outputs) override;
 
 private:
   void convertCMSSWInputs(const std::vector<edm::Ptr<l1t::HGCalTowerMap>>& inputTowerMaps,
@@ -65,7 +65,7 @@ void HGCalTowerMapsWrapper::convertAlgorithmOutputs(const std::vector<l1thgcfirm
 }
 
 void HGCalTowerMapsWrapper::process(const std::vector<edm::Ptr<l1t::HGCalTowerMap>>& inputs,
-                                    l1t::HGCalTowerBxCollection& outputs) const {
+                                    l1t::HGCalTowerBxCollection& outputs) {
   std::vector<l1thgcfirmware::HGCalTowerMap> inputs_SA;
   convertCMSSWInputs(inputs, inputs_SA);
 

@@ -12,7 +12,7 @@ public:
   virtual ~HGCalAlgoWrapperBaseT() {}
 
   virtual void configure(const Tparam& parameters) = 0;
-  virtual void process(const InputCollection& inputCollection, OutputCollection& outputCollection) const = 0;
+  virtual void process(const InputCollection& inputCollection, OutputCollection& outputCollection) = 0;
 
   const std::string& name() const { return name_; }
 
