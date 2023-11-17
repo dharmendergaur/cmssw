@@ -31,13 +31,8 @@ public:
                    outputMulticlustersAndRejectedClusters) override;
 
 private:
-<<<<<<< HEAD
-  void convertCMSSWInputs(const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>& clustersPtrs,
-                          l1thgcfirmware::HGCalLinkTriggerCellSAPtrCollection& linkData_SA) const;
-=======
   void convertCMSSWInputs(const std::map<unsigned int, std::vector<edm::Ptr<l1t::HGCalCluster>>>& clustersPtrs,
-                          l1thgcfirmware::HGCalTriggerCellSAPtrCollections& clusters_SA) const;
->>>>>>> 2a520b2a914e (Group TCs per module, sort by phi)
+                          l1thgcfirmware::HGCalLinkTriggerCellSAPtrCollection& linkData_SA) const;
   void convertAlgorithmOutputs(l1thgcfirmware::HGCalClusterSAPtrCollection& clusterSums,
                                l1t::HGCalMulticlusterBxCollection& multiClusters_out,
                                const std::map<unsigned int, std::vector<edm::Ptr<l1t::HGCalCluster>>>& inputClustersPtrs) const;
@@ -63,90 +58,40 @@ HGCalHistoClusteringWrapper::HGCalHistoClusteringWrapper(const edm::ParameterSet
     : HGCalHistoClusteringWrapperBase(conf), theConfiguration_(), theAlgo_(theConfiguration_) {}
 
 void HGCalHistoClusteringWrapper::convertCMSSWInputs(
-    const std::vector<std::vector<edm::Ptr<l1t::HGCalCluster>>>& clustersPtrs,
+    const std::map<unsigned int, std::vector<edm::Ptr<l1t::HGCalCluster>>>& clustersPtrs,
     l1thgcfirmware::HGCalLinkTriggerCellSAPtrCollection& linkData_in) const {
-  // std::cout << "N TCs : " << clustersPtrs.size() << " " << clustersPtrs.at(0).size() << std::endl;
-  // for (const auto& sector60 : clustersPtrs) {
-  //   for (const auto& cluster : sector60) {
-  //     linkData_in.emplace_back(std::make_unique<l1thgcfirmware::HGCalLinkTriggerCell>());
-  //     linkData_in.back()->data_.value_ = 99;
-  //     std::cout << "Added a link data : " << linkData_in.size() << " " << linkData_in.back()->data_.value_ << std::endl;
-  //     break;
-  //   }
-  //   break;
-  // }
-
-  // for (const auto& linkData : linkData_in ) {
-  //   if (linkData->data_.value_ != 0 ) std::cout << "Got input link data : " << linkData->data_ << std::endl;
-  // }
-    // const std::map<unsigned int, std::vector<edm::Ptr<l1t::HGCalCluster>>>& clustersPtrs,
-    // l1thgcfirmware::HGCalTriggerCellSAPtrCollections& clusters_SA) const {
-  // Convert trigger cells to format required by emulator
 
   const int numLinks = 84;
   const int numFrames = 162;
 
-  std::vector<std::vector<int64_t>> LinkData(numLinks, std::vector<int64_t>(numFrames, 0));
+  linkData_in.resize(numLinks*numFrames);
 
-  l1thgcfirmware::HGCalTriggerCellSAPtrCollections clusters_SA_permodule(clustersPtrs.size());
   for (const auto& module : clustersPtrs) {
-    unsigned iCluster = 0;
+    // unsigned iCluster = 0;
     std::cout << module.first << std::endl;
     for (const auto& cluster : module.second) {
-      const GlobalPoint& position = cluster->position();
-      double x = position.x();
-      double y = position.y();
-      double z = position.z();
-      unsigned int digi_rOverZ = (std::sqrt(x * x + y * y) / std::abs(z)) * theConfiguration_.rOverZNValues() /
-                                 theConfiguration_.rOverZRange();
 
-      if (z > 0)
-        x = -x;
-      double phi = std::atan2(y, x);
-      // Rotate phi to sector 0
-      auto sector = theConfiguration_.sector();
-      phi = rotatePhiToSectorZero(phi, sector);
+      linkData_in.at(0)->data_.value_ = 99999999999;
 
-      // Ignore TCs that are outside of the nominal 180 degree S2 sector
-      // Assume these cannot be part of a cluster found within the central 120 degrees of the S2 sector?
-      if (phi < 0 || phi > M_PI) {
-        continue;
-      }
+      // Get energy, pack into 3+4 bits for mantissa and exponent
 
-      unsigned int digi_phi = (phi)*theConfiguration_.phiNValues() / theConfiguration_.phiRange();
-      unsigned int digi_energy = (cluster->pt()) * theConfiguration_.ptDigiFactor();
+      // Get TC label
 
-      clusters_SA_permodule[iCluster].emplace_back(std::make_unique<l1thgcfirmware::HGCalTriggerCell>(
-          true, true, digi_rOverZ, digi_phi, triggerTools_.layerWithOffset(cluster->detId()), digi_energy));
-      clusters_SA_permodule[iCluster].back()->setCmsswIndex(std::pair<int, int>{iCluster, module.first});
-      ++iCluster;
+      // Combine to produce 13 bit word
+
+      // Access "xml information" to determine which element (frame and link) of linkData_in to set
+      // i.e. linkData_in.at(<link*frame>)->data_.value_
+      // And which bits within value_ to set (channel)
+
+
+      // Need something like the below for keeping track of the CMSSW TC
+      // clusters_SA_permodule[iCluster].back()->setCmsswIndex(std::pair<int, int>{iCluster, module.first});
+      // ++iCluster;
+
+      break; // Debug, just adding one TC as en example
     }
+    break; // Debug, just adding one TC as en example
   }
-
-  // Distribute to links
-  clusters_SA.clear();
-  const unsigned empty_frames = 2;
-  clusters_SA.resize(theConfiguration_.maxClustersPerLink() + empty_frames);
-  for (auto& clusters : clusters_SA) {
-    for (unsigned int iCluster = 0; iCluster < theConfiguration_.nInputLinks(); ++iCluster) {
-      clusters.push_back(std::make_unique<l1thgcfirmware::HGCalTriggerCell>());
-    }
-  }
-  // iSector60 = 0;
-  // unsigned int nLinksPerSector60 = theConfiguration_.nInputLinks() / 3;
-  // for (auto& sector60 : clusters_SA_permodule) {
-  //   unsigned iCluster = 0;
-  //   for (auto& cluster : sector60) {
-  //     const unsigned empty_frames = 2;
-  //     unsigned frame = empty_frames + iCluster / nLinksPerSector60;
-  //     unsigned link = iCluster % nLinksPerSector60 + iSector60 * nLinksPerSector60;
-  //     if (frame >= theConfiguration_.maxClustersPerLink() + empty_frames)
-  //       break;
-  //     clusters_SA[frame][link] = std::move(cluster);
-  //     ++iCluster;
-  //   }
-  //   ++iSector60;
-  // }
 }
 
 void HGCalHistoClusteringWrapper::convertAlgorithmOutputs(
