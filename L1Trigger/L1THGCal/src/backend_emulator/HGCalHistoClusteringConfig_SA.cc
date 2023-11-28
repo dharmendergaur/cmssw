@@ -38,9 +38,11 @@ ClusterAlgoConfig::ClusterAlgoConfig() :
     { Smearing2D , 5 },
     { Deinterleaved , 4 },    
     { Maxima1D   , 5 },
+    { Interleaving2 , 0 },  // Unused
     { Maxima2D   , 6 },
-    // { ThresholdMaxima , 3 },
+    { ThresholdMaxima , 3 },  // Unused?
     { CalcAverage , 4 },
+    { Deinterleaving2, 0 }, // Unused
     { MaximaFanout , 9 },
     { Clusterizer , 0 },
     { TriggerCellToCluster , 8 }

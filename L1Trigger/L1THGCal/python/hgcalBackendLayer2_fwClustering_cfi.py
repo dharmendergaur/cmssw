@@ -5,24 +5,25 @@ layer2ClusteringFw_Params = cms.PSet(
     # Latencies
     # histogramOffset=cms.uint32(216),
     clusterizerOffset=cms.uint32(276),
-    stepLatencies=cms.vuint32(  0,      # Input 
-                                1,      # Dist0 
-                                1,      # Dist1 
-                                6,      # Dist2 
-                                0,      # Dist3 
-                                1,      # Dist4 
-                                7,      # Dist5 
-                                1,      # TcToHc
-                                216 + 1,# Hist, histogramOffset + 1
-                                5,      # Smearing1D
-                                3,      # NormArea  
-                                6,      # Smearing2D
-                                0,      # Maxima1D  
-                                2,      # Maxima2D  
-                                6,      # CalcAverage
-                                0,      # Clusterizer
-                                18,     # TriggerCellToCluster
-                                0 ),    # ClusterSum
+    stepLatencies=cms.vuint32(      3, # UnpackLinks
+                                    2, # TriggerCellDistribution
+                                    4, # UnpackTriggerCells
+                                    2, # TcToHc
+                                    231,# Hist
+                                    6,# Smearing1D
+                                    1,# Interleaving
+                                    3,# NormArea
+                                    5,# Smearing2D
+                                    4,# Deinterleaved
+                                    5,# Maxima1D
+                                    6,# Maxima2D
+                                    3, # ThresholdMaxima
+                                    4, # CalcAverage
+                                    9, # MaximaFanout
+                                    0, # Clusterizer
+                                    8 ), # TriggerCellToCluster
+                                    # 0 ), # ClusterSum
+
     cClocks=cms.uint32(250),
     cInputs=cms.uint32(72),
     cInputs2=cms.uint32(75),

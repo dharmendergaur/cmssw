@@ -60,18 +60,22 @@ HGCalHistoClusteringWrapper::HGCalHistoClusteringWrapper(const edm::ParameterSet
 void HGCalHistoClusteringWrapper::convertCMSSWInputs(
     const std::map<unsigned int, std::vector<edm::Ptr<l1t::HGCalCluster>>>& clustersPtrs,
     l1thgcfirmware::HGCalLinkTriggerCellSAPtrCollection& linkData_in) const {
-
+  std::cout << "In convertCMSSWInputs" << std::endl;
   const int numLinks = 84;
   const int numFrames = 162;
 
+  linkData_in.clear();
   linkData_in.resize(numLinks*numFrames);
+  for (int i = 0; i < numLinks * numFrames; ++i) {
+    linkData_in.at(i) = std::make_unique<l1thgcfirmware::HGCalLinkTriggerCell>();
+  }
 
   for (const auto& module : clustersPtrs) {
     // unsigned iCluster = 0;
     std::cout << module.first << std::endl;
     for (const auto& cluster : module.second) {
 
-      linkData_in.at(0)->data_.value_ = 99999999999;
+      linkData_in.at(0)->data_.value_ = 9999;
 
       // Get energy, pack into 3+4 bits for mantissa and exponent
 
