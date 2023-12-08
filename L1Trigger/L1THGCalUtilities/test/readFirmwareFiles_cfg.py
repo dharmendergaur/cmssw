@@ -54,7 +54,7 @@ process.Stage2FileReader.files = cms.vstring(
     # 'output_hgcAlgo.txt'
 )
 # for i in range(8): process.Stage2FileReader.files.append(f'hgc_sec4_tm6-output-hw_{i}.txt')
-for i in range(95): process.Stage2FileReader.files.append(f'hgc_sec5_tm99-output-hw-{i}.txt')
+for i in range(95): process.Stage2FileReader.files.append(f'patterns/hgc_sec5_tm99-output-hw-{i}.txt')
 process.Stage2FileReader.sector = options.sector
 
 

@@ -354,22 +354,46 @@ void Stage2FileWriter::encodeTowers( const l1t::HGCalTowerBxCollection& towers, 
 
     // Work out which frame, link, and bits this tower belongs to
     unsigned iEta = tower_itr->id().iEta();
-    unsigned iWord = iEta * 24 + iPhiLocal;
-    unsigned iFrame = iWord / 16;
-    unsigned iLink = (iWord % 16) / 4;
-    unsigned iTowerInWord = iWord % 4;
-    unsigned firstBit = iTowerInWord * 16;
-    unsigned lastBit = (iTowerInWord+1) * 16 - 1;
+    // unsigned iWord = iEta * 24 + iPhiLocal;
+    // unsigned iFrame = iWord / 16;
+    // unsigned iLink = (iWord % 16) / 4;
+    // unsigned iTowerInWord = iWord % 4;
+    // unsigned firstBit = iTowerInWord * 16;
+    // unsigned lastBit = (iTowerInWord+1) * 16 - 1;
 
-    if ( tower_itr->pt() > 1 ) {
-      std::cout << "Tower : " << tower_itr->id().zside() << " " << tower_itr->id().iEta() << " " << tower_itr->id().iPhi() << " " << tower_itr->pt() << " " << tower_itr->et() << " " << tower_itr->eta() <<  " " << tower_itr->phi() << " " << tower_itr->etEm() << " " << tower_itr->etHad() << std::endl;
+    unsigned iLink = (iPhiLocal / 6);
+    unsigned iFrame = unsigned(iEta / 2) * 3;
+    unsigned iWord = (iPhiLocal % 6);
+    if ( iEta % 2 == 0 && iWord > 3 ) {
+      iWord -= 4;
+      iFrame += 1;
+    }
+    else if ( iEta % 2 == 1 ) {
+      if ( iWord <2 ) {
+        iWord += 2;
+        iFrame += 1;
+      }
+      else {
+        iWord -= 2;
+        iFrame += 2;
+      }
+    }
+    if ( iWord > 3 ) std::cout << "Tower word out of bounds : " << iWord << std::endl;
+
+    unsigned firstBit = iWord * 16;
+    unsigned lastBit = (iWord+1) * 16 - 1;
+
+
+    // if ( tower_itr->id().iEta() != 1 ) continue;
+
+    if ( tower_itr->pt() > 5 ) {
+      std::cout << "Tower : " << tower_itr->id().zside() << " " << tower_itr->id().iEta() << " " << iPhiLocal << " " << tower_itr->id().iPhi() << " " << tower_itr->pt() << " " << tower_itr->et() << " " << tower_itr->eta() <<  " " << tower_itr->phi() << " " << tower_itr->etEm() << " " << tower_itr->etHad() << " " << encodeTower(*tower_itr).to_string() << " " << iLink << " " << iFrame+1 << " " << firstBit << " " << lastBit  << std::endl;
     }
 
     // Encode tower into hw format, add to output
     auto word = output.at(iLink).at(iFrame+1);
     word(lastBit, firstBit) = encodeTower(*tower_itr);
     output.at(iLink).at(iFrame+1) = word;
-
   }
 
 }
