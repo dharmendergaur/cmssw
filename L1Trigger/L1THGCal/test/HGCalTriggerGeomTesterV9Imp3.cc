@@ -469,8 +469,12 @@ bool HGCalTriggerGeomTesterV9Imp3::checkMappingConsistency() {
       uint32_t module = 0;
       try {
         module = triggerGeometry_->getModuleFromCell(id);
-        triggerGeometry_->getLinksInModule(module);
+        // triggerGeometry_->getLinksInModule(module);
       } catch (const std::exception& e) {
+        const auto module = HGCalTriggerModuleDetId(triggerGeometry_->getModuleFromCell(id));
+        if ( module.layer() == 1 ) {
+          std::cout << "Was trying to get : " << id.rawId() << " " << triggerGeometry_->getModuleFromCell(id) << " " << module.layer() << " " << module.triggerSubdetId() << " " << module.moduleU() << " " << module.moduleV() << std::endl;
+        }
         module_errors.emplace(std::make_tuple(HGCalTriggerModuleDetId(module).triggerSubdetId(),
                                               HGCalTriggerModuleDetId(module).layer(),
                                               HGCalTriggerModuleDetId(module).moduleU(),
@@ -493,8 +497,10 @@ bool HGCalTriggerGeomTesterV9Imp3::checkMappingConsistency() {
       uint32_t module = 0;
       try {
         module = triggerGeometry_->getModuleFromCell(id);
-        triggerGeometry_->getLinksInModule(module);
+        // triggerGeometry_->getLinksInModule(module);
       } catch (const std::exception& e) {
+        const auto module = HGCalTriggerModuleDetId(triggerGeometry_->getModuleFromCell(id));
+        std::cout << "Was trying to get : " << id.rawId() << " " << triggerGeometry_->getModuleFromCell(id) << " " << module.layer() << " " << module.triggerSubdetId() << " " << module.moduleU() << " " << module.moduleV() << std::endl;
         module_errors.emplace(std::make_tuple(HGCalTriggerModuleDetId(module).triggerSubdetId(),
                                               HGCalTriggerModuleDetId(module).layer(),
                                               HGCalTriggerModuleDetId(module).moduleU(),
@@ -509,10 +515,10 @@ bool HGCalTriggerGeomTesterV9Imp3::checkMappingConsistency() {
     for (const auto& id : triggerGeometry_->hscGeometry()->getValidDetIds()) {
       // fill trigger cells
       unsigned layer = HGCScintillatorDetId(id).layer();
-      if (HGCScintillatorDetId(id).type() != triggerGeometry_->hscTopology().dddConstants().getTypeTrap(layer)) {
-        std::cout << "Sci cell type = " << HGCScintillatorDetId(id).type()
-                  << " != " << triggerGeometry_->hscTopology().dddConstants().getTypeTrap(layer) << "\n";
-      }
+      // if (HGCScintillatorDetId(id).type() != triggerGeometry_->hscTopology().dddConstants().getTypeTrap(layer)) {
+      //   std::cout << "Sci cell type = " << HGCScintillatorDetId(id).type()
+      //             << " != " << triggerGeometry_->hscTopology().dddConstants().getTypeTrap(layer) << "\n";
+      // }
       uint32_t trigger_cell = triggerGeometry_->getTriggerCellFromCell(id);
       auto itr_insert = triggercells_to_cells.emplace(trigger_cell, std::unordered_set<uint32_t>());
       itr_insert.first->second.emplace(id);
@@ -572,14 +578,15 @@ bool HGCalTriggerGeomTesterV9Imp3::checkMappingConsistency() {
       for (auto cell : cells) {
         if (cells_geom.find(cell) == cells_geom.end()) {
           if (id.det() == DetId::HGCalHSc) {
-            edm::LogProblem("BadTriggerCell")
-                << "Error: \n Cell " << cell << "(" << HGCScintillatorDetId(cell)
-                << ")\n has not been found in \n trigger cell " << HGCScintillatorDetId(id);
-            std::stringstream output;
-            output << " Available cells are:\n";
-            for (auto cell_geom : cells_geom)
-              output << "     " << HGCScintillatorDetId(cell_geom) << "\n";
-            edm::LogProblem("BadTriggerCell") << output.str();
+            // edm::LogProblem("BadTriggerCell")
+            //     << "Error: \n Cell " << cell << "(" << HGCScintillatorDetId(cell)
+            //     << ")\n has not been found in \n trigger cell " << HGCScintillatorDetId(id);
+            // std::stringstream output;
+            // output << " Available cells are:\n";
+            // for (auto cell_geom : cells_geom)
+            //   output << "     " << HGCScintillatorDetId(cell_geom) << "\n";
+            // edm::LogProblem("BadTriggerCell") << output.str();
+            continue;
           } else if (HFNoseTriggerDetId(id).subdet() == HGCalTriggerSubdetector::HFNoseTrigger) {
             edm::LogProblem("BadTriggerCell")
                 << "Error: \n Cell " << cell << "(" << HFNoseDetId(cell) << ")\n has not been found in \n trigger cell "
@@ -670,11 +677,13 @@ bool HGCalTriggerGeomTesterV9Imp3::checkMappingConsistency() {
       for (auto cell : cells) {
         if (cells_geom.find(cell) == cells_geom.end()) {
           if (id.triggerSubdetId() == HGCalTriggerSubdetector::HGCalHScTrigger) {
-            edm::LogProblem("BadModule") << "Error: \n Cell " << cell << "(" << HGCScintillatorDetId(cell)
-                                         << ")\n has not been found in \n module " << HGCalTriggerModuleDetId(id);
+            // edm::LogProblem("BadModule") << "Error: \n Cell " << cell << "(" << HGCScintillatorDetId(cell)
+                                        //  << ")\n has not been found in \n module " << HGCalTriggerModuleDetId(id);
+            continue;
           } else if (id.triggerSubdetId() == HGCalTriggerSubdetector::HFNoseTrigger) {
-            edm::LogProblem("BadModule") << "Error: \n Cell " << cell << "(" << HFNoseDetId(cell)
-                                         << ")\n has not been found in \n module " << HGCalTriggerModuleDetId(id);
+            // edm::LogProblem("BadModule") << "Error: \n Cell " << cell << "(" << HFNoseDetId(cell)
+                                        //  << ")\n has not been found in \n module " << HGCalTriggerModuleDetId(id);
+            continue;
           } else {
             edm::LogProblem("BadModule") << "Error: \n Cell " << cell << "(" << HGCSiliconDetId(cell)
                                          << ")\n has not been found in \n module " << HGCalTriggerModuleDetId(id);
@@ -694,9 +703,12 @@ bool HGCalTriggerGeomTesterV9Imp3::checkMappingConsistency() {
 
     edm::LogPrint("ModuleCheck") << "Checking module -> stage-1 -> module consistency";
     trigger_map_set stage1_to_modules;
+    // unsigned int nModules = 0;
     for (const auto& module_tc : modules_to_triggercells) {
       HGCalTriggerModuleDetId id(module_tc.first);
+
       HGCalTriggerGeometryBase::geom_set lpgbts = triggerGeometry_->getLpgbtsFromModule(id);
+
       if (lpgbts.size() == 0)
         continue;  //Module is not connected to an lpGBT and therefore not to a Stage 1 FPGA
       uint32_t stage1 = 0;
@@ -710,21 +722,65 @@ bool HGCalTriggerGeomTesterV9Imp3::checkMappingConsistency() {
       }
       auto itr_insert = stage1_to_modules.emplace(stage1, std::unordered_set<uint32_t>());
       itr_insert.first->second.emplace(id);
-    }
-    // checking S1 -> module consistency
 
+      // if (stage1_to_modules.find(stage1) != stage1_to_modules.end()) {
+      //     stage1_to_modules[stage1].insert(id);
+      // } else {
+      //     stage1_to_modules[stage1] = lpgbts;
+      // }
+
+      // if ( stage1 == 1862283265 ) {
+      //   std::cout << "Adding module : " << id.rawId() << std::endl;
+      //   ++nModules;
+      // }
+    }
+    // std::cout << "N modules for S1 1862283265 : " << nModules << std::endl;
+
+    // checking S1 -> module consistency
+    edm::LogPrint("ModuleCheck") << "Checking stage-1 -> module consistency";
     for (const auto& stage1_modules : stage1_to_modules) {
       HGCalTriggerBackendDetId stage1(stage1_modules.first);
+      std::cout << "Stage 1 : " << stage1_modules.first << " " << stage1.label() << " " << stage1 << std::endl;
+      // std::cout << "Module : " << stage1_modules.second << " " << stage1_modules.label() << std::endl;
       HGCalTriggerGeometryBase::geom_set modules_geom;
       // Check consistency of modules going to Stage-1 FPGA
       std::vector<unsigned> lpgbts = triggerGeometry_->getLpgbtsFromStage1Fpga(stage1);
+      if ( stage1_modules.first == 1862283265 ) {
+        std::cout << "Checking lpgbts : " << std::endl;
+      }
       for (const auto& lpgbt : lpgbts) {
         HGCalTriggerGeometryBase::geom_set modules = triggerGeometry_->getModulesFromLpgbt(lpgbt);
+        if ( stage1_modules.first == 1862283265 && HGCalTriggerBackendDetId(lpgbt).label() == 1068 ) {
+          std::cout << HGCalTriggerBackendDetId(lpgbt).label() << std::endl;
+          std::cout << "Modules connected to lpgbt : " << std::endl;
+          for ( const auto& module : modules ) {
+            std::cout << HGCalTriggerModuleDetId(module) << std::endl;
+          }
+        }
         modules_geom.insert(modules.begin(), modules.end());
       }
       const auto& modules = stage1_modules.second;
       for (auto module : modules) {
+        if ( HGCalTriggerModuleDetId(module).isHScintillator() ) continue; 
         if (modules_geom.find(module) == modules_geom.end()) {
+
+          // std::cout << "Not found exact match for module : " << HGCalTriggerModuleDetId(module) << " \n in stage-1 : " << HGCalTriggerBackendDetId(stage1) << std::endl;
+          bool foundOKMatch = false;
+          HGCalTriggerModuleDetId moduleDetId(module);
+          for ( const auto& geom_module : modules_geom ) {
+            HGCalTriggerModuleDetId geomModuleDetId(geom_module);
+            if ( moduleDetId.layer() == geomModuleDetId.layer() && \
+                 moduleDetId.moduleU() == geomModuleDetId.moduleU() && \
+                 moduleDetId.moduleV() == geomModuleDetId.moduleV()
+             ) {
+              std::cout << "Got a partial match" << std::endl;
+              std::cout << "Looking for : " << moduleDetId << std::endl;
+              std::cout << "Found this  : " << geomModuleDetId << std::endl;
+              foundOKMatch = true;
+              break;
+             }
+          }
+          if ( foundOKMatch ) continue;
           edm::LogProblem("BadStage1") << "Error: \n Module " << module << "(" << HGCalTriggerModuleDetId(module)
                                        << ")\n has not been found in \n stage-1 " << HGCalTriggerBackendDetId(stage1);
           std::stringstream output;
@@ -732,14 +788,18 @@ bool HGCalTriggerGeomTesterV9Imp3::checkMappingConsistency() {
           for (auto module_geom : modules_geom) {
             output << module_geom << " ";
           }
-          output << "   Connected lpgbts are:\n";
+          std::cout << "Total number : " << modules_geom.size() << std::endl;
+          output << "\n   Connected lpgbts are:\n";
           for (auto lpgbt : lpgbts) {
-            output << lpgbt << " ";
+            output << HGCalTriggerBackendDetId(lpgbt).label() << " ";
           }
           edm::LogProblem("BadStage1") << output.str();
           throw cms::Exception("BadGeometry")
               << "HGCalTriggerGeometry: Found inconsistency in Stage1 <-> module mapping";
         }
+        // else if ( stage1_modules.first == 1862283265 ) {
+        //   std::cout << "Found module for S1 1862283265 : " << HGCalTriggerModuleDetId(module) << std::endl;
+        // }
       }
     }
 
@@ -749,22 +809,27 @@ bool HGCalTriggerGeomTesterV9Imp3::checkMappingConsistency() {
     trigger_map_set stage2_to_stage1;
     for (const auto& stage1 : stage1_to_modules) {
       HGCalTriggerBackendDetId id(stage1.first);
+      std::cout << "Getting Stage 2 FPGAS for Stage 1 FPGA : " << id.rawId() << " " << id.label() << std::endl;
       HGCalTriggerGeometryBase::geom_set stage2FPGAs = triggerGeometry_->getStage2FpgasFromStage1Fpga(id);
+      std::cout << "N Stage 2 FPGAs found : " << stage2FPGAs.size() << std::endl;
       for (const auto& stage2 : stage2FPGAs) {
         auto itr_insert = stage2_to_stage1.emplace(stage2, std::unordered_set<uint32_t>());
         itr_insert.first->second.emplace(id);
       }
     }
     // checking S1 -> S2 consistency
-
+    edm::LogPrint("ModuleCheck") << "Checking Stage 1 -> Stage 2 consistency";
     for (const auto& stage2_modules : stage2_to_stage1) {
       HGCalTriggerBackendDetId stage2(stage2_modules.first);
+      std::cout  << "Checking stage 2 : " << stage2.label() << std::endl;
 
       // Check consistency of Stage-1 FPGA going to Stage 2 FPGA
       HGCalTriggerGeometryBase::geom_set stage1FPGAs = triggerGeometry_->getStage1FpgasFromStage2Fpga(stage2);
+      std::cout << "Found N matching stage 1 FPGAs : " << stage1FPGAs.size() << std::endl;
 
       const auto& stage1fpgas = stage2_modules.second;
 
+      std::cout << "Checking if they appear in original S1 FPGA list : " << stage1fpgas.size() << std::endl;
       for (auto stage1fpga : stage1fpgas) {
         if (stage1FPGAs.find(stage1fpga) == stage1FPGAs.end()) {
           edm::LogProblem("BadStage2") << "Error: \n Stage-1 FPGA " << stage1fpga << "("

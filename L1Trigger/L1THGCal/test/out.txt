@@ -1,0 +1,2954 @@
+xmlxmlxmlxmlxmlxmlxmlxmlxmlxmlxmlxmlxml
+In fillMapsFromXML
+xmlxmlxmlxmlxmlxmlxmlxmlxmlxmlxmlxmlxml
+Total N LPGBTS : 1614
+N links : 84
+Adding to stage1link_to_stage2_ : 0 348323840 0
+Adding to stage1link_to_stage2_ : 1 348979712 1
+Adding to stage1link_to_stage2_ : 2 348979456 0
+Adding to stage1link_to_stage2_ : 3 348914176 1
+Adding to stage1link_to_stage2_ : 4 348913920 0
+Adding to stage1link_to_stage2_ : 5 348848640 1
+Adding to stage1link_to_stage2_ : 6 348848384 0
+Adding to stage1link_to_stage2_ : 7 348783104 1
+Adding to stage1link_to_stage2_ : 8 348782848 0
+Adding to stage1link_to_stage2_ : 9 348717568 1
+Adding to stage1link_to_stage2_ : 10 348717312 0
+Adding to stage1link_to_stage2_ : 11 348652032 1
+Adding to stage1link_to_stage2_ : 12 348651776 0
+Adding to stage1link_to_stage2_ : 13 348651520 0
+Adding to stage1link_to_stage2_ : 14 348586496 1
+Adding to stage1link_to_stage2_ : 15 348586240 0
+Adding to stage1link_to_stage2_ : 16 348585984 0
+Adding to stage1link_to_stage2_ : 17 80347136 -1
+Adding to stage1link_to_stage2_ : 18 80543744 -1
+Adding to stage1link_to_stage2_ : 19 80281856 0
+Adding to stage1link_to_stage2_ : 20 80281600 -1
+Adding to stage1link_to_stage2_ : 21 80478208 -1
+Adding to stage1link_to_stage2_ : 22 80216320 0
+Adding to stage1link_to_stage2_ : 23 80216064 -1
+Adding to stage1link_to_stage2_ : 24 80412672 -1
+Adding to stage1link_to_stage2_ : 25 79888384 -1
+Adding to stage1link_to_stage2_ : 26 80150784 0
+Adding to stage1link_to_stage2_ : 27 80150528 -1
+Adding to stage1link_to_stage2_ : 28 80085248 0
+Adding to stage1link_to_stage2_ : 29 80084992 -1
+Adding to stage1link_to_stage2_ : 30 79823360 0
+Adding to stage1link_to_stage2_ : 31 79823104 0
+Adding to stage1link_to_stage2_ : 32 79953920 -1
+Adding to stage1link_to_stage2_ : 33 80019456 -1
+Adding to stage1link_to_stage2_ : 34 79757824 0
+Adding to stage1link_to_stage2_ : 35 79888640 0
+Adding to stage1link_to_stage2_ : 36 80347648 0
+Adding to stage1link_to_stage2_ : 37 79692288 0
+Adding to stage1link_to_stage2_ : 38 80544000 0
+Adding to stage1link_to_stage2_ : 39 79757568 0
+Adding to stage1link_to_stage2_ : 40 80413184 0
+Adding to stage1link_to_stage2_ : 41 79954176 0
+Adding to stage1link_to_stage2_ : 42 80478720 0
+Adding to stage1link_to_stage2_ : 43 80019712 0
+Adding to stage1link_to_stage2_ : 44 80544256 0
+Adding to stage1link_to_stage2_ : 45 80347392 0
+Adding to stage1link_to_stage2_ : 46 80412928 0
+Adding to stage1link_to_stage2_ : 47 80478464 0
+Adding to stage1link_to_stage2_ : 48 348127232 0
+Adding to stage1link_to_stage2_ : 49 348127488 0
+Adding to stage1link_to_stage2_ : 50 348127744 1
+Adding to stage1link_to_stage2_ : 51 79888896 0
+Adding to stage1link_to_stage2_ : 52 348389376 0
+Adding to stage1link_to_stage2_ : 53 348192768 0
+Adding to stage1link_to_stage2_ : 54 348193024 0
+Adding to stage1link_to_stage2_ : 55 348193280 1
+Adding to stage1link_to_stage2_ : 56 79691776 -1
+Adding to stage1link_to_stage2_ : 57 79692032 0
+Adding to stage1link_to_stage2_ : 58 79954432 0
+Adding to stage1link_to_stage2_ : 59 348454912 0
+Adding to stage1link_to_stage2_ : 60 348258304 0
+Adding to stage1link_to_stage2_ : 61 348258560 0
+Adding to stage1link_to_stage2_ : 62 348258816 1
+Adding to stage1link_to_stage2_ : 63 79757312 -1
+Adding to stage1link_to_stage2_ : 64 80019968 0
+Adding to stage1link_to_stage2_ : 65 348520448 0
+Adding to stage1link_to_stage2_ : 66 348324096 0
+Adding to stage1link_to_stage2_ : 67 348324352 1
+Adding to stage1link_to_stage2_ : 68 79822848 -1
+Adding to stage1link_to_stage2_ : 69 80085504 0
+Adding to stage1link_to_stage2_ : 70 348389632 0
+Adding to stage1link_to_stage2_ : 71 348389888 1
+Adding to stage1link_to_stage2_ : 72 80151040 0
+Adding to stage1link_to_stage2_ : 73 348455168 0
+Adding to stage1link_to_stage2_ : 74 348455424 1
+Adding to stage1link_to_stage2_ : 75 80216576 0
+Adding to stage1link_to_stage2_ : 76 348520704 0
+Adding to stage1link_to_stage2_ : 77 348520960 1
+Adding to stage1link_to_stage2_ : 78 80282112 0
+Adding to stage1link_to_stage2_ : 79 348717056 0
+Adding to stage1link_to_stage2_ : 80 348782592 0
+Adding to stage1link_to_stage2_ : 81 348848128 0
+Adding to stage1link_to_stage2_ : 82 348913664 0
+Adding to stage1link_to_stage2_ : 83 348979200 0
+Interesting module : 7 1 1 5
+Stage 1 index : 4
+Packed value : 4309073
+LPGBT for module : 234
+LPGBT for module : 235
+LPGBT for module : 236
+Interesting module : 7 2 1 5
+Stage 1 index : 1
+Packed value : 8503377
+LPGBT for module : 1068
+LPGBT for module : 1069
+Interesting module : 7 1 7 7
+Stage 1 index : 4
+Packed value : 4309111
+LPGBT for module : 250
+LPGBT for module : 251
+Interesting module : 7 2 7 7
+Stage 1 index : 1
+Packed value : 8503415
+LPGBT for module : 1072
+LPGBT for module : 1073
+Max motherboard : 42416
+Checking cell -> trigger cell -> cell consistency
+Checking trigger cell -> module -> trigger cell consistency
+Checking cell -> module -> cell consistency
+Checking module -> stage-1 -> module consistency
+Checking stage-1 -> module consistency
+Stage 1 : 1862283266 2 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 2
+Stage 1 : 1862279169 1 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 1
+Stage 1 : 1862281218 2 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 2
+Stage 1 : 1862279170 2 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 2
+Stage 1 : 1862281219 3 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 3
+Stage 1 : 1862279171 3 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 3
+Stage 1 : 1862283267 3 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 3
+Stage 1 : 1862279168 0 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 0
+Stage 1 : 1862283265 1 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 1
+Checking lpgbts : 
+1068
+Modules connected to lpgbt : 
+HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 2 module(u,v)= (1,4) trigger subdetector= 2
+HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 2 module(u,v)= (1,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Stage 1 : 1862346765 13 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 13
+Stage 1 : 1862281224 8 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 8
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 1 module(u,v)= (2,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 1 module(u,v)= (2,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 1 module(u,v)= (6,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 1 module(u,v)= (6,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 1 module(u,v)= (4,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 1 module(u,v)= (4,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 1 module(u,v)= (3,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 1 module(u,v)= (3,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 1 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 1 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 1 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 1 module(u,v)= (5,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 1 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 1 module(u,v)= (5,1) trigger subdetector= 2
+Stage 1 : 1862346756 4 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 4
+Stage 1 : 1862281223 7 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 7
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 1 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 1 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 1 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 1 module(u,v)= (6,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Stage 1 : 1862346755 3 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 3
+Stage 1 : 1862346762 10 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 10
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 1 module(u,v)= (6,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 1 module(u,v)= (6,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 1 module(u,v)= (6,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 1 module(u,v)= (6,4) trigger subdetector= 2
+Stage 1 : 1862281217 1 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 1
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 7 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 7 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Stage 1 : 1862344717 13 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 13
+Stage 1 : 1862281225 9 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 9
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 6 sector= 1 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 1 module(u,v)= (5,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 6 sector= 1 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 1 module(u,v)= (5,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 6 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Stage 1 : 1862346757 5 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 5
+Stage 1 : 1862348805 5 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 5
+Stage 1 : 1862283273 9 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 9
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 6 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 6 sector= 2 module(u,v)= (6,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 2 module(u,v)= (6,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 6 sector= 2 module(u,v)= (6,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 2 module(u,v)= (6,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 6 sector= 2 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 2 module(u,v)= (1,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 6 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 6 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Stage 1 : 1862348810 10 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 10
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 2 module(u,v)= (5,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (5,0) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 3 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 3 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 3 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Stage 1 : 1862281220 4 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 4
+Stage 1 : 1862346752 0 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 0
+Stage 1 : 1862348811 11 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 11
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (7,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 2 module(u,v)= (7,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (7,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 2 module(u,v)= (7,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (7,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 2 module(u,v)= (7,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (7,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 2 module(u,v)= (7,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (6,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 2 module(u,v)= (6,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (7,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 2 module(u,v)= (7,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (5,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 2 module(u,v)= (5,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (6,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 2 module(u,v)= (6,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (4,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 2 module(u,v)= (4,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (2,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 2 module(u,v)= (2,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 2 module(u,v)= (3,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 2 module(u,v)= (3,7) trigger subdetector= 2
+Stage 1 : 1862279180 12 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 12
+Stage 1 : 1862344712 8 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 8
+Stage 1 : 1862344714 10 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 10
+Stage 1 : 1862283277 13 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 13
+Stage 1 : 1862348809 9 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 9
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 6 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 6 sector= 2 module(u,v)= (6,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 2 module(u,v)= (6,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 6 sector= 2 module(u,v)= (6,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 2 module(u,v)= (6,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 6 sector= 2 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 2 module(u,v)= (1,6) trigger subdetector= 2
+Stage 1 : 1862279172 4 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 4
+Stage 1 : 1862344704 0 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 0
+Stage 1 : 1862346763 11 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 11
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 1 module(u,v)= (6,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 1 module(u,v)= (6,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 1 module(u,v)= (5,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 1 module(u,v)= (5,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 1 module(u,v)= (4,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 1 module(u,v)= (4,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 1 module(u,v)= (6,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 1 module(u,v)= (6,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 1 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 1 module(u,v)= (5,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 1 module(u,v)= (1,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 1 module(u,v)= (1,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 2 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 1 module(u,v)= (2,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 1 module(u,v)= (2,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 2 sector= 1 module(u,v)= (3,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 2 sector= 1 module(u,v)= (3,7) trigger subdetector= 2
+Stage 1 : 1862281229 13 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 13
+Stage 1 : 1862346761 9 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 9
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 6 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 6 sector= 1 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 1 module(u,v)= (5,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 6 sector= 1 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 1 module(u,v)= (5,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 6 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 6 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Stage 1 : 1862344715 11 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 11
+Stage 1 : 1862281226 10 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 10
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 1 module(u,v)= (6,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 1 module(u,v)= (6,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 1 module(u,v)= (6,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 1 module(u,v)= (6,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Stage 1 : 1862346758 6 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 6
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 1 module(u,v)= (6,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 1 module(u,v)= (6,0) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 1 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 1 module(u,v)= (5,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 1 module(u,v)= (6,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 1 module(u,v)= (6,5) trigger subdetector= 2
+Stage 1 : 1862348806 6 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 6
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 2 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (1,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 2 module(u,v)= (6,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (6,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 1 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 1 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 1 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Stage 1 : 1862283274 10 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 10
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 2 module(u,v)= (5,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (5,0) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 3 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 3 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 3 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Stage 1 : 1862281228 12 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 12
+Stage 1 : 1862346760 8 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 8
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 1 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 1 module(u,v)= (5,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 1 module(u,v)= (2,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 1 module(u,v)= (2,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 1 module(u,v)= (3,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 1 module(u,v)= (3,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 1 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 1 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 1 module(u,v)= (6,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 1 module(u,v)= (6,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 1 module(u,v)= (4,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 1 module(u,v)= (4,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 1 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 1 module(u,v)= (5,6) trigger subdetector= 2
+Stage 1 : 1862283276 12 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 12
+Stage 1 : 1862348808 8 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 8
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (6,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 2 module(u,v)= (6,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (7,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 2 module(u,v)= (7,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (4,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 2 module(u,v)= (4,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (6,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 2 module(u,v)= (6,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (7,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 2 module(u,v)= (7,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (7,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 2 module(u,v)= (7,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (5,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 2 module(u,v)= (5,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (3,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 2 module(u,v)= (3,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 4 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 4 sector= 2 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 4 sector= 2 module(u,v)= (1,6) trigger subdetector= 2
+Stage 1 : 1862279181 13 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 13
+Stage 1 : 1862344713 9 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 9
+Stage 1 : 1862348807 7 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 7
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 2 module(u,v)= (5,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 2 module(u,v)= (5,0) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Stage 1 : 1862283275 11 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 11
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (7,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 2 module(u,v)= (7,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (7,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 2 module(u,v)= (7,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (7,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 2 module(u,v)= (7,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (7,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 2 module(u,v)= (7,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (2,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 2 module(u,v)= (2,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (3,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 2 module(u,v)= (3,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (4,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 2 module(u,v)= (4,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (6,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 2 module(u,v)= (6,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (7,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 2 module(u,v)= (7,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (5,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 2 module(u,v)= (5,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 2 module(u,v)= (6,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 2 module(u,v)= (6,6) trigger subdetector= 2
+Stage 1 : 1862346759 7 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 7
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 1 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 1 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 1 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 1 module(u,v)= (6,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 5 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= -1 layer= 5 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 5 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Stage 1 : 1862281227 11 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 11
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 1 module(u,v)= (2,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 1 module(u,v)= (2,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 1 module(u,v)= (1,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 1 module(u,v)= (1,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 1 module(u,v)= (6,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 1 module(u,v)= (6,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 1 module(u,v)= (4,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 1 module(u,v)= (4,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 1 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 1 module(u,v)= (5,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 1 module(u,v)= (5,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 1 module(u,v)= (3,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 1 module(u,v)= (3,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 1 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 2 sector= 1 module(u,v)= (5,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 2 sector= 1 module(u,v)= (6,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 2 sector= 1 module(u,v)= (6,6) trigger subdetector= 2
+Stage 1 : 1862283272 8 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 8
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (7,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 2 module(u,v)= (7,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 2 module(u,v)= (1,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (5,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 2 module(u,v)= (5,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (6,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 2 module(u,v)= (6,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (7,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 2 module(u,v)= (7,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (7,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 2 module(u,v)= (7,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (4,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 2 module(u,v)= (4,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (3,7) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 2 module(u,v)= (3,7) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (6,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 4 sector= 2 module(u,v)= (6,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 4 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 4 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Stage 1 : 1862348804 4 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 4
+Stage 1 : 1862344707 3 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 3
+Stage 1 : 1862279175 7 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 7
+Stage 1 : 1862283268 4 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 4
+Stage 1 : 1862348800 0 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 0
+Stage 1 : 1862346754 2 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 2
+Stage 1 : 1862281222 6 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 6
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 1 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 1 module(u,v)= (1,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 1 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 1 module(u,v)= (5,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 1 module(u,v)= (6,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 1 module(u,v)= (6,0) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 1 module(u,v)= (6,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 1 module(u,v)= (6,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 1 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 1 module(u,v)= (4,6) trigger subdetector= 2
+Stage 1 : 1862348813 13 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 13
+Stage 1 : 1862348812 12 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 12
+Stage 1 : 1862283264 0 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 0
+Stage 1 : 1862346764 12 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 12
+Stage 1 : 1862283271 7 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 7
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 2 module(u,v)= (5,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 2 module(u,v)= (5,0) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 5 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 5 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 5 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Stage 1 : 1862348803 3 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 3
+Stage 1 : 1862281216 0 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 0
+Stage 1 : 1862344716 12 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 12
+Stage 1 : 1862283270 6 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 6
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 2 module(u,v)= (1,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (1,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 2 module(u,v)= (6,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (6,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (6,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (3,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (2,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (6,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (5,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (6,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (5,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (6,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= 1 layer= 1 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (4,6) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 1 z= 1 layer= 1 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= 1 layer= 1 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Stage 1 : 1862348802 2 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 2
+Stage 1 : 1862344709 5 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 5
+Stage 1 : 1862279177 9 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 9
+Stage 1 : 1862344708 4 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 4
+Stage 1 : 1862279176 8 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 8
+Stage 1 : 1862344710 6 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 6
+Stage 1 : 1862279178 10 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 10
+Stage 1 : 1862344711 7 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 7
+Stage 1 : 1862279179 11 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 11
+Stage 1 : 1862348801 1 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 1
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 2 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 2 module(u,v)= (4,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 2 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 2 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 2 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 2 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 2 module(u,v)= (5,1) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 2 module(u,v)= (5,2) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 2 module(u,v)= (5,3) trigger subdetector= 2
+Stage 1 : 1862283269 5 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 2 id= 5
+Stage 1 : 1862344706 2 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 2
+Stage 1 : 1862279174 6 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 6
+Stage 1 : 1862346753 1 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 1
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 1 module(u,v)= (5,4) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 1 module(u,v)= (2,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 1 module(u,v)= (4,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 1 module(u,v)= (3,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 1 module(u,v)= (1,5) trigger subdetector= 2
+Got a partial match
+Looking for : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 0 z= -1 layer= 7 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Found this  : HGCalTriggerModuleDetId::HFNose:EE:HSil:HScin= 0:0:1:0 type= 2 z= -1 layer= 7 sector= 1 module(u,v)= (5,0) trigger subdetector= 2
+Stage 1 : 1862281221 5 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 1 id= 5
+Stage 1 : 1862344705 1 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 1
+Stage 1 : 1862279173 5 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= 1 sector= 0 id= 5
+Checking Stage 1 -> Stage 2 -> Stage 1 consistency
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283266 2
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 2
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 30
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 31
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 60
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 61
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 62
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 68
+Same sector var : -1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279169 1
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 1
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 34
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 39
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 53
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 54
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 55
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 63
+Same sector var : -1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281218 2
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 2
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 30
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 31
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 60
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 61
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 62
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 68
+Same sector var : -1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279170 2
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 2
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 30
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 31
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 60
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 61
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 62
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 68
+Same sector var : -1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281219 3
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 3
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 0
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 35
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 25
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 51
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 66
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 67
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279171 3
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 3
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 0
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 35
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 25
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 51
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 66
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 67
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283267 3
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 3
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 0
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 35
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 25
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 51
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 66
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 67
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279168 0
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 0
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 48
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 49
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 37
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 50
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 56
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 57
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283265 1
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 1
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 34
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 39
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 53
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 54
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 55
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 63
+Same sector var : -1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346765 13
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 13
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 1
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 2
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 38
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 18
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 44
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 83
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281224 8
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 8
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 11
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 12
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 13
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 22
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 23
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 75
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346756 4
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 4
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 41
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 52
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 70
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 32
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 58
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 71
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281223 7
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 7
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 15
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 16
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 26
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 14
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 27
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 72
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346755 3
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 3
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 0
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 35
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 25
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 51
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 66
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 67
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346762 10
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 10
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 7
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 8
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 17
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 36
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 45
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 80
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281217 1
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 1
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 34
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 39
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 53
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 54
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 55
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 63
+Same sector var : -1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344717 13
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 13
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 1
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 2
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 38
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 18
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 44
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 83
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281225 9
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 9
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 9
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 10
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 19
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 20
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 78
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 79
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346757 5
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 5
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 43
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 33
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 59
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 64
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 73
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 74
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348805 5
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 5
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 43
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 33
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 59
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 64
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 73
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 74
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283273 9
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 9
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 9
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 10
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 19
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 20
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 78
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 79
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348810 10
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 10
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 7
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 8
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 17
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 36
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 45
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 80
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281220 4
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 4
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 41
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 52
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 70
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 32
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 58
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 71
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346752 0
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 0
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 48
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 49
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 37
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 50
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 56
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 57
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348811 11
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 11
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 5
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 6
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 24
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 40
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 46
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 81
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279180 12
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 12
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 3
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 42
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 21
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 47
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 4
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 82
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344712 8
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 8
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 11
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 12
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 13
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 22
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 23
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 75
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344714 10
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 10
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 7
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 8
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 17
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 36
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 45
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 80
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283277 13
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 13
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 1
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 2
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 38
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 18
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 44
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 83
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348809 9
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 9
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 9
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 10
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 19
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 20
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 78
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 79
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279172 4
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 4
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 41
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 52
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 70
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 32
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 58
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 71
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344704 0
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 0
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 48
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 49
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 37
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 50
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 56
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 57
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346763 11
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 11
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 5
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 6
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 24
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 40
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 46
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 81
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281229 13
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 13
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 1
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 2
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 38
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 18
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 44
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 83
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346761 9
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 9
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 9
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 10
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 19
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 20
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 78
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 79
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344715 11
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 11
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 5
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 6
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 24
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 40
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 46
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 81
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281226 10
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 10
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 7
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 8
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 17
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 36
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 45
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 80
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346758 6
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 6
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 28
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 29
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 65
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 69
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 76
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 77
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348806 6
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 6
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 28
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 29
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 65
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 69
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 76
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 77
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283274 10
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 10
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 7
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 8
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 17
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 36
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 45
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 80
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281228 12
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 12
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 3
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 42
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 21
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 47
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 4
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 82
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346760 8
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 8
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 11
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 12
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 13
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 22
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 23
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 75
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283276 12
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 12
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 3
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 42
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 21
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 47
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 4
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 82
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348808 8
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 8
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 11
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 12
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 13
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 22
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 23
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 75
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279181 13
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 13
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 1
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 2
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 38
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 18
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 44
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 83
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344713 9
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 9
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 9
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 10
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 19
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 20
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 78
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 79
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348807 7
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 7
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 15
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 16
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 26
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 14
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 27
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 72
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283275 11
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 11
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 5
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 6
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 24
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 40
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 46
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 81
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346759 7
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 7
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 15
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 16
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 26
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 14
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 27
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 72
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281227 11
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 11
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 5
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 6
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 24
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 40
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 46
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 81
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283272 8
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 8
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 11
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 12
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 13
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 22
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 23
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 75
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348804 4
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 4
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 41
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 52
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 70
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 32
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 58
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 71
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344707 3
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 3
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 0
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 35
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 25
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 51
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 66
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 67
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279175 7
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 7
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 15
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 16
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 26
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 14
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 27
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 72
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283268 4
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 4
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 41
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 52
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 70
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 32
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 58
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 71
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348800 0
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 0
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 48
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 49
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 37
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 50
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 56
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 57
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346754 2
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 2
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 30
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 31
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 60
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 61
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 62
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 68
+Same sector var : -1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281222 6
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 6
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 28
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 29
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 65
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 69
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 76
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 77
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348813 13
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 13
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 1
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 2
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 38
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 18
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 44
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 83
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348812 12
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 12
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 3
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 42
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 21
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 47
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 4
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 82
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283264 0
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 0
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 48
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 49
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 37
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 50
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 56
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 57
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346764 12
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 12
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 3
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 42
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 21
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 47
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 4
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 82
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283271 7
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 7
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 15
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 16
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 26
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 14
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 27
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 72
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348803 3
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 3
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 0
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 35
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 25
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 51
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 66
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 67
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281216 0
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 0
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 48
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 49
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 37
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 50
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 56
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 57
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344716 12
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 12
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 3
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 42
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 21
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 47
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 4
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 82
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283270 6
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 6
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 28
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 29
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 65
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 69
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 76
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 77
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348802 2
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 2
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 30
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 31
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 60
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 61
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 62
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 68
+Same sector var : -1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344709 5
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 5
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 43
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 33
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 59
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 64
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 73
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 74
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279177 9
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 9
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 9
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 10
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 19
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 20
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 78
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 79
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344708 4
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 4
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 41
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 52
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 70
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 32
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 58
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 71
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279176 8
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 8
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 11
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 12
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 13
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 22
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 23
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 75
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344710 6
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 6
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 28
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 29
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 65
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 69
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 76
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 77
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279178 10
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 10
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 7
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 8
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 17
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 36
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 45
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 80
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344711 7
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 7
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 15
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 16
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 26
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 14
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 27
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 72
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279179 11
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 11
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 5
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 6
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 24
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 40
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 46
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 81
+Same sector var : 0 0
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862348801 1
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 1
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 34
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 39
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 53
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 54
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 55
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 63
+Same sector var : -1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862283269 5
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 5
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 43
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 33
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 59
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 64
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 73
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 74
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344706 2
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 2
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 30
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 31
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 60
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 61
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 62
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 68
+Same sector var : -1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279174 6
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 6
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 28
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 29
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 65
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 69
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 76
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 77
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862346753 1
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 1
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 34
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 39
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 53
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 54
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 55
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 63
+Same sector var : -1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862281221 5
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 5
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 43
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 33
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 59
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 64
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 73
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 74
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862344705 1
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 1
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 34
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 39
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 53
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 54
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 55
+Same sector var : 1 1
+Getting Stage 2 FFPGA for S1 link : 63
+Same sector var : -1 1
+N Stage 2 FPGAs found : 2
+Getting Stage 2 FPGAS for Stage 1 FPGA : 1862279173 5
+Getting S1 links from S1 FPGA
+Getting links for s1 id : 5
+Got S1 links : 6
+Looping S1 links, getting S2 FPGAs
+Getting Stage 2 FFPGA for S1 link : 43
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 33
+Same sector var : -1 1
+Getting Stage 2 FFPGA for S1 link : 59
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 64
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 73
+Same sector var : 0 0
+Getting Stage 2 FFPGA for S1 link : 74
+Same sector var : 1 1
+N Stage 2 FPGAs found : 2
+Checking Stage 1 -> Stage 2 consistency
+Checking stage 2 : 0
+In getStage1FpgasFromStage2Fpga with ID : 1862365184
+Getting S1 links from S2 ID : 1862365184 0
+Found : 84 links
+Checking out this link : 13
+Checking out this link : 12
+Checking out this link : 11
+Checking out this link : 10
+Checking out this link : 9
+Checking out this link : 8
+Checking out this link : 7
+Checking out this link : 6
+Checking out this link : 5
+Checking out this link : 4
+Checking out this link : 83
+Checking out this link : 82
+Checking out this link : 81
+Checking out this link : 80
+Checking out this link : 55
+Checking out this link : 54
+Checking out this link : 53
+Checking out this link : 52
+Checking out this link : 51
+Checking out this link : 37
+Checking out this link : 62
+Checking out this link : 36
+Checking out this link : 61
+Checking out this link : 35
+Checking out this link : 60
+Checking out this link : 34
+Checking out this link : 59
+Checking out this link : 48
+Checking out this link : 33
+Checking out this link : 58
+Checking out this link : 44
+Checking out this link : 47
+Checking out this link : 32
+Checking out this link : 14
+Checking out this link : 57
+Checking out this link : 43
+Checking out this link : 46
+Checking out this link : 31
+Checking out this link : 56
+Checking out this link : 42
+Checking out this link : 2
+Checking out this link : 3
+Checking out this link : 26
+Checking out this link : 1
+Checking out this link : 25
+Checking out this link : 0
+Checking out this link : 24
+Checking out this link : 41
+Checking out this link : 19
+Checking out this link : 40
+Checking out this link : 18
+Checking out this link : 39
+Checking out this link : 15
+Checking out this link : 27
+Checking out this link : 28
+Checking out this link : 38
+Checking out this link : 17
+Checking out this link : 29
+Checking out this link : 79
+Checking out this link : 16
+Checking out this link : 30
+Checking out this link : 20
+Checking out this link : 21
+Checking out this link : 22
+Checking out this link : 23
+Checking out this link : 49
+Checking out this link : 63
+Checking out this link : 50
+Checking out this link : 64
+Checking out this link : 65
+Checking out this link : 66
+Checking out this link : 67
+Checking out this link : 68
+Checking out this link : 69
+Checking out this link : 70
+Checking out this link : 45
+Checking out this link : 71
+Checking out this link : 72
+Checking out this link : 74
+Checking out this link : 75
+Checking out this link : 76
+Checking out this link : 77
+Checking out this link : 78
+Checking out this link : 73
+Outputting : 84
+Found N matching stage 1 FPGAs : 31
+Checking if they appear in original S1 FPGA list : 28
+Error: 
+ Stage-1 FPGA 1862344705(HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 1)
+ has not been found in 
+ Stage-2 HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:0:0:1 z= -1 sector= 2 id= 0
+
+   Available Stage-1 FPGAs are:
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 4
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 7
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 0
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 7
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 9
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 12
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 8
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 8
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 1
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 8
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 3
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 10
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 2
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 9
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 6
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 13
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 10
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 5
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 12
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 6
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 4
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 11
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 9
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 10
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 11
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 11
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 12
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 2 id= 13
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 0 id= 5
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 13
+HGCalTriggerBackendDetId::lpGBT:Stage1 FPGA:Stage2 FPGA= 0:1:0:0 z= -1 sector= 1 id= 3
+
+%MSG-w HGCalTriggerGeometryTester:   HGCalTriggerGeomTesterV9Imp3:L1THGCaltriggergeomtester@streamBeginRun  28-Jun-2024 14:36:18 BST Run: 1 Stream: 0
+Problem with the trigger geometry detected. Only the basic cells tree will be filled
+
+%MSG
+%MSG-w HGCalTriggerGeometryTester:   HGCalTriggerGeomTesterV9Imp3:L1THGCaltriggergeomtester@streamBeginRun  28-Jun-2024 14:36:18 BST Run: 1 Stream: 0
+HGCalTriggerGeometry: Found inconsistency in Stage2 <-> Stage1 mapping
+
+%MSG
+Filling cells tree
+Filling EE geometry
+Filling HSi geometry
+Filling HSc geometry
+Begin processing the 1st record. Run 1, Event 1, LumiSection 1 on stream 0 at 28-Jun-2024 14:36:35.109 BST
