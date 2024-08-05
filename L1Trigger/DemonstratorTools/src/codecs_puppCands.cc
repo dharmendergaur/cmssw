@@ -29,12 +29,16 @@ namespace l1t::demo::codecs {
     // Sort puppi candidates into input regions
     // What's currently done by Phase1L1TJetProducer::prepareInputsIntoRegions in emulator
     std::vector<float> etaRegionEdges{-3, -2.5, -1.5, -1.0, -0.5, 0, 0.5, 1, 1.5, 2.5, 3};
-    // std::vector<float> phiRegionEdges{-3.5, -2.8, -2.1, -1.4, -0.7, 0, 0.7, 1.4, 2.1, 2.8, 3.5};
-    std::vector<float> phiRegionEdges{-3.15, -2.45, -1.75, -1.05, -0.35, 0.35, 1.05, 1.75, 2.45, 3.15};
+    std::vector<float> phiRegionEdges;
+    for ( unsigned int i=0; i<10; ++i ) {
+      phiRegionEdges.push_back(-M_PI+i*2*M_PI/9);
+    }                                
+
     std::vector<std::vector<ap_uint<64>>> inputsInRegions{ (etaRegionEdges.size()-1) * (phiRegionEdges.size() - 1)};
     for (const auto& puppiCand : puppiCands ) {
 
-      if (puppiCand.phi() < phiRegionEdges.front() || puppiCand.phi() >= phiRegionEdges.back() ||
+      if (
+        puppiCand.phi() < phiRegionEdges.front() || puppiCand.phi() >= phiRegionEdges.back() ||
           puppiCand.eta() < etaRegionEdges.front() || puppiCand.eta() >= etaRegionEdges.back())
         continue;
 
@@ -43,10 +47,11 @@ namespace l1t::demo::codecs {
 
       // std::cout << "Input puppi cand : " << puppiCand.pt() << " " << puppiCand.eta() << " " << puppiCand.phi() << std::endl;
       // Which phi region does this tp belong to
+      auto puppiCandPhi = puppiCand.phi();
       auto it_phi = phiRegionEdges.begin();
-      it_phi = std::upper_bound(phiRegionEdges.begin(), phiRegionEdges.end(), puppiCand.phi()) - 1;
+      it_phi = std::upper_bound(phiRegionEdges.begin(), phiRegionEdges.end(), puppiCandPhi) - 1;
 
-      if ( l1ct::Scales::makeGlbPhi( *(it_phi+1) ) == l1ct::Scales::makeGlbPhi( puppiCand.phi() ) ) {
+      if ( l1ct::Scales::makeGlbPhi( *(it_phi+1) ) == l1ct::Scales::makeGlbPhi( puppiCandPhi ) ) {
         it_phi += 1;
       }
 
@@ -65,11 +70,6 @@ namespace l1t::demo::codecs {
         auto etaRegion = it_eta - etaRegionEdges.begin();
         unsigned regionIndex = etaRegion + phiRegion * (etaRegionEdges.size() - 1);
 
-        if ( puppiCand.pt() == 6.25 ) {
-          std::cout << "Puppi cand : " << puppiCand.pt() << " " << puppiCand.phi() << " " << puppiCand.eta() << std::endl;
-          std::cout << *it_phi << " " << *it_eta << std::endl;
-          std::cout << "Region index : " << regionIndex << " " << etaRegion << " " << phiRegion << std::endl;
-        }
         // std::cout << "Packed cand : " << encodePuppiCand(puppiCand, *it_phi, *it_eta) << std::endl;
         // std::cout << *it_phi << " " << *it_eta << std::endl;
         // std::cout << "Region index : " << regionIndex << " " << etaRegion << " " << phiRegion << std::endl;
@@ -81,6 +81,7 @@ namespace l1t::demo::codecs {
     unsigned maxInputsPerRegion = 18;
     for (auto& inputs : inputsInRegions) {
       if (inputs.size() > maxInputsPerRegion) {
+        std::cout << "Truncating this region : " << inputs.size() << std::endl;
         inputs.resize(maxInputsPerRegion);
       }
     }
@@ -136,6 +137,8 @@ namespace l1t::demo::codecs {
         unsigned frame = iCand / nLinks + firstFrame;
         // std::cout << "Input cand : " << iCand << " " << cand << " " << link << " " << frame << std::endl;
         // std::cout << std::hex << cand << std::dec << std::endl;
+        // std::cout << "Adding cand to pattern file on link/frame : " << link << " " << frame << " " << std::hex << cand << std::dec << " " << l1ct::PuppiObj::unpack(cand).hwPt << std::endl;
+
         ++iCand;
         linkData.at(link).at(frame) = cand;
       }

@@ -98,8 +98,6 @@ private:
   std::vector<double> etaBinning_;
   size_t nBinsEta_;
   unsigned int nBinsPhi_;
-  double phiLow_;
-  double phiUp_;
   unsigned int jetIEtaSize_;
   unsigned int jetIPhiSize_;
   bool trimmedGrid_;
@@ -123,8 +121,6 @@ Phase1L1TJetSeedProducer::Phase1L1TJetSeedProducer(const edm::ParameterSet& iCon
       etaBinning_(iConfig.getParameter<std::vector<double>>("etaBinning")),
       nBinsEta_(etaBinning_.size() - 1),
       nBinsPhi_(iConfig.getParameter<unsigned int>("nBinsPhi")),
-      phiLow_(iConfig.getParameter<double>("phiLow")),
-      phiUp_(iConfig.getParameter<double>("phiUp")),
       jetIEtaSize_(iConfig.getParameter<unsigned int>("jetIEtaSize")),
       jetIPhiSize_(iConfig.getParameter<unsigned int>("jetIPhiSize")),
       trimmedGrid_(iConfig.getParameter<bool>("trimmedGrid")),
@@ -137,7 +133,7 @@ Phase1L1TJetSeedProducer::Phase1L1TJetSeedProducer(const edm::ParameterSet& iCon
       maxInputsPerRegion_(iConfig.getParameter<unsigned int>("maxInputsPerRegion")),
       outputCollectionName_(iConfig.getParameter<std::string>("outputCollectionName")) {
   caloGrid_ =
-      std::make_unique<TH2F>("caloGrid", "Calorimeter grid", nBinsEta_, etaBinning_.data(), nBinsPhi_, phiLow_, phiUp_);
+      std::make_unique<TH2F>("caloGrid", "Calorimeter grid", nBinsEta_, etaBinning_.data(), nBinsPhi_, phiRegionEdges_.front(), phiRegionEdges_.back());
   caloGrid_->GetXaxis()->SetTitle("#eta");
   caloGrid_->GetYaxis()->SetTitle("#phi");
   // produces<l1t::PFCandidateCollection>(outputCollectionName_).setBranchAlias(outputCollectionName_);
@@ -198,6 +194,11 @@ void Phase1L1TJetSeedProducer::produce(edm::Event& iEvent, const edm::EventSetup
   // sort by pt
   l1t::PFCandidateCollection sortedSeeds;
   sortSeeds( seedsVector, sortedSeeds );
+
+  // std::cout << "--- Seeds ---" << std::endl;
+  // for ( const auto& seed : sortedSeeds ) {
+  //   std::cout << seed.pt() << " " << seed.eta() << " " << seed.phi() << std::endl;
+  // }
 
   auto seedsVectorPtr = std::make_unique<l1t::PFCandidateCollection>(sortedSeeds);
   iEvent.put(std::move(seedsVectorPtr), outputCollectionName_ );
@@ -260,7 +261,7 @@ l1t::PFCandidateCollection Phase1L1TJetSeedProducer::findSeeds(float seedThresho
         double etaBinCentre = -3 + (iEta-1+0.5)*etaLSB;
 
         const float phiLSB = 2. * M_PI / 72;
-        double phiBinCentre = -3.15 + ( iPhi-1+0.5 ) * phiLSB;
+        double phiBinCentre = -M_PI + ( iPhi-1+0.5 ) * phiLSB;
 
         pfVector.SetPt(centralPt);
         pfVector.SetPhi(phiBinCentre);
@@ -503,8 +504,6 @@ void Phase1L1TJetSeedProducer::fillDescriptions(edm::ConfigurationDescriptions& 
   desc.add<edm::InputTag>("inputCollectionTag", edm::InputTag("l1pfCandidates", "Puppi"));
   desc.add<std::vector<double>>("etaBinning");
   desc.add<unsigned int>("nBinsPhi", 72);
-  desc.add<double>("phiLow", -M_PI);
-  desc.add<double>("phiUp", M_PI);
   desc.add<unsigned int>("jetIEtaSize", 7);
   desc.add<unsigned int>("jetIPhiSize", 7);
   desc.add<bool>("trimmedGrid", false);
@@ -525,17 +524,19 @@ std::vector<std::vector<edm::Ptr<reco::Candidate>>> Phase1L1TJetSeedProducer::pr
   for (unsigned int i = 0; i < triggerPrimitives->size(); ++i) {
     reco::CandidatePtr tp(triggerPrimitives, i);
 
-    if (tp->phi() < phiRegionEdges_.front() || tp->phi() >= phiRegionEdges_.back() ||
+    if (
+      tp->phi() < phiRegionEdges_.front() || tp->phi() >= phiRegionEdges_.back() ||
         tp->eta() < etaRegionEdges_.front() || tp->eta() >= etaRegionEdges_.back())
       continue;
 
     // Which phi region does this tp belong to
     auto it_phi = phiRegionEdges_.begin();
-    it_phi = std::upper_bound(phiRegionEdges_.begin(), phiRegionEdges_.end(), tp->phi()) - 1;
-    if ( l1ct::Scales::makeGlbPhi( *(it_phi+1) ) == l1ct::Scales::makeGlbPhi( tp->phi() ) ) {
+    auto tp_phi = tp->phi();
+
+    it_phi = std::upper_bound(phiRegionEdges_.begin(), phiRegionEdges_.end(), tp_phi) - 1;
+    if ( l1ct::Scales::makeGlbPhi( *(it_phi+1) ) == l1ct::Scales::makeGlbPhi( tp_phi ) ) {
       it_phi += 1;
     }
-
     // Which eta region does this tp belong to
     auto it_eta = etaRegionEdges_.begin();
     it_eta = std::upper_bound(etaRegionEdges_.begin(), etaRegionEdges_.end(), tp->eta()) - 1;
@@ -577,7 +578,10 @@ std::pair<unsigned, unsigned> Phase1L1TJetSeedProducer::regionEtaPhiBinOffset(co
   unsigned int etaRegion = (regionIndex - phiRegion) / (phiRegionEdges_.size() - 1);
 
   float etaBinOffset = ( 3 + etaRegionEdges_.at(etaRegion) ) / 0.5 * 6;
-  float phiBinOffset = ( 3.15 + phiRegionEdges_.at(phiRegion) ) / 0.7 * 8;
+  float phiRegionWidth = abs(phiRegionEdges_.at(0) - phiRegionEdges_.at(1) );
+
+  float nBinsPhiRegion = round(phiRegionWidth/(2*pi/72));
+  float phiBinOffset = ( -1.0 * phiRegionEdges_.front() + phiRegionEdges_.at(phiRegion) ) / phiRegionWidth * nBinsPhiRegion;
   return std::pair<unsigned, unsigned>{phiBinOffset, etaBinOffset};
 }
 

@@ -1,7 +1,7 @@
 import FWCore.ParameterSet.Config as cms
 import FWCore.Utilities.FileUtils as FileUtils
 import FWCore.ParameterSet.VarParsing as VarParsing
-
+import math
 
 # PART 1 : PARSE ARGUMENTS
 
@@ -58,6 +58,8 @@ process.extraPFStuff = cms.Task(
         process.L1TPF9x9HistoSeed8JetsTaskDC)
 
 process.l1tTrackSelectionProducer.processSimulatedTracks = False
+
+process.l1tPhase1JetSeedProducer9x9DC.phiRegions = tuple([-math.pi+i*2*math.pi/9 for i in range(10)])
 
 process.load('L1Trigger.DemonstratorTools.CTL2FileWriter_cff')
 
