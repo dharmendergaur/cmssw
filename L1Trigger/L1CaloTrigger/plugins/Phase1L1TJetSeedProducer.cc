@@ -195,11 +195,17 @@ void Phase1L1TJetSeedProducer::produce(edm::Event& iEvent, const edm::EventSetup
   l1t::PFCandidateCollection sortedSeeds;
   sortSeeds( seedsVector, sortedSeeds );
 
-  // std::cout << "--- Seeds ---" << std::endl;
-  // for ( const auto& seed : sortedSeeds ) {
-  //   std::cout << seed.pt() << " " << seed.eta() << " " << seed.phi() << std::endl;
-  // }
+//Print seed information
+  std::cout << "--- Seeds ---" << std::endl;
+  for ( const auto& seed : sortedSeeds ) {
+    std::cout << seed.pt() << " " << seed.eta() << " " << seed.phi() << std::endl;
+  }
+  std::cout << "Emul seed (valid, pt, eta, phi) for event in Integer"<<  std::endl;
+  for(unsigned int xskajcbdjs = 0; xskajcbdjs < sortedSeeds.size(); ++xskajcbdjs){
 
+  std::cout << sortedSeeds[xskajcbdjs].pt() << " " <<l1ct::Scales::makeGlbEta(sortedSeeds[xskajcbdjs].eta()) << " " << l1ct::Scales::makeGlbPhi(sortedSeeds[xskajcbdjs].phi()) << " " <<  std::endl; 
+  }
+  //Print seed information --- end
   auto seedsVectorPtr = std::make_unique<l1t::PFCandidateCollection>(sortedSeeds);
   iEvent.put(std::move(seedsVectorPtr), outputCollectionName_ );
 

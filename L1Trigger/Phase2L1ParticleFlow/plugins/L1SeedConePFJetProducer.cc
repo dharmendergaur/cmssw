@@ -240,6 +240,35 @@ std::vector<l1t::PFJet> L1SeedConePFJetProducer::convertHWToEDM(
     });
     edmJets.push_back(edmJet);
   });
+  
+  //print JEC jets
+  if(coneSize < 0.5){
+    std::vector<l1t::PFJet> SC4Jets = edmJets;
+     std::sort(SC4Jets.begin(), SC4Jets.end(), [](l1t::PFJet seed1, l1t::PFJet seed2) {
+          return seed1.hwPt() > seed2.hwPt();
+        });
+     std::cout << "--------------SC4 ( JEC)----------"<<std::endl;
+  std::for_each(SC4Jets.begin(), SC4Jets.end(), [&](const l1t::PFJet& part) {
+      if(part.hwPt() >0){
+        std::cout << "  Jets : " << part.rawPt() << ", " << l1gt::Scales::floatEta(part.hwEta()) << ", " << l1gt::Scales::floatPhi(part.hwPhi()) << std::endl;
+        // std::cout << "  Jets : " << l1gt::Scales::floatPt(part.hwPt()) << ", " << l1gt::Scales::floatEta(part.hwEta()) << ", " << l1gt::Scales::floatPhi(part.hwPhi()) << std::endl;
+      }
+    });
+  }
+  if(coneSize > 0.6){
+    std::vector<l1t::PFJet> SC8Jets = edmJets;
+     std::cout << "--------------SC8 ( JEC)----------"<<std::endl;
+     std::sort(SC8Jets.begin(), SC8Jets.end(), [](l1t::PFJet seed1, l1t::PFJet seed2) {
+          return seed1.hwPt() > seed2.hwPt();
+        });
+  std::for_each(SC8Jets.begin(), SC8Jets.end(), [&](const l1t::PFJet& part) {
+      if(part.hwPt() >0){
+        std::cout << "  Jets : " << part.rawPt() << ", " << l1gt::Scales::floatEta(part.hwEta()) << ", " << l1gt::Scales::floatPhi(part.hwPhi()) << std::endl;
+      }
+    });
+  }
+  //print end
+  
   return edmJets;
 }
 

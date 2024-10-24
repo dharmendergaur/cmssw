@@ -233,7 +233,7 @@ void l1ct::LinPuppiEmulator::linpuppi_chs_ref(const PFRegionEmu &region,
     }
     bool accept = pfch[i].hwPt != 0;
     if (!fakePuppi_)
-      accept = accept && region.isFiducial(pfch[i]) && (std::abs(z0diff) <= int(dzCut_) || pfch[i].hwId.isMuon());
+      accept = accept && region.isFiducial(pfch[i].hwVtxEta(), pfch[i].hwVtxPhi()) && (std::abs(z0diff) <= int(dzCut_) || pfch[i].hwId.isMuon());
     if (accept) {
       outallch[i].fill(region, pfch[i]);
       if (fakePuppi_) {                           // overwrite Dxy & TkQuality with debug information
