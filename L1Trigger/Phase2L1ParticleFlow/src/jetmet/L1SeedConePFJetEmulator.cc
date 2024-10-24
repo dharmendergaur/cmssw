@@ -119,7 +119,32 @@ std::vector<L1SCJetEmu::Jet> L1SCJetEmu::emulateEvent(std::vector<Particle>& par
       });
     }
     if ( particlesInCone.size() > 0 ) { // Possible hack - some seeds don't have any clustered particles.  Need to understand if real effect (could be) or a bug
-    
+
+     //--------------------------------------- Constituents print  (debug for FW mismatch)  --start ----------------------------
+     if(coneSize_ < 0.5){
+     std::for_each(particlesInCone.begin(), particlesInCone.end(), [&](Particle& part) {
+        std::cout << "  Part (int) --SC4: " << part.hwPt << ", " << part.hwEta << ", " << part.hwPhi << std::endl;
+     });
+    int count_1=0;
+     std::for_each(particlesInCone.begin(), particlesInCone.end(), [&](Particle& part) {
+        std::cout << "  Part (float) --SC4: " << part.hwPt << ", " << part.floatEta()  << ", " << part.floatPhi()  << std::endl;
+        count_1++;
+     });
+     std::cout<<"Total particles: "<<count_1<<std::endl;
+     }
+
+     if(coneSize_ >0.6){
+     std::for_each(particlesInCone.begin(), particlesInCone.end(), [&](Particle& part) {
+        std::cout << "  Part (int) --SC8: " << part.hwPt << ", " << part.hwEta << ", " << part.hwPhi << std::endl;
+     });
+    int count_1=0;
+     std::for_each(particlesInCone.begin(), particlesInCone.end(), [&](Particle& part) {
+        std::cout << "  Part (float) --SC8: " << part.hwPt << ", " << part.floatEta()  << ", " << part.floatPhi()  << std::endl;
+        count_1++;
+     });
+     std::cout<<"Total particles: "<<count_1<<std::endl;
+     }
+//--------------------------------------- Constituents print  (debug for FW mismatch)  --end ----------------------------
     // if (debug_){ dbgCout() << "Internal seed used!" << std::endl;}   //debug
      jets.push_back(makeJet_HW(particlesInCone, seed));
      //remove the clustered particles
@@ -139,5 +164,32 @@ std::vector<L1SCJetEmu::Jet> L1SCJetEmu::emulateEvent(std::vector<Particle>& par
 
 
   }
+  
+  //Jet print (without JEC)
+  if(coneSize_ < 0.5){
+    std::vector<Jet> SC4Jets = jets;
+     std::sort(SC4Jets.begin(), SC4Jets.end(), [](Jet seed1, Jet seed2) {
+          return seed1.hwPt > seed2.hwPt;
+        });
+     std::cout << "--------------SC4 (no JEC)----------"<<std::endl;
+  std::for_each(SC4Jets.begin(), SC4Jets.end(), [&](const Jet& part) {
+      if(part.hwPt >0){
+        std::cout << "  Jets : " << part.hwPt << ", " << part.hwEta << ", " << part.hwPhi << std::endl;
+      }
+    });
+  }
+  if(coneSize_ > 0.6){
+    std::vector<Jet> SC8Jets = jets;
+     std::cout << "--------------SC8 (no JEC)----------"<<std::endl;
+     std::sort(SC8Jets.begin(), SC8Jets.end(), [](Jet seed1, Jet seed2) {
+          return seed1.hwPt > seed2.hwPt;
+        });
+  std::for_each(SC8Jets.begin(), SC8Jets.end(), [&](const Jet& part) {
+      if(part.hwPt >0){
+        std::cout << "  Jets : " << part.hwPt << ", " << part.hwEta << ", " << part.hwPhi << std::endl;
+      }
+    });
+  }
+  
   return jets;
 }
