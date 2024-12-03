@@ -193,6 +193,13 @@ std::vector<l1t::PFJet> L1SeedConePFJetProducer::processEvent_HW(std::vector<edm
   // Convert the EDM format to the hardware format, and call the standalone emulator
   std::pair<std::vector<L1SCJetEmu::Particle>, std::unordered_map<const l1t::PFCandidate*, edm::Ptr<l1t::PFCandidate>>>
       particles = convertEDMToHW(work);
+
+std::for_each(particles.first.begin(), particles.first.end(), [](L1SCJetEmu::Particle& part) {        //temperory fix for phi= +pi/-pi (take -pi for all pi values) for firmware/emulator match, need to revisit later...
+        if (part.hwPhi == 720) {
+        part.hwPhi = -720;
+        }
+    });
+
   std::pair<std::vector<L1SCJetEmu::Particle>, std::unordered_map<const l1t::PFCandidate*, edm::Ptr<l1t::PFCandidate>>>
       hwSeeds = convertEDMToHW(seeds);
 
