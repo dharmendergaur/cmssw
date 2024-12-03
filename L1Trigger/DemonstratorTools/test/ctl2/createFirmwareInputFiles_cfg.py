@@ -42,6 +42,8 @@ process.load('SimCalorimetry.HcalTrigPrimProducers.hcaltpdigi_cff') # needed to 
 process.load('SimCalorimetry.HGCalSimProducers.hgcalDigitizer_cfi') # needed for HGCAL_noise_fC
 process.load('Configuration.StandardSequences.SimL1Emulator_cff')
 process.l1t9x9HistoSeedsSCPFL1PuppiCorrectedEmulatorDC.doCorrections = True
+process.l1t9x9HistoSeedsSC8PFL1PuppiCorrectedEmulatorDC.doCorrections = True       
+
 from L1Trigger.Phase2L1ParticleFlow.l1tMHTPFProducer_cfi import l1tMHTPFProducer
 process.l1t9x9HistoSeedsSCPFL1PuppiCorrectedEmulatorDCMHT = l1tMHTPFProducer.clone(jets = 'l1t9x9HistoSeedsSCPFL1PuppiCorrectedEmulatorDC')
 process.extraPFStuff = cms.Task(
